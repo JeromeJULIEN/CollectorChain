@@ -3,6 +3,7 @@ import reactLogo from "../../assets/react.svg";
 import Header from "../Header";
 import HomePage from "../HomePage";
 import Footer from "../Footer";
+import MenuMobile from "../MenuMobile";
 import "./reset.scss";
 import "./styles.scss";
 
@@ -14,6 +15,7 @@ function App() {
 			<Header />
 			<HomePage />
 			<Footer />
+			<MenuMobile />
 		</div>
 	);
 }
