@@ -1,0 +1,13 @@
+.homePage {
+    display: flex;
+    flex-direction: column;
+
+    &__ressources {
+        height: 250px;
+        background-color: aqua;
+    }
+
+    &__highlightedCollections {
+        display:flex;
+    }
+}
