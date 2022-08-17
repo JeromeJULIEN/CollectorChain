@@ -1,0 +1,19 @@
+::::::
+Favori, 0N NFT, 0N USER
+:::
+
+CATEGORIES: name, description, media
+CategoriCollection, 11 COLLECTIONS, 0N CATEGORIES
+COLLECTIONS: collection_id, name, description, media
+Appartient, 11 NFT,  0N COLLECTIONS
+NFT: token, name, description, price, forSale, media
+Posséde, 11 NFT, 0N USER
+USER: email, nickname, password, wallet, isAdmin, media
+
+:
+Contient, 1N NFT, 0N PROPERTIES
+
+:::
+PROPERTIES: name
+PropertyTag, 01 PROPERTIES, 0N TAGS
+TAGS: name  
