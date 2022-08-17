@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=collector_chain
+
+init 2022-08-17T12:58:04Z Loic Berland <berland.loic@yahoo.fr> # initialize BDD
