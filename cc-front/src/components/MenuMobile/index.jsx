@@ -63,7 +63,7 @@ const MenuMobile = () => {
 								content: '""',
 								display: "block",
 								position: "absolute",
-								top: 0,
+								bottom: 0,
 								right: 14,
 								width: 10,
 								height: 10,
@@ -73,8 +73,8 @@ const MenuMobile = () => {
 							},
 						},
 					}}
-					transformOrigin={{ horizontal: "right", vertical: "top" }}
-					anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+					transformOrigin={{ horizontal: "right", vertical: "bottom" }}
+					anchorOrigin={{ horizontal: "right", vertical: "top" }}
 				>
 					<MenuItem>
 						<LoginOutlinedIcon /> Login
