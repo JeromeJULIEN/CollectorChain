@@ -1,34 +1,35 @@
 const express = require('express');
-const user = require('../models/user');
+const jwt = require('jsonwebtoken');
+const { User } = require('../models');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 module.exports = {
 
-    async insertNewUser(req, res) {
-        const newUser = req.body;
-        const addUser = await user.createUser(newUser);
-        return res.json(addUser);
-    },
+    // Sign up
+    // async insertNewUser(req, res) {
+    //     const newUser = req.body;
+    //     const addUser = await User.createUser(newUser);
+    //     return res.json(addUser);
+    // },
 
     async loginUser(req, res) {
-        const user = req.body;
+        const { email, password } = req.body;
 
-        /* Create a token at login */
-        function generateAccessToken(user) {
-            return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s' });
-        }
+        // /* Create a token at login */
+        // function generateAccessToken(user) {
+        //     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s' });
+        // }
 
-        /* Check the generate token */
-        function authenticateToken(token) {
-            return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        }
+        // /* Check the generate token */
+        // function authenticateToken(token) {
+        //     return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        // }
 
-        const userLogin = await user.loginUser(user);
+        const user = await User.findUserByEmail(email);
 
         if (userLogin.loggedIn == true) {
             const accessToken = generateAccessToken(user);

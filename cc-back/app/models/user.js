@@ -50,7 +50,9 @@ module.exports = class User extends CoreDatamapper {
     //         INSERT INTO "user" (nickname, email, password)
     //         VALUES ('${newUser.nickname}', '${newUser.email}', '${hashedPassword}');
     //         `);
-    //         const result = await client.query(`SELECT * FROM "user" WHERE email= '${newUser.email}';`);
+    //         const result = await client.query(
+    // `SELECT * FROM "user" WHERE email= '${newUser.email}';`
+    // );
     //         return result.rows[0];
     //     } catch (error) {
     //         return error;
@@ -60,7 +62,9 @@ module.exports = class User extends CoreDatamapper {
     // async loginUser(user) {
     //     try {
     //         /* check if the user is already registered */
-    //         const isUniqueChecking = await client.query(`SELECT * FROM "user" WHERE email= '${user.email}';`);
+    //         const isUniqueChecking = await client.query(
+    // `SELECT * FROM "user" WHERE email= '${user.email}';`
+    // );
     //         if (isUniqueChecking.rows.length === 0) {
     //             const message = { message: 'Cet utilisateur n\'est pas enregistré' };
     //             return message;
@@ -69,7 +73,9 @@ module.exports = class User extends CoreDatamapper {
     //             SELECT * FROM "user" WHERE email= '${user.email}';
     //         `);
     //         /* Password checking */
-    //         const passwordChecking = await bcrypt.compare(`${user.password}`, `${result.rows[0].password}`);
+    //         const passwordChecking = await bcrypt.compare(
+    // `${user.password}`, `${result.rows[0].password}`
+    // );
 
     //         if (passwordChecking !== true) {
     //             const message = 'Mauvaise combinaison adresse email / Mot de passe!';
