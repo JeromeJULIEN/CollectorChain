@@ -10,13 +10,15 @@ require('dotenv').config();
 
 module.exports = {
 
-    // Sign up
-    // async insertNewUser(req, res) {
-    //     const newUser = req.body;
-    //     const addUser = await User.createUser(newUser);
-    //     return res.json(addUser);
-    // },
+    /* Sign up
+    async insertNewUser(req, res) {
+         const newUser = req.body;
+         
+         const addUser = await User.createUser(newUser);
+         return res.json(addUser);
+     },*/
 
+    // Login
     async loginUser(req, res) {
         const { email, password } = req.body;
 
