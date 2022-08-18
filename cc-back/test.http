@@ -6,7 +6,7 @@ GET {{endpoint}}/
 # User #
 
 ### Post login
-POST {{endpoint}}/login
+POST {{ endpoint }}/login
 content-type: application/json
 
 {

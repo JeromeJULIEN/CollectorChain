@@ -1,5 +1,6 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const { User } = require('../models');
 
 const app = express();
@@ -17,6 +18,7 @@ module.exports = {
     // },
 
     async loginUser(req, res) {
+        console.log(req.body);
         const { email, password } = req.body;
 
         // /* Create a token at login */
@@ -28,16 +30,16 @@ module.exports = {
         // function authenticateToken(token) {
         //     return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         // }
-
+        console.log('cc1');
         const user = await User.findUserByEmail(email);
 
-        if (!user) return res.json({error: `L'utilisateur n'existe pas`});
+        if (!user) return res.json({ error: 'L\'utilisateur n\'existe pas' });
 
         const userPassword = await bcrypt.compare(password, user.password);
 
-        if(!userPassword) return res.json({error: 'Mot de passe incorrect'});
+        if (!userPassword) return res.json({ error: 'Mot de passe incorrect' });
 
-        delete user.password
+        delete user.password;
 
         return res.json(user);
 

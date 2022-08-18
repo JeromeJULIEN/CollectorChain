@@ -1,10 +1,10 @@
-const express = require('express');
+// const express = require('express');
 
-const router = express.Router();
+// const router = express.Router();
 
-const homePageController = require('../controllers/homePageController');
+// const homePageController = require('../controllers/homePageController');
 
-/* Route to Home page */
-router.route('/').get(homePageController.displayHomePage);
+// /* Route to Home page */
+// router.route('/').get(homePageController.displayHomePage);
 
-module.exports = router;
+// module.exports = router;
