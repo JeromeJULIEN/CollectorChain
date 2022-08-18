@@ -1,9 +1,10 @@
-#root {
+.app {
   max-width: 414px;
   // max-height: 896px;
   margin: 0 auto;
   background-color: darkgrey;
   overflow-y: hidden;
+  font-family: sans-serif;
 
   h1 {
     font-size: 1.4rem;

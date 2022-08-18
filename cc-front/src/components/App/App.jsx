@@ -8,15 +8,17 @@ import "./styles.scss";
 import {Routes, Route} from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Categories from "../pages/Categories";
+import CollectionsByCategory from "../pages/CollectionsByCategory";
 
 function App() {
 	return (
-		<div className="App">
+		<div className="app">
 			<NextUIProvider>
 				<Header />
 					<Routes>
 						<Route path="/" element={<HomePage />}/>
 						<Route path="/categories" element={<Categories />}/>
+						<Route path="/category/collections" element={<CollectionsByCategory />}/>
 					</Routes>
 				<Footer />
 				<MenuMobile />

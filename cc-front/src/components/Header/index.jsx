@@ -1,7 +1,19 @@
+import React from 'react'
+import './styles.scss'
+
 const Header = () => {
+	const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false)
+
+	const manageSearchBarVisibility = (event) => {
+		event.preventDefault()
+		setIsSearchBarOpen(!isSearchBarOpen)
+	}
+	
 	return (
-		<div className="Header">
+		<div className="header">
+			{isSearchBarOpen?'':
 			<h1>Collector Chain</h1>
+			}
 			<form
 			// onSubmit={handleSubmitForm}
 			>
@@ -11,9 +23,12 @@ const Header = () => {
 					type="text"
 					id="searchBar"
 					name="searchBar"
+					className={isSearchBarOpen?'header__searchBar-open':'header__searchBar'}
 				/>
-				<ion-icon name="search-outline"></ion-icon>
 			</form>
+			<button onClick={manageSearchBarVisibility}>
+				<ion-icon name="search-outline"></ion-icon>
+			</button>
 		</div>
 	);
 };
