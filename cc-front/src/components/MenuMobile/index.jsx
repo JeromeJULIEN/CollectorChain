@@ -1,13 +1,15 @@
 import "./styles.scss";
-
+import { Link } from "react-router-dom";
 import MenuUser from "./MenuUser";
+import MenuExplore from "./MenuExplore";
 
 const MenuMobile = () => {
 	return (
 		<div className="MenuMobile">
-			<p>Explore</p>
+			<MenuExplore />
+			{/* <Link to="/explore">Explore</Link> */}
 			<p>Market</p>
-			<p>Create</p>
+			<Link to="/creation">Create</Link>
 			<MenuUser />
 		</div>
 	);
