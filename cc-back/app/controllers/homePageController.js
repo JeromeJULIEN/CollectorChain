@@ -1,5 +1,5 @@
 module.exports = {
-  displayHomePage(_, res) {
-    return res.send('Hello Collector Chain');
-  },
+    displayHomePage(_, res) {
+        return res.send('Hello Collector Chain');
+    },
 };
