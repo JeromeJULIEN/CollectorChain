@@ -14,7 +14,7 @@ const Footer = () => {
 	return (
 		<div className="footer">
 			<div className="footer__menu">
-				<p>About us</p>
+				<button type="button" onClick={handleLogin}>About us</button>
 				<p>Term</p>
 				<p>Contact</p>
 			</div>

@@ -3,4 +3,17 @@
   max-height: 896px;
   margin: 0 auto;
   background-color: darkgrey;
+  overflow-y: hidden;
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    text-align: center;
+}
 }
