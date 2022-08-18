@@ -6,13 +6,16 @@ import Footer from "../Footer";
 import MenuMobile from "../MenuMobile";
 import "./reset.scss";
 import "./styles.scss";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
 	return (
 		<div className="App">
 			<NextUIProvider>
 				<Header />
-				<HomePage />
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+				</Routes>
 				<Footer />
 				<MenuMobile />
 			</NextUIProvider>
