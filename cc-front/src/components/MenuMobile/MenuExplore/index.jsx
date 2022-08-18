@@ -1,27 +1,27 @@
 import React from "react";
-import { Dropdown } from "@nextui-org/react";
+import { Nav } from "rsuite/";
+import "rsuite/dist/rsuite.min.css";
 import "./style.scss";
 
 export default function MenuExplore() {
-	const [visible, setVisible] = React.useState(false);
-	const handler = () => setVisible(true);
-	const closeHandler = () => {
-		setVisible(false);
-	};
-
 	return (
-		<>
-			<Dropdown>
-				<Dropdown.Button rounded className="menu-explore">
-					Explore
-				</Dropdown.Button>
-				<Dropdown.Menu color="secondary" aria-label="Actions">
-					<Dropdown.Item>Categories</Dropdown.Item>
-					<Dropdown.Item>Collections</Dropdown.Item>
-					<Dropdown.Item withDivider>Ressources</Dropdown.Item>
-					<Dropdown.Item>Events</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-		</>
+		<Nav.Menu title="Explore" placement="topStart">
+			<Nav.Menu title="Categories">
+				<Nav.Item>Chat</Nav.Item>
+				<Nav.Item>Montre</Nav.Item>
+				<Nav.Item>...Show all</Nav.Item>
+			</Nav.Menu>
+			<Nav.Menu title="Collections">
+				<Nav.Item>Top 10</Nav.Item>
+				<Nav.Item>Popular</Nav.Item>
+				<Nav.Item>...Show all</Nav.Item>
+			</Nav.Menu>
+			<Nav.Menu title="Ressources">
+				<Nav.Item>Enjoy showcase</Nav.Item>
+				<Nav.Item>Earn passive incomes</Nav.Item>
+				<Nav.Item>Creation process</Nav.Item>
+			</Nav.Menu>
+			<Nav.Item>Events</Nav.Item>
+		</Nav.Menu>
 	);
 }
