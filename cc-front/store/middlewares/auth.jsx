@@ -1,9 +1,9 @@
-import { setUserData, SIGN_IN } from '../actions/user';
+import { setUserData, LOG_IN } from '../actions/user';
 import instance from '../../utils/axios';
 
 const authMiddleware = (store) => (next) => async (action) => { 
 	switch (action.type) { 
-		case SIGN_IN: {
+		case LOG_IN: {
             console.log('entrée dans middleware auth > action signin')
 			const { user: { email, password } } = store.getState();
 			console.log('user email>>>', email)
@@ -19,7 +19,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 
 			// Une fois connecter, je modifie les headers de base de mon instance axios
 			// Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
-			//! intance.defaults.headers.common.Authorization = `Bearer ${ data.token }`;
+			//! instance.defaults.headers.common.Authorization = `Bearer ${ data.token }`;
 
 			// Je stock les informations reçu au login dans mon store
 			//! store.dispatch(setUserData(data));

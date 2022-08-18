@@ -3,8 +3,16 @@ import { Dropdown, Modal, Input, Row, Checkbox, Button, Text } from "@nextui-org
 import { Mail } from "../../modals/Login/Mail";
 import { Password } from "../../modals/Login/Password";
 import "./styles.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { changeUserField, logIn } from "../../../../store/actions/user";
 
 export default function MenuUser() {
+
+	const dispatch = useDispatch();
+
+	const email = useSelector(state => state.user.email)
+	const password = useSelector(state => state.user.password)
+
 	const [loginVisible, loginSetVisible] = React.useState(false);
 	const loginHandler = () => {
 		console.log("test");
@@ -18,6 +26,17 @@ export default function MenuUser() {
 	const signupCloseHandler = () => {
 		signupSetVisible(false);
 	};
+
+	const handleChange = event => {
+		dispatch(changeUserField(event.target.value,event.target.name))
+	}
+
+	const handleSubmit = event => {
+		event.preventDefault()
+		dispatch(logIn())
+		// signupCloseHandler()
+
+	}
 
 	return (
 		<>
@@ -45,12 +64,27 @@ export default function MenuUser() {
 					</Text>
 				</Modal.Header>
 				<Modal.Body>
-					<Input type="email" clearable bordered fullWidth color="primary" size="lg" placeholder="Email" contentLeft={<Mail fill="currentColor" />} />
-					<Input type="password" clearable bordered fullWidth color="primary" size="lg" placeholder="Password" contentLeft={<Password fill="currentColor" />} />
+					<Input 
+						type="email" 
+						learable bordered fullWidth color="primary" 
+						size="lg" 
+						placeholder="Email" 
+						contentLeft={<Mail fill="currentColor" />} 
+						name='email'
+						value={email}
+						onChange={handleChange}
+					/>
+					<Input 
+						type="password" 
+						clearable bordered fullWidth color="primary" 
+						size="lg" 
+						placeholder="Password" 
+						contentLeft={<Password fill="currentColor" />} 
+						name='password'
+						value={password}
+						onChange={handleChange}
+					/>
 					<Row justify="space-between">
-						<Checkbox>
-							<Text size={14}>Remember me</Text>
-						</Checkbox>
 						<Text size={14}>Forgot password?</Text>
 					</Row>
 				</Modal.Body>
@@ -58,7 +92,7 @@ export default function MenuUser() {
 					<Button auto flat color="error" onClick={loginCloseHandler}>
 						Close
 					</Button>
-					<Button auto onClick={loginCloseHandler}>
+					<Button auto onClick={handleSubmit}>
 						Sign in
 					</Button>
 				</Modal.Footer>

@@ -1,6 +1,6 @@
 import "./styles.scss";
 import {useDispatch} from 'react-redux';
-import { signIn } from "../../../store/actions/user";
+import { logIn } from "../../../store/actions/user";
 
 const Footer = () => {
 
@@ -8,13 +8,13 @@ const Footer = () => {
 	const dispatch = useDispatch()
 
 	const handleLogin = () => {
-		dispatch(signIn())
+		dispatch(logIn())
 	}
 
 	return (
 		<div className="footer">
 			<div className="footer__menu">
-				<button type="button" onClick={handleLogin}>About us</button>
+				<p>About us</p>
 				<p>Term</p>
 				<p>Contact</p>
 			</div>
