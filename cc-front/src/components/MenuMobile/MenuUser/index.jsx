@@ -4,14 +4,15 @@ import { Mail } from "../../modals/Login/Mail";
 import { Password } from "../../modals/Login/Password";
 import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { changeUserField, logIn } from "../../../../store/actions/user";
 
 export default function MenuUser() {
-
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const email = useSelector(state => state.user.email)
-	const password = useSelector(state => state.user.password)
+	const email = useSelector((state) => state.user.email);
+	const password = useSelector((state) => state.user.password);
 
 	const [loginVisible, loginSetVisible] = React.useState(false);
 	const loginHandler = () => {
@@ -27,16 +28,23 @@ export default function MenuUser() {
 		signupSetVisible(false);
 	};
 
-	const handleChange = event => {
-		dispatch(changeUserField(event.target.value,event.target.name))
-	}
+	const handleChange = (event) => {
+		dispatch(changeUserField(event.target.value, event.target.name));
+	};
 
-	const handleSubmit = event => {
-		event.preventDefault()
-		dispatch(logIn())
-		// signupCloseHandler()
+	const loginHandleSubmit = (event) => {
+		event.preventDefault();
+		dispatch(logIn());
+		loginCloseHandler();
+		navigate("/");
+	};
 
-	}
+	const signupHandleSubmit = (event) => {
+		event.preventDefault();
+		// dispatch(logIn());
+		signupCloseHandler();
+		navigate("/login");
+	};
 
 	return (
 		<>
@@ -64,23 +72,29 @@ export default function MenuUser() {
 					</Text>
 				</Modal.Header>
 				<Modal.Body>
-					<Input 
-						type="email" 
-						learable bordered fullWidth color="primary" 
-						size="lg" 
-						placeholder="Email" 
-						contentLeft={<Mail fill="currentColor" />} 
-						name='email'
+					<Input
+						type="email"
+						learable
+						bordered
+						fullWidth
+						color="primary"
+						size="lg"
+						placeholder="Email"
+						contentLeft={<Mail fill="currentColor" />}
+						name="email"
 						value={email}
 						onChange={handleChange}
 					/>
-					<Input 
-						type="password" 
-						clearable bordered fullWidth color="primary" 
-						size="lg" 
-						placeholder="Password" 
-						contentLeft={<Password fill="currentColor" />} 
-						name='password'
+					<Input
+						type="password"
+						clearable
+						bordered
+						fullWidth
+						color="primary"
+						size="lg"
+						placeholder="Password"
+						contentLeft={<Password fill="currentColor" />}
+						name="password"
 						value={password}
 						onChange={handleChange}
 					/>
@@ -92,7 +106,7 @@ export default function MenuUser() {
 					<Button auto flat color="error" onClick={loginCloseHandler}>
 						Close
 					</Button>
-					<Button auto onClick={handleSubmit}>
+					<Button auto onClick={loginHandleSubmit}>
 						Sign in
 					</Button>
 				</Modal.Footer>
@@ -113,7 +127,7 @@ export default function MenuUser() {
 					<Button auto flat color="error" onClick={signupCloseHandler}>
 						Close
 					</Button>
-					<Button auto onClick={signupCloseHandler}>
+					<Button auto onClick={signupHandleSubmit}>
 						Sign up
 					</Button>
 				</Modal.Footer>
