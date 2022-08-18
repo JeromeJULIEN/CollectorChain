@@ -5,6 +5,16 @@ const multer = require('multer');
 const bodyParser = multer();
 const cors = require('cors');
 
+// parse request body
+// app.use(bodyParser.json());
+
+// cors
+// app.use((req, res) => {
+//     res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Accept, Authorization');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+// });
+
 const router = require('./router');
 
 const app = express();
