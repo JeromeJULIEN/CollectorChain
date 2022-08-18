@@ -31,7 +31,17 @@ module.exports = {
 
         const user = await User.findUserByEmail(email);
 
-        if (userLogin.loggedIn == true) {
+        if (!user) return res.json({error: `L'utilisateur n'existe pas`});
+
+        const userPassword = await bcrypt.compare(password, user.password);
+
+        if(!userPassword) return res.json({error: 'Mot de passe incorrect'});
+
+        delete user.password
+
+        return res.json(user);
+
+        /* if (userLogin.loggedIn == true) {
             const accessToken = generateAccessToken(user);
             const checkToken = authenticateToken(accessToken);
 
@@ -45,6 +55,6 @@ module.exports = {
                 },
             });
         }
-        return res.send({ user: userLogin, message: userLogin.message });
+        return res.send({ user: userLogin, message: userLogin.message }); */
     },
 };
