@@ -1,7 +1,16 @@
 const express = require('express');
+
+const multer = require('multer');
+
+const bodyParser = multer();
+const cors = require('cors');
+
 const router = require('./router');
 
 const app = express();
+
+app.use(cors());
+app.use(bodyParser.none());
 
 // On active le middleware pour parser le payload JSON
 app.use(express.json());
