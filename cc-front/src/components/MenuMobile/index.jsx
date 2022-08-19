@@ -59,7 +59,7 @@ const MenuMobile = () => {
 	return (
 		<div className="menu-mobile">
 			<Nav className="menu-mobile-nav">
-				<MenuExplore className="menu-explore" />
+				<MenuExplore className="menu-explore" placement={"topStart"} />
 				<Nav.Item>Market</Nav.Item>
 				<Nav.Item>Create</Nav.Item>
 				<Nav.Menu className="menu-user" icon={<UserInfoIcon />} placement="topEnd">

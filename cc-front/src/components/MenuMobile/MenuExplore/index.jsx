@@ -3,9 +3,9 @@ import { Nav } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
 import "./style.scss";
 
-export default function MenuExplore() {
+export default function MenuExplore({ placement }) {
 	return (
-		<Nav.Menu title="Explore" placement="topStart">
+		<Nav.Menu title="Explore" placement={placement}>
 			<Nav.Menu title="Categories">
 				<Nav.Item>Chat</Nav.Item>
 				<Nav.Item>Montre</Nav.Item>
