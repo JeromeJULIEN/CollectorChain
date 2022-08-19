@@ -1,10 +1,11 @@
-.MenuMobile {
+.menu-mobile {
 	background-color: darkgrey;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	padding: 0 1em;
+	width: 100vw;
 	position: fixed;
 	bottom: 0;
+}
+
+.menu-mobile-nav {
+	display: flex;
+	justify-content: space-between;
 }
