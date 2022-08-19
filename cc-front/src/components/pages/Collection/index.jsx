@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux'
-import CollectionCard from '../../card/CollectionCard'
-import SearchBarCollections from '../../searchBars/SearchBarCollectionsByCategory'
+import NftCard from '../../card/NFTCard'
+import SearchBarCollection from '../../searchBars/SearchBarCollection'
 import './styles.scss'
 
 const Collection = () => {
   
-    const list = useSelector(state => state.collections.list)
+    const list = useSelector(state => state.nfts.list)
+    console.log(list);
 
     return (
     <div className='collection'>
@@ -13,7 +14,10 @@ const Collection = () => {
             <div className="collection__title__image">Collection main image</div>
             <div className="collection__title__text">
                 <div className='collection__title__text__main'>
-                    <h1 >Collection title</h1>
+                    <div className="collection__title__text__main__head">
+                        <h1 >Collection title</h1>
+                        <ion-icon name="share-social-outline"></ion-icon>
+                    </div>
                     <p>Collection short description</p>
                 </div>
                 <div className="collection__title__text__stats">
@@ -32,16 +36,16 @@ const Collection = () => {
                 </div>
             </div>
         </div>
-        <SearchBarCollections/>
+        <SearchBarCollection/>
         <div className="collection__list">
-        {/* display de la liste sous forme de carte */}
-        {list.map((text) => {
-          return (
-            <CollectionCard key={text} text={text}/>
-          )
-        })}
+          {/* display de la liste sous forme de carte */}
+          {list.map((text) => {
+            return (
+              <NftCard key={text} text={text}/>
+            )
+          })}
 
-      </div>
+        </div>
     </div>
   )
 }

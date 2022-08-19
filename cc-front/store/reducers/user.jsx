@@ -1,7 +1,7 @@
 import { CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA } from '../actions/user';
 
 export const initialState = {
-	pseudo: null,
+	nickname: null,
 	token: null,
 	logged: false,
 	email: 'user@user.com',
