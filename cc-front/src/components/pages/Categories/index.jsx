@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux'
-import Card from '../../Card'
-import SearchBarCategories from '../../SeachBarCategories'
+import CategoryCard from '../../card/CategoryCard'
+import SearchBarCategories from '../../searchBars/SeachBarCategories'
+
 import './styles.scss'
 
 const Categories = () => {
 
   // import depuis le state de la liste en cours
-  const list=useSelector(state => state.card.list)
+  const list=useSelector(state => state.categories.list)
 
   return (
     <div className='categories'>
@@ -16,7 +17,7 @@ const Categories = () => {
         {/* display de la liste sous forme de carte */}
         {list.map((text) => {
           return (
-            <Card key={text} text={text}/>
+            <CategoryCard key={text} text={text}/>
           )
         })}
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './styles.scss'
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
 	return (
 		<div className="header">
 			{isSearchBarOpen?'':
-			<h1>Collector Chain</h1>
+			<Link to='/'><h1>Collector Chain</h1></Link>
 			}
 			<form
 			// onSubmit={handleSubmitForm}

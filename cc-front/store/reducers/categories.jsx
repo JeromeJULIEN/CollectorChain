@@ -1,7 +1,5 @@
-// reducer temporaire pour test import de card categorie, collection et NFT dans les vues
-
 export const initialState ={
-    list:[1,2,3,4]
+    list:['Timepieces','Car models','Art','Luxury goods']
 }
 
 const reducer = (state = initialState, action = {}) => {

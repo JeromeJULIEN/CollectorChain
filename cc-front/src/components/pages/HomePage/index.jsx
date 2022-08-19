@@ -1,11 +1,11 @@
-import Card from "../../Card";
 import { useSelector } from "react-redux";
 import "./styles.scss";
+import CollectionCard from "../../card/CollectionCard";
 
 const HomePage = () => {
 
 // import depuis le state de la liste en cours
-const list=useSelector(state => state.card.list)
+const list=useSelector(state => state.collections.list)
 
 
 	return (
@@ -20,7 +20,7 @@ const list=useSelector(state => state.card.list)
 						{/* display de la liste sous forme de carte */}
 						{list.map((text) => {
 							return (
-								<Card key={text} text={text}/>
+								<CollectionCard key={text} text={text}/>
 							)
 						})}
 					</div>
@@ -33,7 +33,7 @@ const list=useSelector(state => state.card.list)
 					<div className="homePage__latestCollections__list">
 						{list.map((text) => {
 							return (
-								<Card key={text} text={text}/>
+								<CollectionCard key={text} text={text}/>
 							)
 						})}
 					</div>
