@@ -11,18 +11,20 @@ const authMiddleware = (store) => (next) => async (action) => {
 			// Équivalent
 			// const { user } = store.getState();
 			// const { email, password } = user;
-			// On utilise une instance d'axios qui est configurer avec un baseUrl me permettant de ne plus spéficier à chaque fois http://localhost:3001
-			//! const { data } = await instance.post('/login', {
-			//! 	email,
-			//! 	password, 
-			//! });
+			// On utilise une instance d'axios qui est configurer avec un baseUrl me permettant de ne plus spéficier à chaque fois http://localhost:3000
+			 const { data } = await instance.post('/login', {
+			 	email,
+			 	password, 
+			 });
+
+			 console.log('data from post login request >>>>', data)
 
 			// Une fois connecter, je modifie les headers de base de mon instance axios
 			// Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
-			//! instance.defaults.headers.common.Authorization = `Bearer ${ data.token }`;
+			// instance.defaults.headers.common.Authorization = `Bearer ${ data.token }`;
 
 			// Je stock les informations reçu au login dans mon store
-			//! store.dispatch(setUserData(data));
+			store.dispatch(setUserData(data));
 			// Je déclenche l'action qui va aller récupérer mes recettes favorites
 			break;
 		}

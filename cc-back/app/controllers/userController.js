@@ -10,15 +10,16 @@ require('dotenv').config();
 
 module.exports = {
 
-    // Sign up
-    // async insertNewUser(req, res) {
-    //     const newUser = req.body;
-    //     const addUser = await User.createUser(newUser);
-    //     return res.json(addUser);
-    // },
+    /* Sign up
+    async insertNewUser(req, res) {
+         const newUser = req.body;
+         
+         const addUser = await User.createUser(newUser);
+         return res.json(addUser);
+     },*/
 
+    // Login
     async loginUser(req, res) {
-        console.log(req.body);
         const { email, password } = req.body;
 
         // /* Create a token at login */
@@ -30,7 +31,6 @@ module.exports = {
         // function authenticateToken(token) {
         //     return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         // }
-        console.log('cc1');
         const user = await User.findUserByEmail(email);
 
         if (!user) return res.json({ error: 'L\'utilisateur n\'existe pas' });

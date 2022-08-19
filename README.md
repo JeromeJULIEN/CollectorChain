@@ -16,3 +16,12 @@
 2. Importer la BDD
 
     ``` sqitch deploy ```
+
+
+## Installation FRONT
+
+1. Installer les modules
+``` npm i ```
+
+2. Lancer l'application
+```npm run dev```
