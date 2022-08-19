@@ -22,7 +22,6 @@
 
     ``` sqitch deploy ```
 
-
 ## Installation FRONT
 
 1. Installer les modules
@@ -30,4 +29,3 @@
 
 2. Lancer l'application
 ```npm run dev```
-

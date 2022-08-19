@@ -1,12 +1,8 @@
-const express = require('express');
-// const jwt = require('jsonwebtoken');
 const emailValidator = require('email-validator');
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
+const jwt = require('../Auth/jwt');
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 require('dotenv').config();
 
 module.exports = {
@@ -14,11 +10,8 @@ module.exports = {
     // Sign up
     async insertNewUser(req, res) {
         let fieldForm = false;
-        console.log(req.body);
         for (const value in req.body) {
-            const body = req.body;
-            console.log(value);
-            console.log(body[value]);
+            const { body } = req;
             if (!body[value]) {
                 fieldForm = true;
             }
@@ -46,16 +39,6 @@ module.exports = {
     // Login
     async loginUser(req, res) {
         const { email, password } = req.body;
-
-        // /* Create a token at login */
-        // function generateAccessToken(user) {
-        //     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1800s' });
-        // }
-
-        // /* Check the generate token */
-        // function authenticateToken(token) {
-        //     return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        // }
         const user = await User.findUserByEmail(email);
 
         if (!user) return res.json({ error: 'L\'utilisateur n\'existe pas' });
@@ -65,23 +48,12 @@ module.exports = {
         if (!userPassword) return res.json({ error: 'Mot de passe incorrect' });
 
         delete user.password;
+        delete user.created_at;
+        delete user.updated_at;
 
-        return res.json(user);
+        const token = jwt.createToken(user);
+        const userLog = Object.assign(user, token);
 
-        /* if (userLogin.loggedIn == true) {
-            const accessToken = generateAccessToken(user);
-            const checkToken = authenticateToken(accessToken);
-
-            return res.send({
-                user: userLogin.userData,
-                message: userLogin.message,
-                accessToken,
-                checkToken: {
-                    // eslint-disable-next-line max-len
-                 nickname: checkToken.nickname, email: checkToken.email, iat: checkToken.iat, exp: checkToken.exp,
-                },
-            });
-        }
-        return res.send({ user: userLogin, message: userLogin.message }); */
+        return res.json(userLog);
     },
 };

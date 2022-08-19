@@ -24,3 +24,23 @@ Content-type: application/json
     "email":"user@user.com",
     "password": "password"
 }
+
+### test autentificate token
+GET {{endpoint}}/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzI0OCwiZXhwIjoxNjYwOTEzMjY4fQ.j41bdkv8PIn8UTDHe4emYDZIYILW5fw6sg2hs6-2frA
+
+### refresh token
+POST {{endpoint}}/token
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzIyNH0.h0J1HmQnAeeKwl2mfyPcOzKNdaV5J8yFryjpYhkL2bY"
+}
+
+### delete token
+POST {{endpoint}}/logout
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzIyNH0.h0J1HmQnAeeKwl2mfyPcOzKNdaV5J8yFryjpYhkL2bY"
+}
