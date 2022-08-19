@@ -6,15 +6,25 @@ import Footer from "../Footer";
 import MenuMobile from "../MenuMobile";
 import "./reset.scss";
 import "./styles.scss";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Categories from "../pages/Categories";
 import CollectionsByCategory from "../pages/CollectionsByCategory";
 import Collections from "../pages/Collections";
 import Collection from "../pages/Collection";
 import Error from "../pages/Error";
+import { useEffect } from "react";
+import Nft from "../pages/nft";
 
 function App() {
+	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
+	// 1 - on recupère l'url
+	const location = useLocation();
+	// 2 - on lance l'action à chaque changement d'url
+	useEffect(() => {
+		window.scrollTo(0,0);
+	}, [location])
+
 	return (
 		<div className="app">
 			<NextUIProvider>
@@ -26,6 +36,7 @@ function App() {
 						<Route path="/category/collections" element={<CollectionsByCategory />}/>
 						<Route path="/collections" element={<Collections />}/>
 						<Route path="/collection/id" element={<Collection />}/>
+						<Route path="/nft/id" element={<Nft />}/>
 						<Route path="*" element={<Error />}/>
 					</Routes>
 

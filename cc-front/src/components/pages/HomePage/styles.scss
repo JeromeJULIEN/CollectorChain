@@ -14,14 +14,14 @@
     &__highlightedCollections {
         display:flex;
         flex-direction: column;
-        margin: 1em 0.5em;
+        margin: 1rem 0.5rem;
 
         &__list{
 			display: grid;
 			flex-direction: row;
 			grid-template-rows: repeat(2, 1fr);
 			grid-template-columns: repeat(2, 1fr);
-			gap: 0.5em;
+			gap: 0.5rem;
         }
     }
 
@@ -34,13 +34,14 @@
     &__latestCollections{
         display:flex;
         flex-direction: column;
-        margin: 0.5rem 0 1rem 0;
+        margin: 1rem 0.5rem;
 
         &__list{
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            height: 100%;
+            display: grid;
+			flex-direction: row;
+			grid-template-rows: repeat(2, 1fr);
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.5rem;
         }
     }
 }

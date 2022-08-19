@@ -44,13 +44,15 @@ const list=useSelector(state => state.collections.list)
 				</div>
 				<div className="homePage__latestCollections">
 					<h2>latest Collections</h2>
-					<div className="homePage__latestCollections__list">
-						{list.map((text) => {
-							return (
-								<CollectionCard key={text} text={text}/>
-							)
-						})}
-					</div>
+					<Carousel className="custom-slider">
+						<div className="homePage__latestCollections__list">
+							{list.map((text) => {
+								return (
+									<CollectionCard key={text} text={text}/>
+								)
+							})}
+						</div>
+					</Carousel>
 				</div>
 			</div>
 		</main>
