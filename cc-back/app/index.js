@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const errorHandler = require('./helper/errorHandler');
+const ApiError = require('./errors/apiError');
 
 const corsOptions = {
     origin: 'http://localhost:5173',
@@ -17,5 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
+
+app.use((req, res, next) => {
+    next(new ApiError('endpoint not found', { statusCode: 404 }));
+});
+
+app.use(errorHandler);
 
 module.exports = app;
