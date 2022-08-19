@@ -5,7 +5,6 @@
    
 
     &__ressources {
-        height: 250px;
         background-color: grey;
         margin: 1rem 0 ;
 
@@ -15,25 +14,14 @@
     &__highlightedCollections {
         display:flex;
         flex-direction: column;
-        height: 250px;
-        margin: 1rem 0;
-
+        margin: 1em 0.5em;
 
         &__list{
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            height: 100%;
-
-
-            div{
-                width: 49%;
-                height: 50%;
-                background-color: grey;
-                margin: 0.1rem 0;
-                text-align: center;
-                
-            }
+			display: grid;
+			flex-direction: row;
+			grid-template-rows: repeat(2, 1fr);
+			grid-template-columns: repeat(2, 1fr);
+			gap: 0.5em;
         }
     }
 
@@ -57,12 +45,7 @@
 
 
             div{
-                width: 49%;
-                height: 50%;
-                background-color: grey;
-                margin: 0.1rem 0;
-                text-align: center;
-                
+                text-align: center; 
             }
         }
     }

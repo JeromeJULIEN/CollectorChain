@@ -1,15 +1,14 @@
 // reducer temporaire pour test import de card categorie, collection et NFT dans les vues
 
-export const initialState ={
-    list:[1,2,3,4]
-}
+export const initialState = {
+	list: [1, 2, 3, 4],
+};
 
 const reducer = (state = initialState, action = {}) => {
-    switch (action.type) {
+	switch (action.type) {
+		default:
+			return state;
+	}
+};
 
-        default:
-            return state
-    }
-}
-
-export default reducer
+export default reducer;

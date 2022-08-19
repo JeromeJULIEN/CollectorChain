@@ -1,0 +1,28 @@
+.carousel {
+	position: relative;
+}
+
+.carousel-title {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	z-index: 1;
+	background-color: transparent;
+	position:absolute;
+	top: 0;
+	padding: 1em 1em;
+}
+
+.carousel-img {
+	display:flex;
+	justify-content: center;
+	position: relative;
+	text-align: center;
+	& h2 {
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		padding: 0 1em;
+	}
+}
