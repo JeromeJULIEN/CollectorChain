@@ -30,39 +30,12 @@ module.exports = class User extends CoreDatamapper {
     }
 
     static async createUser(newUser) {
-        const result = await client.query(`
-        INSERT INTO "user" (nickname, email, password)
-        VALUES ('${newUser.nickname}', '${newUser.email}', '${newUser.password}');
-        `);
+        const result = await client.query(
+            `INSERT INTO "user" (nickname, email, password) 
+             VALUES ('$1', '$2', '$3');
+            `,
+            [newUser.nickname, newUser.email, newUser.password],
+        );
         return result.rows[0];
     }
-
-    // async loginUser(user) {
-    //     try {
-    //         /* check if the user is already registered */
-    //         const isUniqueChecking = await client.query(
-    // `SELECT * FROM "user" WHERE email= '${user.email}';`
-    // );
-    //         if (isUniqueChecking.rows.length === 0) {
-    //             const message = { message: 'Cet utilisateur n\'est pas enregistré' };
-    //             return message;
-    //         }
-    //         const result = await client.query(`
-    //             SELECT * FROM "user" WHERE email= '${user.email}';
-    //         `);
-    //         /* Password checking */
-    //         const passwordChecking = await bcrypt.compare(
-    // `${user.password}`, `${result.rows[0].password}`
-    // );
-
-    //         if (passwordChecking !== true) {
-    //             const message = 'Mauvaise combinaison adresse email / Mot de passe!';
-    //             return { message, loggedIn: passwordChecking };
-    //         }
-    //         const message = 'Utilisateur connecté';
-    //         return { userData: result.row[0], message, loggedIn: passwordChecking };
-    //     } catch (error) {
-    //         return error;
-    //     }
-    // },
 };
