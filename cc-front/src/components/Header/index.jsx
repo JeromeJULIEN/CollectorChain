@@ -1,3 +1,6 @@
+import { AutoComplete, InputGroup } from "rsuite";
+import SearchIcon from "@rsuite/icons/Search";
+
 const Header = () => {
 	return (
 		<div className="Header">
@@ -5,14 +8,16 @@ const Header = () => {
 			<form
 			// onSubmit={handleSubmitForm}
 			>
-				<input
-					placeholder="Search collections & NFT"
+				<InputGroup
+					inside
 					// onChange={handleChange}
-					type="text"
-					id="searchBar"
-					name="searchBar"
-				/>
-				<ion-icon name="search-outline"></ion-icon>
+				>
+					<AutoComplete />
+					{/* <AutoComplete data={data} /> */}
+					<InputGroup.Button tabIndex={-1}>
+						<SearchIcon />
+					</InputGroup.Button>
+				</InputGroup>
 			</form>
 		</div>
 	);
