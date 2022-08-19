@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./styles.scss";
-import HomePageCarousselAuto from "../../caroussels/homePageCarousselAuto";
+import HomePageCarousselAuto from "../../carousels_slides/CarousselAuto";
 import CollectionCard from "../../card/CollectionCard";
-import HomePageHightlightCollections from "../../caroussels/homePageHightCollections";
+import HomePageHightlightCollections from "../../carousels_slides/Slide";
 
 const HomePage = () => {
 	// import depuis le state de la liste en cours

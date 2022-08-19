@@ -17,7 +17,7 @@ const HomePageHightlightCollections = ({ children }) => {
 		<>
 			<div className="slide-collections">
 				<Swiper
-					slidesPerView={2.16}
+					slidesPerView={2}
 					grid={{
 						rows: 2,
 					}}
