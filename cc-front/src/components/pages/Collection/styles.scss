@@ -1,0 +1,61 @@
+.collection{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+
+    &__title{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 1rem 0 ;
+        background-color: grey;
+        height: 100px;
+
+        &__image{
+            height: 80px;
+            width: 80px;
+            background-color: darkgray;
+            margin: .5rem;
+        }
+
+        &__text{
+            flex-grow: 2;
+            
+            margin: .5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: .5rem;
+
+            &__main{
+                p{
+                    font-size: .9rem;
+                }
+
+            }
+            
+            &__stats{
+                display: flex;
+                justify-content: space-between;
+                h3{
+                    font-size: .9rem;
+                }
+                p{
+                    font-weight: bold;
+                }
+            }
+        }
+
+       
+
+    }
+
+    &__list{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+    }
+
+}

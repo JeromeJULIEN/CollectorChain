@@ -34,7 +34,6 @@
     &__latestCollections{
         display:flex;
         flex-direction: column;
-        height: 250px;
         margin: 0.5rem 0 1rem 0;
 
         &__list{
@@ -42,11 +41,6 @@
             justify-content: space-between;
             flex-wrap: wrap;
             height: 100%;
-
-
-            div{
-                text-align: center; 
-            }
         }
     }
 }

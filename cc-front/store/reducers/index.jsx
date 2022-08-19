@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './user';
-import cardReducer from './card';
+import categoriesReducer from './categories';
+import collectionsReducer from './collections'
 
 const rootReducer = combineReducers({
 	user: userReducer,
-	card: cardReducer,
+	categories: categoriesReducer,
+	collections: collectionsReducer,
 });
 
 export default rootReducer;
