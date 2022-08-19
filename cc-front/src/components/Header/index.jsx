@@ -1,24 +1,34 @@
-import { AutoComplete, InputGroup } from "rsuite";
-import SearchIcon from "@rsuite/icons/Search";
+import React from 'react'
+import './styles.scss'
 
 const Header = () => {
+	const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false)
+
+	const manageSearchBarVisibility = (event) => {
+		event.preventDefault()
+		setIsSearchBarOpen(!isSearchBarOpen)
+	}
+	
 	return (
-		<div className="Header">
+		<div className="header">
+			{isSearchBarOpen?'':
 			<h1>Collector Chain</h1>
+			}
 			<form
 			// onSubmit={handleSubmitForm}
 			>
-				<InputGroup
-					inside
+				<input
+					placeholder="Search collections & NFT"
 					// onChange={handleChange}
-				>
-					<AutoComplete />
-					{/* <AutoComplete data={data} /> */}
-					<InputGroup.Button tabIndex={-1}>
-						<SearchIcon />
-					</InputGroup.Button>
-				</InputGroup>
+					type="text"
+					id="searchBar"
+					name="searchBar"
+					className={isSearchBarOpen?'header__searchBar-open':'header__searchBar'}
+				/>
 			</form>
+			<button onClick={manageSearchBarVisibility}>
+				<ion-icon name="search-outline"></ion-icon>
+			</button>
 		</div>
 	);
 };

@@ -1,6 +1,13 @@
+import Card from "../../Card";
+import { useSelector } from "react-redux";
 import "./styles.scss";
 
 const HomePage = () => {
+
+// import depuis le state de la liste en cours
+const list=useSelector(state => state.card.list)
+
+
 	return (
 		<main>
 			<div className="homePage">
@@ -10,10 +17,12 @@ const HomePage = () => {
 				<div className="homePage__highlightedCollections">
 					<h2>hightlighted collections</h2>
 					<div className="homePage__highlightedCollections__list">
-						<div>collection 1</div>
-						<div>collection 2</div>
-						<div>collection 3</div>
-						<div>collection 4</div>
+						{/* display de la liste sous forme de carte */}
+						{list.map((text) => {
+							return (
+								<Card key={text} text={text}/>
+							)
+						})}
 					</div>
 				</div>
 				<div className="homePage__creationProcess">
@@ -22,10 +31,11 @@ const HomePage = () => {
 				<div className="homePage__latestCollections">
 					<h2>latest Collections</h2> 
 					<div className="homePage__latestCollections__list">
-						<div>collection 1</div>
-						<div>collection 2</div>
-						<div>collection 3</div>
-						<div>collection 4</div>
+						{list.map((text) => {
+							return (
+								<Card key={text} text={text}/>
+							)
+						})}
 					</div>
 				</div>
 			</div>
