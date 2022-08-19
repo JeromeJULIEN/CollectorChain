@@ -4,15 +4,14 @@ const generateJwt = require('./generateJWT');
 let refreshTokens = [];
 
 module.exports = {
-    createToken(req, res) {
-        const { user } = req;
-        const expiresIn = process.env.REFRESS_TOKEN_SECRET;
-        const accessToken = generateJwt(user);
-        const refreshToken = jwt.sign(user, expiresIn);
+    createToken(user) {
+        const expiresIn = process.env.EXPIRES_TOKEN;
+        const accessToken = generateJwt.generateAccessToken(user);
+        const refreshToken = jwt.sign(user, process.env.REFRESS_TOKEN_SECRET);
         refreshTokens.push(refreshToken);
-        res.json({
-            user, accessToken, refreshToken, expiresIn,
-        });
+        return {
+            accessToken, refreshToken, expiresIn,
+        };
     },
     authenticateToken(req, res, next) {
         const authHeader = req.headers.authorization;
@@ -34,7 +33,7 @@ module.exports = {
         if (refreshTokens.includes(refreshToken)) {
             try {
                 const user = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-                const accessToken = generateJwt(user);
+                const accessToken = generateJwt.generateAccessToken(user);
                 res.json({ accessToken, expiresIn });
             } catch (error) {
                 return res.sendStatus(403).send('Access denied');
