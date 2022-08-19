@@ -1,13 +1,24 @@
 @endpoint = http://localhost:{{$dotenv PORT}}
 
 # Home page #
-GET {{endpoint}}/
+GET {{ endpoint }}/
 
 # User #
 
+### Post SignUp
+POST {{ endpoint }}/sign_up
+Content-Type: application/json
+
+{
+    "nickname":"user3",
+    "email":"user3@user.com",
+    "password":"user3",
+    "passwordConfirm": "user3"
+}
+
 ### Post login
 POST {{ endpoint }}/login
-content-type: application/json
+Content-type: application/json
 
 {
     "email":"user@user.com",

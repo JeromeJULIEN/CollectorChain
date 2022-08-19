@@ -2,8 +2,6 @@
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
-// const saltRounds = 10;
-
 // /**
 //  * @typedef {object} User
 //  * @property {number} id - Primary key
@@ -31,33 +29,13 @@ module.exports = class User extends CoreDatamapper {
         return result.rows[0];
     }
 
-    // async createUser(newUser) {
-    //     try {
-    //         /* check if the new user is already registered */
-    //         const isUniqueChecking = await client.query(
-    // `SELECT * FROM "user" WHERE email= '${newUser.email}';`
-    // );
-    //         if (isUniqueChecking.rows.length !== 0) {
-    //             const message = { message: 'Cet utilisateur est déjà enregistré' };
-    //             return message;
-    //         }
-
-    //         /* Password encryption */
-    //         const hashedPassword = await bcrypt.hash(newUser.password, saltRounds);
-
-    //         /* insert into database new user */
-    //         await client.query(`
-    //         INSERT INTO "user" (nickname, email, password)
-    //         VALUES ('${newUser.nickname}', '${newUser.email}', '${hashedPassword}');
-    //         `);
-    //         const result = await client.query(
-    // `SELECT * FROM "user" WHERE email= '${newUser.email}';`
-    // );
-    //         return result.rows[0];
-    //     } catch (error) {
-    //         return error;
-    //     }
-    // },
+    static async createUser(newUser) {
+        const result = await client.query(`
+        INSERT INTO "user" (nickname, email, password)
+        VALUES ('${newUser.nickname}', '${newUser.email}', '${newUser.password}');
+        `);
+        return result.rows[0];
+    }
 
     // async loginUser(user) {
     //     try {

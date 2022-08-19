@@ -1,5 +1,6 @@
 const express = require('express');
 // const jwt = require('jsonwebtoken');
+const emailValidator = require('email-validator');
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
 
@@ -9,14 +10,38 @@ app.use(express.urlencoded({ extended: true }));
 require('dotenv').config();
 
 module.exports = {
-
-    /* Sign up
+    // On vérifie si les champs sont vides
+    // Sign up
     async insertNewUser(req, res) {
-         const newUser = req.body;
-         
-         const addUser = await User.createUser(newUser);
-         return res.json(addUser);
-     },*/
+        let fieldForm = false;
+        console.log(req.body);
+        for (const value in req.body) {
+            const body = req.body;
+            console.log(value);
+            console.log(body[value]);
+            if (!body[value]) {
+                fieldForm = true;
+            }
+        }
+        // eslint-disable-next-line max-len
+        const newUser = { nickname: req.body.nickname, email: req.body.email, password: req.body.password };
+        // on vérifie le pseudo du User
+        if (newUser.nickname.length === 0) return res.json({ error: 'Veuillez saisir un pseudo' });
+        // si le mail n'est pas dans le bon format
+        if (!emailValidator.validate(req.body.email)) return res.json({ error: 'Email non valide' });
+        const user = await User.findUserByEmail(newUser.email);
+        if (user) return res.json({ error: 'Cet email existe déjà !' });
+        // teste si les mots de passes sont correct
+        if (newUser.password !== req.body.passwordConfirm) return res.json({ error: 'Mot de passe incorrect' });
+        /* Password encryption */
+        const hashedPassword = await bcrypt.hash(newUser.password, 12);
+        newUser.password = hashedPassword;
+        const addUser = await User.createUser(newUser);
+        // on teste si le nouvel utilisateur existe déjà
+        if (newUser === addUser) return res.json({ error: 'Cet utilisateur existe déjà!' });
+
+        return res.json(newUser);
+    },
 
     // Login
     async loginUser(req, res) {
@@ -53,7 +78,7 @@ module.exports = {
                 accessToken,
                 checkToken: {
                     // eslint-disable-next-line max-len
-                    nickname: checkToken.nickname, email: checkToken.email, iat: checkToken.iat, exp: checkToken.exp,
+                 nickname: checkToken.nickname, email: checkToken.email, iat: checkToken.iat, exp: checkToken.exp,
                 },
             });
         }
