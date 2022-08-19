@@ -5,7 +5,11 @@ const app = require('./app');
 const PORT = process.env.PORT || 4321;
 
 const server = createServer(app);
-
+/**
+ * Initialize the web server
+ * @param {number} (port - http port)
+ * @param {string} (message - set a text to the main route)
+ */
 server.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
 });

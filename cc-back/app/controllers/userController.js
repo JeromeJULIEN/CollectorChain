@@ -6,6 +6,12 @@ const jwt = require('../Auth/jwt');
 require('dotenv').config();
 
 module.exports = {
+    /**
+     * User controller for add a new user
+     * @param {object} request - Express request object
+     * @param {object} respobse - Express response object
+     * @returns Roue API JSON response
+     */
     // On vérifie si les champs sont vides
     // Sign up
     async insertNewUser(req, res) {
@@ -13,7 +19,7 @@ module.exports = {
         for (const value in req.body) {
             const { body } = req;
             if (!body[value]) {
-                fieldForm = true;
+                return res.json({ error: 'Un champ est n\'est pas rempli' });
             }
         }
         // eslint-disable-next-line max-len
@@ -35,7 +41,12 @@ module.exports = {
 
         return res.json(newUser);
     },
-
+    /**
+     * User controller to login user
+     * @param {object} request - Express request object
+     * @param {object} response - Express response object
+     * @returns Route API JSON response
+     */
     // Login
     async loginUser(req, res) {
         const { email, password } = req.body;
