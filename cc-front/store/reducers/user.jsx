@@ -1,11 +1,12 @@
 import { CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA } from '../actions/user';
 
 export const initialState = {
-	nickname: null,
+	nickname: 'nickname',
 	token: null,
 	logged: false,
 	email: 'user@user.com',
 	password: 'password',
+	passwordConfirm:'password'
 };
 
 const reducer = (state = initialState, action = {}) => {
