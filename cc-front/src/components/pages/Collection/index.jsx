@@ -6,7 +6,6 @@ import './styles.scss'
 const Collection = () => {
   
     const list = useSelector(state => state.nfts.list)
-    console.log(list);
 
     return (
     <div className='collection'>
@@ -39,9 +38,9 @@ const Collection = () => {
         <SearchBarCollection/>
         <div className="collection__list">
           {/* display de la liste sous forme de carte */}
-          {list.map((text) => {
+          {list.map((nft) => {
             return (
-              <NftCard key={text} text={text}/>
+              <NftCard key={nft.id} {...nft}/>
             )
           })}
 
