@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom'
-import './styles.scss'
+import { Link } from "react-router-dom";
+import "./styles.scss";
 
-const NftCard = ({text}) => {
-  return (
-    <Link to='/nft/id' className='nftCard'><div >{text}</div></Link>
-  )
-}
+const NftCard = ({ text, price }) => {
+	return (
+		<Link to="/nft/id" className="nftCard">
+			<div>{text}</div>
+			<div>{price}</div>
+		</Link>
+	);
+};
 
-export default NftCard
+export default NftCard;

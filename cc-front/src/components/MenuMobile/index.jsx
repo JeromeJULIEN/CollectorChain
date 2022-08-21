@@ -62,7 +62,7 @@ const MenuMobile = () => {
 				<MenuExplore className="menu-explore" placement={"topStart"} />
 				<Nav.Item>Market</Nav.Item>
 				<Nav.Item>Create</Nav.Item>
-				<Nav.Menu className="menu-user" icon={<UserInfoIcon />} placement="topEnd">
+				<Nav.Menu title="User" className="menu-user" icon={<UserInfoIcon />} placement="topEnd">
 					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 					<Nav.Item>My showcase</Nav.Item>

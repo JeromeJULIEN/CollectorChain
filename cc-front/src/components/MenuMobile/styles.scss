@@ -1,4 +1,5 @@
 .menu-mobile {
+	z-index: 1;
 	background-color: darkgrey;
 	width: 100vw;
 	position: fixed;
@@ -8,4 +9,8 @@
 .menu-mobile-nav {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	& a {
+		color:black;
+	}
 }

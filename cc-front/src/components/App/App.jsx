@@ -15,6 +15,7 @@ import Collection from "../pages/Collection";
 import Error from "../pages/Error";
 import { useEffect } from "react";
 import Nft from "../pages/nft";
+import Events from "../pages/Events";
 
 function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
@@ -22,23 +23,24 @@ function App() {
 	const location = useLocation();
 	// 2 - on lance l'action à chaque changement d'url
 	useEffect(() => {
-		window.scrollTo(0,0);
-	}, [location])
+		window.scrollTo(0, 0);
+	}, [location]);
 
 	return (
 		<div className="app">
 			<NextUIProvider>
 				<Header />
 
-					<Routes>
-						<Route path="/" element={<HomePage />}/>
-						<Route path="/categories" element={<Categories />}/>
-						<Route path="/category/collections" element={<CollectionsByCategory />}/>
-						<Route path="/collections" element={<Collections />}/>
-						<Route path="/collection/id" element={<Collection />}/>
-						<Route path="/nft/id" element={<Nft />}/>
-						<Route path="*" element={<Error />}/>
-					</Routes>
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/categories" element={<Categories />} />
+					<Route path="/category/collections" element={<CollectionsByCategory />} />
+					<Route path="/collections" element={<Collections />} />
+					<Route path="/collection/id" element={<Collection />} />
+					<Route path="/nft/id" element={<Nft />} />
+					<Route path="/events" element={<Events />} />
+					<Route path="*" element={<Error />} />
+				</Routes>
 
 				<Footer />
 				<MenuMobile />
