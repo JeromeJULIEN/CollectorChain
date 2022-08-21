@@ -4,16 +4,18 @@ import { AutoComplete, Nav, InputGroup } from "rsuite/";
 import SearchIcon from "@rsuite/icons/Search";
 import "rsuite/dist/rsuite.min.css";
 import "./styles.scss";
+import { useEffect } from "react";
 
 const SearchBarEvents = () => {
 	const [inputValue, setInputValue] = React.useState("");
-	const [data, setData] = React.useState();
+	const [data, setData] = React.useState([]);
+	const [locationIdValue, setLocationIdValue] = React.useState();
 
 	const handleInputValue = (inputValue) => {
 		setInputValue(inputValue);
 		getCity(inputValue);
 	};
-
+	// Récupère une liste des 5 premières villes selon la valeur de l'input
 	const getCity = async (inputValue) => {
 		const API_KEY = "vPSloYvPzzuv5yWjKL5w6AfBh0xpAI-ODXwRqLhjEsI";
 		const ACCESS_kEY_ID = "P4zIeA84EjnSKbTPkSL64Q";
@@ -30,7 +32,14 @@ const SearchBarEvents = () => {
 		}
 	};
 	console.log("VALUE >>>", inputValue);
-	console.log("DATA >>> ", data);
+
+	// Récupère la ville sélectionnée pour l'afficher dans l'input
+	const dataPicker = data.map((item) => ({ label: item.label, value: item.label, locationId: item.locationId }));
+	console.log(dataPicker);
+	// // Récupère la location ID de la ville sélectionnée
+	// const locationId = dataPicker.find((item) => item.locationId);
+	// setLocationIdValue(locationId);
+	// console.log("TEST", locationIdValue);
 
 	return (
 		<>
@@ -41,8 +50,7 @@ const SearchBarEvents = () => {
 				</Nav.Menu>
 			</Nav>
 			<InputGroup>
-				<AutoComplete placeholder="search location" data={data} value={inputValue} onChange={handleInputValue} />
-				{/* <AutoComplete placeholder="search location" data={data} value={value} onChange={setValue} /> */}
+				<AutoComplete placeholder="search location" data={dataPicker} value={inputValue} onChange={handleInputValue} />
 				<InputGroup.Button tabIndex={-1}>
 					<SearchIcon />
 				</InputGroup.Button>
