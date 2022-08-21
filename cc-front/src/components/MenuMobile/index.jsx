@@ -25,7 +25,6 @@ const MenuMobile = () => {
 
 	const [loginVisible, loginSetVisible] = React.useState(false);
 	const loginHandler = () => {
-		console.log("test");
 		loginSetVisible(true);
 	};
 	const loginCloseHandler = () => {
