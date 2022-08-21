@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import CollectionCard from '../../card/CollectionCard'
 import NftCard from '../../card/NFTCard'
 import SearchBarCollection from '../../searchBars/SearchBarCollection'
 import './styles.scss'
