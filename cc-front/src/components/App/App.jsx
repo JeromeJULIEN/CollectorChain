@@ -16,6 +16,7 @@ import Error from "../pages/Error";
 import { useEffect } from "react";
 import Nft from "../pages/nft";
 import Events from "../pages/Events";
+import { useSelector } from "react-redux";
 
 function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
@@ -25,6 +26,10 @@ function App() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location]);
+
+	// récupération des nfts en cours d'affichage pour les envoyer a la page nft
+	const nfts = useSelector(state => state.nfts.list)
+
 
 	return (
 		<div className="app">
