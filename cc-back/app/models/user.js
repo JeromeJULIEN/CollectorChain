@@ -57,7 +57,10 @@ module.exports = class User extends CoreDatamapper {
     static async updateUser(modifyUser) {
         const result = await client.query(`
             UPDATE "user"
-            SET "
+            SET nickname = '${modifyUser.nickname}',
+                email = '${modifyUser.email},
+                password = '${modifyUser.password}
+            WHERE id=',
         `);
         return result;
     }

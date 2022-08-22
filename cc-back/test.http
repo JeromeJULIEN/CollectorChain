@@ -73,3 +73,30 @@ Content-Type: application/json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzIyNH0.h0J1HmQnAeeKwl2mfyPcOzKNdaV5J8yFryjpYhkL2bY"
 }
+
+### Page all Collections
+GET {{ endpoint }}/collections
+Content-Type: application/json
+
+{
+    "name":"Rolex",
+    "description":"Daytona",
+    "media":"Photo Rolex"
+}
+
+### Page Collection
+GET {{ endpoint }}/collection
+Content-Type: application/json
+{}
+### Page Collection
+POST {{ endpoint }}/collection
+Content-Type: application/json
+{}
+### Page Collection
+DELETE {{ endpoint }}/collection
+Content-Type: application/json
+{}
+### Page Collection
+PATCH {{ endpoint }}/collection
+Content-Type: application/json
+{}

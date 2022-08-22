@@ -10,8 +10,8 @@ const validation = require('../validation/validator');
 
 // eslint-disable-next-line max-len
 router.get('/profil', validation('body', userLogin), controllerHandler(userController.greetingUser));
-router.get('/profil').get(userController.greetingUser);
-router.get('/profil').delete(userController.deleteUser);
-router.get('/profil').patch(userController.updateUser);
+router.get('/profil', userController.greetingUser);
+router.get('/profil/delete', userController.deleteUser);
+router.get('/profil/update', userController.updateUser);
 
 module.exports = router;

@@ -5,6 +5,6 @@ const router = express.Router();
 const homePageController = require('../controllers/homePageController');
 
 /* Route to Home page */
-router.route('/').get(homePageController.displayHomePage);
+router.get('/', homePageController.displayHomePage);
 
 module.exports = router;
