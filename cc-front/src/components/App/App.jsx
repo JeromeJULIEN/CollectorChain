@@ -18,6 +18,7 @@ import Nft from "../pages/nft";
 import Events from "../pages/Events";
 import { useSelector } from "react-redux";
 import Results from "../pages/Results";
+import CreateNewNft1 from "../pages/CreateNewNft1";
 
 function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
@@ -45,6 +46,7 @@ function App() {
 					<Route path="/nft/:id" element={<Nft nfts={nfts} />} />
 					<Route path="/events" element={<Events />} />
 					<Route path="/results" element={<Results />} />
+					<Route path="/creation/createnewnft" element={<CreateNewNft1 />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 

@@ -5,19 +5,40 @@ import NftCard from '../../card/NftCard';
 import SlideAuto from '../../slides/SlideAuto';
 import { SwiperSlide } from 'swiper/react';
 import Slide_2x2 from '../../slides/Slide_2x2';
+import { useState } from 'react';
+import { Modal } from '@nextui-org/react';
+import Purchase from '../../modals/Purchase';
+import FullScreen from '../../modals/FullScreen';
 
 const Nft = ({nfts}) => {
     // on récupère l'id de la route paramétré
     const {id} = useParams();
    // on recherche le nft correspondant dans la liste courante du state
     const displayedNft = nfts.find(nft => nft.id == id)
-    
- 
+
+    // gestion modale purchase
+    // 1 - creation d'un state local
+    const [isPurchaseVisible, setIsPurchaseVisible] = useState(false)
+    const showPurchase = () => {
+        setIsPurchaseVisible(true)
+    }
+    const hidePurchase = () => {
+        console.log('test')
+        setIsPurchaseVisible(false)
+    }
+
+    // gestion modale fullScreen
+    const[isFullScreenVisible, setIsFullScreenVisible] = useState(false)
+    const showFullScreen = () => {
+        console.log('click')
+        setIsFullScreenVisible(true)
+    }
+    const hideFullScreen = () => setIsFullScreenVisible(false)
 
   return (
     <div className='nft'>
         <h1 className="nft__title"><Link to='/collection/id'>Collection Name : </Link>{displayedNft.name}</h1>    
-        <img src={displayedNft.media} alt="" className='nft__image'/>
+        <img src={displayedNft.media} alt="" className='nft__image' onClick={showFullScreen}/>
         <div className="nft__actionsButtons">
             <ion-icon name="bookmarks-outline"></ion-icon>
             <ion-icon name="share-social-outline"></ion-icon>
@@ -31,7 +52,7 @@ const Nft = ({nfts}) => {
                 <h3>{displayedNft.price}</h3>
             </div>
             <div className="nft__price__buy">
-                <button type='button'>Buy</button>
+                <button type='button' onClick={showPurchase}>Buy</button>
             </div>
             </>
             :
@@ -86,7 +107,27 @@ const Nft = ({nfts}) => {
 
                 </div>
             </Panel>
-        </PanelGroup>       
+        </PanelGroup>     
+
+        <Modal
+            className='modalePurchase'
+            closeButton
+            blur
+            open={isPurchaseVisible}
+            onClose={hidePurchase}  
+        >
+            <Purchase nft={displayedNft} hidePurchase={hidePurchase}/>
+        </Modal>  
+
+        <Modal
+            className='modaleFullScreen'
+            closeButton
+            blur
+            open={isFullScreenVisible}
+            onClose={hideFullScreen}
+        >
+            <FullScreen media={displayedNft.media}/>
+        </Modal>
       
         
     </div>

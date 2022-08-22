@@ -1,3 +1,5 @@
+@use '../../../../styles/vars';
+
 .nft{
     display: flex;
     flex-direction: column;
@@ -9,10 +11,27 @@
     &__image{
         height: 225px;
         width: 225px;
-        background-color: grey;
+        background-color: vars.$color_primary;
         text-align: center;
         border-radius: .5rem;
         object-fit: cover;
+
+        background: linear-gradient(-45deg, vars.$color_callToAction, #e73c7e,vars.$color_callToAction, vars.$color_primary);
+        background-size: 300% 300%;
+        animation: gradient 15s ease infinite;
+
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
     }
 
     &__actionsButtons{
@@ -29,7 +48,7 @@
         width: calc(100% - 1rem);
         justify-content:space-between ;
         align-items: center;
-        background-color: #e5e5ea;
+        background-color: vars.$color_secondary;
         border-radius: .5rem;
         padding: 1rem;
 
@@ -40,7 +59,7 @@
         }
 
         button{
-            background-color: rgb(255, 191, 0);
+            background-color: vars.$color_callToAction;
             color: white;
             height: 2rem;
             width: 6rem;
@@ -63,7 +82,7 @@
 
         p{
             font-size: .8rem;
-            background-color: grey;
+            background-color: vars.$color_primary;
             margin: .2rem;
             height: 1.5rem;
             padding: .4rem;
@@ -107,4 +126,14 @@
     }
 
     
+
+}
+
+.modalePurchase{
+
+    background-color: darkgray;
+}
+
+.modaleFullScreen{
+    padding: 10px;
 }
