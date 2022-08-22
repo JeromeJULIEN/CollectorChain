@@ -45,6 +45,9 @@ const Collection = () => {
               <NftCard key={nft.id} {...nft}/>
             )
           })}
+        </div>
+    </div>
+    )}
 
 
 export default Collection;

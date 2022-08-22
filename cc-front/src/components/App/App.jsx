@@ -41,8 +41,8 @@ function App() {
 					<Route path="/categories" element={<Categories />} />
 					<Route path="/category/collections" element={<CollectionsByCategory />} />
 					<Route path="/collections" element={<Collections />} />
-					<Route path="/collection/id" element={<Collection />} />
-					<Route path="/nft/id" element={<Nft />} />
+					<Route path="/collection/:id" element={<Collection />} />
+					<Route path="/nft/:id" element={<Nft nfts={nfts}/>}/>
 					<Route path="/events" element={<Events />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
