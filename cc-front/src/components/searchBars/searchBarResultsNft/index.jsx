@@ -4,7 +4,7 @@ import { Dropdown } from "@nextui-org/react";
 import { AutoComplete, InputGroup } from "rsuite";
 import SearchIcon from "@rsuite/icons/Search";
 
-const SearchBarResultsCollections = () => {
+const SearchBarResultsNft = () => {
 	// 	const list = useSelector((state) => state.nfts.list);
 
 	// 	const funcPriceLowToHigh = (event) => {
@@ -19,23 +19,31 @@ const SearchBarResultsCollections = () => {
 	// 	};
 
 	return (
-		<div className="searchBarResultsCollections">
-			<form className="searchBarResultsCollections__form">
+		<div className="searchBarResultsNft">
+			<form className="searchBarResultsNft__form">
 				<InputGroup inside>
 					{/* <AutoComplete data={data} /> */}
-					<AutoComplete placeholder="Search collections by name" />
+					<AutoComplete placeholder="Search NFT by properties or tag" />
 					<InputGroup.Addon>
 						<SearchIcon />
 					</InputGroup.Addon>
 				</InputGroup>
 			</form>
-			<div className="searchBarResultsCollections__filters">
+			<div className="searchBarResultsNft__filters">
 				<Dropdown>
-					<Dropdown.Button flat>Categories</Dropdown.Button>
+					<Dropdown.Button flat>Property</Dropdown.Button>
 					<Dropdown.Menu aria-label="Static Actions">
-						<Dropdown.Item key="">Category 1</Dropdown.Item>
-						<Dropdown.Item key="">Category 2</Dropdown.Item>
-						<Dropdown.Item key="">Category 3</Dropdown.Item>
+						<Dropdown.Item key="popularityToUp">Functionnality</Dropdown.Item>
+						<Dropdown.Item key="popularityToDown">Finish</Dropdown.Item>
+						<Dropdown.Item key="priceToUp">Rarity</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
+				<Dropdown>
+					<Dropdown.Button flat>Tag</Dropdown.Button>
+					<Dropdown.Menu aria-label="Static Actions">
+						<Dropdown.Item key="popularityToUp">Timer</Dropdown.Item>
+						<Dropdown.Item key="popularityToDown">Leather</Dropdown.Item>
+						<Dropdown.Item key="priceToUp">Chronograph</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 				<Dropdown>
@@ -58,4 +66,4 @@ const SearchBarResultsCollections = () => {
 	);
 };
 
-export default SearchBarResultsCollections;
+export default SearchBarResultsNft;
