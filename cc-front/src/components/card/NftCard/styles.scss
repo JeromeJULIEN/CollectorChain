@@ -1,4 +1,5 @@
 .nftCard{
+	// position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,13 +11,17 @@
     // aspect-ratio: 1;
 
     &__image{
+		padding: 0.2rem;
         object-fit: cover;
         height: 100%;
     }
 
-    &__title{
-        background-color: #e5e5ea;
-        padding: .5rem;
+    &__title {
+		font-size:medium;
+		// position: absolute;
+		// bottom: 0;
+        background-color: rgba($color: #fff, $alpha: 0.75);
+        padding: 0.2rem 0;
         width: 100%;
         border-bottom-left-radius: .5rem;
         border-bottom-right-radius: .5rem;

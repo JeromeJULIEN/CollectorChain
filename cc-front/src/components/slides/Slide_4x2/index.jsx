@@ -7,16 +7,16 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-const Slide_2x2 = ({ children }) => {
+const Slide_4x2 = ({ children }) => {
 	return (
 		<>
 			<div className="slide">
 				<Swiper
-					slidesPerView="2"
+					slidesPerView="4"
 					grid={{
 						rows: 2,
 					}}
-					spaceBetween={10}
+					spaceBetween={5}
 					pagination={{
 						clickable: true,
 					}}
@@ -30,4 +30,4 @@ const Slide_2x2 = ({ children }) => {
 	);
 };
 
-export default Slide_2x2;
+export default Slide_4x2;
