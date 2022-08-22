@@ -1,3 +1,4 @@
+
 export const initialState ={
     list:[
         {
@@ -92,11 +93,10 @@ export const initialState ={
 }
 
 const reducer = (state = initialState, action = {}) => {
-    switch (action.type) {
+	switch (action.type) {
+		default:
+			return state;
+	}
+};
 
-        default:
-            return state
-    }
-}
-
-export default reducer
+export default reducer;

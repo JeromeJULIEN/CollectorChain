@@ -15,6 +15,7 @@ import Collection from "../pages/Collection";
 import Error from "../pages/Error";
 import { useEffect } from "react";
 import Nft from "../pages/nft";
+import Events from "../pages/Events";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -23,8 +24,8 @@ function App() {
 	const location = useLocation();
 	// 2 - on lance l'action à chaque changement d'url
 	useEffect(() => {
-		window.scrollTo(0,0);
-	}, [location])
+		window.scrollTo(0, 0);
+	}, [location]);
 
 	// récupération des nfts en cours d'affichage pour les envoyer a la page nft
 	const nfts = useSelector(state => state.nfts.list)
@@ -35,15 +36,16 @@ function App() {
 			<NextUIProvider>
 				<Header />
 
-					<Routes>
-						<Route path="/" element={<HomePage />}/>
-						<Route path="/categories" element={<Categories />}/>
-						<Route path="/category/collections" element={<CollectionsByCategory />}/>
-						<Route path="/collections" element={<Collections />}/>
-						<Route path="/collection/id" element={<Collection />}/>
-						<Route path="/nft/:id" element={<Nft nfts={nfts}/>}/>
-						<Route path="*" element={<Error />}/>
-					</Routes>
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/categories" element={<Categories />} />
+					<Route path="/category/collections" element={<CollectionsByCategory />} />
+					<Route path="/collections" element={<Collections />} />
+					<Route path="/collection/id" element={<Collection />} />
+					<Route path="/nft/id" element={<Nft />} />
+					<Route path="/events" element={<Events />} />
+					<Route path="*" element={<Error />} />
+				</Routes>
 
 				<Footer />
 				<MenuMobile />

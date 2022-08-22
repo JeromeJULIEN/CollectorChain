@@ -1,15 +1,14 @@
 import "./styles.scss";
-import {useDispatch} from 'react-redux';
+import { useDispatch } from "react-redux";
 import { logIn } from "../../../store/actions/user";
 
 const Footer = () => {
-
 	// code temporaire pour test fonction login
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const handleLogin = () => {
-		dispatch(logIn())
-	}
+		dispatch(logIn());
+	};
 
 	return (
 		<div className="footer">

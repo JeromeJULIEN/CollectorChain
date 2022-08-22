@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
-import './styles.scss'
+import { Link } from "react-router-dom";
+import "./styles.scss";
+
 
 const NftCard = ({name, id, media}) => {
   
@@ -11,4 +12,5 @@ const NftCard = ({name, id, media}) => {
   )
 }
 
-export default NftCard
+
+export default NftCard;

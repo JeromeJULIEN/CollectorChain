@@ -1,3 +1,4 @@
+
 import { useSelector } from 'react-redux'
 import CollectionCard from '../../card/CollectionCard'
 import NftCard from '../../card/NFTCard'
@@ -45,9 +46,5 @@ const Collection = () => {
             )
           })}
 
-        </div>
-    </div>
-  )
-}
 
-export default Collection
+export default Collection;

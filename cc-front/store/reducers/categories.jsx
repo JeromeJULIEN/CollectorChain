@@ -1,4 +1,5 @@
 
+
 export const initialState ={
     list:['Timepieces','Car models','Art','Luxury goods', 'Anime figurines', 'Cards', 'Wine','Anime figurines', 'Cards', 'Wine']
 }

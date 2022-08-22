@@ -1,0 +1,70 @@
+.slide-fade {
+	// position: relative;
+	height: 100%;
+	& h2, p {
+		font-size: 125%;
+		color: white;
+		text-shadow: 1px 1px 2px black;
+	}
+	& .slide-title {
+		display:flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		z-index: 1;
+		background-color: transparent;
+		position:absolute;
+		top: 0;
+		padding: 1em 1em;
+	}
+	
+	& .slide-img {
+		display:flex;
+		justify-content: center;
+		position: relative;
+		text-align: center;
+		height: 17rem;
+		width: 100vw;
+		& h2 {
+			position: absolute;
+			text-align: center;
+			top: 50%;
+			padding: 0 1em;
+		}
+	}
+}
+
+.swiper {
+	width: 100%;
+	height: 100%;
+	&-slide {
+	  text-align: center;
+	  font-size: 18px;
+	  background: #fff;
+	  height: 95% !important;
+	
+	  /* Center slide text vertically */
+	  display: -webkit-box;
+	  display: -ms-flexbox;
+	  display: -webkit-flex;
+	  display: flex;
+	  -webkit-box-pack: center;
+	  -ms-flex-pack: center;
+	  -webkit-justify-content: center;
+	  justify-content: center;
+	  -webkit-box-align: center;
+	  -ms-flex-align: center;
+	  -webkit-align-items: center;
+	  align-items: center;
+	  & img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	  }
+	}
+  }
+
+  .swiper-pagination-bullet {
+	  color: white;
+  }

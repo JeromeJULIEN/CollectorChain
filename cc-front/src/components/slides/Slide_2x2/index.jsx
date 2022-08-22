@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper } from "swiper/react";
 import { Grid, Pagination } from "swiper";
 import "swiper/css/bundle";
 import "swiper/css";
@@ -9,9 +9,7 @@ import "swiper/css/pagination";
 
 import "./styles.scss";
 
-import CollectionCard from "../../card/CollectionCard";
-
-const HomePageHightlightCollections = ({ children }) => {
+const Slide_2x2 = ({ children }) => {
 	const list = useSelector((state) => state.collections.list);
 	return (
 		<>
@@ -35,4 +33,4 @@ const HomePageHightlightCollections = ({ children }) => {
 	);
 };
 
-export default HomePageHightlightCollections;
+export default Slide_2x2;
