@@ -1,6 +1,6 @@
 .app {
 //   max-width: 414px;
-  background-color: darkgrey;
+//   background-color: darkgrey;
   overflow-y: hidden;
   font-family: sans-serif;
   color: black;
@@ -21,4 +21,12 @@
     margin: 0.5rem 0;
     text-align: center;
 }
+
+}
+
+// DARK MODE
+.darkmode-toggle, .darkmode-toggle--white {
+	z-index: 500;
+	position: absolute;
+	top: -0.25rem; 
 }

@@ -2,13 +2,14 @@
 	background-color: darkgrey;
     display: flex;
     justify-content: space-between;
-    padding: .5rem;
+    padding: .6rem;
 	z-index: 10;
 	width: 100vw;
 	position: fixed;
 	top: 0;
 
     button{
+		margin-right: 1rem;
         background-color: transparent;
         border: none;
     }
