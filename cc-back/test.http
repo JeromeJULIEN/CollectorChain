@@ -25,6 +25,15 @@ Content-type: application/json
     "password": "password"
 }
 
+### Profil
+GET {{ endpoint }}/profil
+Content-Type: application/json
+
+{
+    "email":"user@user.com",
+    "password": "password"
+}
+
 ### test autentificate token
 GET {{endpoint}}/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE1NTY1MSwiZXhwIjoxNjYxMTU1NjcxfQ.GaODGQxfUC0TVRtB9mA-CqLpHtU69E9NZKzHTFYw_6U

@@ -67,4 +67,12 @@ module.exports = {
 
         return res.json(userLog);
     },
+
+    async greetingUser(req, res) {
+        const { email, password } = req.body;
+        const user = await User.findUserByEmail(email);
+
+        if (user) return res.json('Hello user');
+        if (password) return res.json();
+    },
 };
