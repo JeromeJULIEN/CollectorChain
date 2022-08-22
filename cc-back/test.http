@@ -34,6 +34,26 @@ Content-Type: application/json
     "password": "password"
 }
 
+### Delete profil
+DELETE {{ endpoint }}/profil/delete
+Content-Type: application/json
+
+{
+    "email":"user@user.com",
+    "password": "password"
+}
+
+### Path profil
+PATCH {{ endpoint }}/profil/update
+Content-Type: application/json
+
+{
+    "nickname": "user4",
+    "email":"user4@user.com",
+    "password": "password",
+    "passwordConfirm": "password"
+}
+
 ### test autentificate token
 GET {{endpoint}}/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE1NTY1MSwiZXhwIjoxNjYxMTU1NjcxfQ.GaODGQxfUC0TVRtB9mA-CqLpHtU69E9NZKzHTFYw_6U

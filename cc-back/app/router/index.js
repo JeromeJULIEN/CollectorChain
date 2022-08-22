@@ -20,5 +20,7 @@ router.post('/token', jwtModules.refreshToken);
 router.post('/logout', jwtModules.deleteRefreshToken);
 
 router.get('./profil', userController.greetingUser);
+router.delete('/profil/delete', userController.deleteUser);
+router.patch('/profil/update', userController.updateUser);
 
 module.exports = router;
