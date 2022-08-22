@@ -19,7 +19,7 @@ const Slide_2x2 = ({ children }) => {
 					grid={{
 						rows: 2,
 					}}
-					spaceBetween={8}
+					spaceBetween={10}
 					pagination={{
 						clickable: true,
 					}}
