@@ -1,6 +1,10 @@
 import './styles.scss';
 import { Panel, PanelGroup } from 'rsuite';
 import { Link, useParams } from 'react-router-dom';
+import NftCard from '../../card/NftCard';
+import SlideAuto from '../../slides/SlideAuto';
+import { SwiperSlide } from 'swiper/react';
+import Slide_2x2 from '../../slides/Slide_2x2';
 
 const Nft = ({nfts}) => {
     // on récupère l'id de la route paramétré
@@ -82,8 +86,7 @@ const Nft = ({nfts}) => {
 
                 </div>
             </Panel>
-        </PanelGroup>
-        
+        </PanelGroup>       
       
         
     </div>
