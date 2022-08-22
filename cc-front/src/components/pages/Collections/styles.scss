@@ -1,4 +1,4 @@
-.collectionsByCategory{
+.collections{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -18,9 +18,7 @@
     &__list{
         margin: 1rem 0.5rem;
         display: grid;
-        height: 50vh;
         flex-direction: row;
-        grid-template-rows: repeat(2, 1fr);
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5em;
     }

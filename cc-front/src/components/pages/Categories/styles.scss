@@ -9,10 +9,11 @@
     }
 
     &__list{
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin: 1rem 0;
+        margin: 1rem 0.5rem;
+        display: grid;
+        flex-direction: row;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5em;
     }
 
 }

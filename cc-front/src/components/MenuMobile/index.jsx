@@ -14,7 +14,7 @@ import "./styles.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { changeUserField, logIn } from "../../../store/actions/user";
+import { changeUserField, logIn, signUp } from "../../../store/actions/user";
 
 const MenuMobile = () => {
 	const dispatch = useDispatch();
@@ -22,10 +22,11 @@ const MenuMobile = () => {
 
 	const email = useSelector((state) => state.user.email);
 	const password = useSelector((state) => state.user.password);
+	const passwordConfirm = useSelector((state) => state.user.passwordConfirm);
+	const nickname = useSelector((state) => state.user.nickname);
 
 	const [loginVisible, loginSetVisible] = React.useState(false);
 	const loginHandler = () => {
-		console.log("test");
 		loginSetVisible(true);
 	};
 	const loginCloseHandler = () => {
@@ -50,10 +51,11 @@ const MenuMobile = () => {
 	};
 
 	const signupHandleSubmit = (event) => {
+		console.log('signup');
 		event.preventDefault();
-		// dispatch(logIn());
+		dispatch(signUp());
 		signupCloseHandler();
-		navigate("/login");
+		navigate("/");
 	};
 
 	return (
@@ -62,7 +64,7 @@ const MenuMobile = () => {
 				<MenuExplore className="menu-explore" placement={"topStart"} />
 				<Nav.Item>Market</Nav.Item>
 				<Nav.Item>Create</Nav.Item>
-				<Nav.Menu className="menu-user" icon={<UserInfoIcon />} placement="topEnd">
+				<Nav.Menu title="User" className="menu-user" icon={<UserInfoIcon />} placement="topEnd">
 					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 					<Nav.Item>My showcase</Nav.Item>
@@ -124,10 +126,45 @@ const MenuMobile = () => {
 					</Text>
 				</Modal.Header>
 				<Modal.Body>
-					<Input type="text" clearable bordered fullWidth color="primary" size="lg" placeholder="Pseudo" />
-					<Input type="email" clearable bordered fullWidth color="primary" size="lg" placeholder="Email" contentLeft={<Mail fill="currentColor" />} />
-					<Input type="password" clearable bordered fullWidth color="primary" size="lg" placeholder="Password" contentLeft={<Password fill="currentColor" />} />
-					<Input type="password" clearable bordered fullWidth color="primary" size="lg" placeholder="Confirm password" contentLeft={<Password fill="currentColor" />} />
+					<Input 
+						type="text" 
+						clearable bordered fullWidth color="primary" 
+						size="lg" 
+						placeholder="nickname"
+						name='nickname'
+						value={nickname}
+						onChange={handleChange} 
+					/>
+					<Input 
+						type="email" 
+						clearable bordered fullWidth color="primary" 
+						size="lg" 
+						placeholder="Email" 
+						contentLeft={<Mail fill="currentColor" />}
+						name='email'
+						value={email}
+						onChange={handleChange}
+					/>
+					<Input 
+						type="password" 
+						clearable bordered fullWidth color="primary" 
+						size="lg" 
+						placeholder="Password" 
+						contentLeft={<Password fill="currentColor"/>}
+						name='password'
+						value={password}
+						onChange={handleChange}
+					/>
+					<Input 
+						type="password" 
+						clearable bordered fullWidth color="primary" 
+						size="lg" 
+						placeholder="Confirm password" 
+						contentLeft={<Password fill="currentColor" />} 
+						name='passwordConfirm'
+						value={passwordConfirm}
+						onChange={handleChange}
+					/>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button auto flat color="error" onClick={signupCloseHandler}>

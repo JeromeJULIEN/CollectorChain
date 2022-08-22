@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './user';
-import cardReducer from './card';
+import categoriesReducer from './categories';
+import collectionsReducer from './collections';
+import nftsReducer from './nfts';
 
 const rootReducer = combineReducers({
 	user: userReducer,
-	card: cardReducer,
+	categories: categoriesReducer,
+	collections: collectionsReducer,
+	nfts: nftsReducer
 });
 
 export default rootReducer;

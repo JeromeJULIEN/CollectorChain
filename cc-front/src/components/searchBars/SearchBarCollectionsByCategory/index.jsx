@@ -1,14 +1,14 @@
 import './styles.scss'
 import { Dropdown } from "@nextui-org/react";
 
-const SearchBarCategories = () => {
+const SearchBarCollectionsByCategory = () => {
   return (
-    <div className='searchBarCategories'>
-        <form className='searchBarCategories__form'>
+    <div className='searchBarCollectionsByCategory'>
+        <form className='searchBarCollectionsByCategory__form'>
             <input 
                 type='text' 
-                placeholder='Search categories'
-                name='searchCategoriesField'
+                placeholder='Search collections'
+                name='searchCollectionsField'
             />
         </form>
         <Dropdown>
@@ -25,4 +25,4 @@ const SearchBarCategories = () => {
   )
 }
 
-export default SearchBarCategories
+export default SearchBarCollectionsByCategory

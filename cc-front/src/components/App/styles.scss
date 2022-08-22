@@ -1,10 +1,15 @@
 .app {
   max-width: 414px;
   // max-height: 896px;
-  margin: 0 auto;
   background-color: darkgrey;
   overflow-y: hidden;
   font-family: sans-serif;
+  color: black;
+
+  main {
+	  width: 100vw;
+	  margin: 2.5rem auto;
+  }
 
   h1 {
     font-size: 1.4rem;
