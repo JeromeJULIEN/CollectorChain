@@ -15,7 +15,7 @@ module.exports = {
     // On vérifie si les champs sont vides
     // Sign up
     async insertNewUser(req, res) {
-        let fieldForm = false;
+        const fieldForm = false;
         for (const value in req.body) {
             const { body } = req;
             if (!body[value]) {

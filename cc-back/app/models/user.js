@@ -28,6 +28,7 @@ module.exports = class User extends CoreDatamapper {
         );
         return result.rows[0];
     }
+
     /**
      *
      * @typedef {object} newUser
@@ -38,7 +39,7 @@ module.exports = class User extends CoreDatamapper {
     static async createUser(newUser) {
         const result = await client.query(
             `INSERT INTO "user" (nickname, email, password) 
-             VALUES ('$1', '$2', '$3');
+             VALUES ($1, $2, $3);
             `,
             [newUser.nickname, newUser.email, newUser.password],
         );
