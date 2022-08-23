@@ -10,7 +10,7 @@ POST {{ endpoint }}/sign_up
 Content-Type: application/json
 
 {
-    "nickname":"user3",
+    "nickname":"",
     "email":"user3@user.com",
     "password":"user3",
     "passwordConfirm": "user3"
@@ -71,7 +71,6 @@ POST {{endpoint}}/logout
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzIyNH0.h0J1HmQnAeeKwl2mfyPcOzKNdaV5J8yFryjpYhkL2bY"
 }
 
@@ -101,7 +100,3 @@ Content-Type: application/json
 PATCH {{ endpoint }}/collection
 Content-Type: application/json
 {}
-=======
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE3NTI3OH0.IHdrBFYLh6GYVl-8seE-JgO3oRcz5Pb5icmIN48zuUE"
-}
->>>>>>> loic
