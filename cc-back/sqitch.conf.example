@@ -3,6 +3,6 @@
 	top_dir = data/migration
 	# plan_file = data/migration/sqitch.plan
 [engine "pg"]
-	target = db:pg:collector_chain
+	target = db:pg:database
 	# registry = sqitch
 	# client = /bin/psql
