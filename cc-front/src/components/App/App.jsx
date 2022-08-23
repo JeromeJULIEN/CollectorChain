@@ -30,7 +30,7 @@ function App() {
 		mixColor: "#fff", // default: '#fff'
 		backgroundColor: "#fff", // default: '#fff'
 		buttonColorDark: "transparent", // default: '#100f2c'
-		buttonColorLight: "#transparent", // default: '#fff'
+		buttonColorLight: "transparent", // default: '#fff'
 		saveInCookies: false, // default: true,
 		label: "🌓", // default: ''
 		autoMatchOsTheme: true, // default: true
