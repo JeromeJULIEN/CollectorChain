@@ -67,4 +67,40 @@ module.exports = {
 
         return res.json(userLog);
     },
+
+    async greetingUser(req, res) {
+        const { email, password } = req.body;
+        const user = await User.findUserByEmail(email);
+
+        if (user) return res.json('Hello user!');
+        if (password) return res.json();
+
+        return res.json();
+    },
+
+    // Pour supprimer le profil user
+    async deleteUser(req, res) {
+        const user = req.body;
+        const userDelete = await User.findUserByEmail(user);
+        return res.json(userDelete);
+    },
+
+    // pour modifier ses infos perso sur la page profil
+    async updateUser(req, res) {
+        // eslint-disable-next-line max-len
+        const modifyUser = { nickname: req.body.nickname, email: req.body.email, password: req.body.password };
+        // on vérifie le pseudo du User
+        if (modifyUser.nickname.length === 0) return res.json({ error: 'Veuillez saisir un pseudo' });
+        // si le mail n'est pas dans le bon format
+        if (!emailValidator.validate(req.body.email)) return res.json({ error: 'Email non valide' });
+        const user = await User.findUserByEmail(modifyUser.email);
+        if (user) return res.json({ error: 'Cet email existe déjà !' });
+        // teste si les mots de passes sont correct
+        if (modifyUser.password !== req.body.passwordConfirm) return res.json({ error: 'Mot de passe incorrect' });
+        /* Password encryption */
+        const hashedPassword = await bcrypt.hash(modifyUser.password, 12);
+        modifyUser.password = hashedPassword;
+
+        return res.json('User succesfully modified');
+    },
 };
