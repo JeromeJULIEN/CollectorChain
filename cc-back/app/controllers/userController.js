@@ -75,7 +75,7 @@ module.exports = {
         if (user) return res.json('Hello user!');
         if (password) return res.json();
 
-        return res.json();
+        return res.json(user);
     },
 
     // Pour supprimer le profil user
@@ -86,21 +86,30 @@ module.exports = {
     },
 
     // pour modifier ses infos perso sur la page profil
-    async updateUser(req, res) {
-        // eslint-disable-next-line max-len
-        const modifyUser = { nickname: req.body.nickname, email: req.body.email, password: req.body.password };
-        // on vérifie le pseudo du User
-        if (modifyUser.nickname.length === 0) return res.json({ error: 'Veuillez saisir un pseudo' });
-        // si le mail n'est pas dans le bon format
-        if (!emailValidator.validate(req.body.email)) return res.json({ error: 'Email non valide' });
-        const user = await User.findUserByEmail(modifyUser.email);
-        if (user) return res.json({ error: 'Cet email existe déjà !' });
-        // teste si les mots de passes sont correct
-        if (modifyUser.password !== req.body.passwordConfirm) return res.json({ error: 'Mot de passe incorrect' });
-        /* Password encryption */
-        const hashedPassword = await bcrypt.hash(modifyUser.password, 12);
-        modifyUser.password = hashedPassword;
+    async updateUserProfile(req, res) {
+        const user = await User.findById(req.params.id);
 
-        return res.json('User succesfully modified');
+        if (req.body.nickname) {
+            user.nickname = req.body.nickname;
+        }
+        if (req.body.email) {
+            user.email = req.body.email;
+        }
+        if (req.body.password) {
+            if (req.body.password === req.body.passwordConfirm) {
+                user.password = await bcrypt.hash(req.body.password, 12);
+            }
+        }
+        if (req.body.wallet) {
+            user.wallet = req.body.wallet;
+        }
+        if (req.body.media) {
+            user.media = req.body.media;
+        }
+
+        const updateProfil = await User.updateUser(user);
+
+        return res.json(updateProfil);
     },
+
 };

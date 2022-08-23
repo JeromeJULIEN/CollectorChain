@@ -43,15 +43,17 @@ Content-Type: application/json
     "password": "password"
 }
 
-### Path profil
-PATCH {{ endpoint }}/profil/update
+### Patch profil
+PATCH {{ endpoint }}/profil/1/update
 Content-Type: application/json
 
 {
-    "nickname": "user4",
+    "nickname": "test4",
     "email":"user4@user.com",
     "password": "password",
-    "passwordConfirm": "password"
+    "passwordConfirm": "password",
+    "wallet": 150000,
+    "media": "1"  
 }
 
 ### test autentificate token
@@ -71,7 +73,7 @@ POST {{endpoint}}/logout
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
+
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzIyNH0.h0J1HmQnAeeKwl2mfyPcOzKNdaV5J8yFryjpYhkL2bY"
 }
 
@@ -101,7 +103,4 @@ Content-Type: application/json
 PATCH {{ endpoint }}/collection
 Content-Type: application/json
 {}
-=======
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE3NTI3OH0.IHdrBFYLh6GYVl-8seE-JgO3oRcz5Pb5icmIN48zuUE"
-}
->>>>>>> loic
+
