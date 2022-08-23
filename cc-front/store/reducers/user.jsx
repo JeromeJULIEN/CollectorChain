@@ -1,4 +1,4 @@
-import { CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA } from "../actions/user";
+import { UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA } from "../actions/user";
 
 export const initialState = {
 	id: 1,
@@ -16,6 +16,12 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
 	switch (action.type) {
 		case CHANGE_USER_FIELD:
+			return {
+				...state,
+				// [ action.name ] permet d'utiliser une variable qui sera évaluer (on récupère la valeur de cette variable) pour définir le nom de la propriété
+				[action.name]: action.value,
+			};
+		case UPDATE_USER_FIELD:
 			return {
 				...state,
 				// [ action.name ] permet d'utiliser une variable qui sera évaluer (on récupère la valeur de cette variable) pour définir le nom de la propriété

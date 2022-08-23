@@ -1,4 +1,4 @@
-import { setUserData, LOG_IN, SIGNUP } from "../actions/user";
+import { setUserData, LOG_IN, SIGNUP, UPDATE_PROFILE } from "../actions/user";
 import instance from "../../utils/axios";
 
 const authMiddleware = (store) => (next) => async (action) => {
@@ -38,7 +38,21 @@ const authMiddleware = (store) => (next) => async (action) => {
 			});
 			console.log("data from post signUp request >>>>", data);
 		}
-
+		case UPDATE_PROFILE: {
+			console.log("entrée dans middleware update profile");
+			const {
+				user: { nickname, name, firstname, email, password },
+			} = store.getState();
+			console.log(nickname, name, firstname, email, password);
+			const { data } = await instance.update("/profil", {
+				nickname,
+				name,
+				firstname,
+				email,
+				password,
+			});
+			console.log("data from update user profile request >>>>", data);
+		}
 		default:
 			next(action);
 	}

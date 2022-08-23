@@ -34,7 +34,7 @@ const Login = () => {
 			</Modal.Body>
 			<Modal.Footer>
 				<Button auto flat color="error" onClick={closeHandler}>
-					Close
+					Cancel
 				</Button>
 				<Button auto onClick={closeHandler}>
 					Sign in
