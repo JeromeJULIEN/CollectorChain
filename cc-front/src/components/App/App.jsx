@@ -18,26 +18,27 @@ import Nft from "../pages/nft";
 import Events from "../pages/Events";
 import { useSelector } from "react-redux";
 import Results from "../pages/Results";
-import Darkmode from "darkmode-js";
+// import Darkmode from "darkmode-js";
 import CreateNewNft1 from "../pages/CreateNewNft1";
+import Profil from "../pages/Profil";
 
 function App() {
-	//DARK MODE
-	const options = {
-		// top: "0px", // default: '32px'
-		right: "-8px", // default: '32px'
-		// left: "8px", // default: 'unset'
-		time: "0.5s", // default: '0.3s'
-		mixColor: "#fff", // default: '#fff'
-		backgroundColor: "#fff", // default: '#fff'
-		buttonColorDark: "transparent", // default: '#100f2c'
-		buttonColorLight: "transparent", // default: '#fff'
-		saveInCookies: false, // default: true,
-		label: "🌓", // default: ''
-		autoMatchOsTheme: true, // default: true
-	};
-	const darkmode = new Darkmode(options);
-	darkmode.showWidget();
+	// //DARK MODE
+	// const options = {
+	// 	// top: "0px", // default: '32px'
+	// 	right: "-8px", // default: '32px'
+	// 	// left: "8px", // default: 'unset'
+	// 	time: "0.5s", // default: '0.3s'
+	// 	mixColor: "#fff", // default: '#fff'
+	// 	backgroundColor: "#fff", // default: '#fff'
+	// 	buttonColorDark: "transparent", // default: '#100f2c'
+	// 	buttonColorLight: "transparent", // default: '#fff'
+	// 	saveInCookies: false, // default: true,
+	// 	label: "🌓", // default: ''
+	// 	autoMatchOsTheme: true, // default: true
+	// };
+	// const darkmode = new Darkmode(options);
+	// darkmode.showWidget();
 	// -----------------
 
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
@@ -65,6 +66,7 @@ function App() {
 					<Route path="/nft/:id" element={<Nft nfts={nfts} />} />
 					<Route path="/events" element={<Events />} />
 					<Route path="/results" element={<Results />} />
+					<Route path="/profil" element={<Profil />} />
 					<Route path="/creation/createnewnft" element={<CreateNewNft1 />} />
 					<Route path="*" element={<Error />} />
 				</Routes>

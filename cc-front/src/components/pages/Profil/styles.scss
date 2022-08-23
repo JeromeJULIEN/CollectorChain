@@ -1,0 +1,43 @@
+.profile, .profile__id {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__button {
+		margin: 1rem 0;
+		text-decoration: underline;
+		color: rgb(85, 116, 255);
+		background-color: transparent;
+	}
+	&__pic {
+		position: relative;
+			display:flex;
+			flex-direction: column;
+			align-items: center;
+
+		& p {
+			position: absolute;
+			top: 2.6rem;
+			left: 9rem;
+			color: white;
+			background-color: lightgrey;
+			width: fit-content;
+			
+			padding: 0.2rem 0.5rem 0.1rem;
+			border: none;
+			border-radius: 1rem;
+		}
+	}
+
+	
+}
+
+// "input" name, firstname...
+.nextui-c-eFfoBo {
+	padding: 0.75rem;
+}
+
+//Bouton "Add ID"
+.nextui-c-iWjDFM {
+	color: white;
+	background-color: lightgrey;
+}

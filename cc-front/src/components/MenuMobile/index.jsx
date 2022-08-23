@@ -51,7 +51,7 @@ const MenuMobile = () => {
 	};
 
 	const signupHandleSubmit = (event) => {
-		console.log('signup');
+		console.log("signup");
 		event.preventDefault();
 		dispatch(signUp());
 		signupCloseHandler();
@@ -64,14 +64,16 @@ const MenuMobile = () => {
 				<MenuExplore className="menu-explore" placement={"topStart"} />
 				<Nav.Item>Market</Nav.Item>
 				<Nav.Item>
-					<Link to='/creation/createnewnft'>Create</Link> 
+					<Link to="/creation/createnewnft">Create</Link>
 				</Nav.Item>
 				<Nav.Menu title="User" className="menu-user" icon={<UserInfoIcon />} placement="topEnd">
 					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 					<Nav.Item>My showcase</Nav.Item>
 					<Nav.Item>My favorites</Nav.Item>
-					<Nav.Item>My profil</Nav.Item>
+					<Nav.Item>
+						<Link to="/profil">My profil</Link>
+					</Nav.Item>
 					<Nav.Item>Logout</Nav.Item>
 				</Nav.Menu>
 			</Nav>
@@ -128,42 +130,43 @@ const MenuMobile = () => {
 					</Text>
 				</Modal.Header>
 				<Modal.Body>
-					<Input 
-						type="text" 
-						clearable bordered fullWidth color="primary" 
-						size="lg" 
-						placeholder="nickname"
-						name='nickname'
-						value={nickname}
-						onChange={handleChange} 
-					/>
-					<Input 
-						type="email" 
-						clearable bordered fullWidth color="primary" 
-						size="lg" 
-						placeholder="Email" 
+					<Input type="text" clearable bordered fullWidth color="primary" size="lg" placeholder="nickname" name="nickname" value={nickname} onChange={handleChange} />
+					<Input
+						type="email"
+						clearable
+						bordered
+						fullWidth
+						color="primary"
+						size="lg"
+						placeholder="Email"
 						contentLeft={<Mail fill="currentColor" />}
-						name='email'
+						name="email"
 						value={email}
 						onChange={handleChange}
 					/>
-					<Input 
-						type="password" 
-						clearable bordered fullWidth color="primary" 
-						size="lg" 
-						placeholder="Password" 
-						contentLeft={<Password fill="currentColor"/>}
-						name='password'
+					<Input
+						type="password"
+						clearable
+						bordered
+						fullWidth
+						color="primary"
+						size="lg"
+						placeholder="Password"
+						contentLeft={<Password fill="currentColor" />}
+						name="password"
 						value={password}
 						onChange={handleChange}
 					/>
-					<Input 
-						type="password" 
-						clearable bordered fullWidth color="primary" 
-						size="lg" 
-						placeholder="Confirm password" 
-						contentLeft={<Password fill="currentColor" />} 
-						name='passwordConfirm'
+					<Input
+						type="password"
+						clearable
+						bordered
+						fullWidth
+						color="primary"
+						size="lg"
+						placeholder="Confirm password"
+						contentLeft={<Password fill="currentColor" />}
+						name="passwordConfirm"
 						value={passwordConfirm}
 						onChange={handleChange}
 					/>
