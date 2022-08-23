@@ -56,14 +56,14 @@ Content-Type: application/json
 
 ### test autentificate token
 GET {{endpoint}}/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE1NTY1MSwiZXhwIjoxNjYxMTU1NjcxfQ.GaODGQxfUC0TVRtB9mA-CqLpHtU69E9NZKzHTFYw_6U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE3NTMwMSwiZXhwIjoxNjYxMTc1MzIxfQ.f__bo_jkhDXLFzrvRu2cTBESnSSg2tT7xCimzM6lYMQ
 
 ### refresh token
 POST {{endpoint}}/token
 Content-Type: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE1NTY1MX0.Te3BFCsN3GxymMhCmYb1Y-c9KhWq3Hw9mBJHSnR6a-U"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE3NTI3OH0.IHdrBFYLh6GYVl-8seE-JgO3oRcz5Pb5icmIN48zuUE"
 }
 
 ### delete token
@@ -71,6 +71,7 @@ POST {{endpoint}}/logout
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzIyNH0.h0J1HmQnAeeKwl2mfyPcOzKNdaV5J8yFryjpYhkL2bY"
 }
 
@@ -100,3 +101,7 @@ Content-Type: application/json
 PATCH {{ endpoint }}/collection
 Content-Type: application/json
 {}
+=======
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE3NTI3OH0.IHdrBFYLh6GYVl-8seE-JgO3oRcz5Pb5icmIN48zuUE"
+}
+>>>>>>> loic

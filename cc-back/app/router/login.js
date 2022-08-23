@@ -15,7 +15,6 @@ const validation = require('../validation/validator');
  * @param {user} (request.body.required user information)
  * @return {user} 200 - success response - application/json
  */
-
 router.post('/login', validation('body', userLogin), controllerHandler(userController.loginUser));
 
 module.exports = router;
