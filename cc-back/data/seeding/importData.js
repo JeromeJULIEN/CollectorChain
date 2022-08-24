@@ -147,6 +147,25 @@ const { nftHasProperty } = data[6];
     });
     await Promise.all(propertyQueries);
 
+    // Import nftHasProperty
+    const nftHasPropertyQueries = [];
+    nftHasProperty.forEach((value) => {
+        console.log(`${value.property_id} et ${value.nft_id}`);
+        const query = client.query(
+            `
+        INSERT INTO "property_has_nft"("property_id", "nft_id" ) VALUES
+        (
+            (SELECT id FROM "property" WHERE $2 = "property"."name"),
+            (SELECT id FROM "nft" WHERE $1 = "nft"."name")
+            )
+        RETURNING *
+        `,
+            [value.property_id, value.nft_id],
+        );
+        nftHasPropertyQueries.push(query);
+    });
+    await Promise.all(nftHasPropertyQueries);
+
     client.end();
 })();
 
