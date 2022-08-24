@@ -127,19 +127,34 @@ Content-Type: application/json
 ### Page Collection
 GET {{ endpoint }}/collection
 Content-Type: application/json
-{}
+
+{
+
+}
+
 ### Page Collection
 POST {{ endpoint }}/collection
 Content-Type: application/json
-{}
+
+{
+
+}
+
 ### Page Collection
 DELETE {{ endpoint }}/collection
 Content-Type: application/json
-{}
+
+{
+
+}
+
 ### Page Collection
 PATCH {{ endpoint }}/collection
 Content-Type: application/json
-{}
+
+{
+
+}
 
 ### Categories ###
 
@@ -171,7 +186,9 @@ Content-Type: application/json
 GET {{ endpoint }}/categories/collections
 Content-Type: application/json
 
-{}
+{
+
+}
 
 ### NFT ###
 
@@ -212,21 +229,33 @@ Content-Type: application/json
 ### Showcase User
 GET {{ endpoint }}/showcase/1
 Content-Type: application/json
-{}
+
+{
+
+}
 
 ### Favoris User ####
 
 ### Favoris
 GET {{ endpoint }}/favoris/1
 Content-Type: application/json
-{}
+
+{
+
+}
 
 ### Favoris
 POST {{ endpoint }}/favoris/1
 Content-Type: application/json
-{}
+
+{
+
+}
 
 ### Favoris
 DELETE {{ endpoint }}/favoris/1
 Content-Type: application/json
-{}
+
+{
+    
+}
