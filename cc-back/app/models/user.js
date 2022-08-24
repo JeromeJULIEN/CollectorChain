@@ -47,21 +47,39 @@ module.exports = class User extends CoreDatamapper {
     }
 
     static async deleteUser(user) {
-        const result = await client.query(`
+        const result = await client.query(
+            `
             DELETE FROM "user"
-            WHERE email='${user.email}';
-            `);
-        return result;
+            WHERE email = $1;
+            `,
+            [user.email],
+        );
+        return result.rows[0];
     }
 
-    static async updateUser(modifyUser) {
-        const result = await client.query(`
+    static async updateUser(user) {
+        const result = await client.query(
+            `
             UPDATE "user"
-            SET nickname = '${modifyUser.nickname}',
-                email = '${modifyUser.email},
-                password = '${modifyUser.password}
-            WHERE id=',
-        `);
-        return result;
+            SET 
+                "nickname" = $1,
+                "email" = $2,
+                "password" = $3,
+                "wallet" = $4, 
+                "media" = $5
+                
+            WHERE id = $6;
+        `,
+
+            [
+                user.nickname,
+                user.email,
+                user.password,
+                user.wallet,
+                user.media,
+                user.id,
+            ],
+        );
+        return result.rows[0];
     }
 };

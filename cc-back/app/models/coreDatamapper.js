@@ -11,4 +11,14 @@ module.exports = class CoreDatamapper {
         `);
         return result.rows;
     }
+
+    static async findById(id) {
+        const result = await client.query(`
+            SELECT * FROM "${this.tableName}"
+            WHERE id = $1
+        `,
+        [id],
+        );
+        return result.rows[0];
+    }
 };

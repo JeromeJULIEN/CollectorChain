@@ -1,22 +1,24 @@
 @endpoint = http://localhost:{{$dotenv PORT}}
 
-# Home page #
+### Route Principale ###
+
+### Home page 
 GET {{ endpoint }}/
 
-# User #
+### User ###
 
-### Post SignUp
+### Post SignUp 
 POST {{ endpoint }}/sign_up
 Content-Type: application/json
 
 {
-    "nickname":"user3",
+    "nickname":"",
     "email":"user3@user.com",
     "password":"user3",
     "passwordConfirm": "user3"
 }
 
-### Post login
+#### Post login 
 POST {{ endpoint }}/login
 Content-type: application/json
 
@@ -25,7 +27,7 @@ Content-type: application/json
     "password": "password"
 }
 
-### Profil
+### Profil 
 GET {{ endpoint }}/profil
 Content-Type: application/json
 
@@ -34,7 +36,7 @@ Content-Type: application/json
     "password": "password"
 }
 
-### Delete profil
+### Delete profil 
 DELETE {{ endpoint }}/profil/delete
 Content-Type: application/json
 
@@ -43,16 +45,26 @@ Content-Type: application/json
     "password": "password"
 }
 
-### Path profil
-PATCH {{ endpoint }}/profil/update
+### Update profil
+PATCH {{ endpoint }}/profil/1/update
 Content-Type: application/json
 
 {
-    "nickname": "user4",
+    "nickname": "test4",
     "email":"user4@user.com",
     "password": "password",
-    "passwordConfirm": "password"
+    "passwordConfirm": "password",
+    "wallet": 150000,
+    "media": "1"  
 }
+
+### Forget User
+POST {{ endpoint }}/forget_user
+Content-Type: application/json
+
+{}
+
+### TOKEN (JWT) ###
 
 ### test autentificate token
 GET {{endpoint}}/posts
@@ -71,9 +83,36 @@ POST {{endpoint}}/logout
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MDkxMzIyNH0.h0J1HmQnAeeKwl2mfyPcOzKNdaV5J8yFryjpYhkL2bY"
 }
+
+### Events ###
+
+### Event
+GET {{ endpoint }}/events
+Content-Type: application/json
+
+{}
+
+### Post event
+POST {{ endpoint }}/events
+Content-Type: application/json
+
+{}
+
+### Delete event
+DELETE {{ endpoint }}/events
+Content-Type: application/json
+
+{}
+
+### Update event
+PATCH {{ endpoint }}/events
+Content-Type: application/json
+
+{}
+
+### Collections ###
 
 ### Page all Collections
 GET {{ endpoint }}/collections
@@ -101,7 +140,93 @@ Content-Type: application/json
 PATCH {{ endpoint }}/collection
 Content-Type: application/json
 {}
-=======
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwibmlja25hbWUiOiJ1c2VyIiwid2FsbGV0IjoiMTUwLjAwMDAiLCJpc0FkbWluIjpmYWxzZSwibWVkaWEiOm51bGwsImlhdCI6MTY2MTE3NTI3OH0.IHdrBFYLh6GYVl-8seE-JgO3oRcz5Pb5icmIN48zuUE"
-}
->>>>>>> loic
+
+### Categories ###
+
+### Categories
+GET {{ endpoint }}/categories
+Content-Type: application/json
+
+{}
+
+### Post categories
+POST {{ endpoint }}/categories
+Content-Type: application/json
+
+{}
+
+### Delete categories
+DELETE {{ endpoint }}/categories
+Content-Type: application/json
+
+{}
+
+### Update categories
+PATCH {{ endpoint }}/categories
+Content-Type: application/json
+
+{}
+
+### Categories/collections
+GET {{ endpoint }}/categories/collections
+Content-Type: application/json
+
+{}
+
+### NFT ###
+
+### Collections/NFT
+GET {{ endpoint }}/collections/nft
+Content-Type: application/json
+
+{}
+
+### NFT
+GET {{ endpoint }}/nft
+Content-Type: application/json
+
+{}
+
+### NFT User
+GET {{ endpoint }}/1/nft
+Content-Type: application/json
+{}
+
+### Post NFT
+POST {{ endpoint }}/1/nft
+Content-Type: application/json
+{}
+
+### Delete NFT
+DELETE {{ endpoint }}/1/nft/delete
+Content-Type: application/json
+{}
+
+### Update NFT
+PATCH {{ endpoint }}/1/nft/update
+Content-Type: application/json
+{}
+
+### Showcase ###
+
+### Showcase User
+GET {{ endpoint }}/showcase/1
+Content-Type: application/json
+{}
+
+### Favoris User ####
+
+### Favoris
+GET {{ endpoint }}/favoris/1
+Content-Type: application/json
+{}
+
+### Favoris
+POST {{ endpoint }}/favoris/1
+Content-Type: application/json
+{}
+
+### Favoris
+DELETE {{ endpoint }}/favoris/1
+Content-Type: application/json
+{}
