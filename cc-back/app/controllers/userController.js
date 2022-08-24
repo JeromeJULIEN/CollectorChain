@@ -104,4 +104,8 @@ module.exports = {
         return res.json(updateProfil);
     },
 
+    async forgetUserPage(req, res) {
+        return res.send('Route mot de passe oublié');
+    },
+
 };
