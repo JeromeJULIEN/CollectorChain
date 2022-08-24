@@ -12,7 +12,7 @@ POST {{ endpoint }}/sign_up
 Content-Type: application/json
 
 {
-    "nickname":"",
+    "nickname":"brian",
     "email":"user3@user.com",
     "password":"user3",
     "passwordConfirm": "user3"
@@ -37,12 +37,14 @@ Content-Type: application/json
 }
 
 ### Delete profil 
-DELETE {{ endpoint }}/profil/delete
+DELETE {{ endpoint }}/profil/1/delete
 Content-Type: application/json
 
 {
+    //"nickname":"blob",
     "email":"user@user.com",
-    "password": "password"
+    "password": "user3",
+    //"passwordConfirm": "user3"
 }
 
 ### Update profil

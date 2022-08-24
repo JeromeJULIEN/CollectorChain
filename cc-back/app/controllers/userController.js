@@ -71,9 +71,9 @@ module.exports = {
     },
 
     // Pour supprimer le profil user
-    async deleteUser(req, res) {
-        const user = req.body;
-        const userDelete = await User.findUserByEmail(user);
+    async deleteProfilUser(req, res) {
+        const user = await User.findById(req.params.id);
+        const userDelete = await User.deleteUser(user);
         return res.json(userDelete);
     },
 
