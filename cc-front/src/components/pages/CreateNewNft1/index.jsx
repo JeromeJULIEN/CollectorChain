@@ -30,10 +30,10 @@ const CreateNewNft1 = () => {
       [event.target.name]:event.target.files
     }))
     //? Il faut stocker un chemin URL pour afficher l'image. Je n'y arrive pas...
-    // setPicturesURL(picturesURL => ({
-    //   ...picturesURL,
-    //   [event.target.name]:URL.createObjectURL(event.target.files)
-    // }))
+    setPicturesURL(picturesURL => ({
+      ...picturesURL,
+      [event.target.name]:URL.createObjectURL(event.target.files[0])
+    }))
   }
   //! Fin gestion upload image
   
