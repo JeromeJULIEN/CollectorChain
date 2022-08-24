@@ -1,4 +1,4 @@
-import { setUserData, LOG_IN, SIGNUP, UPDATE_PROFILE } from "../actions/user";
+import { setUserData, LOG_IN, SIGNUP, UPDATE_PROFILE, IS_OPEN_TO_CONTACT } from "../actions/user";
 import instance from "../../utils/axios";
 
 const authMiddleware = (store) => (next) => async (action) => {
@@ -44,14 +44,27 @@ const authMiddleware = (store) => (next) => async (action) => {
 				user: { nickname, name, firstname, email, password },
 			} = store.getState();
 			console.log(nickname, name, firstname, email, password);
-			const { data } = await instance.update("/profil", {
+			const { data } = await instance.patch("/profil", {
 				nickname,
 				name,
 				firstname,
 				email,
 				password,
+				newPassword,
+				newPasswordConfirm,
 			});
 			console.log("data from update user profile request >>>>", data);
+		}
+		case IS_OPEN_TO_CONTACT: {
+			console.log("entrée dans middleware update isOpenToContact");
+			const {
+				user: { isOpenToContact },
+			} = store.getState();
+			console.log(isOpenToContact);
+			const { data } = await instance.patch("/profil", {
+				isOpenToContact,
+			});
+			console.log("data from update isOpenToContact request >>>>", data);
 		}
 		default:
 			next(action);

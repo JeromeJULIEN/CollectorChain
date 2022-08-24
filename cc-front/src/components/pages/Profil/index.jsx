@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Modal } from "@nextui-org/react";
 import UpdateProfile from "../../modals/UpdateProfile";
+import { useDispatch } from "react-redux";
+import { isOpenToContact } from "../../../../store/actions/user";
 import "./styles.scss";
 
 const Profil = () => {
+	const dispatch = useDispatch();
+
 	const user = useSelector((state) => state.user);
 	const changeProfilePic = () => {
 		console.log(user);
@@ -18,6 +22,11 @@ const Profil = () => {
 	};
 	const hideUpdateProfile = () => {
 		setIsUpdateProfileVisible(false);
+	};
+
+	const switchEvent = (event) => {
+		console.log(event.target.checked);
+		dispatch(isOpenToContact(event.target.checked));
 	};
 
 	return (
@@ -33,7 +42,7 @@ const Profil = () => {
 				</div>
 				<div className="profile__infos">
 					<Spacer y={0.5} />
-					<Input disabled={true} label="Pseudo" placeholder={user.pseudo} />
+					<Input disabled={true} label="Nickname" placeholder={user.nickname} />
 					<Spacer y={0.5} />
 					<Input disabled={true} label="Name" placeholder={user.name} />
 					<Spacer y={0.5} />
@@ -62,8 +71,8 @@ const Profil = () => {
 					</Link>
 				</div>
 				<div className="profile__preferency">
-					<Switch color="primary" size="sm" />
-					<p>Contact preferency</p>
+					<Switch checked={user.isOpenToContact} color="primary" size="sm" onChange={switchEvent} />
+					<p>I accept to be contacted by others collectors</p>
 				</div>
 				<Spacer y={1.5} />
 				<div className="profile__helper">

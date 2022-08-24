@@ -5,6 +5,7 @@ export const LOGOUT = "LOGOUT";
 export const SIGNUP = "SIGNUP";
 export const UPDATE_USER_FIELD = "UPDATE_USER_FIELD";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+export const IS_OPEN_TO_CONTACT = "IS_OPEN_TO_CONTACT";
 
 export const signUp = () => ({
 	type: SIGNUP,
@@ -32,4 +33,8 @@ export const updateUserField = (value, name) => ({
 	type: UPDATE_USER_FIELD,
 	value,
 	name,
+});
+export const isOpenToContact = (value) => ({
+	type: IS_OPEN_TO_CONTACT,
+	value,
 });
