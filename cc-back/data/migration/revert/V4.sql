@@ -2,6 +2,9 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+ALTER TABLE "user"
+DROP COLUMN "isOpenToContact",
+DROP COLUMN "lastName", 
+DROP COLUMN "name"; 
 
 COMMIT;
