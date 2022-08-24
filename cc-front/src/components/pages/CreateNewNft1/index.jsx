@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
-import CertificatePicture from './certificatePicture'
+import CertificatePicture from './CertificatePicture'
 import ObjectPicture from './ObjectPicture'
 import ProveYourself from './ProveYourself'
 import './styles.scss'

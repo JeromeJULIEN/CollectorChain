@@ -2,8 +2,6 @@
 
 BEGIN;
 
--- ALTER TABLE "property"
--- DROP COLUMN "nameTagId";
 ALTER TABLE "property"
 ADD CONSTRAINT "property_name_key" UNIQUE ("name");
 

@@ -6,3 +6,4 @@ v2 2022-08-22T13:03:29Z Loic Berland <berland.loic@yahoo.fr> # update table modi
 V3 2022-08-23T10:31:32Z Loic Berland <berland.loic@yahoo.fr> # remove NOT NULL on tag_id in property
 V4 2022-08-24T07:43:41Z Loic Berland <berland.loic@yahoo.fr> # add in user db name firstName and isOpenToContact
 v5 2022-08-24T09:15:08Z Loic Berland <berland.loic@yahoo.fr> # add in property column nameTagId unique and name drop unique
+v6 2022-08-24T14:02:41Z Loic Berland <berland.loic@yahoo.fr> # change property tag in manyToMany remove tag_id from property and create propertyThastag
