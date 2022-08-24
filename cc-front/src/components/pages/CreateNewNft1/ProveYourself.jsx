@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ProveYourself = ({uploadImage, picturesURL}) => {
+const ProveYourself = ({uploadImage, picturesURL, phase1Validation}) => {
   return (
     <div>
         <h3 className='title title--small' >Prove yourself</h3>
@@ -13,7 +13,7 @@ const ProveYourself = ({uploadImage, picturesURL}) => {
           <img className='picture__image' src={picturesURL.yourselfPicture} alt="Yourself picture" />
         </div>
         <p className="text">Congratulation ! We can certify the information you've provided us</p>   
-         <button type='button' className='button button--validation'><Link to='/creation/createnewnft2'>Continue to step 2</Link> </button>
+         <button type='button' className='button button--validation' onClick={phase1Validation}><Link to='/creation/createnewnft2'>Continue to step 2</Link> </button>
 
     </div>
   )

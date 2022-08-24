@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
-import { useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import CertificatePicture from './certificatePicture'
 import ObjectPicture from './ObjectPicture'
 import ProveYourself from './ProveYourself'
 import './styles.scss'
+import { storeTempPicture } from '../../../../store/actions/nfts'
 
 const CreateNewNft1 = () => {
   
@@ -17,9 +17,9 @@ const CreateNewNft1 = () => {
    };
  
    const validateStep2 = () => {
-     console.log('click')
      setIsStep2Validated(true)
    }
+   //! Fin gestion validation des étapes
 
 
   //! Gestion de l'upload des images
@@ -27,22 +27,30 @@ const CreateNewNft1 = () => {
   const[pictures, setPictures] = useState([])
   // Creation d'un state local pour stocker le chemin URL des images
   const[picturesURL, setPicturesURL] = useState([])
-  console.log('pictures >>>',pictures)
-  console.log('pictures URL >>>', picturesURL)
+  // console.log('pictures >>>',pictures)
+  // console.log('pictures URL >>>', picturesURL)
   // Fonction pour stocker l'image dans le state local
   const uploadImage = (event) => {
-    console.log('file >>>',event.target.files)
+    // console.log('file >>>',event.target.files)
     setPictures(pictures => ({
       ...pictures,
       [event.target.name]:event.target.files
     }))
-    //? Il faut stocker un chemin URL pour afficher l'image. Je n'y arrive pas...
+    // Il faut stocker un chemin URL pour afficher l'image
     setPicturesURL(picturesURL => ({
       ...picturesURL,
       [event.target.name]:URL.createObjectURL(event.target.files[0])
     }))
   }
   //! Fin gestion upload image
+
+  //!Stockage d'un image temporaire dans un state nftToCreate afin de la passer à l'étape 2
+  const dispatch = useDispatch();
+  const tempPicture = useSelector(state => state.nfts.nftToCreate.tempMedia)
+  console.log('tempPicture >>>',tempPicture)
+  const phase1Validation = () => {
+    dispatch(storeTempPicture(picturesURL.overallPicture))
+  }
   
   return (
     <div className='createNewNft'>
@@ -60,7 +68,7 @@ const CreateNewNft1 = () => {
     }
     {/* STEP 3 */}
     {isStep2Validated?
-    <ProveYourself uploadImage={uploadImage} picturesURL={picturesURL}/>
+    <ProveYourself uploadImage={uploadImage} picturesURL={picturesURL} phase1Validation={phase1Validation}/>
     :
     ''
     }
