@@ -29,8 +29,7 @@ const { nftHasProperty } = data[6];
         );
         categoryQueries.push(query);
     });
-    let results = await Promise.all(categoryQueries);
-    const categoryRows = results.map((result) => result.rows[0]);
+    await Promise.all(categoryQueries);
 
     // Import collection
     const collectionQueries = [];
@@ -39,7 +38,7 @@ const { nftHasProperty } = data[6];
             `
         INSERT INTO "collection"("name","description", "media", "category_id" ) VALUES
         ($1,$2,$3,
-          SELECT id FROM "category" WHERE $4 = "category"."name"
+          (SELECT id FROM "category" WHERE $4 = "category"."name")
           )
         RETURNING *
       `,
@@ -47,7 +46,125 @@ const { nftHasProperty } = data[6];
         );
         collectionQueries.push(query);
     });
-    results = await Promise.all(collectionQueries);
+    await Promise.all(collectionQueries);
+
+    // Import User
+    const userQueries = [];
+    users.forEach((user) => {
+        const query = client.query(
+            `
+        INSERT INTO "user"("email","nickname", "password", "media" ) VALUES
+        ($1,$2,$3,$4
+          )
+        RETURNING *
+      `,
+            [user.email, user.nickname, user.password, user.media],
+        );
+        userQueries.push(query);
+    });
+    userQueries.push(client.query(
+        `
+            INSERT INTO "user"("email","nickname", "password", "media" ) VALUES
+            ($1,$2,$3,$4
+            )
+            RETURNING *
+        `,
+        ['user@user.com', 'user', '$2a$12$auKxh5o5M0wGHZ26GmPbJuzn8MHDVIl68a.sAwpuvgk215rwYH48C', 'https://via.placeholder.com/150'],
+    ));
+    await Promise.all(userQueries);
+
+    // Import nft
+    const nftQueries = [];
+    nfts.forEach((nft) => {
+        const query = client.query(
+            `
+        INSERT INTO "nft"(
+            "token",
+            "name",
+            "description",
+            "price",
+            "forSale",
+            "media",
+            "collection_id",
+            "creator_id",
+            "owner_id",
+            "rarity" )
+        VALUES
+        ($1,$2,$3,$4,$5,$6,
+            (SELECT id FROM "collection" WHERE $7 = "collection"."name"),
+            (SELECT id FROM "user" WHERE $8 = "user"."nickname"),
+            (SELECT id FROM "user" WHERE $9 = "user"."nickname"),
+            $10
+            )
+        RETURNING *
+        `,
+            [
+                nft.token,
+                nft.name,
+                nft.description,
+                nft.price,
+                nft.forSale,
+                nft.media,
+                nft.collection_id,
+                nft.creator_id,
+                nft.owner_id,
+                nft.rarity,
+            ],
+        );
+        nftQueries.push(query);
+    });
+    await Promise.all(nftQueries);
+
+    // Import tags
+    const tagQueries = [];
+    tags.forEach((tag) => {
+        const query = client.query(
+            `
+        INSERT INTO "tag"("name") VALUES
+        ($1)
+        RETURNING *
+        `,
+            [tag.name],
+        );
+        tagQueries.push(query);
+    });
+    await Promise.all(tagQueries);
+
+    // Import property
+    const propertyQueries = [];
+    properties.forEach((property) => {
+        const query = client.query(
+            `
+        INSERT INTO "property"("name", "tag_id" ) VALUES
+        ($1,
+            (SELECT id FROM "tag" WHERE $2 = "tag"."name")
+            )
+        RETURNING *
+        `,
+            [property.name, property.tag_id],
+        );
+        propertyQueries.push(query);
+    });
+    await Promise.all(propertyQueries);
+
+    // Import nftHasProperty
+    const nftHasPropertyQueries = [];
+    nftHasProperty.forEach((value) => {
+        console.log(`${value.property_id} et ${value.nft_id}`);
+        const query = client.query(
+            `
+        INSERT INTO "property_has_nft"("property_id", "nft_id" ) VALUES
+        (
+            (SELECT id FROM "property" WHERE $2 = "property"."name"),
+            (SELECT id FROM "nft" WHERE $1 = "nft"."name")
+            )
+        RETURNING *
+        `,
+            [value.property_id, value.nft_id],
+        );
+        nftHasPropertyQueries.push(query);
+    });
+    await Promise.all(nftHasPropertyQueries);
 
     client.end();
 })();
