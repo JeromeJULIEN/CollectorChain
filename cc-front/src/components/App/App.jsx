@@ -20,10 +20,12 @@ import { useSelector } from "react-redux";
 import Results from "../pages/Results";
 // import Darkmode from "darkmode-js";
 import CreateNewNft1 from "../pages/CreateNewNft1";
+import CreateNewNft2 from "../pages/CreateNewNft2";
 import Profil from "../pages/Profil";
 
+
 function App() {
-	// //DARK MODE
+	//DARK MODE
 	// const options = {
 	// 	// top: "0px", // default: '32px'
 	// 	right: "-8px", // default: '32px'
@@ -68,6 +70,7 @@ function App() {
 					<Route path="/results" element={<Results />} />
 					<Route path="/profil" element={<Profil />} />
 					<Route path="/creation/createnewnft" element={<CreateNewNft1 />} />
+					<Route path="/creation/createnewnft2" element={<CreateNewNft2 />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 

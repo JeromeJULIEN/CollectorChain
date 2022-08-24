@@ -1,3 +1,4 @@
+import { STORE_TEMP_PICTURE } from "../actions/nfts";
 
 export const initialState ={
     list:[
@@ -89,11 +90,28 @@ export const initialState ={
             collection_id:1,
             user_id: '0x777'
         },
-    ]
+    ],
+    nftToCreate:{
+        name:'',
+        media:'',
+        tempMedia:''
+    }
 }
 
 const reducer = (state = initialState, action = {}) => {
 	switch (action.type) {
+        case STORE_TEMP_PICTURE : {
+            console.log('entrée dans storeTempPicture avec', action.payload)
+            return {
+                ...state,
+                nftToCreate:{
+                    ...state.nftTocreate,
+                    tempMedia: action.payload
+                }
+                
+            }
+        }
+
 		default:
 			return state;
 	}

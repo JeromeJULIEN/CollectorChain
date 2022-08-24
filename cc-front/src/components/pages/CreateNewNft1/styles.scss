@@ -3,4 +3,79 @@
 .createNewNft{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: vars.$dimension_header_height;
+    margin: 0 .5rem;
+
+    &__step1{
+        display: flex;
+        flex-direction: column;
+
+        &__validation{
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+
+            ion-icon{
+                font-size: 2rem;
+                color:green;
+                text-align: center;
+        }
+        }
+    }
+}
+
+.title{
+    text-align: left;
+    font-weight: bold;
+
+    &--big{
+        padding-top: 1.5rem;
+    }
+
+    &--small{
+        padding-top: 1rem;
+    }
+}
+
+.text{
+    margin: .5rem 0;
+}
+
+.picture{
+    width: 50%;
+    aspect-ratio: 1;
+    background-color: vars.$color_secondary;
+    border-radius: 1rem;
+    margin: 1rem 25%;
+
+    &__title{
+        text-align: center;
+    }
+
+    &__image{
+        text-align: center;
+        vertical-align: middle;
+        object-fit: cover;
+    }
+   
+}
+
+.validation{
+    display: flex;
+    justify-content: space-around;
+}
+
+.button{
+    height: 3rem;
+    border-radius: .5rem;
+    font-weight: bold;
+
+    &--validation{
+        background-color: vars.$color_callToAction;
+        width: 50%;
+        margin: 0 25% 1rem 25%;
+        
+    }
 }

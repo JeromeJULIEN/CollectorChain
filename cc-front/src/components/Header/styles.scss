@@ -1,3 +1,5 @@
+@use '../../../styles/vars';
+
 .header {
 	background-color: darkgrey;
     display: flex;
@@ -7,6 +9,7 @@
 	width: 100vw;
 	position: fixed;
 	top: 0;
+    height: vars.$dimension_header_height;
 
     button{
 		margin-right: 1rem;
