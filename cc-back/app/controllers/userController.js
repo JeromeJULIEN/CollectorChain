@@ -1,7 +1,7 @@
-const emailValidator = require('email-validator');
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
 const jwt = require('../Auth/jwt');
+const ApiError = require('../errors/apiError');
 
 require('dotenv').config();
 
@@ -15,29 +15,21 @@ module.exports = {
     // On vérifie si les champs sont vides
     // Sign up
     async insertNewUser(req, res) {
-        const fieldForm = false;
-        for (const value in req.body) {
-            const { body } = req;
-            if (!body[value]) {
-                return res.json({ error: 'Un champ est n\'est pas rempli' });
-            }
-        }
-        // eslint-disable-next-line max-len
-        const newUser = { nickname: req.body.nickname, email: req.body.email, password: req.body.password };
-        // on vérifie le pseudo du User
-        if (newUser.nickname.length === 0) return res.json({ error: 'Veuillez saisir un pseudo' });
-        // si le mail n'est pas dans le bon format
-        if (!emailValidator.validate(req.body.email)) return res.json({ error: 'Email non valide' });
+        const newUser = {
+            nickname: req.body.nickname,
+            email: req.body.email,
+            password: req.body.password,
+        };
         const user = await User.findUserByEmail(newUser.email);
-        if (user) return res.json({ error: 'Cet email existe déjà !' });
+        if (user) throw new ApiError('Cet email existe déjà !', { statusCode: 400 });
         // teste si les mots de passes sont correct
-        if (newUser.password !== req.body.passwordConfirm) return res.json({ error: 'Mot de passe incorrect' });
+        if (newUser.password !== req.body.passwordConfirm) throw new ApiError('Mot de passe incorrect', { statusCode: 400 });
         /* Password encryption */
         const hashedPassword = await bcrypt.hash(newUser.password, 12);
         newUser.password = hashedPassword;
         const addUser = await User.createUser(newUser);
         // on teste si le nouvel utilisateur existe déjà
-        if (newUser === addUser) return res.json({ error: 'Cet utilisateur existe déjà!' });
+        if (newUser === addUser) throw new ApiError('Cet utilisateur existe déjà!', { statusCode: 400 });
 
         return res.json(newUser);
     },
