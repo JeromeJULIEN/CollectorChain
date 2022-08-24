@@ -3,6 +3,9 @@ import { AutoComplete, InputPicker, Input } from 'rsuite'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import ObjectPicture from '../CreateNewNft1/ObjectPicture';
+import Footer from '../../Footer';
 
 const CreateNewNft2 = () => {
 
@@ -12,11 +15,12 @@ const CreateNewNft2 = () => {
     // import de l'image temp du process de creation
     const tempPicture = useSelector(state => state.nfts.nftToCreate.tempMedia)
 
-    const [customProps, setCustomProps] = useState(['prop'])
+    const [customProps, setCustomProps] = useState([])
 
     const addCustomProp = () => {
-        setCustomProps(customProps.push('prop'))
+        customProps.push('i')
         console.log(customProps)
+        setCustomProps(customProps)
     }
 
     return (
@@ -51,13 +55,13 @@ const CreateNewNft2 = () => {
                 <div className="properties__property">
                     <p>Add a new property</p>
                     <button onClick={addCustomProp}><ion-icon name="add-circle"></ion-icon></button>
-                    {/* {customProps.map((prop,i) => (
+                    {customProps.map((prop,i) => (
                         <>
                             <Input key={i} placeholder='property'/>
                             <Input key={i} placeholder='tag'/>
                         </>
                         )
-                    )} */}
+                    )}
                 </div>
             </div>
         </div>
