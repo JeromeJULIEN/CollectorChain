@@ -1,10 +1,10 @@
 import { STORE_TEMP_PICTURE } from "../actions/createNft";
 
 export const initialState = {
-    name: "",
+	name: "",
 	media: "",
 	tempMedia: "",
-}
+};
 
 const reducer = (state = initialState, action = {}) => {
 	switch (action.type) {
