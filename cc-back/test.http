@@ -38,15 +38,7 @@ Content-Type: application/json
 }
 
 ### Delete profil 
-DELETE {{ endpoint }}/profil/1/delete
-Content-Type: application/json
-
-{
-    //"nickname":"blob",
-    "email":"user@user.com",
-    "password": "user3",
-    //"passwordConfirm": "user3"
-}
+DELETE {{ endpoint }}/profil/2/delete
 
 ### Update profil
 PATCH {{ endpoint }}/profil/1/update

@@ -46,11 +46,11 @@ module.exports = class User extends CoreDatamapper {
         return result.rows[0];
     }
 
-    static async deleteUser(id) {
+    static async deleteUserById(id) {
         const result = await client.query(
             `
             DELETE FROM "user"
-            WHERE id = $1;
+            WHERE id = $1
             `,
             [id],
         );
