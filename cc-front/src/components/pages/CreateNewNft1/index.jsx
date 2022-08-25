@@ -25,7 +25,6 @@ const CreateNewNft1 = () => {
 	const [pictures, setPictures] = useState([]);
 	// Creation d'un state local pour stocker le chemin URL des images
 	const [picturesURL, setPicturesURL] = useState([]);
-	console.log("pictures >>>", pictures);
 	// console.log('pictures URL >>>', picturesURL)
 	// Fonction pour stocker l'image dans le state local
 	const uploadImage = (event) => {
@@ -44,25 +43,21 @@ const CreateNewNft1 = () => {
 	};
 
 	const deleteImage = (event) => {
-		console.log("picture name >>>", event.target.id);
 		setPictures((pictures) => ({
 			...pictures,
 			[event.target.id]: "",
 		}));
-		console.log("pictures After >>>", pictures);
 		// Il faut stocker un chemin URL pour afficher l'image
 		setPicturesURL((picturesURL) => ({
 			...picturesURL,
 			[event.target.id]: URL.revokeObjectURL(event.target.id[0]),
 		}));
-		console.log("pictures URL >>>", picturesURL);
 		//! Fin gestion delete image
 	};
 
 	//!Stockage d'un image temporaire dans un state nftToCreate afin de la passer à l'étape 2
 	const dispatch = useDispatch();
 	const tempPicture = useSelector((state) => state.createNft.tempMedia);
-	console.log("tempPicture >>>", tempPicture);
 	const phase1Validation = () => {
 		dispatch(storeTempPicture(picturesURL.overallPicture));
 	};

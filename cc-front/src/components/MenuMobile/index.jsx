@@ -73,7 +73,7 @@ const MenuMobile = () => {
 					<Nav.Item>
 						<Link to="/showcase">My showcase</Link>
 					</Nav.Item>
-					<Nav.Item>My favorites</Nav.Item>
+					<Nav.Item><Link to='/favorites'>My favorites</Link></Nav.Item>
 					<Nav.Item>
 						<Link to="/profil">My profil</Link>
 					</Nav.Item>

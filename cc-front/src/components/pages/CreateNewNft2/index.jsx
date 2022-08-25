@@ -1,14 +1,18 @@
 import './styles.scss'
-import { AutoComplete, InputPicker, Input } from 'rsuite'
-import { useSelector } from 'react-redux'
+import { AutoComplete, InputPicker, Input, Loader } from 'rsuite'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ObjectPicture from '../CreateNewNft1/ObjectPicture';
 import Footer from '../../Footer';
 import CustomPropFields from './CustomPropFields';
+import { changeNftField, deleteNftMedia, storeCategory, storeNftMedia } from '../../../../store/actions/createNft';
+import { wait } from '../../../../utils/wait';
 
 const CreateNewNft2 = () => {
+
+    const dispatch=(useDispatch());
 
     // import des données des catégories pour alimenter l'inputPicker
     const data = useSelector(state => state.categories.list).map(item => ({label: item, value: item }));
@@ -22,13 +26,44 @@ const CreateNewNft2 = () => {
         setCustomProps([...customProps, 'p'])
     }
 
-    // state local pour envoie des infos au reducer createNft au moment de la validation finale
-    const [description, setDescription] = useState('')
-    console.log('description >>>', description)
-
-    const changeDescription = event => {
-        setDescription(event)
+    //! state local pour envoie des infos au reducer createNft au moment de la validation finale
+    //CATEGORY
+    const[category, setCategory] = useState('')
+    const changeCategory = (event) => {
+        setCategory(event)
     }
+    
+    //PICTURE
+    const [picture,setPicture] = useState('')
+    const createNft = useSelector(state => state.createNft)
+
+	const uploadImage = (event) => {
+		setPicture(event.target.files);
+		// Il faut stocker un chemin URL pour afficher l'image
+		dispatch(storeNftMedia(event.target.files[0]));
+	};
+	const deleteImage = (event) => {
+		setPicture('');
+		// Il faut stocker un chemin URL pour afficher l'image
+		dispatch(deleteNftMedia());
+	};
+
+    // VALIDATION FORMULAIRE
+    const [isValidated, setIsValidated] = useState(false)
+    const [isLoading, setIsLoading] =useState(false)
+
+    const validateCreation = async () => {
+        dispatch(storeCategory(category))
+        setIsLoading(true)
+        await wait(2000)
+        setIsLoading(false)
+        setIsValidated(true)
+    }
+
+    //!Gestion de la mise à jour du state lors du changement des inputs
+    const handleChangeField = (event, item) => {
+		dispatch(changeNftField(event, item.target.name))
+	}
 
     return (
         <div className='createNewNft2'>
@@ -44,18 +79,20 @@ const CreateNewNft2 = () => {
             <div className="category">
                 <h3>Object category</h3>
                 <p>Select the category of the object :</p>
-                <InputPicker data={data} className='category__input'/>
+                <InputPicker data={data} className='category__input' onChange={changeCategory}/>
                 <button className='button button--newCategory'>Or ask for a new category</button>
             </div>
             <div className="properties">
                 <h3>Object main properties</h3>
                 <div className="properties__property">
+                    <p>Name</p>
+                    <Input placeholder='NFT name' name='name' onChange={handleChangeField}/>
                     <p>Collection</p>
-                    <Input placeholder='object brand'/>
+                    <Input placeholder='object brand' name='collection' onChange={handleChangeField}/>
                     <p>Model</p>
-                    <Input placeholder='object brand model'/>
+                    <Input placeholder='object brand model' name='model' onChange={handleChangeField}/>
                     <p>Serial</p>
-                    <Input placeholder='object serial number'/>
+                    <Input placeholder='object serial number' name='serial' onChange={handleChangeField}/>
                 </div>
             </div>
             <div className="customProperties">
@@ -65,17 +102,47 @@ const CreateNewNft2 = () => {
                     <button onClick={addCustomProp}><ion-icon name="add-circle"></ion-icon></button>
                 </div>
                 {customProps.map((prop,i) => (
-                        <CustomPropFields key={i} index={i}/>
+                        <CustomPropFields key={i} index={i} addCustomProp={addCustomProp}/>
                 ))}
             </div>
             <div className="description">
                 <h3>Object description</h3>
                 <p>Highlight your NFT ! (max xxx words)</p>
-                <Input as='textarea' rows={3} placeholder='Describe your NFT' onChange={changeDescription}/>
+                <Input as='textarea' rows={3} placeholder='Describe your NFT' name='description' onChange={handleChangeField}/>
             </div>
-            <div className="picture">
+            <div className="picture__title">
                 <h3>NFT picture</h3>
                 <p>Upload the base picture for NFT profile picture creation</p>
+                <div className="picture__picture">
+					{createNft.media ? (
+						<div className="picture__trash-icon" onClick={deleteImage}>
+							<ion-icon className="picture__trash" name="trash-outline" id="overallPicture" size="large"></ion-icon>
+						</div>
+					) : (
+						""
+					)}
+					{!createNft.media? (
+						<>
+							<label htmlFor="OverallPictureInput" className="picture__add-icon">
+								<ion-icon name="add-circle-outline" size="large"></ion-icon>
+							</label>
+							<input type="file" accept="image/*" name="overallPicture" onChange={uploadImage} className="picture__input" id="OverallPictureInput" />
+						</>
+					) : (
+						""
+					)}
+					{createNft.media ? <img className="picture__image" src={createNft.media} alt="Overall picture" /> : ""}
+				</div>
+            </div>
+            <div className="validation">
+                <button className='button button--validation' onClick={validateCreation}>Validate your creation</button>
+                {isLoading? <Loader className='validation__loader' size='lg' vertical/>:''}
+                {isValidated?
+                <p className="validation__text">
+                    <strong>Congratulation ! </strong>You’ve finished the creation process. Collector Chain will proceed your demand <strong>in the next hours.</strong> You will receive an NFT creation validation demand with the final informations. Once validated by your side, your new NFT <strong>will be automaticly displayed in your showcase</strong> 
+                </p>
+                :''              
+                }
             </div>
         </div>
     )

@@ -5,7 +5,7 @@ h3{
     margin: .5rem 0;
 }
 .createNewNft2{
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -25,6 +25,8 @@ h3{
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+
+        
     }
 
     &__image{
@@ -143,4 +145,76 @@ h3{
         height: 2rem;
         width: 100%;
     }
+}
+
+.picture{
+  
+    &__title{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin: .5rem;
+
+    }
+
+    &__picture{
+        position: relative;
+        width: 50%;
+        aspect-ratio: 1;
+        background-color: vars.$color_secondary;
+        border-radius: 1rem;
+        margin: 1rem 25%;
+    
+        &__title{
+            text-align: center;
+        }
+    
+        &__image{
+            height: 100%;
+            width: 100%;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+    
+        &__input {
+            display: none;
+        }
+        &__add-icon {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+        }
+        &__trash-icon {
+            position: absolute;
+            right: 0.25rem;
+            top: 0.5rem;
+        }
+        & ion-icon {
+            zoom: 0.8;
+            color: vars.$color_callToAction;
+        }
+
+    }
+   
+}
+
+.validation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: .5rem;
+
+    &__text{
+        padding-bottom: 2rem;
+    }
+
+    &__loader{
+        padding-bottom: 2rem;
+    }
+
+   
+}
+
+strong{
+    font-weight: bold;
 }

@@ -4,15 +4,13 @@ import { Input, InputPicker } from 'rsuite'
 import { deleteProperty, storeProperty } from '../../../../store/actions/createNft';
 import './styles.scss'
 
-const CustomPropFields = ({index}) => {
+const CustomPropFields = ({index, addCustomProp}) => {
 
     const dispatch = useDispatch();
 
     // state local pour stockage valeur property et tag
     const [property, setProperty] = useState('')
     const [tag, setTag] = useState('')
-    
-    console.log('property>>>', property)
 
     const changeProperty = (event) => {
         setProperty(event)
@@ -27,13 +25,13 @@ const CustomPropFields = ({index}) => {
 
     const validateProp = () => {
         setIsValidated(true)
+        addCustomProp()
         dispatch(storeProperty(property,tag))
     }
 
     // gestion suppression
     const [isDeleted,setIsDeleted] = useState(false)
     const deleteProp = () => {
-        console.log('property depuis delete >>', property)
         setIsDeleted(true)
         dispatch(deleteProperty(property))
     }
