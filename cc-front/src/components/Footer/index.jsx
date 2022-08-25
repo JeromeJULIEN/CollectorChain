@@ -1,6 +1,7 @@
 import "./styles.scss";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../../store/actions/user";
+import {Link} from "react-router-dom"
 
 const Footer = () => {
 	// code temporaire pour test fonction login
@@ -15,7 +16,7 @@ const Footer = () => {
 			<div className="footer__menu">
 				<p>About us</p>
 				<p>Term</p>
-				<p>Contact</p>
+				<p><Link to='/contact'>Contact</Link></p>
 			</div>
 			<div className="footer__copyright">Collector Chain @2022</div>
 		</div>
