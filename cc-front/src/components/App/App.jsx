@@ -24,6 +24,7 @@ import CreateNewNft2 from "../pages/CreateNewNft2";
 import Profil from "../pages/Profil";
 import Favorites from "../pages/Favorites";
 import Contact from "../pages/Contact";
+import AboutUs from "../pages/AboutUs";
 
 function App() {
 	//DARK MODE
@@ -74,6 +75,7 @@ function App() {
 					<Route path="/creation/createnewnft2" element={<CreateNewNft2 />} />
 					<Route path="/favorites" element={<Favorites />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 

@@ -14,7 +14,7 @@ const Footer = () => {
 	return (
 		<div className="footer">
 			<div className="footer__menu">
-				<p>About us</p>
+				<p><Link to='/aboutus' >About us</Link></p>
 				<p>Term</p>
 				<p><Link to='/contact'>Contact</Link></p>
 			</div>
