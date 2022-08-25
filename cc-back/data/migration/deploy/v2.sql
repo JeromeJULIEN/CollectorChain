@@ -3,7 +3,7 @@
 BEGIN;
 
 ALTER TABLE "nft"
-ADD COLUMN "owner_id" INT REFERENCES "user"("id"),
+ADD COLUMN "owner_id" INT REFERENCES "user"("id") ON DELETE CASCADE,
 ADD COLUMN "rarity" TEXT NOT NULL DEFAULT(1),
 ADD CONSTRAINT "rarityCheck" CHECK("rarity" ~ '^[1-8]$|^[1-7|][0]$|^[1|6][5]$|^12$');
 

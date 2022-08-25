@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE "category", "collection", "user", "nft", "tag", "property", "property_has_nft", "favorite";
+DROP TABLE "category", "collection", "user", "nft", "tag", "property", "favorite";
 
 COMMIT;

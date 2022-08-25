@@ -44,7 +44,7 @@ CREATE TABLE "nft" (
 "forSale" BOOL DEFAULT(false),
 "media" TEXT NOT NULL,
 "collection_id" INT NOT NULL REFERENCES "collection"("id"),
-"user_id" INT NOT NULL REFERENCES "user"("id"),
+"user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
 "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
 "updated_at" TIMESTAMPTZ,
 CHECK(price>0)
@@ -60,20 +60,13 @@ CREATE TABLE "tag" (
 CREATE TABLE "property" (
 "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 "name" TEXT UNIQUE NOT NULL,
-"tag_id" INT NOT NULL REFERENCES "tag"("id"),
 "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
 "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "property_has_nft" (
-"property_id" INT NOT NULL REFERENCES "property"("id"),
-"nft_id" INT NOT NULL REFERENCES "nft"("id"),
-PRIMARY KEY("property_id","nft_id")
-);
-
 CREATE TABLE "favorite" (
-"user_id" INT NOT NULL REFERENCES "user"("id"),
-"nft_id" INT NOT NULL REFERENCES "nft"("id"),
+"user_id" INT NOT NULL REFERENCES "user"("id") ON DELETE CASCADE,
+"nft_id" INT NOT NULL REFERENCES "nft"("id") ON DELETE CASCADE,
 PRIMARY KEY("user_id","nft_id")
 );
 

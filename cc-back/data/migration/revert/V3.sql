@@ -2,7 +2,6 @@
 
 BEGIN;
 
-ALTER TABLE "property"
-ALTER COLUMN "tag_id" SET NOT NULL;
+
 
 COMMIT;

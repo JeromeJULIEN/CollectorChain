@@ -5,10 +5,8 @@ BEGIN;
 CREATE TABLE "nft_has_property_has_tag" (
 "property_id" INT NOT NULL REFERENCES "property"("id"),
 "tag_id" INT NOT NULL REFERENCES "tag"("id"),
-"nft_id" INT NOT NULL REFERENCES "nft"("id"),
+"nft_id" INT NOT NULL REFERENCES "nft"("id") ON DELETE CASCADE,
 PRIMARY KEY("property_id","tag_id","nft_id")
 );
-ALTER TABLE "property"
-DROP COLUMN "tag_id";
 
 COMMIT;

@@ -1,4 +1,5 @@
 const { Client } = require('pg');
+require('dotenv').config();
 
 const data = require('./dataTest.json');
 
@@ -11,7 +12,7 @@ const tags = data[5].tag;
 const { nftHasPropertyHasTag } = data[6];
 
 (async () => {
-    const client = new Client('postgres://spedata:spedata@localhost/collector_chain');
+    const client = new Client(process.env.DATABASE_URL);
     await client.connect();
 
     await client.query('TRUNCATE TABLE "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');
