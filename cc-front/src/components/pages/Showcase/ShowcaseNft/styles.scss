@@ -1,0 +1,36 @@
+@use '../../../../../styles/vars';
+
+.showcase {
+	margin-bottom: 0.5rem;
+	&__pic {
+		background-color: red;
+		position: relative;
+		aspect-ratio: 1;
+		// background-color: vars.$color_secondary;
+		
+		&-img{
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+
+		&-input {
+			display: none;
+		}
+		&-add-icon {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+		}
+		&-trash-icon {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+		& ion-icon {
+			zoom: 0.8;
+			color: vars.$color_callToAction;
+		}
+		
+	}
+}
