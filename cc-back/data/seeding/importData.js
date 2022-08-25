@@ -11,10 +11,10 @@ const tags = data[5].tag;
 const { nftHasPropertyHasTag } = data[6];
 
 (async () => {
-    const client = new Client('postgres://spedata:spedata@localhost/collector_chain');
+    const client = new Client('postgres://collector:collector@localhost/collector');
     await client.connect();
 
-    await client.query('TRUNCATE TABLE "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');
+    await client.query('TRUNCATE TABLE "property_has_nft", "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');
     console.log('categories');
 
     // Import catégories

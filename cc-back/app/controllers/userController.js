@@ -61,6 +61,7 @@ module.exports = {
         return res.json(userLog);
     },
 
+    /*
     async greetingUser(req, res) {
         const { email, password } = req.body;
         const user = await User.findUserByEmail(email);
@@ -70,11 +71,11 @@ module.exports = {
 
         return res.json(user);
     },
+    */
 
     // Pour supprimer le profil user
     async deleteProfilUser(req, res) {
-        const user = await User.findById(req.params.id);
-        const userDelete = await User.deleteUser(user);
+        const userDelete = await User.deleteUserById(req.params.id);
         return res.json(userDelete);
     },
 
