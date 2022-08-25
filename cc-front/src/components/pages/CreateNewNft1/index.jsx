@@ -27,7 +27,7 @@ const CreateNewNft1 = () => {
   const[pictures, setPictures] = useState([])
   // Creation d'un state local pour stocker le chemin URL des images
   const[picturesURL, setPicturesURL] = useState([])
-  // console.log('pictures >>>',pictures)
+  console.log('pictures >>>',pictures)
   // console.log('pictures URL >>>', picturesURL)
   // Fonction pour stocker l'image dans le state local
   const uploadImage = (event) => {
