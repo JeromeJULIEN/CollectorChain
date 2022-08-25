@@ -1,5 +1,8 @@
+const { Category } = require('../models');
+
 module.exports = {
-    async categoriesPage(req, res) {
-        return res.send('Route vers une catégorie');
+    async getAllCategories(req, res) {
+        const categories = await Category.findAll();
+        res.json(categories);
     },
 };

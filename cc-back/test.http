@@ -79,9 +79,6 @@ Content-Type: application/json
 
 ### Event
 GET {{ endpoint }}/events
-Content-Type: application/json
-
-{}
 
 ### Post event
 POST {{ endpoint }}/events
@@ -137,9 +134,6 @@ Content-Type: application/json
 
 ### Categories
 GET {{ endpoint }}/categories
-Content-Type: application/json
-
-{}
 
 ### Post categories
 POST {{ endpoint }}/categories
@@ -161,30 +155,17 @@ Content-Type: application/json
 
 ### Categories/collections
 GET {{ endpoint }}/categories/collections
-Content-Type: application/json
-
-{
-
-}
 
 ### NFT ###
 
 ### Collections/NFT
 GET {{ endpoint }}/collections/nft
-Content-Type: application/json
-
-{}
 
 ### NFT
 GET {{ endpoint }}/nft
-Content-Type: application/json
-
-{}
 
 ### NFT User
 GET {{ endpoint }}/1/nft
-Content-Type: application/json
-{}
 
 ### Post NFT
 POST {{ endpoint }}/1/nft
@@ -205,21 +186,11 @@ Content-Type: application/json
 
 ### Showcase User
 GET {{ endpoint }}/showcase/1
-Content-Type: application/json
-
-{
-
-}
 
 ### Favoris User ####
 
 ### Favoris
 GET {{ endpoint }}/favoris/1
-Content-Type: application/json
-
-{
-
-}
 
 ### Favoris
 POST {{ endpoint }}/favoris/1

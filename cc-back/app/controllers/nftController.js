@@ -1,5 +1,8 @@
+const { Nft } = require('../models');
+
 module.exports = {
-    async nftPage(req, res) {
-        return res.send('Route vers des NFT');
+    async getNft(req, res) {
+        const nft = await Nft.findAll();
+        res.json(nft);
     },
 };
