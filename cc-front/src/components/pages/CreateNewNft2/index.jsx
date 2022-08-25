@@ -3,6 +3,10 @@ import { AutoComplete, InputPicker, Input } from 'rsuite'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import ObjectPicture from '../CreateNewNft1/ObjectPicture';
+import Footer from '../../Footer';
+import CustomPropFields from './CustomPropFields';
 
 const CreateNewNft2 = () => {
 
@@ -12,11 +16,10 @@ const CreateNewNft2 = () => {
     // import de l'image temp du process de creation
     const tempPicture = useSelector(state => state.nfts.nftToCreate.tempMedia)
 
-    const [customProps, setCustomProps] = useState(['prop'])
+    const [customProps, setCustomProps] = useState([])
 
     const addCustomProp = () => {
-        setCustomProps(customProps.push('prop'))
-        console.log(customProps)
+        setCustomProps([...customProps, 'p'])
     }
 
     return (
@@ -46,19 +49,24 @@ const CreateNewNft2 = () => {
                     <Input placeholder='object serial number'/>
                 </div>
             </div>
-            <div className="properties">
+            <div className="customProperties">
                 <h3>Object custom properties</h3>
-                <div className="properties__property">
+                <div className="customProperties__add">
                     <p>Add a new property</p>
                     <button onClick={addCustomProp}><ion-icon name="add-circle"></ion-icon></button>
-                    {/* {customProps.map((prop,i) => (
-                        <>
-                            <Input key={i} placeholder='property'/>
-                            <Input key={i} placeholder='tag'/>
-                        </>
-                        )
-                    )} */}
                 </div>
+                {customProps.map((prop,i) => (
+                        <CustomPropFields key={i} index={i}/>
+                ))}
+            </div>
+            <div className="description">
+                <h3>Object description</h3>
+                <p>Highlight your NFT ! (max xxx words)</p>
+                <Input as='textarea' rows={3} placeholder='Describe your NFT'/>
+            </div>
+            <div className="picture">
+                <h3>NFT picture</h3>
+                <p>Upload the base picture for NFT profile picture creation</p>
             </div>
         </div>
     )
