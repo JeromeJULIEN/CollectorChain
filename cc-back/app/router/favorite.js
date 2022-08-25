@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const favUserController = require('../controllers/favorisUserController');
+const favoriteController = require('../controllers/favoriteController');
 
-router.get('/favoris/:id', favUserController.favorisUserPage);
+router.get('/favorite/:id', favoriteController.getAllFavorite);
 /*
 router.post('/favoris/:id', favUserController.favorisUserPage);
 router.delete('/favoris/:id', favUserController.favorisUserPage);

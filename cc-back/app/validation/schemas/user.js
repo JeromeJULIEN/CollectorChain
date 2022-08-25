@@ -35,4 +35,31 @@ const profilId = Joi.object({
     id: Joi.number().required(),
 });
 
-module.exports = { userCreate, userLogin, profilId };
+const updateProfil = Joi.object({
+
+    email: Joi.string()
+        .pattern(/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$/),
+
+    nickname: Joi.string(),
+
+    password: Joi.string(),
+
+    passwordConfirm: Joi.ref('password'),
+
+    wallet: Joi.number()
+        .positive(),
+
+    isAdmin: Joi.boolean(),
+
+    media: Joi.string(),
+
+    name: Joi.string(),
+
+    lastName: Joi.string(),
+
+    isOpenToContact: Joi.boolean(),
+});
+
+module.exports = {
+    userCreate, userLogin, profilId, updateProfil,
+};

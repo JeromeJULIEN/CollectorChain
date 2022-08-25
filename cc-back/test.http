@@ -29,17 +29,26 @@ Content-type: application/json
 }
 
 ### Profil 
-GET {{ endpoint }}/profil/4
+GET {{ endpoint }}/profil/10
 
 ### Delete profil 
 DELETE {{ endpoint }}/profil/4/delete
 
 ### Update profil
-PATCH {{ endpoint }}/profil/4/update
+PATCH {{ endpoint }}/profil/10/update
 Content-Type: application/json
 
 {
-    "nickname": "test4"
+                "email": "Kalomong@mail.com",
+                "nickname": "",
+                "password": "test",
+                "passwordConfirm": "",
+                "wallet": 1,
+                "isAdmin": false,
+                "media": "https://storage.googleapis.com/opensea-static/opensea-profile/5.png",
+                "name": "",
+                "lastName": "",
+                "isOpenToContact": true
 }
 
 ### Forget User
@@ -194,10 +203,10 @@ GET {{ endpoint }}/showcase/1
 ### Favoris User ####
 
 ### Favoris
-GET {{ endpoint }}/favoris/1
+GET {{ endpoint }}/favorite/1
 
 ### Favoris
-POST {{ endpoint }}/favoris/1
+POST {{ endpoint }}/favorite/1
 Content-Type: application/json
 
 {

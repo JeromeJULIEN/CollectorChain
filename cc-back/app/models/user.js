@@ -52,23 +52,31 @@ module.exports = class User extends CoreDatamapper {
             `
             UPDATE "user"
             SET 
-                "nickname" = $1,
                 "email" = $2,
-                "password" = $3,
-                "wallet" = $4, 
-                "media" = $5
+                "nickname" = $3,
+                "password" = $4,
+                "wallet" = $5,
+                "isAdmin" = $6,
+                "media" = $7,
+                "name" = $8,
+                "lastName" = $9,
+                "isOpenToContact" = $10
                 
-            WHERE id = $6
+            WHERE id = $1
             RETURNING *
         `,
 
             [
-                user.nickname,
+                user.id,
                 user.email,
+                user.nickname,
                 user.password,
                 user.wallet,
+                user.isAdmin,
                 user.media,
-                user.id,
+                user.name,
+                user.lastName,
+                user.isOpenToContact,
             ],
         );
         return result.rows[0];
