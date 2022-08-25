@@ -7,3 +7,4 @@ V3 2022-08-23T10:31:32Z Loic Berland <berland.loic@yahoo.fr> # remove NOT NULL o
 V4 2022-08-24T07:43:41Z Loic Berland <berland.loic@yahoo.fr> # add in user db name firstName and isOpenToContact
 v5 2022-08-24T09:15:08Z Loic Berland <berland.loic@yahoo.fr> # add in property column nameTagId unique and name drop unique
 v6 2022-08-24T14:02:41Z Loic Berland <berland.loic@yahoo.fr> # change property tag in manyToMany remove tag_id from property and create propertyThastag
+v7 2022-08-25T11:28:28Z Loic Berland <berland.loic@yahoo.fr> # add contraint primaryKey in collection between name and category_id
