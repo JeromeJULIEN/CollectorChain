@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Modal } from "@nextui-org/react";
 import Purchase from "../../modals/Purchase";
 import FullScreen from "../../modals/FullScreen";
+import Sell from "../../modals/Sell";
 
 const Nft = ({ nfts }) => {
 	// on récupère l'id de la route paramétré
@@ -35,6 +36,13 @@ const Nft = ({ nfts }) => {
 	};
 	const hideFullScreen = () => setIsFullScreenVisible(false);
 
+	//gestion modale sell
+	const [isSellVisible, setIsSellVisible] = useState(false)
+	const showSell = () => {
+		setIsSellVisible(true)
+	}
+	const hideSell = () => setIsSellVisible(false)
+
 	return (
 		<div className="nft">
 			<h1 className="nft__title">
@@ -57,6 +65,9 @@ const Nft = ({ nfts }) => {
 						<div className="nft__price__buy">
 							<button type="button" onClick={showPurchase}>
 								Buy
+							</button>
+							<button type="button" onClick={showSell}>
+								Sell
 							</button>
 						</div>
 					</>
@@ -119,6 +130,10 @@ const Nft = ({ nfts }) => {
 
 			<Modal className="modaleFullScreen" closeButton blur open={isFullScreenVisible} onClose={hideFullScreen}>
 				<FullScreen media={displayedNft.media} />
+			</Modal>
+
+			<Modal className="modaleSell" closeButton blur open={isSellVisible} onClose={hideSell}>
+				<Sell nft={displayedNft} hideSell={hideSell} />
 			</Modal>
 		</div>
 	);
