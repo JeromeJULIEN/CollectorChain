@@ -9,7 +9,7 @@ const { profilId } = require('../validation/schemas/user');
 const validation = require('../validation/validator');
 
 router.get('/profil/:id', validation('params', profilId), controllerHandler(userController.getUser));
-router.delete('/profil/:id/delete', userController.deleteProfilUser);
-router.patch('/profil/:id/update', userController.updateUserProfile);
+router.delete('/profil/:id/delete', controllerHandler(userController.deleteProfilUser));
+router.patch('/profil/:id/update', controllerHandler(userController.updateUserProfile));
 
 module.exports = router;

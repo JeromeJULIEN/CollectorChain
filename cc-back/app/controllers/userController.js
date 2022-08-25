@@ -76,7 +76,6 @@ module.exports = {
     // pour modifier ses infos perso sur la page profil
     async updateUserProfile(req, res) {
         const user = await User.findById(req.params.id);
-
         if (req.body.nickname) {
             user.nickname = req.body.nickname;
         }
@@ -94,8 +93,8 @@ module.exports = {
         if (req.body.media) {
             user.media = req.body.media;
         }
-
-        const updateProfil = await User.update(user);
+        const updateProfil = await User.updateUser(user);
+        if (!updateProfil) throw new ApiError("l'utilisateur n'existe pas", { statusCode: 404 });
 
         return res.json(updateProfil);
     },
