@@ -23,7 +23,6 @@ import CreateNewNft1 from "../pages/CreateNewNft1";
 import CreateNewNft2 from "../pages/CreateNewNft2";
 import Profil from "../pages/Profil";
 
-
 function App() {
 	//DARK MODE
 	// const options = {

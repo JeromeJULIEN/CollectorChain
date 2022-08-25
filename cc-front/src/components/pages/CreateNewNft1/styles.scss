@@ -44,6 +44,7 @@
 }
 
 .picture{
+	position: relative;
     width: 50%;
     aspect-ratio: 1;
     background-color: vars.$color_secondary;
@@ -55,10 +56,29 @@
     }
 
     &__image{
-        text-align: center;
-        vertical-align: middle;
+		height: 100%;
+		width: 100%;
+		border-radius: 1rem;
         object-fit: cover;
     }
+
+	&__input {
+		display: none;
+	}
+	&__add-icon {
+		position: absolute;
+		left: 40%;
+		top: 40%;
+	}
+	&__trash-icon {
+		position: absolute;
+		right: 0.25rem;
+		top: 0.5rem;
+	}
+	& ion-icon {
+		zoom: 0.8;
+		color: vars.$color_callToAction;
+	}
    
 }
 
