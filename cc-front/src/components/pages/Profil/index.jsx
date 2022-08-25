@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Modal } from "@nextui-org/react";
 import UpdateProfile from "../../modals/UpdateProfile";
 import { useDispatch } from "react-redux";
-import { isOpenToContact, setMediaUrl } from "../../../../store/actions/user";
+import { isOpenToContact, setMediaUrl, deleteMediaUrl } from "../../../../store/actions/user";
 import "./styles.scss";
 
 const Profil = () => {
@@ -29,8 +29,6 @@ const Profil = () => {
 	//! Gestion de l'upload des images
 	// Creation d'un state local pour stocker l'image du user
 	const [profilePicture, setProfilePicture] = useState([]);
-	// Creation d'un state local pour stocker le chemin URL de l'image
-	const [profilePictureURL, setProfilePictureURL] = useState([]);
 
 	const uploadImage = (event) => {
 		setProfilePicture((profilePicture) => ({
@@ -46,12 +44,9 @@ const Profil = () => {
 			...profilePicture,
 			[event.target.id]: "",
 		}));
-		console.log("profilePicture After >>>", profilePicture);
 		// Il faut stocker un chemin URL pour afficher l'image
-		setProfilePictureURL((profilePictureURL) => ({
-			...profilePictureURL,
-			[event.target.id]: URL.revokeObjectURL(event.target.id[0]),
-		}));
+		dispatch(deleteMediaUrl(event.target.id));
+		console.log("profilePicture After >>>", event.target.id);
 	};
 
 	return (
@@ -60,7 +55,7 @@ const Profil = () => {
 				<div className="profile__pic">
 					{user.media ? (
 						<div className="profile__pic-trash-icon" onClick={deleteImage}>
-							<ion-icon className="profile__pic-trash" name="trash-outline" id="profilePicture" size="large"></ion-icon>
+							<ion-icon className="profile__pic-trash" name="trash-outline" id="media" size="large"></ion-icon>
 						</div>
 					) : (
 						""
@@ -76,7 +71,6 @@ const Profil = () => {
 						""
 					)}
 					{user.media ? <img className="profile__pic-image" src={user.media} alt="Profil picture" /> : ""}
-					{/* <User src={user.media} name="" size="xxl" /> */}
 					<h3>Level 1</h3>
 				</div>
 				<div className="profile__infos">

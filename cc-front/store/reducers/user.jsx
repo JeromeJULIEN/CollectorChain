@@ -1,4 +1,4 @@
-import { SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT } from "../actions/user";
+import { DELETE_MEDIA_URL, SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT } from "../actions/user";
 
 export const initialState = {
 	id: 1,
@@ -13,7 +13,7 @@ export const initialState = {
 	wallet: 150,
 	isAdmin: false,
 	isOpenToContact: true,
-	media: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+	media: "",
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -51,6 +51,11 @@ const reducer = (state = initialState, action = {}) => {
 			return {
 				...state,
 				[action.name]: URL.createObjectURL(action.value),
+			};
+		case DELETE_MEDIA_URL:
+			return {
+				...state,
+				[action.name]: null,
 			};
 		default:
 			return state;
