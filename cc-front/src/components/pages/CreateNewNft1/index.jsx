@@ -79,9 +79,13 @@ const CreateNewNft1 = () => {
 			{/* STEP 1 */}
 			<ObjectPicture uploadImage={uploadImage} deleteImage={deleteImage} picturesURL={picturesURL} isStep1Validated={isStep1Validated} validateStep1={validateStep1} />
 			{/* STEP 2 */}
-			{isStep1Validated ? <CertificatePicture uploadImage={uploadImage} picturesURL={picturesURL} isStep2Validated={isStep2Validated} validateStep2={validateStep2} /> : ""}
+			{isStep1Validated ? (
+				<CertificatePicture uploadImage={uploadImage} deleteImage={deleteImage} picturesURL={picturesURL} isStep2Validated={isStep2Validated} validateStep2={validateStep2} />
+			) : (
+				""
+			)}
 			{/* STEP 3 */}
-			{isStep2Validated ? <ProveYourself uploadImage={uploadImage} picturesURL={picturesURL} phase1Validation={phase1Validation} /> : ""}
+			{isStep2Validated ? <ProveYourself uploadImage={uploadImage} deleteImage={deleteImage} picturesURL={picturesURL} phase1Validation={phase1Validation} /> : ""}
 		</div>
 	);
 };
