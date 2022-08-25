@@ -8,13 +8,14 @@ const nfts = data[2].nft;
 const users = data[3].user;
 const properties = data[4].property;
 const tags = data[5].tag;
-const { nftHasProperty } = data[6];
+const { nftHasPropertyHasTag } = data[6];
 
 (async () => {
     const client = new Client('postgres://spedata:spedata@localhost/collector_chain');
     await client.connect();
 
-    await client.query('TRUNCATE TABLE "favorite", "property_has_nft", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');
+    await client.query('TRUNCATE TABLE "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');
+    console.log('categories');
 
     // Import catégories
     const categoryQueries = [];
@@ -30,6 +31,7 @@ const { nftHasProperty } = data[6];
         categoryQueries.push(query);
     });
     await Promise.all(categoryQueries);
+    console.log('collection');
 
     // Import collection
     const collectionQueries = [];
@@ -47,6 +49,7 @@ const { nftHasProperty } = data[6];
         collectionQueries.push(query);
     });
     await Promise.all(collectionQueries);
+    console.log('User');
 
     // Import User
     const userQueries = [];
@@ -72,6 +75,7 @@ const { nftHasProperty } = data[6];
         ['user@user.com', 'user', '$2a$12$auKxh5o5M0wGHZ26GmPbJuzn8MHDVIl68a.sAwpuvgk215rwYH48C', 'https://via.placeholder.com/150'],
     ));
     await Promise.all(userQueries);
+    console.log('nft');
 
     // Import nft
     const nftQueries = [];
@@ -114,6 +118,7 @@ const { nftHasProperty } = data[6];
         nftQueries.push(query);
     });
     await Promise.all(nftQueries);
+    console.log('tags');
 
     // Import tags
     const tagQueries = [];
@@ -129,65 +134,44 @@ const { nftHasProperty } = data[6];
         tagQueries.push(query);
     });
     await Promise.all(tagQueries);
+    console.log('property');
 
     // Import property
     const propertyQueries = [];
     properties.forEach((property) => {
         const query = client.query(
             `
-        INSERT INTO "property"("name", "tag_id" ) VALUES
-        ($1,
-            (SELECT id FROM "tag" WHERE $2 = "tag"."name")
-            )
+        INSERT INTO "property"("name") VALUES
+        ($1)
         RETURNING *
         `,
-            [property.name, property.tag_id],
+            [property.name],
         );
         propertyQueries.push(query);
     });
     await Promise.all(propertyQueries);
 
-    // Import nftHasProperty
-    const nftHasPropertyQueries = [];
-    nftHasProperty.forEach((value) => {
-        console.log(`${value.property_id} et ${value.nft_id}`);
+    console.log('nftHasPropertyHasTag');
+
+    // Import nftHasPropertyHasTag
+    const nftHasPropertyHasTagQueries = [];
+    nftHasPropertyHasTag.forEach((value) => {
         const query = client.query(
             `
-        INSERT INTO "property_has_nft"("property_id", "nft_id" ) VALUES
+        INSERT INTO "nft_has_property_has_tag"("property_id", "nft_id", "tag_id" ) VALUES
         (
-            (SELECT id FROM "property" WHERE $2 = "property"."name"),
-            (SELECT id FROM "nft" WHERE $1 = "nft"."name")
-            )
+            (SELECT id FROM "property" WHERE $1 = "property"."name"),
+            (SELECT id FROM "nft" WHERE $2 = "nft"."token"),
+            (SELECT id FROM "tag" WHERE $3 = "tag"."name")
+        )
         RETURNING *
         `,
-            [value.property_id, value.nft_id],
+            [value.property_id, value.nft_id, value.tag_id],
         );
-        nftHasPropertyQueries.push(query);
+        nftHasPropertyHasTagQueries.push(query);
     });
-    await Promise.all(nftHasPropertyQueries);
+    await Promise.all(nftHasPropertyHasTagQueries);
 
     client.end();
 })();
-
-// await client.query('TRUNCATE TABLE category, post RESTART IDENTITY');
-// const categoryQueries = [];
-
-// categories.forEach((category) => {
-//     debug('Processing category:', category.label);
-//     const query = client.query(
-//         `
-//             INSERT INTO "category"
-//             ("label", "route")
-//             VALUES
-//             ($1, $2)
-//             RETURNING *
-//         `,
-//         [category.label, category.route],
-//     );
-//     categoryQueries.push(query);
-// });
-
-// const results = await Promise.all(categoryQueries);
-
-// INSERT INTO "user"("email","nickname","password") VALUES
-// ('user@user.com','user','$2a$12$auKxh5o5M0wGHZ26GmPbJuzn8MHDVIl68a.sAwpuvgk215rwYH48C');
+// nft_has_property_has_tag

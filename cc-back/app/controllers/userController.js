@@ -15,6 +15,7 @@ module.exports = {
     // On vérifie si les champs sont vides
     // Sign up
     async insertNewUser(req, res) {
+        console.log(req.body);
         const newUser = {
             nickname: req.body.nickname,
             email: req.body.email,

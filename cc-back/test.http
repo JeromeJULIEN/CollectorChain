@@ -12,7 +12,8 @@ POST {{ endpoint }}/sign_up
 Content-Type: application/json
 
 {
-    "nickname":"brian",
+
+    "nickname":"test",
     "email":"user3@user.com",
     "password":"user3",
     "passwordConfirm": "user3"
