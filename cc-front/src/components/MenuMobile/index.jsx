@@ -71,7 +71,7 @@ const MenuMobile = () => {
 					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 					<Nav.Item>My showcase</Nav.Item>
-					<Nav.Item>My favorites</Nav.Item>
+					<Nav.Item><Link to='/favorites'>My favorites</Link></Nav.Item>
 					<Nav.Item>
 						<Link to="/profil">My profil</Link>
 					</Nav.Item>

@@ -22,6 +22,7 @@ import Results from "../pages/Results";
 import CreateNewNft1 from "../pages/CreateNewNft1";
 import CreateNewNft2 from "../pages/CreateNewNft2";
 import Profil from "../pages/Profil";
+import Favorites from "../pages/Favorites";
 
 function App() {
 	//DARK MODE
@@ -70,6 +71,7 @@ function App() {
 					<Route path="/profil" element={<Profil />} />
 					<Route path="/creation/createnewnft" element={<CreateNewNft1 />} />
 					<Route path="/creation/createnewnft2" element={<CreateNewNft2 />} />
+					<Route path="/favorites" element={<Favorites />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 
