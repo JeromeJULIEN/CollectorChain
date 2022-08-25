@@ -34,6 +34,7 @@ h3{
         padding: .5rem;
     }
 
+    
 }
 
 .category{
@@ -44,6 +45,7 @@ h3{
     
     &__input{
         width: 100%;
+        margin-bottom: .5rem;
     }
 }
 
@@ -124,18 +126,21 @@ h3{
 
 .button{
     height: 3rem;
-    border-radius: .5rem;
+    border-radius: .3rem;
     font-weight: bold;
+    background-color: vars.$color_callToAction;
 
     &--validation{
-        background-color: vars.$color_callToAction;
         width: 50%;
         margin: 0 25% 1rem 25%;
     }
 
     &--save{
         height: 1.5rem;
-        background-color: vars.$color_callToAction;
+    }
 
+    &--newCategory{
+        height: 2rem;
+        width: 100%;
     }
 }

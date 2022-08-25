@@ -14,12 +14,20 @@ const CreateNewNft2 = () => {
     const data = useSelector(state => state.categories.list).map(item => ({label: item, value: item }));
 
     // import de l'image temp du process de creation
-    const tempPicture = useSelector(state => state.nfts.nftToCreate.tempMedia)
+    const tempPicture = useSelector(state => state.createNft.tempMedia)
 
+    // gestion de l'apparission d'un champ custom prop au click
     const [customProps, setCustomProps] = useState([])
-
     const addCustomProp = () => {
         setCustomProps([...customProps, 'p'])
+    }
+
+    // state local pour envoie des infos au reducer createNft au moment de la validation finale
+    const [description, setDescription] = useState('')
+    console.log('description >>>', description)
+
+    const changeDescription = event => {
+        setDescription(event)
     }
 
     return (
@@ -37,6 +45,7 @@ const CreateNewNft2 = () => {
                 <h3>Object category</h3>
                 <p>Select the category of the object :</p>
                 <InputPicker data={data} className='category__input'/>
+                <button className='button button--newCategory'>Or ask for a new category</button>
             </div>
             <div className="properties">
                 <h3>Object main properties</h3>
@@ -62,7 +71,7 @@ const CreateNewNft2 = () => {
             <div className="description">
                 <h3>Object description</h3>
                 <p>Highlight your NFT ! (max xxx words)</p>
-                <Input as='textarea' rows={3} placeholder='Describe your NFT'/>
+                <Input as='textarea' rows={3} placeholder='Describe your NFT' onChange={changeDescription}/>
             </div>
             <div className="picture">
                 <h3>NFT picture</h3>
