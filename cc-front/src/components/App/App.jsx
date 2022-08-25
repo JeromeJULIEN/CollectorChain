@@ -25,6 +25,7 @@ import Profil from "../pages/Profil";
 import Favorites from "../pages/Favorites";
 import Contact from "../pages/Contact";
 import AboutUs from "../pages/AboutUs";
+import Term from "../pages/Term";
 
 function App() {
 	//DARK MODE
@@ -76,6 +77,7 @@ function App() {
 					<Route path="/favorites" element={<Favorites />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/aboutus" element={<AboutUs />} />
+					<Route path="/term" element={<Term />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 
