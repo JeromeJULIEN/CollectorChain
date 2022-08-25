@@ -14,7 +14,7 @@ const CreateNewNft2 = () => {
     const data = useSelector(state => state.categories.list).map(item => ({label: item, value: item }));
 
     // import de l'image temp du process de creation
-    const tempPicture = useSelector(state => state.nfts.nftToCreate.tempMedia)
+    const tempPicture = useSelector(state => state.createNft.tempMedia)
 
     const [customProps, setCustomProps] = useState([])
 

@@ -61,7 +61,7 @@ const CreateNewNft1 = () => {
 
 	//!Stockage d'un image temporaire dans un state nftToCreate afin de la passer à l'étape 2
 	const dispatch = useDispatch();
-	const tempPicture = useSelector((state) => state.nfts.nftToCreate.tempMedia);
+	const tempPicture = useSelector((state) => state.createNft.tempMedia);
 	console.log("tempPicture >>>", tempPicture);
 	const phase1Validation = () => {
 		dispatch(storeTempPicture(picturesURL.overallPicture));
