@@ -1,4 +1,4 @@
-import { UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT } from "../actions/user";
+import { SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT } from "../actions/user";
 
 export const initialState = {
 	id: 1,
@@ -46,6 +46,11 @@ const reducer = (state = initialState, action = {}) => {
 			return {
 				...state,
 				isOpenToContact: action.value,
+			};
+		case SET_MEDIA_URL:
+			return {
+				...state,
+				[action.name]: URL.createObjectURL(action.value),
 			};
 		default:
 			return state;

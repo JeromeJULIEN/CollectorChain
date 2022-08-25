@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Modal } from "@nextui-org/react";
 import UpdateProfile from "../../modals/UpdateProfile";
 import { useDispatch } from "react-redux";
-import { isOpenToContact } from "../../../../store/actions/user";
+import { isOpenToContact, setMediaUrl } from "../../../../store/actions/user";
 import "./styles.scss";
 
 const Profil = () => {
@@ -38,10 +38,7 @@ const Profil = () => {
 			[event.target.name]: event.target.files,
 		}));
 		// Il faut stocker un chemin URL pour afficher l'image
-		setProfilePictureURL((profilePictureURL) => ({
-			...profilePictureURL,
-			[event.target.name]: URL.createObjectURL(event.target.files[0]),
-		}));
+		dispatch(setMediaUrl(event.target.name, event.target.files[0]));
 	};
 
 	const deleteImage = (event) => {
@@ -61,24 +58,24 @@ const Profil = () => {
 		<main>
 			<div className="profile">
 				<div className="profile__pic">
-					{profilePictureURL.profilePicture ? (
+					{user.media ? (
 						<div className="profile__pic-trash-icon" onClick={deleteImage}>
 							<ion-icon className="profile__pic-trash" name="trash-outline" id="profilePicture" size="large"></ion-icon>
 						</div>
 					) : (
 						""
 					)}
-					{!profilePictureURL.profilePicture ? (
+					{!user.media ? (
 						<>
 							<label htmlFor="profilePictureInput" className="profile__pic-add-icon">
 								<ion-icon name="add-circle-outline" size="large"></ion-icon>
 							</label>
-							<input type="file" accept="image/*" name="profilePicture" onChange={uploadImage} className="profile__pic-input" id="profilePictureInput" />
+							<input type="file" accept="image/*" name="media" onChange={uploadImage} className="profile__pic-input" id="profilePictureInput" />
 						</>
 					) : (
 						""
 					)}
-					{profilePictureURL.profilePicture ? <img className="profile__pic-image" src={profilePictureURL.profilePicture} alt="Overall picture" /> : ""}
+					{user.media ? <img className="profile__pic-image" src={user.media} alt="Profil picture" /> : ""}
 					{/* <User src={user.media} name="" size="xxl" /> */}
 					<h3>Level 1</h3>
 				</div>
