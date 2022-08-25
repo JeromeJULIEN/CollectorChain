@@ -15,7 +15,7 @@ const { nftHasPropertyHasTag } = data[6];
     const client = new Client(process.env.DATABASE_URL);
     await client.connect();
 
-    await client.query('TRUNCATE TABLE "property_has_nft", "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');
+    await client.query('TRUNCATE TABLE "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');
     console.log('categories');
 
     // Import catégories
