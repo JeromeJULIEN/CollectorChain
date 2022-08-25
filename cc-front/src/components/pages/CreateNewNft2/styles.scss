@@ -26,10 +26,7 @@ h3{
         flex-direction: column;
         justify-content: space-around;
 
-        strong{
-            font-weight: bold;
-            color: vars.$color_callToAction;
-        }
+        
     }
 
     &__image{
@@ -216,4 +213,8 @@ h3{
     }
 
    
+}
+
+strong{
+    font-weight: bold;
 }

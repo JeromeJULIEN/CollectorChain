@@ -29,7 +29,6 @@ const CreateNewNft2 = () => {
     //! state local pour envoie des infos au reducer createNft au moment de la validation finale
     //CATEGORY
     const[category, setCategory] = useState('')
-    console.log('category>>>',category)
     const changeCategory = (event) => {
         setCategory(event)
     }
@@ -63,8 +62,6 @@ const CreateNewNft2 = () => {
 
     //!Gestion de la mise à jour du state lors du changement des inputs
     const handleChangeField = (event, item) => {
-		console.log('event>>>',event)
-        console.log(item.target.name);
 		dispatch(changeNftField(event, item.target.name))
 	}
 
@@ -105,7 +102,7 @@ const CreateNewNft2 = () => {
                     <button onClick={addCustomProp}><ion-icon name="add-circle"></ion-icon></button>
                 </div>
                 {customProps.map((prop,i) => (
-                        <CustomPropFields key={i} index={i}/>
+                        <CustomPropFields key={i} index={i} addCustomProp={addCustomProp}/>
                 ))}
             </div>
             <div className="description">
