@@ -14,7 +14,7 @@ const CreateNewNft2 = () => {
     const data = useSelector(state => state.categories.list).map(item => ({label: item, value: item }));
 
     // import de l'image temp du process de creation
-    const tempPicture = useSelector(state => state.nfts.nftToCreate.tempMedia)
+    const tempPicture = useSelector(state => state.createNft.tempMedia)
 
     const [customProps, setCustomProps] = useState([])
 
@@ -37,6 +37,7 @@ const CreateNewNft2 = () => {
                 <h3>Object category</h3>
                 <p>Select the category of the object :</p>
                 <InputPicker data={data} className='category__input'/>
+                <button className='button button--newCategory'>Or ask for a new category</button>
             </div>
             <div className="properties">
                 <h3>Object main properties</h3>
