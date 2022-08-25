@@ -18,12 +18,17 @@ module.exports = {
             media: req.body.media,
             category_id: req.body.category_id,
         };
-        const user = await User.findUserByEmail(newUser.email);
-        if (user) throw new ApiError('Cet email existe déjà !', { statusCode: 400 });
-        const addUser = await User.createUser(newUser);
-        // on teste si le nouvel utilisateur existe déjà
-        if (newUser === addUser) throw new ApiError('Cet utilisateur existe déjà!', { statusCode: 400 });
+        const addCollection = await Collection.create(newCollection);
+        return res.json(addCollection);
+    },
 
-        return res.json(newUser);
+    async deleteCollection(req, res) {
+        await Collection.deleteById(req.params.id);
+        return res.json('Collection deleted !!');
+    },
+
+    async getCollectionByCategoryId(req, res) {
+        const collections = await Collection.getByCategoriesId(req.params.id);
+        return res.json(collections);
     },
 };

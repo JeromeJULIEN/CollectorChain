@@ -3,7 +3,7 @@
 BEGIN;
 
 ALTER TABLE "collection"
-  ADD COLUMN "nameCategory" TEXT UNIQUE NOT NULL GENERATED ALWAYS AS 
+  ADD COLUMN "nameCategoryId" TEXT UNIQUE NOT NULL GENERATED ALWAYS AS 
 (CASE WHEN "name" IS NULL THEN "category_id"::text
       WHEN "category_id"::text  IS NULL THEN "name"
       ELSE "name" || "category_id"::text END) STORED;

@@ -28,11 +28,11 @@ module.exports = {
         /* Password encryption */
         const hashedPassword = await bcrypt.hash(newUser.password, 12);
         newUser.password = hashedPassword;
-        const addUser = await User.createUser(newUser);
+        const addUser = await User.create(newUser);
         // on teste si le nouvel utilisateur existe déjà
         if (newUser === addUser) throw new ApiError('Cet utilisateur existe déjà!', { statusCode: 400 });
 
-        return res.json(newUser);
+        return res.json(addUser);
     },
     /**
      * User controller to login user
@@ -95,7 +95,7 @@ module.exports = {
             user.media = req.body.media;
         }
 
-        const updateProfil = await User.updateUser(user);
+        const updateProfil = await User.update(user);
 
         return res.json(updateProfil);
     },

@@ -13,8 +13,8 @@ Content-Type: application/json
 
 {
 
-    "nickname":"test",
-    "email":"user3@user.com",
+    "nickname":"test1",
+    "email":"user1@user.com",
     "password":"user3",
     "passwordConfirm": "user3"
 }
@@ -111,16 +111,14 @@ POST {{ endpoint }}/collection
 Content-Type: application/json
 
 {
-
+    "name": "test4",
+    "description": "test",
+    "media": "test",
+    "category_id": 2
 }
 
 ### Page Collection
-DELETE {{ endpoint }}/collection
-Content-Type: application/json
-
-{
-
-}
+DELETE {{ endpoint }}/collection/194
 
 ### Page Collection
 PATCH {{ endpoint }}/collection
@@ -135,17 +133,18 @@ Content-Type: application/json
 ### Categories
 GET {{ endpoint }}/categories
 
-### Post categories
-POST {{ endpoint }}/categories
+### post categories
+POST {{endpoint}}/categories
 Content-Type: application/json
 
-{}
+{
+    "name" : "test2",
+    "description" : "description1",
+    "media" : "media1"
+}
 
 ### Delete categories
-DELETE {{ endpoint }}/categories
-Content-Type: application/json
-
-{}
+DELETE {{ endpoint }}/categories/246
 
 ### Update categories
 PATCH {{ endpoint }}/categories
@@ -154,28 +153,38 @@ Content-Type: application/json
 {}
 
 ### Categories/collections
-GET {{ endpoint }}/categories/collections
+GET {{ endpoint }}/categories/2/collections
 
 ### NFT ###
 
 ### Collections/NFT
-GET {{ endpoint }}/collections/nft
+GET {{ endpoint }}/collections/137/nft
 
 ### NFT
 GET {{ endpoint }}/nft
 
 ### NFT User
-GET {{ endpoint }}/1/nft
+GET {{ endpoint }}/175/nft
 
 ### Post NFT
 POST {{ endpoint }}/1/nft
 Content-Type: application/json
-{}
+
+{
+    "token": "123",
+    "name": "test",
+    "description": "test",
+    "price": 12,
+    "forSale": true,
+    "media": "test",
+    "collection_id": 1,
+    "creator_id": 1,
+    "owner_id": 1,
+    "rarity": "10"
+}
 
 ### Delete NFT
-DELETE {{ endpoint }}/1/nft/delete
-Content-Type: application/json
-{}
+DELETE {{ endpoint }}/nft/200/delete
 
 ### Update NFT
 PATCH {{ endpoint }}/1/nft/update
@@ -202,8 +211,3 @@ Content-Type: application/json
 
 ### Favoris
 DELETE {{ endpoint }}/favoris/1
-Content-Type: application/json
-
-{
-    
-}

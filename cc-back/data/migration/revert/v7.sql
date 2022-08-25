@@ -2,6 +2,6 @@
 
 BEGIN;
 
-ALTER TABLE "collection" DROP COLUMN "nameCategory";
+ALTER TABLE "collection" DROP COLUMN "nameCategoryId";
 
 COMMIT;

@@ -12,11 +12,8 @@ const forgetUserRouter = require('./forgetUser');
 const eventsRouter = require('./events');
 const collectionsRouter = require('./collections');
 const categoriesRouter = require('./categories');
-const categoriesCollectionRouter = require('./categoriesCollection');
-const collectionsNftRouter = require('./collectionsNft');
 const showcaseUserRouter = require('./showcaseUser');
 const nftRouter = require('./nft');
-const userNftRouter = require('./userNft');
 const favUserRouter = require('./favUser');
 
 router.use(homepageRouter);
@@ -27,11 +24,8 @@ router.use(forgetUserRouter);
 router.use(eventsRouter);
 router.use(collectionsRouter);
 router.use(categoriesRouter);
-router.use(categoriesCollectionRouter);
-router.use(collectionsNftRouter);
 router.use(showcaseUserRouter);
 router.use(nftRouter);
-router.use(userNftRouter);
 router.use(favUserRouter);
 
 router.get('/posts', jwtModules.authenticateToken, homePageController.displayHomePage);
