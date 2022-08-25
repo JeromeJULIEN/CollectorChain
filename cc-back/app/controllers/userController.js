@@ -61,22 +61,16 @@ module.exports = {
         return res.json(userLog);
     },
 
-    /*
-    async greetingUser(req, res) {
-        const { email, password } = req.body;
-        const user = await User.findUserByEmail(email);
-
-        if (user) return res.json('Hello user!');
-        if (password) return res.json();
-
+    async getUser(req, res) {
+        const user = await User.findById(req.params.id);
+        if (!user) throw new ApiError("l'utilisateur n'existe pas", { statusCode: 404 });
         return res.json(user);
     },
-    */
 
     // Pour supprimer le profil user
     async deleteProfilUser(req, res) {
-        const userDelete = await User.deleteUserById(req.params.id);
-        return res.json(userDelete);
+        await User.deleteById(req.params.id);
+        return res.json('User deleted !!');
     },
 
     // pour modifier ses infos perso sur la page profil

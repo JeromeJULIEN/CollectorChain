@@ -31,4 +31,8 @@ const userLogin = Joi.object({
         .required(),
 });
 
-module.exports = { userCreate, userLogin };
+const profilId = Joi.object({
+    id: Joi.number().required(),
+});
+
+module.exports = { userCreate, userLogin, profilId };

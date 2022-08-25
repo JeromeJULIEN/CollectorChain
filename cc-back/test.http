@@ -29,16 +29,10 @@ Content-type: application/json
 }
 
 ### Profil 
-GET {{ endpoint }}/profil
-Content-Type: application/json
-
-{
-    "email":"user@user.com",
-    "password": "password"
-}
+GET {{ endpoint }}/profil/4
 
 ### Delete profil 
-DELETE {{ endpoint }}/profil/2/delete
+DELETE {{ endpoint }}/profil/4/delete
 
 ### Update profil
 PATCH {{ endpoint }}/profil/1/update
@@ -111,21 +105,9 @@ Content-Type: application/json
 
 ### Page all Collections
 GET {{ endpoint }}/collections
-Content-Type: application/json
-
-{
-    "name":"Rolex",
-    "description":"Daytona",
-    "media":"Photo Rolex"
-}
 
 ### Page Collection
-GET {{ endpoint }}/collection
-Content-Type: application/json
-
-{
-
-}
+GET {{ endpoint }}/collection/1
 
 ### Page Collection
 POST {{ endpoint }}/collection
