@@ -35,16 +35,11 @@ GET {{ endpoint }}/profil/4
 DELETE {{ endpoint }}/profil/4/delete
 
 ### Update profil
-PATCH {{ endpoint }}/profil/1/update
+PATCH {{ endpoint }}/profil/4/update
 Content-Type: application/json
 
 {
-    "nickname": "test4",
-    "email":"user4@user.com",
-    "password": "password",
-    "passwordConfirm": "password",
-    "wallet": 150000,
-    "media": "1"  
+    "nickname": "test4"
 }
 
 ### Forget User

@@ -57,7 +57,8 @@ module.exports = class User extends CoreDatamapper {
                 "wallet" = $4, 
                 "media" = $5
                 
-            WHERE id = $6;
+            WHERE id = $6
+            RETURNING *
         `,
 
             [
