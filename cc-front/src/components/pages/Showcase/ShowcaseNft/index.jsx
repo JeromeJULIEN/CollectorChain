@@ -24,6 +24,7 @@ const ShowcaseNft = ({id, name}) => {
 
 	const [tempNftSelected, setTempNftSelected] = useState([]);
 	const [lastNftSelected, setLastNftSelected] = useState({});
+	const [src, setSrc] = useState('');
 
 	const uploadImage = (event) => {
 		console.log('entrée dnas uploadImage', event.target.src);
@@ -33,19 +34,23 @@ const ShowcaseNft = ({id, name}) => {
 		// 	[event.target.name]: nftOwned.find((nft) => (nft = event.target.id))
 		// }));
 		setLastNftSelected(event.target.src);
+		setSrc(event.target.src)
 		hideModaleNftOwned();
 	};
 	
 	useEffect(() => {
 		// console.log("TempNftSelected after>>>", tempNftSelected);
-		dispatch(setShowcaseNftDisplayed(lastNftSelected, id))
-	},[lastNftSelected])
+		if(src){
 
-	useEffect(() => {
-		// console.log("TempNftSelected after>>>", tempNftSelected);
-		dispatch(setShowcaseNftDisplayed(tempNftSelected));
-		// console.log("Last nft selected >>>", lastNftSelected);
-	}, [tempNftSelected]);
+			dispatch(setShowcaseNftDisplayed(lastNftSelected, id))
+		}
+	},[src])
+
+	// useEffect(() => {
+	// 	// console.log("TempNftSelected after>>>", tempNftSelected);
+	// 	dispatch(setShowcaseNftDisplayed(tempNftSelected));
+	// 	// console.log("Last nft selected >>>", lastNftSelected);
+	// }, [tempNftSelected]);
 
 	const showModaleNftOwned = () => {
 		setIsModaleNftOwnedVisible(true);
