@@ -1,4 +1,5 @@
 const { Nft } = require('../models');
+const ApiError = require('../errors/apiError');
 
 module.exports = {
     async getNft(req, res) {
@@ -36,5 +37,17 @@ module.exports = {
     async deleteNft(req, res) {
         await Nft.deleteById(req.params.id);
         return res.json('Nft deleted !!');
+    },
+
+    async updateNft(req, res) {
+        const nft = await Nft.findById(req.params.id);
+        console.log(nft);
+        if (!nft) throw new ApiError("Ce NFT n'existe pas", { statusCode: 404 });
+        const newNft = req.body;
+        Object.entries(nft).forEach(([key]) => {
+            if (!newNft[key]) newNft[key] = nft[key];
+        });
+        const updateNft = await Nft.update(newNft);
+        return res.json(updateNft);
     },
 };

@@ -190,7 +190,10 @@ DELETE {{ endpoint }}/nft/200/delete
 ### Update NFT
 PATCH {{ endpoint }}/1/nft/update
 Content-Type: application/json
-{}
+
+{
+    "name": "test"
+}
 
 ### Showcase ###
 
