@@ -39,16 +39,7 @@ PATCH {{ endpoint }}/profil/10/update
 Content-Type: application/json
 
 {
-                "email": "Kalomong@mail.com",
-                "nickname": "",
-                "password": "test",
-                "passwordConfirm": "",
-                "wallet": 1,
-                "isAdmin": false,
-                "media": "https://storage.googleapis.com/opensea-static/opensea-profile/5.png",
-                "name": "",
-                "lastName": "",
-                "isOpenToContact": true
+                "name": "test15"
 }
 
 ### Forget User

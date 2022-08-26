@@ -75,31 +75,12 @@ module.exports = {
     // pour modifier ses infos perso sur la page profil
     async updateUserProfile(req, res) {
         const user = await User.findById(req.params.id);
+        if (!user) throw new ApiError("l'utilisateur n'existe pas", { statusCode: 404 });
         const newUser = req.body;
-        console.log(newUser.nickname);
-        // if (newUser.password) newUser.passwordConfirm = user.password;
-        const clone = { ...newUser, ...user };
-        // if (req.body.nickname) {
-        //     user.nickname = req.body.nickname;
-        // }
-        // if (req.body.email) {
-        //     user.email = req.body.email;
-        // }
-        // if (req.body.password) {
-        //     if (req.body.password === req.body.passwordConfirm) {
-        //         user.password = await bcrypt.hash(req.body.password, 12);
-        //     }
-        // }
-        // if (req.body.wallet) {
-        //     user.wallet = req.body.wallet;
-        // }
-        // if (req.body.media) {
-        //     user.media = req.body.media;
-        // }
-        // console.log(clone);
-        const updateProfil = await User.update(clone);
-        if (!updateProfil) throw new ApiError("l'utilisateur n'existe pas", { statusCode: 404 });
-
+        Object.entries(user).forEach(([key]) => {
+            if (!newUser[key]) newUser[key] = user[key];
+        });
+        const updateProfil = await User.update(newUser);
         return res.json(updateProfil);
     },
 
