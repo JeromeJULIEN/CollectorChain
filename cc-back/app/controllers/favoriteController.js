@@ -7,13 +7,21 @@ module.exports = {
     },
 
     async addFavorite(req, res) {
-        const selectNft = await Favorite.addFavoriteNft(req.params.id);
-        const addNft = selectNft;
-        res.json(addNft);
+        const nftId = req.body.nft_id;
+        // nftId.forEach(async (nft) => {
+        // await Favorite.addFavoriteNft(req.params.id, nft);
+        // });
+        await Favorite.addFavoriteNft(req.params.id, nftId[0]);
+
+        res.json('Favoris ajouté');
     },
 
     async deleteFavorite(req, res) {
-        const deleteNft = await Favorite.findById(req.params.id);
-        res.json(deleteNft);
+        const nftId = await Favorite.getAllFavorite(req.params.id, req.body);
+        console.log(nftId);
+
+        // await Favorite.deleteById(req.params.id, nftId[0]);
+
+        res.json('Favoris supprimé');
     },
 };

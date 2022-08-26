@@ -3,11 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 const eventsController = require('../controllers/eventsController');
+// const controllerHandler = require('../helper/controllerHandler');
 
-router.get('/events', eventsController.eventPage);
-router.post('/events', eventsController.eventPage);
+router.get('/events', eventsController.getAllEvent);
+// router.post('/events', controllerHandler(eventsController.createEvent));
 /*
-router.delete('/events', eventsController.eventPage);
-router.patch('/events', eventsController.eventPage);
+router.delete('/events', controllerHandler(eventsController.deleteEvent));
+router.patch('/events', controllerHandler(eventsController.updateEvent));
 */
 module.exports = router;

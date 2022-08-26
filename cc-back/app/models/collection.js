@@ -29,4 +29,29 @@ module.exports = class Collection extends CoreDatamapper {
         );
         return result.rows;
     }
+
+    static async update(collection) {
+        const result = await client.query(
+            `
+            UPDATE "collection"
+            SET 
+                "name" = $2,
+                "description" = $3,
+                "media" = $4,
+                "category_id" = $5 
+
+            WHERE id = $1
+            RETURNING *
+        `,
+
+            [
+                collection.id,
+                collection.name,
+                collection.description,
+                collection.media,
+                collection.category_id,
+            ],
+        );
+        return result.rows[0];
+    }
 };

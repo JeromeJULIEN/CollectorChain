@@ -1,5 +1,5 @@
 module.exports = {
-    async eventPage(req, res) {
+    async getAllEvent(req, res) {
         return res.send('Page events');
     },
 };

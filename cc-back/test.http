@@ -39,7 +39,9 @@ PATCH {{ endpoint }}/profil/10/update
 Content-Type: application/json
 
 {
-                "name": "test15"
+                "name": "test20",
+                "password": "1234",
+                "passwordConfirm": "1234"
 }
 
 ### Forget User
@@ -116,11 +118,13 @@ Content-Type: application/json
 DELETE {{ endpoint }}/collection/194
 
 ### Page Collection
-PATCH {{ endpoint }}/collection
+PATCH {{ endpoint }}/collection/1
 Content-Type: application/json
 
 {
-
+                "id": 1,
+                "name": "test",
+                "description": "JS"
 }
 
 ### Categories ###
@@ -201,8 +205,12 @@ POST {{ endpoint }}/favorite/1
 Content-Type: application/json
 
 {
-
+    "nft_id": [8]
 }
 
 ### Favoris
-DELETE {{ endpoint }}/favoris/1
+DELETE {{ endpoint }}/favorite/1
+
+{
+    "nft_id": [7]
+}

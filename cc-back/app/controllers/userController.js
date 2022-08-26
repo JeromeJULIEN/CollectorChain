@@ -77,6 +77,12 @@ module.exports = {
         const user = await User.findById(req.params.id);
         if (!user) throw new ApiError("l'utilisateur n'existe pas", { statusCode: 404 });
         const newUser = req.body;
+
+        if (newUser.password) {
+            if (newUser.password !== req.body.passwordConfirm) return res.json({ err: 'Veuillez confirmer le mot de passe' });
+            const hashedPassword = await bcrypt.hash(newUser.password, 12);
+            newUser.password = hashedPassword;
+        }
         Object.entries(user).forEach(([key]) => {
             if (!newUser[key]) newUser[key] = user[key];
         });
