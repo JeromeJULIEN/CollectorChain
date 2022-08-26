@@ -5,6 +5,7 @@ import "./styles.scss";
 import SlideAuto from "../../slides/SlideAuto";
 import CollectionCard from "../../card/CollectionCard";
 import Slide_2x2 from "../../slides/Slide_2x2";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
 	// import depuis le state de la liste en cours
@@ -30,7 +31,10 @@ const HomePage = () => {
 				</div>
 
 				<div className="homePage__creationProcess">
-					<h2>creation process</h2>
+					<Link to='/creation'>
+						<h2>creation process</h2>
+						<img src="https://bladerender.com/media/simple-responsive-slideshow/2.jpg" />
+					</Link>
 				</div>
 				<div className="homePage__latestCollections">
 					<h2>latest Collections</h2>

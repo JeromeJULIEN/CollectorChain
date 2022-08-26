@@ -1,3 +1,6 @@
+## Installation de postgreSQL en utilisant postgres.app
+https://postgresapp.com/
+
 ## Lancer postgres depuis un terminal zsh :
 psql postgres://postgres@localhost:5433/postgres
 

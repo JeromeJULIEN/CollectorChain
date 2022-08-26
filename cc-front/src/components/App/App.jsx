@@ -27,6 +27,8 @@ import Favorites from "../pages/Favorites";
 import Contact from "../pages/Contact";
 import AboutUs from "../pages/AboutUs";
 import Term from "../pages/Term";
+import Resources from "../pages/Resources";
+import Creation from "../pages/Creation";
 
 function App() {
 	//DARK MODE
@@ -73,6 +75,7 @@ function App() {
 					<Route path="/events" element={<Events />} />
 					<Route path="/results" element={<Results />} />
 					<Route path="/profil" element={<Profil />} />
+					<Route path="/creation" element={<Creation />} />
 					<Route path="/creation/createnewnft" element={<CreateNewNft1 />} />
 					<Route path="/creation/createnewnft2" element={<CreateNewNft2 />} />
 					<Route path="/showcase" element={<Showcase />} />
@@ -80,6 +83,7 @@ function App() {
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/aboutus" element={<AboutUs />} />
 					<Route path="/term" element={<Term />} />
+					<Route path="/resources" element={<Resources />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 
