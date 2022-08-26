@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Grid, Row, Col } from "rsuite";
-import { Modal } from "@nextui-org/react";
-import UpdateProfile from "../../modals/UpdateProfile";
 import ShowcaseNft from "./ShowcaseNft";
 import SearchBarShowcase from "../../searchBars/SearchBarShowcase";
 // import { useDispatch } from "react-redux";
@@ -13,7 +10,8 @@ import SearchBarShowcase from "../../searchBars/SearchBarShowcase";
 const Showcase = () => {
 	// const dispatch = useDispatch();
 
-	const user = useSelector((state) => state.user);
+	const nftOwned = useSelector((state) => state.user.nftOwned);
+	console.log("NFT_OWNED >>>", nftOwned);
 
 	// const [isUpdateProfileVisible, setIsUpdateProfileVisible] = useState(false);
 	// const showUpdateProfile = () => {
