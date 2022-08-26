@@ -8,6 +8,7 @@ export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const IS_OPEN_TO_CONTACT = "IS_OPEN_TO_CONTACT";
 export const SET_MEDIA_URL = "SET_MEDIA_URL";
 export const DELETE_MEDIA_URL = "DELETE_MEDIA_URL";
+export const SET_SHOWCASE_NFT = "SET_SHOWCASE_NFT";
 
 export const signUp = () => ({
 	type: SIGNUP,
@@ -48,4 +49,8 @@ export const setMediaUrl = (name, value) => ({
 export const deleteMediaUrl = (name) => ({
 	type: DELETE_MEDIA_URL,
 	name,
+});
+export const setShowcaseNftDisplayed = (value) => ({
+	type: SET_SHOWCASE_NFT,
+	value,
 });
