@@ -7,6 +7,6 @@ const controllerHandler = require('../helper/controllerHandler');
 
 router.get('/favorite/:id', controllerHandler(favoriteController.getAllFavorite));
 router.post('/favorite/:id', controllerHandler(favoriteController.addFavorite));
-router.delete('/favorite/:id', controllerHandler(favoriteController.deleteFavorite));
+router.delete('/favorite/:id_user/nft/:id_nft/delete', controllerHandler(favoriteController.deleteFavorite));
 
 module.exports = router;

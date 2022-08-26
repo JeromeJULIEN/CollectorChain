@@ -17,11 +17,11 @@ module.exports = {
     },
 
     async deleteFavorite(req, res) {
-        const nftId = await Favorite.getAllFavorite(req.params.id, req.body);
-        console.log(nftId);
+        const nftId = req.params.id_nft;
+        const userId = req.params.id_user;
 
-        // await Favorite.deleteById(req.params.id, nftId[0]);
+        await Favorite.deleteFavoriteNft(userId, nftId);
 
-        res.json('Favoris supprimé');
+        res.json('Favoris supprimé !');
     },
 };

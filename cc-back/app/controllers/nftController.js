@@ -41,7 +41,6 @@ module.exports = {
 
     async updateNft(req, res) {
         const nft = await Nft.findById(req.params.id);
-        console.log(nft);
         if (!nft) throw new ApiError("Ce NFT n'existe pas", { statusCode: 404 });
         const newNft = req.body;
         Object.entries(nft).forEach(([key]) => {

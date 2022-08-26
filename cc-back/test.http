@@ -210,12 +210,8 @@ POST {{ endpoint }}/favorite/1
 Content-Type: application/json
 
 {
-    "nft_id": [8]
+    "nft_id": [6]
 }
 
 ### Favoris
-DELETE {{ endpoint }}/favorite/1
-
-{
-    "nft_id": [7]
-}
+DELETE {{ endpoint }}/favorite/1/nft/8/delete
