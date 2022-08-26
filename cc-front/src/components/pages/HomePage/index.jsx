@@ -32,7 +32,7 @@ const HomePage = () => {
 
 				<div className="homePage__creationProcess">
 					<Link to='/creation'>
-						<h2>creation process</h2>
+						<h2>our NFT creation process</h2>
 						<img src="https://bladerender.com/media/simple-responsive-slideshow/2.jpg" />
 					</Link>
 				</div>
