@@ -1,20 +1,13 @@
 @use '../../../styles/vars';
 
-.button{
-    background-color: grey;
-    color: black;
-    height: 2.25rem;
-    border-radius: .4rem;
-    background-color: vars.$color_callToAction;
-    
-}
 
 Input{
-    width: 100%;
-    height: 2rem;
+    height: 2.2rem;
     border:0
 }
 
-.rs-btn{
+.rs-btn, .rs-picker{
     width: 100%;
+    height: 2.2rem;
+    background-color: vars.$color_callToAction;
 }

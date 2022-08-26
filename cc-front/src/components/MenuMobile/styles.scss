@@ -1,13 +1,19 @@
+@use '../../../styles/vars';
+
 .menu-mobile {
-	z-index: 1;
-	background-color: darkgrey;
+	z-index: 20;
+	background-color: vars.$color_secondary;
 	width: 100vw;
+	height: 3rem;
 	position: fixed;
 	bottom: 0;
+	display: flex;
+	justify-content: space-between;
 }
 
 .menu-mobile-nav {
 	display: flex;
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	& a {

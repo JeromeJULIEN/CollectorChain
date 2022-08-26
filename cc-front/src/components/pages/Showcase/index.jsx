@@ -6,6 +6,8 @@ import ShowcaseNft from "./ShowcaseNft";
 import SearchBarShowcase from "../../searchBars/SearchBarShowcase";
 import NftOwned from "../../modals/NftOwned";
 import { setShowcaseNftDisplayed } from "../../../../store/actions/user";
+import { useEffect } from "react";
+import SearchBarFavorites from "../../searchBars/SearchBarFavorites";
 // import "./styles.scss";
 
 const Showcase = () => {
@@ -30,12 +32,16 @@ const Showcase = () => {
 		// console.log("tempNFTbefore>>", tempNftSelected);
 		setTempNftSelected((tempNftSelected) => ({
 			...tempNftSelected,
-			[event.target.name]: nftOwned.find((nft) => (nft = event.target.id)),
+			[event.target.name]: nftOwned.find((nft) => (nft = event.target.id))
 		}));
 		setLastNftSelected(event.target.src);
 		hideModaleNftOwned();
-		// console.log("Event.target >>>", event.target);
 	};
+	
+	useEffect(() => {
+		console.log("TempNftSelected after>>>", tempNftSelected);
+		dispatch(setShowcaseNftDisplayed(tempNftSelected))
+	},[tempNftSelected])
 
 	useEffect(() => {
 		// console.log("TempNftSelected after>>>", tempNftSelected);
@@ -56,7 +62,7 @@ const Showcase = () => {
 					{/* Click on ‘preview’ to display the way the others visitors will see your collection  */}
 				</p>
 			</div>
-			<SearchBarShowcase />
+			<SearchBarFavorites/>
 			<Grid fluid>
 				<Row className="show-grid">
 					<Col xs={12} sm={10} md={8}>
