@@ -158,7 +158,10 @@ const reducer = (state = initialState, action = {}) => {
 		case SET_SHOWCASE_NFT:
 			return {
 				...state,
-				showcaseNftDisplayed: [action.value],
+				showcaseNftDisplayed: [
+					...state.showcaseNftDisplayed,
+					{id:action.id, media:action.media}
+				]
 			};
 		default:
 			return state;

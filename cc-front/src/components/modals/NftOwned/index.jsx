@@ -3,6 +3,9 @@ import { Modal, Text } from "@nextui-org/react";
 import "./styles.scss";
 
 const NftOwned = ({ uploadImage, nftOwned }) => {
+
+
+
 	return (
 		<div className="nftOwned">
 			<Modal.Header>

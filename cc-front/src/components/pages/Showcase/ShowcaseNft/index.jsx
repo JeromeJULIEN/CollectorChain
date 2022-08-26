@@ -11,12 +11,13 @@ const ShowcaseNft = ({id, name}) => {
 
 	const nftOwned = useSelector((state) => state.user.nftOwned);
 
-	const nftDisplayed = useSelector((state) => state.user.showcaseNftDisplayed);
+	const showcasedNFT = useSelector((state) => state.user.showcaseNftDisplayed);
+	console.log('showcasedNFT >>>',showcasedNFT)
+	const URLToDisplay = showcasedNFT.find(nft => nft.id == id)
+	// console.log('URLToDisplay>>>>', URLToDisplay)
 
 	const [isModaleNftOwnedVisible, setIsModaleNftOwnedVisible] = useState(false);
-	const showModaleNftOwned = () => {
-		setIsModaleNftOwnedVisible(true);
-	};
+	
 	const hideModaleNftOwned = () => {
 		setIsModaleNftOwnedVisible(false);
 	};
@@ -25,25 +26,30 @@ const ShowcaseNft = ({id, name}) => {
 	const [lastNftSelected, setLastNftSelected] = useState({});
 
 	const uploadImage = (event) => {
+		console.log('entrée dnas uploadImage', event.target.src);
 		// console.log("tempNFTbefore>>", tempNftSelected);
-		setTempNftSelected((tempNftSelected) => ({
-			...tempNftSelected,
-			[event.target.name]: nftOwned.find((nft) => (nft = event.target.id))
-		}));
+		// setTempNftSelected((tempNftSelected) => ({
+		// 	...tempNftSelected,
+		// 	[event.target.name]: nftOwned.find((nft) => (nft = event.target.id))
+		// }));
 		setLastNftSelected(event.target.src);
 		hideModaleNftOwned();
 	};
 	
 	useEffect(() => {
 		// console.log("TempNftSelected after>>>", tempNftSelected);
-		dispatch(setShowcaseNftDisplayed(tempNftSelected))
-	},[tempNftSelected])
+		dispatch(setShowcaseNftDisplayed(lastNftSelected, id))
+	},[lastNftSelected])
 
 	useEffect(() => {
 		// console.log("TempNftSelected after>>>", tempNftSelected);
 		dispatch(setShowcaseNftDisplayed(tempNftSelected));
 		// console.log("Last nft selected >>>", lastNftSelected);
 	}, [tempNftSelected]);
+
+	const showModaleNftOwned = () => {
+		setIsModaleNftOwnedVisible(true);
+	};
 
 	const deleteImage = (event) => {
 		// console.log("delete test");
@@ -75,8 +81,9 @@ const ShowcaseNft = ({id, name}) => {
 				blur 
 				open={isModaleNftOwnedVisible} 
 				onClose={hideModaleNftOwned}
+				
 				>
-					<NftOwned hideNftOwned={hideModaleNftOwned} uploadImage={uploadImage} nftOwned={nftOwned} />
+					<NftOwned id={id} uploadImage={uploadImage} nftOwned={nftOwned}/>
 			</Modal>
 		</div>
 	);
