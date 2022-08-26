@@ -3,10 +3,9 @@
 .showcase {
 	margin-bottom: 0.5rem;
 	&__pic {
-		background-color: red;
 		position: relative;
 		aspect-ratio: 1;
-		// background-color: vars.$color_secondary;
+		background-color: vars.$color_secondary;
 		
 		&-img{
 			height: 100%;

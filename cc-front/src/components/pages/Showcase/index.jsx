@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Grid, Row, Col } from "rsuite";
 import { Modal } from "@nextui-org/react";
 import ShowcaseNft from "./ShowcaseNft";
@@ -13,6 +13,8 @@ const Showcase = () => {
 
 	const nftOwned = useSelector((state) => state.user.nftOwned);
 
+	const nftDisplayed = useSelector((state) => state.user.showcaseNftDisplayed);
+
 	const [isModaleNftOwnedVisible, setIsModaleNftOwnedVisible] = useState(false);
 	const showModaleNftOwned = () => {
 		setIsModaleNftOwnedVisible(true);
@@ -22,17 +24,24 @@ const Showcase = () => {
 	};
 
 	const [tempNftSelected, setTempNftSelected] = useState([]);
+	const [lastNftSelected, setLastNftSelected] = useState({});
 
 	const uploadImage = (event) => {
+		// console.log("tempNFTbefore>>", tempNftSelected);
 		setTempNftSelected((tempNftSelected) => ({
 			...tempNftSelected,
 			[event.target.name]: nftOwned.find((nft) => (nft = event.target.id)),
 		}));
-		console.log("TempNftSelected >>>", tempNftSelected);
-		dispatch(setShowcaseNftDisplayed(tempNftSelected));
+		setLastNftSelected(event.target.src);
 		hideModaleNftOwned();
 		// console.log("Event.target >>>", event.target);
 	};
+
+	useEffect(() => {
+		// console.log("TempNftSelected after>>>", tempNftSelected);
+		dispatch(setShowcaseNftDisplayed(tempNftSelected));
+		console.log("Last nft selected >>>", lastNftSelected);
+	}, [tempNftSelected]);
 
 	const deleteImage = (event) => {
 		// console.log("delete test");
@@ -51,12 +60,12 @@ const Showcase = () => {
 			<Grid fluid>
 				<Row className="show-grid">
 					<Col xs={12} sm={10} md={8}>
-						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={1} name="nft1" />
-						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={2} name="nft2" />
-						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={3} name="nft3" />
-						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={4} name="nft4" />
-						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={5} name="nft5" />
-						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={6} name="nft6" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={1} name="nft1" lastNftSelected={lastNftSelected} />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={2} name="nft2" lastNftSelected={lastNftSelected} />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={3} name="nft3" lastNftSelected={lastNftSelected} />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={4} name="nft4" lastNftSelected={lastNftSelected} />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={5} name="nft5" lastNftSelected={lastNftSelected} />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={6} name="nft6" lastNftSelected={lastNftSelected} />
 					</Col>
 					<Col xs={12} sm={10} md={8}>
 						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={7} name="nft7" />

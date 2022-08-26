@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-const ShowcaseNft = ({ deleteImage, id, name, showModaleNftOwned }) => {
+const ShowcaseNft = ({ deleteImage, id, name, showModaleNftOwned, lastNftSelected }) => {
 	return (
 		<div className="showcase">
 			<div className="showcase__pic">
@@ -20,7 +20,7 @@ const ShowcaseNft = ({ deleteImage, id, name, showModaleNftOwned }) => {
 				{/* ) : (
 						""
 					)} */}
-				<img src="" className="showcase__pic-img" alt="" />
+				<img src={lastNftSelected} className="showcase__pic-img" alt="" />
 			</div>
 		</div>
 	);
