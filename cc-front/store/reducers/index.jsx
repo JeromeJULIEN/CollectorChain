@@ -6,6 +6,7 @@ import collectionsReducer from './collections';
 import nftsReducer from './nfts';
 import createNftreducer from './createNft';
 import propertiesReducer from './properties';
+import tagsReducer from './tags';
 
 const rootReducer = combineReducers({
 	user: userReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
 	nfts: nftsReducer,
 	createNft : createNftreducer,
 	properties : propertiesReducer,
+	tags: tagsReducer
 });
 
 export default rootReducer;

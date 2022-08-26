@@ -16,7 +16,7 @@ const SearchBarFavorites = () => {
 				<Input type="text" placeholder="Search NFT by property or tag" name="searchNFTField" />
 			</form>
 			<div className="searchBarFavorite__filters">
-				<InputPicker data={dataCategories} placeholder='Categories' className="inputPicker"/>
+				<InputPicker data={dataCategories} placeholder='Categories'/>
 				<InputPicker data={dataCollections} placeholder='Collections'/>
 				<Dropdown title="Order by" placement="bottomEnd">
 					<Dropdown.Item>Popularity low to high</Dropdown.Item>

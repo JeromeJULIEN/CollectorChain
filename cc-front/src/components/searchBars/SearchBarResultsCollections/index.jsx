@@ -1,58 +1,29 @@
 import "./styles.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { Dropdown } from "@nextui-org/react";
-import { AutoComplete, InputGroup } from "rsuite";
-import SearchIcon from "@rsuite/icons/Search";
+import { useSelector } from "react-redux";
+import { Dropdown, InputPicker } from "rsuite";
 
 const SearchBarResultsCollections = () => {
-	// 	const list = useSelector((state) => state.nfts.list);
+	
+	 // import des données des catégories pour alimenter les inputPicker
+	 const dataCategories = useSelector(state => state.categories.list).map(item => ({label: item, value: item }));
+	 const dataCollections = useSelector(state => state.collections.list).map(item => ({label: item, value: item }));
 
-	// 	const funcPriceLowToHigh = (event) => {
-	// 		event.preventDefault();
-	// 		const priceLowToHigh = list.sort((a, b) => a.price - b.price);
-	// 		console.log(priceLowToHigh);
-	// 	};
-	// 	const funcPriceHighToLow = (event) => {
-	// 		event.preventDefault();
-	// 		const PriceHighToLow = list.sort((a, b) => b.price - a.price);
-	// 		console.log(PriceHighToLow);
-	// 	};
 
 	return (
 		<div className="searchBarResultsCollections">
 			<form className="searchBarResultsCollections__form">
-				<InputGroup inside>
-					{/* <AutoComplete data={data} /> */}
-					<AutoComplete placeholder="Search collections by name" />
-					<InputGroup.Addon>
-						<SearchIcon />
-					</InputGroup.Addon>
-				</InputGroup>
+				<InputPicker data={dataCollections} placeholder='Search collections by name'/>
 			</form>
 			<div className="searchBarResultsCollections__filters">
-				<Dropdown>
-					<Dropdown.Button flat>Categories</Dropdown.Button>
-					<Dropdown.Menu aria-label="Static Actions">
-						<Dropdown.Item key="">Category 1</Dropdown.Item>
-						<Dropdown.Item key="">Category 2</Dropdown.Item>
-						<Dropdown.Item key="">Category 3</Dropdown.Item>
-					</Dropdown.Menu>
+				<InputPicker data={dataCategories} placeholder='Categories'/>
+				<Dropdown title="Order by" placement="bottomEnd">
+					<Dropdown.Item>Popularity low to high</Dropdown.Item>
+					<Dropdown.Item>Popularity high to low</Dropdown.Item>
+					<Dropdown.Item>Download As...</Dropdown.Item>
+					<Dropdown.Item>Price low to high</Dropdown.Item>
+					<Dropdown.Item>Price high to low</Dropdown.Item>
 				</Dropdown>
-				<Dropdown>
-					<Dropdown.Button flat>Order by</Dropdown.Button>
-					<Dropdown.Menu aria-label="Static Actions">
-						<Dropdown.Item key="">Popularity low to high</Dropdown.Item>
-						<Dropdown.Item key="">Popularity high to low</Dropdown.Item>
-						<Dropdown.Item key="">
-							Price low to high
-							{/* <p onClick={funcPriceLowToHigh}>Price low to high</p> */}
-						</Dropdown.Item>
-						<Dropdown.Item key="priceToDown">
-							Price high to low
-							{/* <p onClick={funcPriceHighToLow}>Price high to low</p> */}
-						</Dropdown.Item>
-					</Dropdown.Menu>
-				</Dropdown>
+				
 			</div>
 		</div>
 	);
