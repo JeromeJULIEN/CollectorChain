@@ -6,7 +6,7 @@
   "scripts": {
     "frontend": "cd cc-front && npm run dev",
     "api": "cd cc-back && npm run dev",
-    "start": "npm run api",
+    "start": "concurrently --kill-others \"npm run api\" \"npm run frontend\"",
     "heroku-postbuild": "cd cc-front && npm i && cd ../cc-back && npm i"
   },
   "repository": {
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/O-clock-Daguerre/projet-05-collector-chain/issues"
   },
-  "homepage": "https://github.com/O-clock-Daguerre/projet-05-collector-chain#readme"
+  "homepage": "https://github.com/O-clock-Daguerre/projet-05-collector-chain#readme",
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
 }
