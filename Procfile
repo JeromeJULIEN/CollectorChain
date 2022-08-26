@@ -1,1 +1,1 @@
-web: npm run devBack
+web: npm start
