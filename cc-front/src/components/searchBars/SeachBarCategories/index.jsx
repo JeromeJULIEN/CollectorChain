@@ -1,11 +1,12 @@
-import "./styles.scss";
+import "../styles.scss";
 import { Dropdown } from "@nextui-org/react";
+import { Input } from "rsuite";
 
 const SearchBarCategories = () => {
 	return (
 		<div className="searchBarCategories">
 			<form className="searchBarCategories__form">
-				<input type="text" placeholder="Search categories" name="searchCategoriesField" />
+				<Input type="text" placeholder="Search categories" name="searchCategoriesField" />
 			</form>
 			<Dropdown>
 				<Dropdown.Button flat>Order by</Dropdown.Button>

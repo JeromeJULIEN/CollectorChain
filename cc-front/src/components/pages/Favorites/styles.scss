@@ -3,7 +3,7 @@
 .favorite{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 85vh;
     margin-top: vars.$dimension_header_height;
 
     &__title{
@@ -61,7 +61,7 @@
     }
 
     &__list{
-        margin: 2.5rem 0.5rem;
+        margin: .5rem;
         display: grid;
         flex-direction: row;
         grid-template-columns: repeat(2, 1fr);
