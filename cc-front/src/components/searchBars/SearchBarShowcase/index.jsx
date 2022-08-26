@@ -19,17 +19,15 @@ const SearchBarShowcase = () => {
 				<Dropdown>
 					<Dropdown.Button flat>Categories</Dropdown.Button>
 					<Dropdown.Menu aria-label="Static Actions">
-						<Dropdown.Item key="">Category 1</Dropdown.Item>
-						<Dropdown.Item key="">Category 2</Dropdown.Item>
-						<Dropdown.Item key="">Category 3</Dropdown.Item>
+						<Dropdown.Item key="cat1">Category 1</Dropdown.Item>
+						<Dropdown.Item key="cat2">Category 2</Dropdown.Item>
+						<Dropdown.Item key="cat3">Category 3</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 				<Dropdown>
 					<Dropdown.Button flat>Order by</Dropdown.Button>
 					<Dropdown.Menu aria-label="Static Actions">
-						<Dropdown.Item key="">Popularity low to high</Dropdown.Item>
-						<Dropdown.Item key="">Popularity high to low</Dropdown.Item>
-						<Dropdown.Item key="">
+						<Dropdown.Item key="priceToHigh">
 							Price low to high
 							{/* <p onClick={funcPriceLowToHigh}>Price low to high</p> */}
 						</Dropdown.Item>

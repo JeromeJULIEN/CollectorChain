@@ -1,4 +1,4 @@
-import { DELETE_MEDIA_URL, SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT } from "../actions/user";
+import { DELETE_MEDIA_URL, SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT, SET_SHOWCASE_NFT } from "../actions/user";
 
 export const initialState = {
 	id: 1,
@@ -62,8 +62,9 @@ export const initialState = {
 			user_id: "0x777",
 		},
 	],
-
-	favorites:[
+	//NFT à afficher dans le showcase
+	showcaseNftDisplayed: [],
+	favorites: [
 		{
 			id: 1,
 			token: "0x555",
@@ -111,8 +112,6 @@ export const initialState = {
 			user_id: "0x777",
 		},
 	],
-	//NFT à afficher dans le showcase
-	nftShowcase: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -155,6 +154,11 @@ const reducer = (state = initialState, action = {}) => {
 			return {
 				...state,
 				[action.name]: null,
+			};
+		case SET_SHOWCASE_NFT:
+			return {
+				...state,
+				showcaseNftDisplayed: action.value,
 			};
 		default:
 			return state;

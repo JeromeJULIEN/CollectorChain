@@ -1,66 +1,42 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { Grid, Row, Col } from "rsuite";
 import { Modal } from "@nextui-org/react";
-import UpdateProfile from "../../modals/UpdateProfile";
 import ShowcaseNft from "./ShowcaseNft";
 import SearchBarShowcase from "../../searchBars/SearchBarShowcase";
-// import { useDispatch } from "react-redux";
-// import { isOpenToContact, setMediaUrl, deleteMediaUrl } from "../../../../store/actions/user";
+import NftOwned from "../../modals/NftOwned";
+import { setShowcaseNftDisplayed } from "../../../../store/actions/user";
 // import "./styles.scss";
 
 const Showcase = () => {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-	const user = useSelector((state) => state.user);
+	const nftOwned = useSelector((state) => state.user.nftOwned);
 
-	// const [isUpdateProfileVisible, setIsUpdateProfileVisible] = useState(false);
-	// const showUpdateProfile = () => {
-	// 	setIsUpdateProfileVisible(true);
-	// };
-	// const hideUpdateProfile = () => {
-	// 	setIsUpdateProfileVisible(false);
-	// };
-
-	//! Gestion de l'upload des images
-	// Creation d'un state local pour stocker les images
-	const [pictures, setPictures] = useState([]);
-	// Creation d'un state local pour stocker le chemin URL des images
-	const [picturesURL, setPicturesURL] = useState([]);
-
-	// console.log('pictures URL >>>', picturesURL)
-	// Fonction pour stocker l'image dans le state local
-	const uploadImage = (event) => {
-		// console.log('file >>>',event.target.files)
-		setPictures((pictures) => ({
-			...pictures,
-			[event.target.name]: event.target.files,
-		}));
-		// Il faut stocker un chemin URL pour afficher l'image
-		setPicturesURL((picturesURL) => ({
-			...picturesURL,
-			[event.target.name]: URL.createObjectURL(event.target.files[0]),
-		}));
-		//! Fin gestion upload image
+	const [isModaleNftOwnedVisible, setIsModaleNftOwnedVisible] = useState(false);
+	const showModaleNftOwned = () => {
+		setIsModaleNftOwnedVisible(true);
 	};
-	console.log("PICTURES >>> ", pictures);
-	console.log("PICTURES_URL >>> ", picturesURL);
+	const hideModaleNftOwned = () => {
+		setIsModaleNftOwnedVisible(false);
+	};
+
+	const [tempNftSelected, setTempNftSelected] = useState([]);
+
+	const uploadImage = (event) => {
+		setTempNftSelected((tempNftSelected) => ({
+			...tempNftSelected,
+			[event.target.name]: nftOwned.find((nft) => (nft = event.target.id)),
+		}));
+		console.log("TempNftSelected >>>", tempNftSelected);
+		dispatch(setShowcaseNftDisplayed(tempNftSelected));
+		hideModaleNftOwned();
+		// console.log("Event.target >>>", event.target);
+	};
 
 	const deleteImage = (event) => {
-		console.log("picture name >>>", event.target.id);
-		setPictures((pictures) => ({
-			...pictures,
-			[event.target.id]: "",
-		}));
-		console.log("pictures After >>>", pictures);
-		// Il faut stocker un chemin URL pour afficher l'image
-		setPicturesURL((picturesURL) => ({
-			...picturesURL,
-			[event.target.id]: URL.revokeObjectURL(event.target.id[0]),
-		}));
+		// console.log("delete test");
 	};
-	//! Fin gestion delete image
 
 	return (
 		<main>
@@ -75,26 +51,26 @@ const Showcase = () => {
 			<Grid fluid>
 				<Row className="show-grid">
 					<Col xs={12} sm={10} md={8}>
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={1} name="nft1" />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={2} name="nft2" />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={3} name="nft3" />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={4} name={"nft4"} />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={5} name={"nft5"} />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={6} name={"nft6"} />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={1} name="nft1" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={2} name="nft2" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={3} name="nft3" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={4} name="nft4" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={5} name="nft5" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={6} name="nft6" />
 					</Col>
 					<Col xs={12} sm={10} md={8}>
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={7} name={"nft7"} />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={8} name={"nft8"} />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={9} name={"nft9"} />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={10} name={"nft10"} />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={11} name={"nft11"} />
-						<ShowcaseNft uploadImage={uploadImage} deleteImage={deleteImage} id={12} name={"nft13"} />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={7} name="nft7" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={8} name="nft8" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={9} name="nft9" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={10} name="nft10" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={11} name="nft11" />
+						<ShowcaseNft deleteImage={deleteImage} showModaleNftOwned={showModaleNftOwned} id={12} name="nft13" />
 					</Col>
 				</Row>
 			</Grid>
-			{/* <Modal className="modaleUpdateProfile" closeButton blur open={isUpdateProfileVisible} onClose={hideUpdateProfile}>
-				<UpdateProfile hideUpdateProfile={hideUpdateProfile} />
-			</Modal> */}
+			<Modal className="modaleNftOwned" closeButton blur open={isModaleNftOwnedVisible} onClose={hideModaleNftOwned}>
+				<NftOwned hideNftOwned={hideModaleNftOwned} uploadImage={uploadImage} nftOwned={nftOwned} />
+			</Modal>
 		</main>
 	);
 };
