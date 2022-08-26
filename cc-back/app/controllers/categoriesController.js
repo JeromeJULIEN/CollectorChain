@@ -1,4 +1,5 @@
 const { Category } = require('../models');
+const ApiError = require('../errors/apiError');
 
 module.exports = {
     async getAllCategories(req, res) {
@@ -19,5 +20,16 @@ module.exports = {
     async deleteCategorie(req, res) {
         await Category.deleteById(req.params.id);
         return res.json('Categorie deleted !!');
+    },
+
+    async updateCategories(req, res) {
+        const categorie = await Category.findById(req.params.id);
+        if (!categorie) throw new ApiError("Cette catégorie n'existe pas", { statusCode: 404 });
+        const newCategory = req.body;
+        Object.entries(categorie).forEach(([key]) => {
+            if (!newCategory[key]) newCategory[key] = categorie[key];
+        });
+        const updateCategorie = await Category.update(newCategory);
+        return res.json(updateCategorie);
     },
 };

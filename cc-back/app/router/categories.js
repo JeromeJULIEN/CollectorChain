@@ -9,6 +9,6 @@ const controllerHandler = require('../helper/controllerHandler');
 router.get('/categories', categoriesController.getAllCategories);
 router.post('/categories', controllerHandler(categoriesController.createCategorie));
 router.delete('/categories/:id', categoriesController.deleteCategorie);
-// router.patch('/categories', categoriesController.categoriesPage);
+router.patch('/categories/:id', categoriesController.updateCategories);
 
 module.exports = router;

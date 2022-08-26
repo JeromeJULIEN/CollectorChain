@@ -18,4 +18,27 @@ module.exports = class Category extends CoreDatamapper {
         );
         return result.rows[0];
     }
+
+    static async update(category) {
+        const result = await client.query(
+            `
+            UPDATE "category"
+            SET 
+                "name" = $2,
+                "description" = $3,
+                "media" = $4
+
+            WHERE id = $1
+            RETURNING *
+        `,
+
+            [
+                category.id,
+                category.name,
+                category.description,
+                category.media,
+            ],
+        );
+        return result.rows[0];
+    }
 };

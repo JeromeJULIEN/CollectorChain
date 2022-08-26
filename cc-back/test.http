@@ -146,10 +146,12 @@ Content-Type: application/json
 DELETE {{ endpoint }}/categories/246
 
 ### Update categories
-PATCH {{ endpoint }}/categories
+PATCH {{ endpoint }}/categories/1
 Content-Type: application/json
 
-{}
+{
+    "description": "Poste"
+}
 
 ### Categories/collections
 GET {{ endpoint }}/categories/2/collections
