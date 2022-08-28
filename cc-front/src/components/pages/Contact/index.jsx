@@ -21,7 +21,7 @@ const Contact = () => {
             <Form.Group>
                 <ButtonToolbar>
                     <Button appearance="primary">Submit</Button>
-                    <Button appearance="default">Cancel</Button>
+                    {/* <Button appearance="default">Cancel</Button> */}
                 </ButtonToolbar>
             </Form.Group>
         </Form>

@@ -7,12 +7,12 @@ import SearchBarShowcase from "../../searchBars/SearchBarShowcase";
 import NftOwned from "../../modals/NftOwned";
 import { setShowcaseNftDisplayed } from "../../../../store/actions/user";
 import SearchBarFavorites from "../../searchBars/SearchBarFavorites";
-// import "./styles.scss";
+import "./styles.scss";
 
 const Showcase = () => {
 	
 	return (
-		<main>
+		<main className="showcase">
 			<div className="showcase__description">
 				<h2>My showcase</h2>
 				<p>
