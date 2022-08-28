@@ -9,14 +9,18 @@ import "./styles.scss";
 
 const Collections = () => {
 	// Infinite scroll
+	const route = "/collections";
+	const limit = 20;
+
 	const [query, setQuery] = useState("");
 	const [page, setPage] = useState(0);
-	const { loading, error, list } = useFetch(query, page);
+	const { loading, error, list } = useFetch(query, page, route, limit);
 	const loader = useRef(null);
 
-	const handleChange = (e) => {
-		setQuery(e.target.value);
-	};
+	// // Si searchBar input
+	// const handleChange = (e) => {
+	// 	setQuery(e.target.value);
+	// };
 
 	const handleObserver = useCallback((entries) => {
 		const target = entries[0];

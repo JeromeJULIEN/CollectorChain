@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-function useFetch(query, page) {
+function useFetch(query, page, route, limit) {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [list, setList] = useState([]);
@@ -11,7 +11,7 @@ function useFetch(query, page) {
 			await setLoading(true);
 			await setError(false);
 			// const res = await axios.get(`https://api.opensea.io/api/v1/collections?offset=0&limit=300&q=${query}&page=${page}`);
-			const res = await axios.get(`https://api.opensea.io/api/v1/collections?limit=20&offset=${page}`);
+			const res = await axios.get(`https://api.opensea.io/api/v1/${route}?limit=${limit}&offset=${page}`);
 			await setList((prev) => [...new Set([...prev, ...res.data.collections.map((d) => d)])]);
 			setLoading(false);
 		} catch (err) {
