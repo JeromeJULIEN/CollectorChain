@@ -1,14 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import HeartIcon from "../../dynamicIcons/heart";
 import "./styles.scss";
 
 const NftCard = ({ name, id, media }) => {
-	const [heartFilled, isHeartFilled] = useState(false);
-
-	const fillIcon = () => {
-		isHeartFilled(!heartFilled);
-	};
-
 	return (
 		<>
 			<div className="nftCard">
@@ -17,13 +11,7 @@ const NftCard = ({ name, id, media }) => {
 				</Link>
 				<div className="nftCard__title">
 					<div>{name}</div>
-					<div>
-						{heartFilled === false ? (
-							<ion-icon onClick={fillIcon} style={{ color: "red" }} name="heart-outline"></ion-icon>
-						) : (
-							<ion-icon onClick={fillIcon} style={{ color: "red" }} name="heart"></ion-icon>
-						)}
-					</div>
+					<HeartIcon />
 				</div>
 			</div>
 		</>

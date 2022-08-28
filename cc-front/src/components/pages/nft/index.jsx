@@ -10,6 +10,7 @@ import { Modal } from "@nextui-org/react";
 import Purchase from "../../modals/Purchase";
 import FullScreen from "../../modals/FullScreen";
 import Sell from "../../modals/Sell";
+import HeartIcon from "../../dynamicIcons/heart";
 
 const Nft = ({ nfts }) => {
 	// on récupère l'id de la route paramétré
@@ -37,11 +38,11 @@ const Nft = ({ nfts }) => {
 	const hideFullScreen = () => setIsFullScreenVisible(false);
 
 	//gestion modale sell
-	const [isSellVisible, setIsSellVisible] = useState(false)
+	const [isSellVisible, setIsSellVisible] = useState(false);
 	const showSell = () => {
-		setIsSellVisible(true)
-	}
-	const hideSell = () => setIsSellVisible(false)
+		setIsSellVisible(true);
+	};
+	const hideSell = () => setIsSellVisible(false);
 
 	return (
 		<div className="nft">
@@ -53,7 +54,7 @@ const Nft = ({ nfts }) => {
 			<div className="nft__actionsButtons">
 				<ion-icon name="bookmarks-outline"></ion-icon>
 				<ion-icon name="share-social-outline"></ion-icon>
-				<ion-icon name="heart-outline"></ion-icon>
+				<HeartIcon />
 			</div>
 			<div className="nft__price">
 				{displayedNft.forSale ? (
