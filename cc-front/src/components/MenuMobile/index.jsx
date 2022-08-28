@@ -64,7 +64,7 @@ const MenuMobile = () => {
 				<MenuExplore className="menu-explore" placement={"topStart"} />
 				<Nav.Item>
 					<Link to="/creation/createnewnft" style={{ fontWeight: "bold" }}>
-						Create
+						<ion-icon name="color-palette-outline"></ion-icon> Create
 					</Link>
 				</Nav.Item>
 				<Nav.Menu title="User" className="menu-user" icon={<UserInfoIcon />} placement="topEnd">
@@ -73,7 +73,9 @@ const MenuMobile = () => {
 					<Nav.Item>
 						<Link to="/showcase">My showcase</Link>
 					</Nav.Item>
-					<Nav.Item><Link to='/favorites'>My favorites</Link></Nav.Item>
+					<Nav.Item>
+						<Link to="/favorites">My favorites</Link>
+					</Nav.Item>
 					<Nav.Item>
 						<Link to="/profil">My profil</Link>
 					</Nav.Item>
