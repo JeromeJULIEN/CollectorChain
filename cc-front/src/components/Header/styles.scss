@@ -11,11 +11,17 @@
 	top: 0;
     height: vars.$dimension_header_height;
 
-    button{
-		margin-right: 1rem;
+    &__search {
+		margin-right: 2rem;
         background-color: transparent;
         border: none;
     }
+
+	&__scrollToTop {
+		position: absolute;
+		background-color: transparent;
+		right: 0.5rem;
+	}
 
     &__searchBar{
         width: 0;
@@ -25,7 +31,7 @@
 
         &-open {
             border:0;
-            width: 90vw;
+            width: 80vw;
             transition: all .5s;
         }
     }

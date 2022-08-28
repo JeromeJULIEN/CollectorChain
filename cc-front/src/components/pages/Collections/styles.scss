@@ -10,9 +10,7 @@
         align-items: center;
         margin: 1rem 0 ;
         background-color: grey;
-        height: 100px;
-       
-
+        height: 100px;  
     }
 
     &__list{
@@ -22,5 +20,4 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5em;
     }
-
 }

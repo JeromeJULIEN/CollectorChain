@@ -37,6 +37,7 @@ const Collections = () => {
 		};
 		const observer = new IntersectionObserver(handleObserver, option);
 		if (loader.current) observer.observe(loader.current);
+		console.log(list.length);
 	}, [handleObserver]);
 
 	// SearchBar Order by
@@ -61,6 +62,7 @@ const Collections = () => {
 				{list.map((item, i) => (
 					<CollectionCard key={i} img={item.image_url} text={item.name} />
 				))}
+
 				{loading && <Loader content="Loading..." />}
 				{error && <p>Error!</p>}
 				<div ref={loader} />
