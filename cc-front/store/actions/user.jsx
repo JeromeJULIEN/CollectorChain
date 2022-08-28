@@ -50,7 +50,8 @@ export const deleteMediaUrl = (name) => ({
 	type: DELETE_MEDIA_URL,
 	name,
 });
-export const setShowcaseNftDisplayed = (value) => ({
+export const setShowcaseNftDisplayed = (media, id) => ({
 	type: SET_SHOWCASE_NFT,
-	value,
+	media,
+	id
 });

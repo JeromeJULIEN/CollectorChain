@@ -1,15 +1,24 @@
+@use '../../../../styles/vars';
+
 .categories{
     display: flex;
     flex-direction: column;
+	margin-top: 2.4rem;
     min-height: 100vh;
 
+	& h1 {
+		text-align: center;
+	}
 
-    h1{
-        margin: 1rem 0 ;
+    &__header{
+		background-color: vars.$color_secondary;
+		position: fixed;
+		
+		padding: 0.5rem 0;
     }
 
     &__list{
-        margin: 1rem 0.5rem;
+        margin: 6rem 0.5rem 0 0.5rem;
         display: grid;
         flex-direction: row;
         grid-template-columns: repeat(2, 1fr);
