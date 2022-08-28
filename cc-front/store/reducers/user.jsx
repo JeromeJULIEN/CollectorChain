@@ -1,4 +1,4 @@
-import { DELETE_MEDIA_URL, SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT, SET_SHOWCASE_NFT, REMOVE_NFT_FROM_TODISPLAY_LIST } from "../actions/user";
+import { DELETE_MEDIA_URL, SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT, SET_SHOWCASE_NFT, REMOVE_NFT_FROM_TODISPLAY_LIST, REMOVE_FROM_SHOWCASE } from "../actions/user";
 
 export const initialState = {
 	id: 1,
@@ -218,6 +218,18 @@ const reducer = (state = initialState, action = {}) => {
 				showcaseNftToDisplay: state.showcaseNftToDisplay.filter(nft => nft.media !== action.payload)
 				
 			}
+			case REMOVE_FROM_SHOWCASE:
+				return{
+					...state,
+					// on supprime de la liste 'displayed' le nft enlever
+					showcaseNftDisplayed: state.showcaseNftDisplayed.filter(nft => nft.id !== action.id),
+					// on le rajoute à la liste 'toDisplay'
+					showcaseNftToDisplay:[
+						...state.showcaseNftToDisplay,
+						action.nft
+					]
+				}
+
 		default:
 			return state;
 	}

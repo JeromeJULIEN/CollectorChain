@@ -10,6 +10,8 @@ export const SET_MEDIA_URL = "SET_MEDIA_URL";
 export const DELETE_MEDIA_URL = "DELETE_MEDIA_URL";
 export const SET_SHOWCASE_NFT = "SET_SHOWCASE_NFT";
 export const REMOVE_NFT_FROM_TODISPLAY_LIST = 'REMOVE_NFT_FROM_TODISPLAY_LIST';
+export const REMOVE_FROM_SHOWCASE = 'REMOVE_FROM_SHOWCASE';
+
 
 
 export const signUp = () => ({
@@ -58,6 +60,11 @@ export const setShowcaseNftDisplayed = (media, id) => ({
 	id
 });
 export const removeNftFromTodisplayList = (payload) => ({
-  type: REMOVE_NFT_FROM_TODISPLAY_LIST,
-  payload
+	type: REMOVE_NFT_FROM_TODISPLAY_LIST,
+	payload
+});
+export const removeFromShowcase = (id,nft) => ({
+  type: REMOVE_FROM_SHOWCASE,
+  id,
+  nft
 });

@@ -4,31 +4,16 @@ import { useSelector } from "react-redux";
 import "./styles.scss";
 
 const NftOwned = ({ uploadImage, nftOwned }) => {
-	//! Essaie avec state dédié pour remonter les NFT restant à positionnere
+	//! Essaie avec state dédié pour remonter les NFT restant à positionner
 	const nonDisplayedNFT = useSelector(state => state.user.showcaseNftToDisplay);
 	// console.log(nonDisplayedNFT);
-
-	//! essaie non concluant en triant localement pour avoir le NFT restant à positionner
-	// const nftsDisplayed = useSelector(state => state.user.showcaseNftDisplayed)
-	// let nftStillToDisplay = nftOwned
-	// console.log('nftDisplayed from modal>>>', nftsDisplayed);
-	// console.log('nftOwned >>>', nftOwned);
-	// console.log('nft still to display >>>', nftStillToDisplay);
-	
-	// for (const nftDisplayed of nftsDisplayed) {
-	// 	nftStillToDisplay = nftOwned.filter(nft => nft.media !== nftDisplayed.media)
-	// 	console.log('boucle',nftStillToDisplay)
-	// }
-
-//  = nftOwned.filter(nft => nft.media !== nftDisplayed.media.includes(nft.media))
-// 	console.log('nft restant >>>',nftStillToDisplay);
 	
 
 	return (
 		<div className="nftOwned">
 			<Modal.Header>
 				<Text id="modal-title" size={18}>
-					NFT owned
+					Choose your NFT to display
 				</Text>
 			</Modal.Header>
 			<Modal.Body>

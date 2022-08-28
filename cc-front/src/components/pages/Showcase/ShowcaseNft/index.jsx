@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "rsuite";
-import { removeNftFromTodisplayList, setShowcaseNftDisplayed } from "../../../../../store/actions/user";
+import { removeFromShowcase, removeNftFromTodisplayList, setShowcaseNftDisplayed } from "../../../../../store/actions/user";
 import NftOwned from "../../../modals/NftOwned";
 import "./styles.scss";
 
@@ -15,7 +15,7 @@ const ShowcaseNft = ({id, name}) => {
 	// récupération de l'image par une recherche dans le state en fonction de l'id de la case
 	const showcasedNFT = useSelector((state) => state.user.showcaseNftDisplayed);
 	const URLToDisplay = showcasedNFT.find(nft => nft.id == id)
-	console.log('URLToDisplay>>>>', URLToDisplay)
+	// console.log('URLToDisplay>>>>', URLToDisplay)
 
 	// Gestion de l'affihage de la modale
 	const [isModaleNftOwnedVisible, setIsModaleNftOwnedVisible] = useState(false);
@@ -48,31 +48,31 @@ const ShowcaseNft = ({id, name}) => {
 	},[src])
 
 
-	const deleteImage = (event) => {
-		// console.log("delete test");
+	const deleteImage = () => {
+		// on récupère depuis la liste 'owned' le nft supprimé
+		const nftToRemoveFromShowcase = nftOwned.find(nft => nft.media == URLToDisplay.media)
+		// on envoie le nft dans le dispatch pour réalimenter la liste 'toDisplay'
+		// l'id de la case sert à gérer la suppression de la liste 'displayed'
+		dispatch(removeFromShowcase(id,nftToRemoveFromShowcase))
 	};
+
+
 	return (
 		<div className="showcase">
 			<div className="showcase__pic">
-				{/* {user.media ? ( */}
+				{/* affichage conditionnel si image affichée ou non */}
+				{URLToDisplay ? 
+				<>
 				<div className="showcase__pic-trash-icon" onClick={deleteImage}>
-					<ion-icon className="showcase__pic-trash" name="trash-outline" id={id} size="large"></ion-icon>
+					<ion-icon className="showcase__pic-trash" name="trash" id={id} size="large"></ion-icon>
 				</div>
-				{/* ) : (
-						""
-					)} */}
-				{/* {!user.media ? ( */}
-				{/* <> */}
+				<img src={URLToDisplay.media} className="showcase__pic-img" alt="" />
+				</>
+				:
 				<div className="showcase__pic-add-icon" onClick={showModaleNftOwned}>
-					<ion-icon name="add-circle-outline" size="large" id={name}></ion-icon>
+					<ion-icon name="add-circle" size="large" id={name}></ion-icon>
 				</div>
-				{/* </> */}
-				{/* ) : (
-						""
-					)} */}
-				{/* Condition d'affichage de l'image si une image est associé à cette case */}
-				<img src={URLToDisplay? URLToDisplay.media : ''} className="showcase__pic-img" alt="" />
-				
+				}
 			</div>
 			<Modal 
 				className="modaleNftOwned" 
