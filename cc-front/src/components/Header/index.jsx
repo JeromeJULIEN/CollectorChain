@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Input } from 'rsuite';
 import './styles.scss'
 
 const Header = () => {
@@ -9,13 +10,32 @@ const Header = () => {
 		event.preventDefault()
 		setIsSearchBarOpen(!isSearchBarOpen)
 	}
+
+	const navigate = useNavigate()
+
+	const navToResults = (event) => {
+		event.preventDefault()
+		navigate('/results')
+		setIsSearchBarOpen(!isSearchBarOpen)
+	}
 	
 	return (
 		<div className="header">
-			{isSearchBarOpen?'':
+			{isSearchBarOpen?
+			<>
+			<form action="" onSubmit={navToResults}>
+			<Input placeholder='Search Categories, collections or NFTs' />
+			</form>
+			<ion-icon name="close-circle" onClick={manageSearchBarVisibility}></ion-icon>
+			</>
+			:
+			<>
 			<Link to='/'><h1>Collector Chain</h1></Link>
+			<ion-icon name="search-circle" onClick={manageSearchBarVisibility}></ion-icon>
+			</>
 			}
-			<form
+			
+			{/* <form
 			// onSubmit={handleSubmitForm}
 			>
 				<input
@@ -26,10 +46,7 @@ const Header = () => {
 					name="searchBar"
 					className={isSearchBarOpen?'header__searchBar-open':'header__searchBar'}
 				/>
-			</form>
-			<button onClick={manageSearchBarVisibility}>
-				<ion-icon name="search-outline"></ion-icon>
-			</button>
+			</form> */}
 		</div>
 	);
 };

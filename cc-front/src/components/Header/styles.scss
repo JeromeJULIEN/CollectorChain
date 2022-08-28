@@ -4,29 +4,23 @@
 	background-color: vars.$color_secondary;
     display: flex;
     justify-content: space-between;
-    padding: .6rem;
+    align-items: center;
+    // padding: .6rem;
 	z-index: 10;
 	width: 100vw;
 	position: fixed;
 	top: 0;
     height: vars.$dimension_header_height;
+    padding: .4rem;
 
-    button{
-		margin-right: 1rem;
-        background-color: transparent;
-        border: none;
+    ion-icon{
+        font-size: 2rem;
+        color: vars.$color_callToAction;
+        margin: .5rem;
     }
 
-    &__searchBar{
-        width: 0;
-        visibility: hidden;
-        transition: all .5s;
-        border: 0;
-
-        &-open {
-            border:0;
-            width: 90vw;
-            transition: all .5s;
-        }
+    form{
+        width: 100%;
     }
+
 }
