@@ -10,48 +10,7 @@ import SearchBarFavorites from "../../searchBars/SearchBarFavorites";
 // import "./styles.scss";
 
 const Showcase = () => {
-	// const dispatch = useDispatch();
-
-	// const nftOwned = useSelector((state) => state.user.nftOwned);
-
-	// const nftDisplayed = useSelector((state) => state.user.showcaseNftDisplayed);
-
-	// const [isModaleNftOwnedVisible, setIsModaleNftOwnedVisible] = useState(false);
-	// const showModaleNftOwned = () => {
-	// 	setIsModaleNftOwnedVisible(true);
-	// };
-	// const hideModaleNftOwned = () => {
-	// 	setIsModaleNftOwnedVisible(false);
-	// };
-
-	// const [tempNftSelected, setTempNftSelected] = useState([]);
-	// const [lastNftSelected, setLastNftSelected] = useState({});
-
-	// const uploadImage = (event) => {
-	// 	// console.log("tempNFTbefore>>", tempNftSelected);
-	// 	setTempNftSelected((tempNftSelected) => ({
-	// 		...tempNftSelected,
-	// 		[event.target.name]: nftOwned.find((nft) => (nft = event.target.id))
-	// 	}));
-	// 	setLastNftSelected(event.target.src);
-	// 	hideModaleNftOwned();
-	// };
 	
-	// useEffect(() => {
-	// 	console.log("TempNftSelected after>>>", tempNftSelected);
-	// 	dispatch(setShowcaseNftDisplayed(tempNftSelected))
-	// },[tempNftSelected])
-
-	// useEffect(() => {
-	// 	// console.log("TempNftSelected after>>>", tempNftSelected);
-	// 	dispatch(setShowcaseNftDisplayed(tempNftSelected));
-	// 	console.log("Last nft selected >>>", lastNftSelected);
-	// }, [tempNftSelected]);
-
-	// const deleteImage = (event) => {
-	// 	// console.log("delete test");
-	// };
-
 	return (
 		<main>
 			<div className="showcase__description">

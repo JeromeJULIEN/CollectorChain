@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "rsuite";
-import { setShowcaseNftDisplayed } from "../../../../../store/actions/user";
+import { removeNftFromTodisplayList, setShowcaseNftDisplayed } from "../../../../../store/actions/user";
 import NftOwned from "../../../modals/NftOwned";
 import "./styles.scss";
 
@@ -11,50 +11,42 @@ const ShowcaseNft = ({id, name}) => {
 
 	const nftOwned = useSelector((state) => state.user.nftOwned);
 
+	// Recherche de l'image devant etre associée à cette case :
+	// récupération de l'image par une recherche dans le state en fonction de l'id de la case
 	const showcasedNFT = useSelector((state) => state.user.showcaseNftDisplayed);
-	console.log('showcasedNFT >>>',showcasedNFT)
 	const URLToDisplay = showcasedNFT.find(nft => nft.id == id)
-	// console.log('URLToDisplay>>>>', URLToDisplay)
+	console.log('URLToDisplay>>>>', URLToDisplay)
 
+	// Gestion de l'affihage de la modale
 	const [isModaleNftOwnedVisible, setIsModaleNftOwnedVisible] = useState(false);
-	
 	const hideModaleNftOwned = () => {
 		setIsModaleNftOwnedVisible(false);
 	};
+	const showModaleNftOwned = () => {
+		setIsModaleNftOwnedVisible(true);
+	};
 
-	const [tempNftSelected, setTempNftSelected] = useState([]);
+	// Variable nécessaire au fonctionnement du code
 	const [lastNftSelected, setLastNftSelected] = useState({});
 	const [src, setSrc] = useState('');
 
 	const uploadImage = (event) => {
-		console.log('entrée dnas uploadImage', event.target.src);
-		// console.log("tempNFTbefore>>", tempNftSelected);
-		// setTempNftSelected((tempNftSelected) => ({
-		// 	...tempNftSelected,
-		// 	[event.target.name]: nftOwned.find((nft) => (nft = event.target.id))
-		// }));
+		// On stock les informations à utiliser dans le useEffect
 		setLastNftSelected(event.target.src);
 		setSrc(event.target.src)
 		hideModaleNftOwned();
 	};
 	
+	// Gestion des dispatch reducer dans un useEffect (ne marche si dispatch en meme temps que la modification des varaibles)
 	useEffect(() => {
 		// console.log("TempNftSelected after>>>", tempNftSelected);
 		if(src){
 
 			dispatch(setShowcaseNftDisplayed(lastNftSelected, id))
+			dispatch(removeNftFromTodisplayList(lastNftSelected))
 		}
 	},[src])
 
-	// useEffect(() => {
-	// 	// console.log("TempNftSelected after>>>", tempNftSelected);
-	// 	dispatch(setShowcaseNftDisplayed(tempNftSelected));
-	// 	// console.log("Last nft selected >>>", lastNftSelected);
-	// }, [tempNftSelected]);
-
-	const showModaleNftOwned = () => {
-		setIsModaleNftOwnedVisible(true);
-	};
 
 	const deleteImage = (event) => {
 		// console.log("delete test");
@@ -78,7 +70,9 @@ const ShowcaseNft = ({id, name}) => {
 				{/* ) : (
 						""
 					)} */}
-				<img src={lastNftSelected} className="showcase__pic-img" alt="" />
+				{/* Condition d'affichage de l'image si une image est associé à cette case */}
+				<img src={URLToDisplay? URLToDisplay.media : ''} className="showcase__pic-img" alt="" />
+				
 			</div>
 			<Modal 
 				className="modaleNftOwned" 
