@@ -1,5 +1,5 @@
 import instance from "../../utils/axios";
-import { FETCH_CATEGORIES, FETCH_COLLECTIONS, FETCH_COLLECTION_BY_ID, FETCH_NFTS, setCategories, setCollections, setNfts} from "../actions/data";
+import { FETCH_CATEGORIES, FETCH_COLLECTIONS, FETCH_NFTS, FETCH_NFT_BY_COLLECTION_ID, setCategories, setCollections, setNfts} from "../actions/data";
 
 const dataMiddleware = (store) => (next) => async (action) => {
 	switch (action.type) {
@@ -16,10 +16,11 @@ const dataMiddleware = (store) => (next) => async (action) => {
             const {data} = await instance.get('/nft')
             store.dispatch(setNfts(data))
         };
-        case FETCH_COLLECTION_BY_ID:{
-            const {data} = await instance.get(`/collection/${action.id}/nft`)
+        case FETCH_NFT_BY_COLLECTION_ID:{
+            console.log('fetch avec id>>>',action.id);
+            const {data} = await instance.get(`/collections/${action.id}/nft`)
             store.dispatch(setNfts(data))
-        }
+        };
 
 		default:
 			next(action);

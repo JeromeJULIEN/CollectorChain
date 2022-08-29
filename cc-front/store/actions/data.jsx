@@ -5,10 +5,10 @@ export const SET_COLLECTIONS = 'SET_COLLECTIONS';
 export const FETCH_COLLECTIONS = 'FETCH_COLLECTIONS';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_NFTS = 'FETCH_NFTS';
-export const FETCH_COLLECTION_BY_ID = 'FETCH_COLLECTION_BY_ID';
+export const FETCH_NFT_BY_COLLECTION_ID = 'FETCH_NFT_BY_COLLECTION_ID';
 
-export const fetchCollectionById = (id) => ({
-  type: FETCH_COLLECTION_BY_ID,
+export const fetchNftByCollectionId = (id) => ({
+  type: FETCH_NFT_BY_COLLECTION_ID,
   id
 });
 

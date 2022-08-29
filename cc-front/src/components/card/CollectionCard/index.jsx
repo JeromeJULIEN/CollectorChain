@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const CollectionCard = ({ media, text,id }) => {
 
-	console.log(id)
+	// console.log(id)
 	return (
 		<Link to={`/collection/${id}`} className="collectionCard">
 			<img className="collectionCard__image" src={media} alt={text} />
