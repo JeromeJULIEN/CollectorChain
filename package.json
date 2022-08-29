@@ -4,9 +4,9 @@
   "description": "## Installation BACK",
   "main": "index.js",
   "scripts": {
-    "frontend": "cd cc-front && npm run dev",
+    "frontend": "cd cc-front && npm start",
     "api": "cd cc-back && npm start",
-    "start": "concurrently --kill-others \"npm run api\"",
+    "start": "concurrently --kill-others \"npm run api\" \"npm run frontend\"",
     "heroku-postbuild": "cd ./cc-back && npm i"
   },
   "repository": {
