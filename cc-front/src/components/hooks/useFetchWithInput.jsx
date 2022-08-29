@@ -14,6 +14,7 @@ function useFetch(query, page, route, limit) {
 			const res = await axios.get(`https://api.opensea.io/api/v1/${route}?limit=${limit}&offset=${page}`);
 			await setList((prev) => [...new Set([...prev, ...res.data.collections.map((d) => d)])]);
 			setLoading(false);
+			console.log("test");
 		} catch (err) {
 			setError(err);
 		}

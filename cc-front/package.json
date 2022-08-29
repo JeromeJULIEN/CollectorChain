@@ -1,6 +1,7 @@
 {
   "name": "collectorchain",
   "private": true,
+  "homepage": "https://collector-chain.herokuapp.com/",
   "version": "0.0.0",
   "type": "module",
   "engines": {
