@@ -34,15 +34,15 @@ const SearchBarEvents = () => {
 	console.log("VALUE >>>", inputValue);
 
 	// Récupère la ville sélectionnée pour l'afficher dans l'input
-	let dataPicker=[]
+	let dataPicker = [];
 
-	if(inputValue) {
+	if (inputValue) {
 		dataPicker = data.map((item) => ({ label: item.label, value: item.label, locationId: item.locationId }));
-	console.log(dataPicker);
+		// console.log(dataPicker[0].locationId);
 	} else {
-		dataPicker = []
+		dataPicker = [];
 	}
- 
+
 	// // Récupère la location ID de la ville sélectionnée
 	// const locationId = dataPicker.find((item) => item.locationId);
 	// setLocationIdValue(locationId);

@@ -5,8 +5,6 @@ import SearchBarEvents from "../../searchBars/SearchBarEvents";
 import "./styles.scss";
 
 const Events = () => {
-	// // import depuis le state de la liste en cours
-	// const list = useSelector((state) => state.collections.list);
 	const center = [48.112490724339, -1.6795174922733247];
 	const zoom = 11;
 
