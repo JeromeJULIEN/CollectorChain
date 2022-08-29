@@ -1,0 +1,26 @@
+{
+  "name": "apotheose",
+  "version": "1.0.0",
+  "description": "## Installation BACK",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd cc-front && npm run dev",
+    "api": "cd cc-back && npm run dev",
+    "start": "concurrently --kill-others \"npm run api\" \"npm run frontend\"",
+    "heroku-postbuild": "npm i && cd cc-front && npm i && cd ../cc-back && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Daguerre/projet-05-collector-chain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/O-clock-Daguerre/projet-05-collector-chain/issues"
+  },
+  "homepage": "https://github.com/O-clock-Daguerre/projet-05-collector-chain#readme",
+  "dependencies": {
+    "concurrently": "^7.3.0"
+  }
+}
