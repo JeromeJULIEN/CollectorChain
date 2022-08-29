@@ -12,7 +12,13 @@ const tags = data[5].tag;
 const { nftHasPropertyHasTag } = data[6];
 
 (async () => {
-    const client = new Client(process.env.DATABASE_URL);
+    const dbConfig = {
+        connectionString: process.env.DATABASE_URL,
+    };
+
+    dbConfig.ssl = { rejectUnauthorized: false };
+
+    const client = new Client(dbConfig);
     await client.connect();
 
     await client.query('TRUNCATE TABLE "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');

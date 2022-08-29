@@ -4,9 +4,7 @@ const dbConfig = {
     connectionString: process.env.DATABASE_URL,
 };
 
-// if (process.env.NODE_ENV === 'production') {
 dbConfig.ssl = { rejectUnauthorized: false };
-// }
 
 const client = new Client(dbConfig);
 
