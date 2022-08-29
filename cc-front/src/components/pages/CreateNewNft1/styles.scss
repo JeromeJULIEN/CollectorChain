@@ -6,7 +6,7 @@
     align-items: center;
     min-height: 100vh;
     padding-top: vars.$dimension_header_height;
-    margin: 0 .5rem;
+    margin: .5rem;
 
     &__step1{
         display: flex;
@@ -50,6 +50,9 @@
     background-color: vars.$color_secondary;
     border-radius: 1rem;
     margin: 1rem 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &__title{
         text-align: center;
@@ -65,11 +68,7 @@
 	&__input {
 		display: none;
 	}
-	&__add-icon {
-		position: absolute;
-		left: 40%;
-		top: 40%;
-	}
+	
 	&__trash-icon {
 		position: absolute;
 		right: 0.25rem;

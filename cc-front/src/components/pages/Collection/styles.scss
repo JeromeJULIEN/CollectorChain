@@ -1,14 +1,16 @@
+@use '../../../../styles/vars';
+
 .collection{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-top: vars.$dimension_header_height;
 
 
     &__title{
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin: .5rem 0 ;
         background-color: grey;
         height: 100px;
 

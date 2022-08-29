@@ -6,7 +6,10 @@ import ExploreIcon from "@rsuite/icons/Explore";
 
 export default function MenuExplore({ placement }) {
 	return (
-		<Nav.Menu title="Explore" icon={<ExploreIcon />} placement={placement}>
+		<Nav.Menu 
+			title="Explore" 
+			// icon={<ExploreIcon />} 
+			placement={placement}>
 			<Nav.Item>
 				<Link to="/">Home page</Link>
 			</Nav.Item>

@@ -4,11 +4,12 @@
 	z-index: 20;
 	background-color: vars.$color_secondary;
 	width: 100vw;
-	height: 3rem;
+	height: vars.$dimension_menuMobile_height;
 	position: fixed;
 	bottom: 0;
 	display: flex;
 	justify-content: space-between;
+	font-size: 1.1rem;
 }
 
 .menu-mobile-nav {
@@ -18,5 +19,16 @@
 	align-items: center;
 	& a {
 		color:black;
+	}
+	.rs-nav-item{
+		// border-radius: .5rem;
+		// padding: .7rem;
+	}
+	
+	&-create{
+		background-color: vars.$color_callToAction;
+		padding: .5rem 2rem; 
+		border-radius: 2rem;
+		font-size: 1.3rem;
 	}
 }

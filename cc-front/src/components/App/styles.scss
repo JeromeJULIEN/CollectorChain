@@ -1,13 +1,16 @@
+@use '../../../styles/vars';
+
 .app {
   //   max-width: 414px;
   background-color: darkgrey;
   overflow-y: hidden;
   font-family: sans-serif;
   color: black;
+  height: 100%;
 
   main {
-	//   width: 100vw;
-	  margin: 2.5rem auto;
+	  width: 100vw;
+	  margin: vars.$dimension_header_height auto;
   }
 
   h1 {
