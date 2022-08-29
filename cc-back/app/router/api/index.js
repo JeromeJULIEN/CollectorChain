@@ -1,8 +1,8 @@
 const express = require('express');
 
 const router = express.Router();
-const jwtModules = require('../Auth/jwt');
-const homePageController = require('../controllers/homePageController');
+const jwtModules = require('../../Auth/jwt');
+const homePageController = require('../../controllers/homePageController');
 
 const homepageRouter = require('./homePage');
 const signUpRouter = require('./sign_up');
