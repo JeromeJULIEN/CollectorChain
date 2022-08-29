@@ -7,17 +7,6 @@ import SearchIcon from "@rsuite/icons/Search";
 const SearchBarResultsNft = () => {
 	// 	const list = useSelector((state) => state.nfts.list);
 
-	// 	const funcPriceLowToHigh = (event) => {
-	// 		event.preventDefault();
-	// 		const priceLowToHigh = list.sort((a, b) => a.price - b.price);
-	// 		console.log(priceLowToHigh);
-	// 	};
-	// 	const funcPriceHighToLow = (event) => {
-	// 		event.preventDefault();
-	// 		const PriceHighToLow = list.sort((a, b) => b.price - a.price);
-	// 		console.log(PriceHighToLow);
-	// 	};
-
 	return (
 		<div className="searchBarResultsNft">
 			<form className="searchBarResultsNft__form">

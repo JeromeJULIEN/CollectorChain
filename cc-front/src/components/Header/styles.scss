@@ -1,21 +1,29 @@
 @use '../../../styles/vars';
 
 .header {
-	background-color: darkgrey;
+	background-color: vars.$color_secondary;
     display: flex;
     justify-content: space-between;
-    padding: .6rem;
+    align-items: center;
+    // padding: .6rem;
 	z-index: 10;
 	width: 100vw;
 	position: fixed;
 	top: 0;
     height: vars.$dimension_header_height;
+    padding: .4rem;
 
-    button{
-		margin-right: 1rem;
+    &__search {
+		margin-right: 2rem;
         background-color: transparent;
         border: none;
     }
+
+	&__scrollToTop {
+		position: absolute;
+		background-color: transparent;
+		right: 0.5rem;
+	}
 
     &__searchBar{
         width: 0;
@@ -25,8 +33,18 @@
 
         &-open {
             border:0;
-            width: 90vw;
+            width: 80vw;
             transition: all .5s;
-        }
+        }}
+
+    ion-icon{
+        font-size: 2rem;
+        color: vars.$color_callToAction;
+        margin: .5rem;
     }
+
+    form{
+        width: 100%;
+    }
+
 }

@@ -16,15 +16,24 @@ import Error from "../pages/Error";
 import { useEffect } from "react";
 import Nft from "../pages/nft";
 import Events from "../pages/Events";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Results from "../pages/Results";
 // import Darkmode from "darkmode-js";
 import CreateNewNft1 from "../pages/CreateNewNft1";
 import CreateNewNft2 from "../pages/CreateNewNft2";
 import Profil from "../pages/Profil";
-
+import Showcase from "../pages/Showcase";
+import Favorites from "../pages/Favorites";
+import Contact from "../pages/Contact";
+import AboutUs from "../pages/AboutUs";
+import Term from "../pages/Term";
+import Resources from "../pages/Resources";
+import Creation from "../pages/Creation";
+import { fetchData } from "../../../store/actions/data";
 
 function App() {
+
+	const dispatch = useDispatch()
 	//DARK MODE
 	// const options = {
 	// 	// top: "0px", // default: '32px'
@@ -51,8 +60,14 @@ function App() {
 		window.scrollTo(0, 0);
 	}, [location]);
 
+	//! BDD locale pour test
 	// récupération des nfts en cours d'affichage pour les envoyer a la page nft
 	const nfts = useSelector((state) => state.nfts.list);
+
+	//! Récupération données depuis BDD distante
+	useEffect(() => {
+		dispatch(fetchData())
+	},[])
 
 	return (
 		<div className="app">
@@ -69,8 +84,15 @@ function App() {
 					<Route path="/events" element={<Events />} />
 					<Route path="/results" element={<Results />} />
 					<Route path="/profil" element={<Profil />} />
+					<Route path="/creation" element={<Creation />} />
 					<Route path="/creation/createnewnft" element={<CreateNewNft1 />} />
 					<Route path="/creation/createnewnft2" element={<CreateNewNft2 />} />
+					<Route path="/showcase" element={<Showcase />} />
+					<Route path="/favorites" element={<Favorites />} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="/aboutus" element={<AboutUs />} />
+					<Route path="/term" element={<Term />} />
+					<Route path="/resources" element={<Resources />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
 

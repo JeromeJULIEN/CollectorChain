@@ -62,15 +62,25 @@ const MenuMobile = () => {
 		<div className="menu-mobile">
 			<Nav className="menu-mobile-nav">
 				<MenuExplore className="menu-explore" placement={"topStart"} />
-				<Nav.Item>Market</Nav.Item>
 				<Nav.Item>
-					<Link to="/creation/createnewnft">Create</Link>
+					<Link className="menu-mobile-nav-create" to="/creation/createnewnft" style={{ fontWeight: "bold" }}>
+						Create
+					</Link>
 				</Nav.Item>
-				<Nav.Menu title="User" className="menu-user" icon={<UserInfoIcon />} placement="topEnd">
+				<Nav.Menu 
+					title="User" 
+					className="menu-user" 
+					// icon={<UserInfoIcon />} 
+					placement="topEnd"
+					>
 					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
-					<Nav.Item>My showcase</Nav.Item>
-					<Nav.Item>My favorites</Nav.Item>
+					<Nav.Item>
+						<Link to="/showcase">My showcase</Link>
+					</Nav.Item>
+					<Nav.Item>
+						<Link to="/favorites">My favorites</Link>
+					</Nav.Item>
 					<Nav.Item>
 						<Link to="/profil">My profil</Link>
 					</Nav.Item>

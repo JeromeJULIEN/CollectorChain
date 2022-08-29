@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import "./styles.scss";
 import SearchBarResultsCollections from "../../searchBars/SearchBarResultsCollections";
 import SearchBarResultsNft from "../../searchBars/searchBarResultsNft";
+import SearchBarCollection from "../../searchBars/SearchBarCollection";
 
 const Results = () => {
 	// import depuis le state de la liste en cours
@@ -31,7 +32,7 @@ const Results = () => {
 				<div className="results__nft-title">
 					<div className="results__collection-title">
 						<h2>NFT</h2>
-						<SearchBarResultsNft />
+						<SearchBarCollection/>
 						<Slide_2x2>
 							{nftList.map((nft) => {
 								return (

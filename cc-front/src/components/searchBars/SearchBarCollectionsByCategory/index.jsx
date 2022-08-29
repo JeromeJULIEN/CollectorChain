@@ -1,28 +1,23 @@
-import './styles.scss'
-import { Dropdown } from "@nextui-org/react";
+import { useSelector } from "react-redux";
+import { Dropdown, InputPicker } from "rsuite";
+import "./styles.scss";
 
-const SearchBarCollectionsByCategory = () => {
-  return (
-    <div className='searchBarCollectionsByCategory'>
-        <form className='searchBarCollectionsByCategory__form'>
-            <input 
-                type='text' 
-                placeholder='Search collections'
-                name='searchCollectionsField'
-            />
-        </form>
-        <Dropdown>
-            <Dropdown.Button flat>Order by</Dropdown.Button>
-            <Dropdown.Menu aria-label="Static Actions">
-                <Dropdown.Item key="popularityToUp">Popularity low to high</Dropdown.Item>
-                <Dropdown.Item key="popularityToDown">Popularity high to low</Dropdown.Item>
-                <Dropdown.Item key="priceToUp">Price low to high</Dropdown.Item>
-                <Dropdown.Item key="priceToDown">Price high to low</Dropdown.Item> 
-            </Dropdown.Menu>
-        </Dropdown>
+const SearchBarCollectionsByCategory = ({ sortPrice0to1, sortPrice1to0 }) => {
+	// import des données des catégories pour alimenter les inputPicker
+	const dataCollections = useSelector((state) => state.collections.list).map((item) => ({ label: item, value: item }));
 
-    </div>
-  )
-}
+	return (
+		<div className="searchBarCategories">
+			<InputPicker data={dataCollections} placeholder="Collections" />
+			<Dropdown title="Order by" placement="bottomEnd">
+				<Dropdown.Item>Popularity low to high</Dropdown.Item>
+				<Dropdown.Item>Popularity high to low</Dropdown.Item>
+				<Dropdown.Item>Download As...</Dropdown.Item>
+				<Dropdown.Item onClick={sortPrice0to1}>Price low to high</Dropdown.Item>
+				<Dropdown.Item onClick={sortPrice1to0}>Price high to low</Dropdown.Item>
+			</Dropdown>
+		</div>
+	);
+};
 
-export default SearchBarCollectionsByCategory
+export default SearchBarCollectionsByCategory;

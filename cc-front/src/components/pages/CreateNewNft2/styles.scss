@@ -5,7 +5,7 @@ h3{
     margin: .5rem 0;
 }
 .createNewNft2{
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -25,6 +25,8 @@ h3{
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+
+        
     }
 
     &__image{
@@ -34,6 +36,7 @@ h3{
         padding: .5rem;
     }
 
+    
 }
 
 .category{
@@ -44,6 +47,7 @@ h3{
     
     &__input{
         width: 100%;
+        margin-bottom: .5rem;
     }
 }
 
@@ -71,23 +75,146 @@ h3{
             background-color: transparent;
             width: 10%;
         }
+
+        &__customProperty{
+            display: flex;
+            justify-content: space-between;
+
+            
+        }
+    }
+}
+
+.customProperties{
+    display: flex;
+    flex-direction: column;
+    margin: .5rem .5rem 2rem .5rem;
+    ion-icon{
+        font-size: 2rem;
+        color: vars.$color_callToAction;
+    }
+
+    button{
+        background-color: transparent;
+        width: 10%;
+    }
+    &__add{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        align-items: center;
+
+
+    }
+
+    &__property{
+        display: flex;
+        margin: .25rem 0;
+        gap: .5rem;
+
+        Input{
+            width: 45%;
+        }
+
+    }
+}
+
+.description{
+    margin: .5rem .5rem 2rem .5rem;
+
+    p{
+        margin: .5rem 0;
     }
 }
 
 .button{
     height: 3rem;
-    border-radius: .5rem;
+    border-radius: .3rem;
     font-weight: bold;
+    background-color: vars.$color_callToAction;
 
     &--validation{
-        background-color: vars.$color_callToAction;
         width: 50%;
         margin: 0 25% 1rem 25%;
     }
 
     &--save{
         height: 1.5rem;
-        background-color: vars.$color_callToAction;
+    }
+
+    &--newCategory{
+        height: 2rem;
+        width: 100%;
+    }
+}
+
+.picture{
+  
+    &__title{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin: .5rem;
 
     }
+
+    &__picture{
+        position: relative;
+        width: 50%;
+        aspect-ratio: 1;
+        background-color: vars.$color_secondary;
+        border-radius: 1rem;
+        margin: 1rem 25%;
+    
+        &__title{
+            text-align: center;
+        }
+    
+        &__image{
+            height: 100%;
+            width: 100%;
+            border-radius: 1rem;
+            object-fit: cover;
+        }
+    
+        &__input {
+            display: none;
+        }
+        &__add-icon {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+        }
+        &__trash-icon {
+            position: absolute;
+            right: 0.25rem;
+            top: 0.5rem;
+        }
+        & ion-icon {
+            zoom: 0.8;
+            color: vars.$color_callToAction;
+        }
+
+    }
+   
+}
+
+.validation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: .5rem;
+
+    &__text{
+        padding-bottom: 2rem;
+    }
+
+    &__loader{
+        padding-bottom: 2rem;
+    }
+
+   
+}
+
+strong{
+    font-weight: bold;
 }

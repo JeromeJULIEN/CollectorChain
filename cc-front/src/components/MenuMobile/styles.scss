@@ -1,16 +1,34 @@
+@use '../../../styles/vars';
+
 .menu-mobile {
-	z-index: 1;
-	background-color: darkgrey;
+	z-index: 20;
+	background-color: vars.$color_secondary;
 	width: 100vw;
+	height: vars.$dimension_menuMobile_height;
 	position: fixed;
 	bottom: 0;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.1rem;
 }
 
 .menu-mobile-nav {
 	display: flex;
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	& a {
 		color:black;
+	}
+	.rs-nav-item{
+		// border-radius: .5rem;
+		// padding: .7rem;
+	}
+	
+	&-create{
+		background-color: vars.$color_callToAction;
+		padding: .5rem 2rem; 
+		border-radius: 2rem;
+		font-size: 1.3rem;
 	}
 }

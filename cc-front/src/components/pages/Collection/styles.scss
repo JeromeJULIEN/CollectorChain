@@ -1,14 +1,16 @@
+@use '../../../../styles/vars';
+
 .collection{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    padding-top: vars.$dimension_header_height;
 
 
     &__title{
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        margin: .5rem 0 ;
         background-color: grey;
         height: 100px;
 
@@ -59,7 +61,7 @@
     }
 
     &__list{
-        margin: 2.5rem 0.5rem;
+        margin: 0.5rem;
         display: grid;
         flex-direction: row;
         grid-template-columns: repeat(2, 1fr);

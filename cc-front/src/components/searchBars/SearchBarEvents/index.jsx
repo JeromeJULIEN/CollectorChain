@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { AutoComplete, Nav, InputGroup } from "rsuite/";
+import { AutoComplete, Nav, InputGroup, Dropdown } from "rsuite/";
 import SearchIcon from "@rsuite/icons/Search";
 import "rsuite/dist/rsuite.min.css";
 import "./styles.scss";
@@ -34,15 +34,15 @@ const SearchBarEvents = () => {
 	console.log("VALUE >>>", inputValue);
 
 	// Récupère la ville sélectionnée pour l'afficher dans l'input
-	let dataPicker=[]
+	let dataPicker = [];
 
-	if(inputValue) {
+	if (inputValue) {
 		dataPicker = data.map((item) => ({ label: item.label, value: item.label, locationId: item.locationId }));
-	console.log(dataPicker);
+		// console.log(dataPicker[0].locationId);
 	} else {
-		dataPicker = []
+		dataPicker = [];
 	}
- 
+
 	// // Récupère la location ID de la ville sélectionnée
 	// const locationId = dataPicker.find((item) => item.locationId);
 	// setLocationIdValue(locationId);
@@ -50,17 +50,15 @@ const SearchBarEvents = () => {
 
 	return (
 		<>
-			<Nav className="events__searchbar">
-				<Nav.Menu title="Event type" placement="bottomStart">
-					<Nav.Item>Physic</Nav.Item>
-					<Nav.Item>Virtual</Nav.Item>
-				</Nav.Menu>
-			</Nav>
+			<Dropdown title="Event type" placement="bottomEnd">
+				<Dropdown.Item>Physic</Dropdown.Item>
+				<Dropdown.Item>Virtual</Dropdown.Item>
+			</Dropdown>
 			<InputGroup>
 				<AutoComplete placeholder="search location" data={dataPicker} value={inputValue} onChange={handleInputValue} />
-				<InputGroup.Button tabIndex={-1}>
+				{/* <InputGroup.Button tabIndex={-1}>
 					<SearchIcon />
-				</InputGroup.Button>
+				</InputGroup.Button> */}
 			</InputGroup>
 		</>
 	);

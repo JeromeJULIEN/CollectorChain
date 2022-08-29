@@ -5,16 +5,13 @@ import { useState } from "react";
 import { Modal } from "@nextui-org/react";
 import UpdateProfile from "../../modals/UpdateProfile";
 import { useDispatch } from "react-redux";
-import { isOpenToContact } from "../../../../store/actions/user";
+import { isOpenToContact, setMediaUrl, deleteMediaUrl } from "../../../../store/actions/user";
 import "./styles.scss";
 
 const Profil = () => {
 	const dispatch = useDispatch();
 
 	const user = useSelector((state) => state.user);
-	const changeProfilePic = () => {
-		console.log(user);
-	};
 
 	const [isUpdateProfileVisible, setIsUpdateProfileVisible] = useState(false);
 	const showUpdateProfile = () => {
@@ -29,16 +26,52 @@ const Profil = () => {
 		dispatch(isOpenToContact(event.target.checked));
 	};
 
+	//! Gestion de l'upload des images
+	// Creation d'un state local pour stocker l'image du user
+	const [profilePicture, setProfilePicture] = useState([]);
+
+	const uploadImage = (event) => {
+		setProfilePicture((profilePicture) => ({
+			...profilePicture,
+			[event.target.name]: event.target.files,
+		}));
+		// Il faut stocker un chemin URL pour afficher l'image
+		dispatch(setMediaUrl(event.target.name, event.target.files[0]));
+	};
+
+	const deleteImage = (event) => {
+		setProfilePicture((profilePicture) => ({
+			...profilePicture,
+			[event.target.id]: "",
+		}));
+		// Il faut stocker un chemin URL pour afficher l'image
+		dispatch(deleteMediaUrl(event.target.id));
+		console.log("profilePicture After >>>", event.target.id);
+	};
+
 	return (
 		<main>
 			<div className="profile">
 				<div className="profile__pic">
-					<Spacer />
-					<User src={user.media} name="" size="xxl" />
+					{user.media ? (
+						<div className="profile__pic-trash-icon" onClick={deleteImage}>
+							<ion-icon className="profile__pic-trash" name="trash-outline" id="media" size="large"></ion-icon>
+						</div>
+					) : (
+						""
+					)}
+					{!user.media ? (
+						<>
+							<label htmlFor="profilePictureInput" className="profile__pic-add-icon">
+								<ion-icon name="add-circle-outline" size="large"></ion-icon>
+							</label>
+							<input type="file" accept="image/*" name="media" onChange={uploadImage} className="profile__pic-input" id="profilePictureInput" />
+						</>
+					) : (
+						""
+					)}
+					{user.media ? <img className="profile__pic-image" src={user.media} alt="Profil picture" /> : ""}
 					<h3>Level 1</h3>
-					<button className="profile__button" onClick={changeProfilePic}>
-						Modify profile pic
-					</button>
 				</div>
 				<div className="profile__infos">
 					<Spacer y={0.5} />
