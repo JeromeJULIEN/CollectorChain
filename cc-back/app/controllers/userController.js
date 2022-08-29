@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const { User } = require('../models');
 const jwt = require('../Auth/jwt');
 const ApiError = require('../errors/apiError');
+const recoveryPasseword = require('../models/user');
+const nodemailer = require('../services/nodeMailer');
 
 require('dotenv').config();
 
@@ -91,7 +93,13 @@ module.exports = {
     },
 
     async forgetUserPage(req, res) {
-        return res.send('Route mot de passe oublié');
+        const user = req.body;
+        const temporaryPassword = await recoveryPasseword
+            .recoveryPasseword(user);
+
+        nodemailer(user);
+
+        return res.json(temporaryPassword);
     },
 
 };
