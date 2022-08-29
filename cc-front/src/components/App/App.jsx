@@ -16,7 +16,7 @@ import Error from "../pages/Error";
 import { useEffect } from "react";
 import Nft from "../pages/nft";
 import Events from "../pages/Events";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Results from "../pages/Results";
 // import Darkmode from "darkmode-js";
 import CreateNewNft1 from "../pages/CreateNewNft1";
@@ -29,8 +29,11 @@ import AboutUs from "../pages/AboutUs";
 import Term from "../pages/Term";
 import Resources from "../pages/Resources";
 import Creation from "../pages/Creation";
+import { fetchData } from "../../../store/actions/data";
 
 function App() {
+
+	const dispatch = useDispatch()
 	//DARK MODE
 	// const options = {
 	// 	// top: "0px", // default: '32px'
@@ -57,8 +60,14 @@ function App() {
 		window.scrollTo(0, 0);
 	}, [location]);
 
+	//! BDD locale pour test
 	// récupération des nfts en cours d'affichage pour les envoyer a la page nft
 	const nfts = useSelector((state) => state.nfts.list);
+
+	//! Récupération données depuis BDD distante
+	useEffect(() => {
+		dispatch(fetchData())
+	},[])
 
 	return (
 		<div className="app">
