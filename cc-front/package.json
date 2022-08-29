@@ -7,7 +7,7 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "vite preview --host 0.0.0.0",
+    "start": "vite --host 0.0.0.0",
     "startold": "serve -s build",
     "dev": "vite",
     "build": "vite build",
