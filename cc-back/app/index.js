@@ -11,6 +11,8 @@ const router = require('./router');
 
 const app = express();
 
+app.use(express.static('client/build'));
+
 app.use(cors(corsOptions));
 
 // On active le middleware pour parser le payload JSON

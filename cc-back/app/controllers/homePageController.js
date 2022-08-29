@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
     displayHomePage(_, res) {
-        return res.send('Hello Collector Chain');
+        res.sendFile(path.resolve(__dirname, 'cc-front', 'index.html'));
     },
 };
