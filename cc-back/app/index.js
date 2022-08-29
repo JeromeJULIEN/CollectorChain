@@ -5,7 +5,7 @@ const errorHandler = require('./helper/errorHandler');
 const ApiError = require('./errors/apiError');
 
 const corsOptions = {
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://collector-chain.herokuapp.com'],
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://collector-chain.herokuapp.com', 'http://localhost:5000'],
 };
 
 const router = require('./router');
