@@ -8,7 +8,8 @@
   },
   "homepage": "https://collector-chain.herokuapp.com/",
   "scripts": {
-    "start": "vite preview --host 0.0.0.0",
+    "startold": "vite preview --host 0.0.0.0",
+    "start": "serve -s build",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
