@@ -1,4 +1,5 @@
 // Création d'une instance axios
+require('dotenv').config();
 
 import axios from "axios";
 
