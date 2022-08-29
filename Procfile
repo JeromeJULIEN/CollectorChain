@@ -1,1 +1,1 @@
-web: npm start
+web: cd ./cc-back && node index.js
