@@ -2,8 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-const nftController = require('../controllers/nftController');
-const controllerHandler = require('../helper/controllerHandler');
+const nftController = require('../../controllers/nftController');
+const controllerHandler = require('../../helper/controllerHandler');
 
 router.get('/nft', controllerHandler(nftController.getNft));
 router.post('/:id/nft', controllerHandler(nftController.createNft));
