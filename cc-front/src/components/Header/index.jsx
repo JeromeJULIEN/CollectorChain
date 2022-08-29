@@ -32,22 +32,34 @@ const Header = () => {
 			<form action="" onSubmit={navToResults}>
 			<Input placeholder='Search Categories, collections or NFTs' />
 			</form>
-			<ion-icon name="close-circle" onClick={manageSearchBarVisibility}></ion-icon>
+			<div className='header__btn'>
+				<ion-icon name="close-circle" onClick={manageSearchBarVisibility}></ion-icon>
+				<button
+					className="header__scrollToTop"
+					onClick={() => {
+						window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+					}}
+				>
+					<ion-icon name="push-outline"></ion-icon>
+				</button>
+			</div>
 			</>
 			:
 			<>
 			<Link to='/'><h1>Collector Chain</h1></Link>
-			<ion-icon name="search-circle" onClick={manageSearchBarVisibility}></ion-icon>
+			<div className='header__btn'>
+				<ion-icon name="search-circle" onClick={manageSearchBarVisibility}></ion-icon>
+				<button
+					className="header__scrollToTop"
+					onClick={() => {
+						window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+					}}
+				>
+					<ion-icon name="push-outline"></ion-icon>
+				</button>
+			</div>
 			</>
 			}
-			<button
-				className="header__scrollToTop"
-				onClick={() => {
-					window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-				}}
-			>
-				<ion-icon name="push-outline"></ion-icon>
-			</button>
 			
 			{/* <form
 >>>>>>> jerome

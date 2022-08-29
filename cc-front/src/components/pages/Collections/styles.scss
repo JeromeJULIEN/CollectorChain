@@ -1,7 +1,10 @@
+@use '../../../../styles/vars';
+
 .collections{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin-top: vars.$dimension_header_height;
 
 
     &__title{

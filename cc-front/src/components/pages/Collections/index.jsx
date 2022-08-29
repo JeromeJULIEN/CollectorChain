@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetchWithInput";
 import { Loader } from "rsuite";
 
 import "./styles.scss";
+import { useSelector } from "react-redux";
 
 const Collections = () => {
 	// Infinite scroll
@@ -14,8 +15,11 @@ const Collections = () => {
 
 	const [query, setQuery] = useState("");
 	const [page, setPage] = useState(0);
-	const { loading, error, list } = useFetch(query, page, route, limit);
+	//! j'ai enlevé le 'list' du useFetch car ca buggé pour charger les images de la BDD
+	const { loading, error } = useFetch(query, page, route, limit);
 	const loader = useRef(null);
+
+	const list = useSelector(state => state.collections.list)
 
 	// // Si searchBar input
 	// const handleChange = (e) => {
@@ -59,8 +63,8 @@ const Collections = () => {
 			</div>
 			<SearchBarCollections sortPrice0to1={sortPrice0to1} sortPrice1to0={sortPrice1to0} />
 			<div className="collections__list">
-				{list.map((item, i) => (
-					<CollectionCard key={i} img={item.image_url} text={item.name} />
+				{list.map((collection) => (
+					<CollectionCard key={collection.id} media={collection.media} text={collection.name} id={collection.id}/>
 				))}
 
 				{loading && <Loader content="Loading..." />}

@@ -1,5 +1,8 @@
 
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { fetchCollectionById } from '../../../../store/actions/data'
 import CollectionCard from '../../card/CollectionCard'
 import NftCard from '../../card/NftCard'
 import SearchBarCollection from '../../searchBars/SearchBarCollection'
@@ -7,6 +10,19 @@ import './styles.scss'
 
 const Collection = () => {
   
+    const dispatch = useDispatch();
+
+    const {id} = useParams()
+    console.log('id de la collection >>>', id);
+
+    //! Gestion donnée en local
+    // const list = useSelector(state => state.nfts.list)
+    // const selectedCollection = list.filter(nft => nft.collection_id == id)
+    // console.log('filtered collection>>>', selectedCollection)
+
+    //! Gestion données depuis API
+    useEffect(dispatch(fetchCollectionById(id)),[])
+
     const list = useSelector(state => state.nfts.list)
 
     return (

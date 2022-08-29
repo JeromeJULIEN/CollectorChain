@@ -19,10 +19,10 @@ const HomePage = () => {
 					<div className="homePage__highlightedCollections">
 						<h2>hightlighted collections</h2>
 						<Slide_2x2>
-							{list.map((text) => {
+							{list.map((collection) => {
 								return (
-									<SwiperSlide key={text}>
-										<CollectionCard text={text} />
+									<SwiperSlide key={collection.id}>
+										<CollectionCard text={collection.name} media={collection.media} id={collection.id}/>
 									</SwiperSlide>
 								);
 							})}
@@ -39,10 +39,10 @@ const HomePage = () => {
 				<div className="homePage__latestCollections">
 					<h2>latest Collections</h2>
 					<Slide_2x2>
-						{list.map((text) => {
+						{list.map((collection) => {
 							return (
-								<SwiperSlide key={text}>
-									<CollectionCard text={text} />
+								<SwiperSlide key={collection.id}>
+									<CollectionCard text={collection.name} media={collection.media} id={collection.id}/>
 								</SwiperSlide>
 							);
 						})}

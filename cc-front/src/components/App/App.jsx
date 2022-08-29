@@ -29,7 +29,7 @@ import AboutUs from "../pages/AboutUs";
 import Term from "../pages/Term";
 import Resources from "../pages/Resources";
 import Creation from "../pages/Creation";
-import { fetchData } from "../../../store/actions/data";
+import { fetchCategories, fetchCollections, fetchNfts} from "../../../store/actions/data";
 
 function App() {
 
@@ -66,7 +66,9 @@ function App() {
 
 	//! Récupération données depuis BDD distante
 	useEffect(() => {
-		dispatch(fetchData())
+		// dispatch(fetchCategories())
+		dispatch(fetchCollections())
+		// dispatch(fetchNfts())
 	},[])
 
 	return (

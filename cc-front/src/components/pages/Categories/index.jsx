@@ -7,6 +7,7 @@ import "./styles.scss";
 const Categories = () => {
 	// import depuis le state de la liste en cours
 	const list = useSelector((state) => state.categories.list);
+	console.log('category list from page >>>', list)
 
 	return (
 		<div className="categories">
@@ -14,8 +15,8 @@ const Categories = () => {
 			<SearchBarCategories />
 			<div className="categories__list">
 				{/* display de la liste sous forme de carte */}
-				{list.map((text) => {
-					return <CategoryCard key={text} text={text} />;
+				{list.map((category) => {
+					return <CategoryCard key={category.id} media={category.media} name={category.name} id={category.id}/>;
 				})}
 			</div>
 		</div>
