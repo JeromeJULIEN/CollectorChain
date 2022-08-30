@@ -52,42 +52,21 @@ const Collections = () => {
 		}
 	}, [list]);
 
-	useEffect(() => {
-		setSortList(sortList);
-	}, []);
-
-	const sortPopularity0to1 = () => {
-		const sortPopularity0to1 = sortList.sort((a, b) => a.popularity - b.popularity);
-		setSortList(sortPopularity0to1);
-		console.log("Popularity_Low_To_High");
-	};
-	const sortPopularity1to0 = () => {
-		const sortPopularity1to0 = sortList.sort((a, b) => b.popularity - a.popularity);
-		setSortList(sortPopularity1to0);
-		console.log("Popularity_High_To_Low");
-	};
 	const sortAtoZ = () => {
-		const sortAZ = list.sort((a, b) => a.name.localeCompare(b.name));
-		const sortAtoZ = [...sortAZ];
+		const sortAtoZ = [...list].sort((a, b) => a.name.localeCompare(b.name));
 		setSortList(sortAtoZ);
-		console.log("Alph_A_to_Z>>>", sortAtoZ);
-	};
-	const sortZtoA = () => {
-		const sortZA = list.sort((a, b) => b.name.localeCompare(a.name));
-		const sortZtoA = [...sortZA];
-		setSortList(sortZtoA);
-		console.log("Alph_Z_To_A", sortZtoA);
 	};
 
-	// }, [sortList]);
-	console.log("List>>>", list);
-	console.log("SortList>>>", sortList);
+	const sortZtoA = () => {
+		const sortZtoA = [...list].sort((a, b) => b.name.localeCompare(a.name));
+		setSortList(sortZtoA);
+	};
 
 	return (
 		<div className="collections">
 			<div className="collections__underHeader">
 				<h1>Collections</h1>
-				<SearchBarCollections sortPopularity0to1={sortPopularity0to1} sortPopularity1to0={sortPopularity1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
+				<SearchBarCollections sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			</div>
 			<div className="collections__list">
 				{sortList.map((collection) => (
