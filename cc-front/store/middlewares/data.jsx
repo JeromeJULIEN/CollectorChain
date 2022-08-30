@@ -1,5 +1,5 @@
 import instance from "../../utils/axios";
-import { FETCH_CATEGORIES, FETCH_COLLECTIONS, FETCH_NFTS, FETCH_NFT_BY_COLLECTION_ID, FETCH_NFT_BY_ID, setCategories, setCollections, setDisplayNft, setNfts } from "../actions/data";
+import { FETCH_CATEGORIES, FETCH_COLLECTIONS, FETCH_COLLECTION_BY_ID, FETCH_NFTS, FETCH_NFT_BY_COLLECTION_ID, FETCH_NFT_BY_ID, setCategories, setCollections, setDisplayedCollection, setDisplayNft, setNfts } from "../actions/data";
 
 const dataMiddleware = (store) => (next) => async (action) => {
 	switch (action.type) {
@@ -28,6 +28,11 @@ const dataMiddleware = (store) => (next) => async (action) => {
 
 			const {data} = await instance.get(`/nft/${action.id}`);
             store.dispatch(setDisplayNft(data))
+			};
+			case FETCH_COLLECTION_BY_ID:{
+			console.log("entrée dans mdw data > fetchCollectionByid", action.id);
+			const {data} = await instance.get(`/collection/${action.id}`);
+			store.dispatch(setDisplayedCollection(data))
 			}
 
 		default:

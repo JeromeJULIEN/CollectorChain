@@ -5,9 +5,8 @@ import SearchBarCategories from "../../searchBars/SeachBarCategories";
 import "./styles.scss";
 
 const Categories = () => {
-	// import depuis le state de la liste en cours
+	
 	const list = useSelector((state) => state.categories.list);
-	console.log('category list from page >>>', list)
 
 	return (
 		<div className="categories">

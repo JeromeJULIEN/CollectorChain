@@ -11,9 +11,12 @@
     // position: relative;
 
     &__image{
-		padding: 0.2rem;
+		// padding: 0.2rem;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem ;
         object-fit: cover;
-        height: 100%;
+        aspect-ratio: 1;
+        // height: 100%;
     }
 
     &__title {

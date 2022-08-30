@@ -4,7 +4,7 @@ import { SET_CATEGORIES } from "../actions/data";
 export const initialState ={
     list:[
 		{id:1,
-		name:'Timepieces',
+		name:'Timepieces test',
 		description:'',
 		media :'https://cdn1.iconfinder.com/data/icons/fashion-40/64/wristwatch-clock-time-watches-512.png'
 		},

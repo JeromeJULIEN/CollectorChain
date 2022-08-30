@@ -66,7 +66,7 @@ function App() {
 
 	//! Récupération données depuis BDD distante
 	useEffect(() => {
-		// dispatch(fetchCategories())
+		dispatch(fetchCategories())
 		dispatch(fetchCollections())
 		// dispatch(fetchNfts())
 	},[])

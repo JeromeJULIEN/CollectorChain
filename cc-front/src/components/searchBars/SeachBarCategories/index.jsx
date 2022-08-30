@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 const SearchBarCategories = () => {
 
 	// import des données des catégories pour alimenter les inputPicker
-	const dataCategories = useSelector(state => state.categories.list).map(item => ({label: item, value: item }));
-
+	const dataCategories = useSelector(state => state.categories.list).map(item => ({label: item.name, value: item.name }));
+	console.log('dataCategories>>>', dataCategories);
 	return (
 		<div className="searchBarCategories">
 			<InputPicker data={dataCategories} placeholder='Categories'/>

@@ -4,9 +4,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin: 1rem 0;
-    min-height: 100vh;
+    gap: .5rem;
+    min-height: 85vh;
+    margin: .5rem;
+    padding-top: vars.$dimension_header_height;
 
     &__image{
         height: 225px;
@@ -45,7 +46,7 @@
 
     &__price{
         display: flex;
-        width: calc(100% - 1rem);
+        width: 100%;
         justify-content:space-between ;
         align-items: center;
         background-color: vars.$color_secondary;
@@ -74,9 +75,10 @@
     }
 
     &__infos{
-        width: calc(100% - 1rem);
+        width: 100%;
         margin: .5rem;
-        margin-bottom: 2rem;
+        padding: 0 .5rem;
+        // margin-bottom: 2rem;
         h3{
             font-size: .9rem;
         }

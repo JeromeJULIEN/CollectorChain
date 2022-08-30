@@ -57,7 +57,6 @@ const Nft = ({ nfts }) => {
 	return (
 		<div className="nft">
 			<h1 className="nft__title">
-				<Link to="/collection/id">Collection Name : </Link>
 				{displayedNft.name}
 			</h1>
 			<img src={displayedNft.media} alt="" className="nft__image" onClick={showFullScreen} />
@@ -95,20 +94,20 @@ const Nft = ({ nfts }) => {
 					<div className="nft__infos__main">
 						<div className="nft__infos__main__author">
 							<h3>Author</h3>
-							<p>Rolex King</p>
+							<p>Unknown</p>
 						</div>
 						<div className="nft__infos__main__owner">
 							<h3>Owner</h3>
-							<p>{displayedNft.user_id}</p>
+							<p>id : {displayedNft.owner_id}</p>
 						</div>
 						<div className="nft__infos__main__rarity">
 							<h3>Rarity</h3>
-							<p>1 on 2500</p>
+							<p>{displayedNft.rarity}</p>
 						</div>
 					</div>
 				</Panel>
 				<Panel header="Description" defaultExpanded>
-					<p className="nft__infos__description">{displayedNft.description}</p>
+					<p className="nft__infos__description">{displayedNft.description?displayedNft.description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque doloremque possimus quod optio corrupti, itaque hic quisquam voluptatibus minima a.'}</p>
 				</Panel>
 				<Panel header="Details">
 					<div className="nft__infos__details">
