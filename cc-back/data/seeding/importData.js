@@ -13,7 +13,8 @@ const { nftHasPropertyHasTag } = data[6];
 
 (async () => {
     const dbConfig = {
-        connectionString: process.env.DATABASE_URL,
+        connectionString: 'postgres://vrafaodtyjtusb:40d49ef7d72d878db3c655b27ff91a06b0298cea19d6ab616ebc794f4288682d@ec2-54-246-185-161.eu-west-1.compute.amazonaws.com:5432/d77fsmed54pif6',
+        // connectionString: process.env.DATABASE_URL,
     };
 
     dbConfig.ssl = { rejectUnauthorized: false };
