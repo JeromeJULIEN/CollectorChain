@@ -6,6 +6,10 @@ module.exports = {
         const nft = await Nft.findAll();
         res.json(nft);
     },
+    async getNftById(req, res) {
+        const nft = await Nft.findById(req.params.id);
+        res.json(nft);
+    },
 
     async getNftByCollectionId(req, res) {
         const collections = await Nft.getByCollectionId(req.params.id);
