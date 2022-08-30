@@ -8,7 +8,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				user: { email, password },
 			} = store.getState();
 			// On utilise une instance d'axios qui est configurer avec un baseUrl me permettant de ne plus spéficier à chaque fois http://localhost:3000
-			const { data } = await instance.post("/login", {
+			const { data } = await instance.post("/api/login", {
 				email,
 				password,
 			});
