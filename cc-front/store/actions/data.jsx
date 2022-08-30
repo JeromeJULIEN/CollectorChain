@@ -6,6 +6,18 @@ export const FETCH_COLLECTIONS = 'FETCH_COLLECTIONS';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_NFTS = 'FETCH_NFTS';
 export const FETCH_NFT_BY_COLLECTION_ID = 'FETCH_NFT_BY_COLLECTION_ID';
+export const FETCH_NFT_BY_ID = 'FETCH_NFT_BY_ID';
+export const SET_DISPLAY_NFT = 'SET_DISPLAY_NFT';
+
+export const setDisplayNft = (payload) => ({
+  type: SET_DISPLAY_NFT,
+  payload
+});
+
+export const fetchNftById = (id) => ({
+  type: FETCH_NFT_BY_ID,
+  id
+});
 
 export const fetchNftByCollectionId = (id) => ({
   type: FETCH_NFT_BY_COLLECTION_ID,

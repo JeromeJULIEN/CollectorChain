@@ -19,11 +19,10 @@ const Collection = () => {
     // const list = useSelector(state => state.nfts.list)
     // const selectedCollection = list.filter(nft => nft.collection_id == id)
     // console.log('filtered collection>>>', selectedCollection)
-
+    
     //! Gestion données depuis API
     if(id){
         useEffect(() => {dispatch(fetchNftByCollectionId(id))},[])
-
     }
 
 

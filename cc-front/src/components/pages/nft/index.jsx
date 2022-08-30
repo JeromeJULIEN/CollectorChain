@@ -5,18 +5,28 @@ import NftCard from "../../card/NftCard";
 import SlideAuto from "../../slides/SlideAuto";
 import { SwiperSlide } from "swiper/react";
 import Slide_2x2 from "../../slides/Slide_2x2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "@nextui-org/react";
 import Purchase from "../../modals/Purchase";
 import FullScreen from "../../modals/FullScreen";
 import Sell from "../../modals/Sell";
 import HeartIcon from "../../dynamicIcons/heart";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNftById } from "../../../../store/actions/data";
 
 const Nft = ({ nfts }) => {
+	const dispatch = useDispatch()
 	// on récupère l'id de la route paramétré
 	const { id } = useParams();
+
+	//! Gestion bdd locale
 	// on recherche le nft correspondant dans la liste courante du state
-	const displayedNft = nfts.find((nft) => nft.id == id);
+	// const displayedNft = nfts.find((nft) => nft.id == id);
+	//! Gestion bdd distante
+	if(id){
+        useEffect(() => {dispatch(fetchNftById(id))},[])
+    }
+	const displayedNft = useSelector(state => state.nfts.displayedNft)
 
 	// gestion modale purchase
 	// 1 - creation d'un state local
