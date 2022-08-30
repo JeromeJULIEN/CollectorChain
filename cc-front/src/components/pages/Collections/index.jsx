@@ -45,32 +45,38 @@ const Collections = () => {
 
 	// SearchBar Order by
 	const [sortList, setSortList] = useState([]);
+
 	useEffect(() => {
 		if (list) {
 			setSortList(list);
 		}
 	}, [list]);
 
+	useEffect(() => {
+		setSortList(sortList);
+	}, []);
+
 	const sortPopularity0to1 = () => {
-		const sortPopularity0to1 = sortList.sort((a, b) => a.price - b.price);
+		const sortPopularity0to1 = sortList.sort((a, b) => a.popularity - b.popularity);
 		setSortList(sortPopularity0to1);
 		console.log("Popularity_Low_To_High");
 	};
 	const sortPopularity1to0 = () => {
-		const sortPopularity1to0 = sortList.sort((a, b) => b.price - a.price);
+		const sortPopularity1to0 = sortList.sort((a, b) => b.popularity - a.popularity);
 		setSortList(sortPopularity1to0);
 		console.log("Popularity_High_To_Low");
 	};
 	const sortAtoZ = () => {
-		console.log("Alph_A_To_Z");
-		const sortAtoZ = sortList.sort((a, b) => a.name - b.name);
+		const sortAZ = list.sort((a, b) => a.name.localeCompare(b.name));
+		const sortAtoZ = [...sortAZ];
 		setSortList(sortAtoZ);
-		console.log("SortAtoZ>>>", sortAtoZ);
+		console.log("Alph_A_to_Z>>>", sortAtoZ);
 	};
 	const sortZtoA = () => {
-		const sortZtoA = sortList.sort((a, b) => b.name - a.name);
+		const sortZA = list.sort((a, b) => b.name.localeCompare(a.name));
+		const sortZtoA = [...sortZA];
 		setSortList(sortZtoA);
-		console.log("Alph_Z_To_A");
+		console.log("Alph_Z_To_A", sortZtoA);
 	};
 
 	// }, [sortList]);
@@ -79,10 +85,10 @@ const Collections = () => {
 
 	return (
 		<div className="collections">
-			<div className="collections__title">
+			<div className="collections__underHeader">
 				<h1>Collections</h1>
+				<SearchBarCollections sortPopularity0to1={sortPopularity0to1} sortPopularity1to0={sortPopularity1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			</div>
-			<SearchBarCollections sortPopularity0to1={sortPopularity0to1} sortPopularity1to0={sortPopularity1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			<div className="collections__list">
 				{sortList.map((collection) => (
 					<CollectionCard key={collection.id} media={collection.media} text={collection.name} id={collection.id} />
