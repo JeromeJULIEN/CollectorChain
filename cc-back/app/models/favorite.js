@@ -4,9 +4,10 @@ const CoreDatamapper = require('./coreDatamapper');
 module.exports = class Favorite extends CoreDatamapper {
     static tableName = 'favorite';
 
-    static async getAllFavorite(id) {
+    static async getFavoriteByUserId(id) {
         const result = await client.query(
-            `SELECT * FROM "favorite"
+            `SELECT nft.* FROM "favorite"
+            JOIN "nft" ON nft_id = nft.id
             WHERE user_id = $1
             `,
             [id],
@@ -14,13 +15,14 @@ module.exports = class Favorite extends CoreDatamapper {
         return result.rows;
     }
 
-    static async getFavoriteById(id) {
+    static async getFavoriteByUserIdLimit(id, limit) {
         const result = await client.query(
             `SELECT nft.* FROM "favorite"
             JOIN "nft" ON nft_id = nft.id
             WHERE user_id = $1
+            LIMIT $2
             `,
-            [id],
+            [id, limit],
         );
         return result.rows;
     }

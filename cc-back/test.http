@@ -161,13 +161,13 @@ GET {{ endpoint }}/categories/2/collections
 ### NFT ###
 
 ### Collections/NFT
-GET {{ endpoint }}/collections/137/nft
+GET {{ endpoint }}/collections/2/nft/?limit=1
 
 ### NFT
-GET {{ endpoint }}/nft
+GET {{ endpoint }}/nft/?limit=
 
 ### NFT User
-GET {{ endpoint }}/175/nft
+GET {{ endpoint }}/1/nft/?limit=
 
 ### Post NFT
 POST {{ endpoint }}/1/nft
@@ -205,7 +205,7 @@ GET {{ endpoint }}/showcase/1
 ### Favoris User ####
 
 ### Favoris
-GET {{ endpoint }}/favorite/1
+GET {{ endpoint }}/favorite/1/?limit=
 
 ### Favoris
 POST {{ endpoint }}/favorite/1

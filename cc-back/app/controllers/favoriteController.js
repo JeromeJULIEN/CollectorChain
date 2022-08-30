@@ -2,7 +2,12 @@ const { Favorite } = require('../models');
 
 module.exports = {
     async getAllFavorite(req, res) {
-        const favorite = await Favorite.getFavoriteById(req.params.id);
+        let favorite;
+        if (req.query.limit) {
+            favorite = await Favorite.getFavoriteByUserIdLimit(req.params.id, req.query.limit);
+        } else {
+            favorite = await Favorite.getFavoriteByUserId(req.params.id);
+        }
         res.json(favorite);
     },
 
