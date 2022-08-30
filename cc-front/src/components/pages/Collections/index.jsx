@@ -43,42 +43,33 @@ const Collections = () => {
 
 	const list = useSelector((state) => state.collections.list);
 
-	const [sortList, setSortList] = useState([...list]);
-
 	// SearchBar Order by
+	const [sortList, setSortList] = useState([]);
 
-	// useEffect(() => {
-	const sortPrice0to1 = () => {
-		const sortPrice0to1 = sortList.sort((a, b) => a.name - b.name);
-		setSortList(sortPrice0to1);
-		console.log("Low_To_High");
-	};
-	const sortPrice1to0 = () => {
-		// const sortPrice1to0 = list.sort((a, b) => b.price - a.price);
-		console.log("High_To_Low");
-	};
+	useEffect(() => {
+		if (list) {
+			setSortList(list);
+		}
+	}, [list]);
+
 	const sortAtoZ = () => {
-		const sortPrice0to1 = sortList.sort((a, b) => a.name - b.name);
-		setSortList(sortPrice0to1);
-		console.log("Low_To_High");
-	};
-	const sortZtoA = () => {
-		// const sortPrice1to0 = list.sort((a, b) => b.price - a.price);
-		console.log("High_To_Low");
+		const sortAtoZ = [...list].sort((a, b) => a.name.localeCompare(b.name));
+		setSortList(sortAtoZ);
 	};
 
-	// }, [sortList]);
-	console.log("SortList>>>", sortList);
-	console.log("List>>>", list);
+	const sortZtoA = () => {
+		const sortZtoA = [...list].sort((a, b) => b.name.localeCompare(a.name));
+		setSortList(sortZtoA);
+	};
 
 	return (
 		<div className="collections">
-			<div className="collections__title">
+			<div className="collections__underHeader">
 				<h1>Collections</h1>
+				<SearchBarCollections sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			</div>
-			<SearchBarCollections sortPrice0to1={sortPrice0to1} sortPrice1to0={sortPrice1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			<div className="collections__list">
-				{list.map((collection) => (
+				{sortList.map((collection) => (
 					<CollectionCard key={collection.id} media={collection.media} text={collection.name} id={collection.id} />
 				))}
 

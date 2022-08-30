@@ -7,19 +7,21 @@
     margin-top: vars.$dimension_header_height;
 
     h1{
-        margin: .5rem;
+        text-align: center;
     }
 
 	
-
-    &__header{
-        margin-top: .5rem;
+    &__underHeader{
+		z-index: 1;
+        padding: 0.5rem;
 		background-color: vars.$color_secondary;
 		position: fixed;
+		top:2.9rem;
     }
 
     &__list{
-        margin: .5rem;
+		z-index: 0;
+        margin: 5.4rem 0.5rem 0.5rem 0.5rem;
         display: grid;
         flex-direction: row;
         grid-template-columns: repeat(2, 1fr);
