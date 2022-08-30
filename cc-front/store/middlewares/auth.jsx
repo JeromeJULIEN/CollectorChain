@@ -30,7 +30,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				user: { nickname, email, password, passwordConfirm },
 			} = store.getState();
 			console.log(nickname, email, password, passwordConfirm);
-			const { data } = await instance.post("/sign_up", {
+			const { data } = await instance.post("/api/sign_up", {
 				nickname,
 				email,
 				password,
@@ -44,7 +44,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				user: { nickname, name, firstname, email, password },
 			} = store.getState();
 			console.log(nickname, name, firstname, email, password);
-			const { data } = await instance.patch("/profil", {
+			const { data } = await instance.patch("/api/profil", {
 				nickname,
 				name,
 				firstname,
@@ -61,7 +61,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				user: { isOpenToContact },
 			} = store.getState();
 			console.log(isOpenToContact);
-			const { data } = await instance.patch("/profil", {
+			const { data } = await instance.patch("/api/profil", {
 				isOpenToContact,
 			});
 			console.log("data from update isOpenToContact request >>>>", data);
