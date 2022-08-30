@@ -88,7 +88,10 @@ module.exports = class User extends CoreDatamapper {
         SET "password"=$2
         WHERE email=$1;
         `,
-            [user.password],
+            [
+                user.email,
+                user.password,
+            ],
         );
         return result.rows;
     }

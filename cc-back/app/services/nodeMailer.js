@@ -1,33 +1,30 @@
 const nodemailer = require('nodemailer');
 
-async function forgottenPassword(userEmail, password) {
+async function forgottenPassword(userEmail) {
     const transporter = nodemailer.createTransport({
+        service: 'gmail',
         auth: {
-            user: 'test',
-            password: 'password',
+            type: 'OAuth2',
+            user: process.env.MAIL,
+            pass: process.env.PASSWORD,
+            clientId: process.env.OAUTH_CLIENTID,
+            clientSecret: process.env.OAUTH_CLIENT_SECRET,
+            refreshToken: process.env.OAUTH_REFRESH_TOKEN,
         },
     });
 
-    const mailDescription = {
-        from: 'mailAdmin',
+    const mailOptions = {
+        from: 'test@gmail.com',
         to: userEmail,
-        subject: 'Réinitialiser son mot de passe',
-        text: `
-                Bonjour !
-
-                Suite à votre demande, vous trouverez ci-joint le mot de passe
-                provisoire : ${password}, veuillez le changer lors de votre connexion dans votre profil.
-                Cordialement.
-
-                L'équipe Collector Chain
-      `,
+        subject: 'Récupération mot de passe provisoire',
+        text: 'That was easy!',
     };
 
-    transporter.verify(mailDescription, (err, success) => {
+    transporter.sendMail(mailOptions, (err, success) => {
         if (err) {
             console.log(err);
         } else {
-            console.log('Email sent successfully !');
+            console.log(`Email sent: ${success.response}`);
         }
     });
 }
