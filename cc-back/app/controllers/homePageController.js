@@ -1,5 +1,6 @@
 module.exports = {
     displayHomePage(_, res) {
-        return res.send('Hello Collector Chain');
+        // res.sendFile('../cc-front/index.html', {});
+        res.sendFile('../cc-front/index.html', { root: __dirname });
     },
 };

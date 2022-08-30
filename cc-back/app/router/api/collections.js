@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const collectionsController = require('../controllers/collectionsController');
+const collectionsController = require('../../controllers/collectionsController');
 
-const controllerHandler = require('../helper/controllerHandler');
+const controllerHandler = require('../../helper/controllerHandler');
 
 router.get('/collections', controllerHandler(collectionsController.getAllCollections));
 router.get('/collection/:id', controllerHandler(collectionsController.getCollectionById));

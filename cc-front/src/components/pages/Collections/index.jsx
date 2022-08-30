@@ -57,22 +57,9 @@ const Collections = () => {
 		// const sortPrice1to0 = list.sort((a, b) => b.price - a.price);
 		console.log("High_To_Low");
 	};
-<<<<<<< HEAD
-	const sortAtoZ = (event) => {
-		event.preventDefault();
-		const sortNameAtoZ = list.sort((a, b) => a.name - b.name);
-		console.log("A_To_Z");
-	};
-	const sortZtoA = (event) => {
-		event.preventDefault();
-		// const sortNameZtoA = list.sort((a, b) => b.name - a.name);
-		console.log("Z_To_A");
-	};
-=======
 	// }, [sortList]);
 	console.log("SortList>>>", sortList);
 	console.log("List>>>", list);
->>>>>>> olivier
 
 	return (
 		<div className="collections">
@@ -81,11 +68,7 @@ const Collections = () => {
 			</div>
 			<SearchBarCollections sortPrice0to1={sortPrice0to1} sortPrice1to0={sortPrice1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			<div className="collections__list">
-<<<<<<< HEAD
-				{list.map((collection) => (
-=======
 				{sortList.map((collection) => (
->>>>>>> olivier
 					<CollectionCard key={collection.id} media={collection.media} text={collection.name} id={collection.id} />
 				))}
 
