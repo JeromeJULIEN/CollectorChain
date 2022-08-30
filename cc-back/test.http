@@ -100,7 +100,7 @@ Content-Type: application/json
 ### Collections ###
 
 ### Page all Collections
-GET {{ endpoint }}/collections
+GET {{ endpoint }}/collections/?limit=2
 
 ### Page Collection
 GET {{ endpoint }}/collection/1
@@ -132,7 +132,7 @@ Content-Type: application/json
 ### Categories ###
 
 ### Categories
-GET {{ endpoint }}/categories
+GET {{ endpoint }}/categories/?limit=2
 
 ### post categories
 POST {{endpoint}}/categories

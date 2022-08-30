@@ -3,7 +3,12 @@ const ApiError = require('../errors/apiError');
 
 module.exports = {
     async getAllCollections(req, res) {
-        const collections = await Collection.findAll();
+        let collections;
+        if (req.query.limit) {
+            collections = await Collection.findAllLimit(req.query.limit);
+        } else {
+            collections = await Collection.findAll();
+        }
         res.json(collections);
     },
 

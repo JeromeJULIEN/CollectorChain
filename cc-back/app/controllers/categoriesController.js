@@ -3,7 +3,12 @@ const ApiError = require('../errors/apiError');
 
 module.exports = {
     async getAllCategories(req, res) {
-        const categories = await Category.findAll();
+        let categories;
+        if (req.query.limit) {
+            categories = await Category.findAllLimit(req.query.limit);
+        } else {
+            categories = await Category.findAll();
+        }
         res.json(categories);
     },
 
