@@ -20,15 +20,26 @@
 	& a {
 		color:black;
 	}
-	.rs-nav-item{
-		// border-radius: .5rem;
-		// padding: .7rem;
-	}
 	
 	&-create{
 		background-color: vars.$color_callToAction;
 		padding: .5rem 2rem; 
 		border-radius: 2rem;
 		font-size: 1.3rem;
+	}
+}
+
+.button {
+	&__signin, &__signup {
+		background-color: vars.$color_callToAction;
+		color:black;
+		padding: 1rem 1.5rem;
+		border-radius: 0.75rem;
+	}
+	&__close {
+		background-color: vars.$color_secondary;
+		color:black;
+		padding: 1rem 1.5rem;
+		border-radius: 0.75rem;	
 	}
 }

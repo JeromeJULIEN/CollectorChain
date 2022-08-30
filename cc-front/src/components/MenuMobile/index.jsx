@@ -67,12 +67,12 @@ const MenuMobile = () => {
 						Create
 					</Link>
 				</Nav.Item>
-				<Nav.Menu 
-					title="User" 
-					className="menu-user" 
-					// icon={<UserInfoIcon />} 
+				<Nav.Menu
+					title="User"
+					className="menu-user"
+					// icon={<UserInfoIcon />}
 					placement="topEnd"
-					>
+				>
 					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 					<Nav.Item>
@@ -125,12 +125,12 @@ const MenuMobile = () => {
 					</Row>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button auto flat color="error" onClick={loginCloseHandler}>
+					<button className="button__close" auto flat color="error" onClick={loginCloseHandler}>
 						Close
-					</Button>
-					<Button auto onClick={loginHandleSubmit}>
+					</button>
+					<button className="button__signin" auto onClick={loginHandleSubmit}>
 						Sign in
-					</Button>
+					</button>
 				</Modal.Footer>
 			</Modal>
 			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler}>
@@ -182,12 +182,12 @@ const MenuMobile = () => {
 					/>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button auto flat color="error" onClick={signupCloseHandler}>
+					<button className="button__close" auto flat color="error" onClick={signupCloseHandler}>
 						Close
-					</Button>
-					<Button auto onClick={signupHandleSubmit}>
+					</button>
+					<button className="button__signup" auto onClick={signupHandleSubmit}>
 						Sign up
-					</Button>
+					</button>
 				</Modal.Footer>
 			</Modal>
 		</div>
