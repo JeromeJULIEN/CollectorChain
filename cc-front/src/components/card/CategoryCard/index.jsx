@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import "./styles.scss";
 
-const CategoryCard = ({ text }) => {
+const CategoryCard = ({ media, name, id }) => {
 	return (
-		<Link to="/category/collections" className="categoryCard">
-			<div>
-				<img src={text}></img>
-			</div>
+		<Link to={`/category/collections/${id}`} className="categoryCard">
+				<img src={media} className="categoryCard__image"></img>
+				<div className="categoryCard__title">{name}</div>
+			
 		</Link>
 	);
 };

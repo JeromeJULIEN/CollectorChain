@@ -1,4 +1,5 @@
 import { STORE_TEMP_PICTURE } from "../actions/createNft";
+import { SET_NFTS } from "../actions/data";
 
 export const initialState = {
 	list: [
@@ -99,6 +100,12 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
 	switch (action.type) {
+		case SET_NFTS:{
+			return{
+				...state,
+				list:action.payload
+			}
+		}
 
 		default:
 			return state;

@@ -12,7 +12,8 @@ const tags = data[5].tag;
 const { nftHasPropertyHasTag } = data[6];
 
 (async () => {
-    const client = new Client(process.env.DATABASE_URL);
+    const client = new Client('postgres://jerome:jerome@localhost:5433/collectorchain');
+    // const client = new Client(process.env.DATABASE_URL);
     await client.connect();
 
     await client.query('TRUNCATE TABLE "favorite", "nft_has_property_has_tag", "property", "tag", "nft", "user", "collection", "category" RESTART IDENTITY;');

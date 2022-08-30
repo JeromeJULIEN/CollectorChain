@@ -13,6 +13,12 @@
     height: vars.$dimension_header_height;
     padding: .4rem;
 
+    &__btn{
+        display: flex;
+        width: 10rem;
+        justify-content: flex-end;
+    }
+
     &__search {
 		margin-right: 2rem;
         background-color: transparent;
@@ -20,9 +26,7 @@
     }
 
 	&__scrollToTop {
-		position: absolute;
 		background-color: transparent;
-		right: 0.5rem;
 	}
 
     &__searchBar{
