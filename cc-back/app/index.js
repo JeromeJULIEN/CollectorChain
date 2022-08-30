@@ -12,7 +12,7 @@ const router = require('./router');
 
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 // On active le middleware pour parser le payload JSON
 app.use(express.json());

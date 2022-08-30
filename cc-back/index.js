@@ -11,5 +11,5 @@ const server = createServer(app);
  * @param {string} (message - set a text to the main route)
  */
 server.listen(PORT, () => {
-    // console.log(`http://localhost:${PORT}`);
+    console.log(`http://localhost:${PORT}`);
 });
