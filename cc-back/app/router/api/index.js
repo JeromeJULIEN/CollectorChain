@@ -12,7 +12,7 @@ const forgetUserRouter = require('./forgetUser');
 const eventsRouter = require('./events');
 const collectionsRouter = require('./collections');
 const categoriesRouter = require('./categories');
-const showcaseUserRouter = require('./showcaseUser');
+// const showcaseUserRouter = require('./showcaseUser');
 const nftRouter = require('./nft');
 const favoriteRouter = require('./favorite');
 
@@ -24,7 +24,7 @@ router.use(forgetUserRouter);
 router.use(eventsRouter);
 router.use(collectionsRouter);
 router.use(categoriesRouter);
-router.use(showcaseUserRouter);
+// router.use(showcaseUserRouter);
 router.use(nftRouter);
 router.use(favoriteRouter);
 

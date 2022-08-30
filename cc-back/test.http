@@ -35,13 +35,13 @@ GET {{ endpoint }}/profil/10
 DELETE {{ endpoint }}/profil/4/delete
 
 ### Update profil
-PATCH {{ endpoint }}/profil/10/update
+PATCH {{ endpoint }}/profil/27/update
 Content-Type: application/json
 
 {
-                "name": "test20",
-                "password": "1234",
-                "passwordConfirm": "1234"
+                "password": "user3",
+                "newPassword": "test1",
+                "newPasswordConfirm": "test1"
 }
 
 ### Forget User

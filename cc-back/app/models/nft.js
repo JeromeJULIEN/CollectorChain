@@ -14,12 +14,34 @@ module.exports = class Nft extends CoreDatamapper {
         return result.rows;
     }
 
+    static async getByCollectionIdLimit(id, limit) {
+        const result = await client.query(
+            `SELECT * FROM "nft" 
+            WHERE "collection_id" = $1
+            LIMIT $2
+            `,
+            [id, limit],
+        );
+        return result.rows;
+    }
+
     static async getByNftId(id) {
         const result = await client.query(
             `SELECT * FROM "nft"
             WHERE "creator_id" = $1
             `,
             [id],
+        );
+        return result.rows;
+    }
+
+    static async getByNftIdLimit(id, limit) {
+        const result = await client.query(
+            `SELECT * FROM "nft"
+            WHERE "creator_id" = $1
+            LIMIT $2
+            `,
+            [id, limit],
         );
         return result.rows;
     }

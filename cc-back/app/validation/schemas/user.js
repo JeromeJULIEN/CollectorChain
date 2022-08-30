@@ -44,7 +44,9 @@ const updateProfil = Joi.object({
 
     password: Joi.string(),
 
-    passwordConfirm: Joi.ref('password'),
+    newPassword: Joi.string(),
+
+    newPasswordConfirm: Joi.ref('newPassword'),
 
     wallet: Joi.number()
         .positive(),

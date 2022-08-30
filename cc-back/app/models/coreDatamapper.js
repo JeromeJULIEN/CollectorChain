@@ -12,6 +12,17 @@ module.exports = class CoreDatamapper {
         return result.rows;
     }
 
+    static async findAllLimit(limit) {
+        const result = await client.query(
+            `
+            SELECT * FROM "${this.tableName}" 
+            LIMIT $1
+        `,
+            [limit],
+        );
+        return result.rows;
+    }
+
     static async findById(id) {
         const result = await client.query(
             `

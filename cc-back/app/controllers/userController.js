@@ -23,15 +23,13 @@ module.exports = {
             password: req.body.password,
         };
         const user = await User.findUserByEmail(newUser.email);
-        if (user) throw new ApiError('Cet email existe déjà !', { statusCode: 400 });
-        // teste si les mots de passes sont correct
-        if (newUser.password !== req.body.passwordConfirm) throw new ApiError('Mot de passe incorrect', { statusCode: 400 });
+        if (user) throw new ApiError('email already use!', { statusCode: 400 });
         /* Password encryption */
         const hashedPassword = await bcrypt.hash(newUser.password, 12);
         newUser.password = hashedPassword;
         const addUser = await User.create(newUser);
         // on teste si le nouvel utilisateur existe déjà
-        if (newUser === addUser) throw new ApiError('Cet utilisateur existe déjà!', { statusCode: 400 });
+        if (newUser === addUser) throw new ApiError('user already exists!', { statusCode: 400 });
 
         return res.json(addUser);
     },
@@ -46,11 +44,11 @@ module.exports = {
         const { email, password } = req.body;
         const user = await User.findUserByEmail(email);
 
-        if (!user) return res.json({ error: 'L\'utilisateur n\'existe pas' });
+        if (!user) return res.json({ error: 'user not exist' });
 
         const userPassword = await bcrypt.compare(password, user.password);
 
-        if (!userPassword) return res.json({ error: 'Mot de passe incorrect' });
+        if (!userPassword) return res.json({ error: 'bad password' });
 
         delete user.password;
         delete user.created_at;
@@ -64,7 +62,7 @@ module.exports = {
 
     async getUser(req, res) {
         const user = await User.findById(req.params.id);
-        if (!user) throw new ApiError("l'utilisateur n'existe pas", { statusCode: 404 });
+        if (!user) throw new ApiError('user not exist', { statusCode: 404 });
         return res.json(user);
     },
 
@@ -77,17 +75,17 @@ module.exports = {
     // pour modifier ses infos perso sur la page profil
     async updateUserProfile(req, res) {
         const user = await User.findById(req.params.id);
-        if (!user) throw new ApiError("l'utilisateur n'existe pas", { statusCode: 404 });
+        if (!user) throw new ApiError('user not exist', { statusCode: 404 });
         const newUser = req.body;
 
-        if (newUser.password) {
-            if (newUser.password !== req.body.passwordConfirm) return res.json({ err: 'Veuillez confirmer le mot de passe' });
-            const hashedPassword = await bcrypt.hash(newUser.password, 12);
-            newUser.password = hashedPassword;
+        if (newUser.newPassword) {
+            const hashedPassword = await bcrypt.hash(newUser.newPassword, 12);
+            newUser.newPassword = hashedPassword;
         }
         Object.entries(user).forEach(([key]) => {
             if (!newUser[key]) newUser[key] = user[key];
         });
+        if (!await bcrypt.compare(newUser.password, user.password)) throw new ApiError('bad password', { statusCode: 401 });
         const updateProfil = await User.update(newUser);
         return res.json(updateProfil);
     },

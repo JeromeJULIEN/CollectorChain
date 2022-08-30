@@ -3,7 +3,12 @@ const ApiError = require('../errors/apiError');
 
 module.exports = {
     async getNft(req, res) {
-        const nft = await Nft.findAll();
+        let nft;
+        if (req.query.limit) {
+            nft = await Nft.findAllLimit(req.query.limit);
+        } else {
+            nft = await Nft.findAll();
+        }
         res.json(nft);
     },
     async getNftById(req, res) {
@@ -12,12 +17,22 @@ module.exports = {
     },
 
     async getNftByCollectionId(req, res) {
-        const collections = await Nft.getByCollectionId(req.params.id);
+        let collections;
+        if (req.query.limit) {
+            collections = await Nft.getByCollectionIdLimit(req.params.id, req.query.limit);
+        } else {
+            collections = await Nft.getByCollectionId(req.params.id);
+        }
         return res.json(collections);
     },
 
     async getNftByUserId(req, res) {
-        const nft = await Nft.getByNftId(req.params.id);
+        let nft;
+        if (req.query.limit) {
+            nft = await Nft.getByNftIdLimit(req.params.id, req.params.id);
+        } else {
+            nft = await Nft.getByNftId(req.params.id);
+        }
         return res.json(nft);
     },
 

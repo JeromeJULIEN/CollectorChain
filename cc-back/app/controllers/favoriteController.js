@@ -8,9 +8,6 @@ module.exports = {
 
     async addFavorite(req, res) {
         const nftId = req.body.nft_id;
-        // nftId.forEach(async (nft) => {
-        //     await Favorite.addFavoriteNft(req.params.id, nft);
-        // });
         await Favorite.addFavoriteNft(req.params.id, nftId);
 
         res.json('Favoris ajouté');
