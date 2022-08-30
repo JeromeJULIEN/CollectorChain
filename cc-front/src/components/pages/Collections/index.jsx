@@ -43,42 +43,48 @@ const Collections = () => {
 
 	const list = useSelector((state) => state.collections.list);
 
-	const [sortList, setSortList] = useState([...list]);
-
 	// SearchBar Order by
+	const [sortList, setSortList] = useState([]);
+	useEffect(() => {
+		if (list) {
+			setSortList(list);
+		}
+	}, [list]);
 
-	// useEffect(() => {
-	const sortPrice0to1 = () => {
-		const sortPrice0to1 = sortList.sort((a, b) => a.name - b.name);
-		setSortList(sortPrice0to1);
-		console.log("Low_To_High");
+	const sortPopularity0to1 = () => {
+		const sortPopularity0to1 = sortList.sort((a, b) => a.price - b.price);
+		setSortList(sortPopularity0to1);
+		console.log("Popularity_Low_To_High");
 	};
-	const sortPrice1to0 = () => {
-		// const sortPrice1to0 = list.sort((a, b) => b.price - a.price);
-		console.log("High_To_Low");
+	const sortPopularity1to0 = () => {
+		const sortPopularity1to0 = sortList.sort((a, b) => b.price - a.price);
+		setSortList(sortPopularity1to0);
+		console.log("Popularity_High_To_Low");
 	};
 	const sortAtoZ = () => {
-		const sortPrice0to1 = sortList.sort((a, b) => a.name - b.name);
-		setSortList(sortPrice0to1);
-		console.log("Low_To_High");
+		console.log("Alph_A_To_Z");
+		const sortAtoZ = sortList.sort((a, b) => a.name - b.name);
+		setSortList(sortAtoZ);
+		console.log("SortAtoZ>>>", sortAtoZ);
 	};
 	const sortZtoA = () => {
-		// const sortPrice1to0 = list.sort((a, b) => b.price - a.price);
-		console.log("High_To_Low");
+		const sortZtoA = sortList.sort((a, b) => b.name - a.name);
+		setSortList(sortZtoA);
+		console.log("Alph_Z_To_A");
 	};
 
 	// }, [sortList]);
-	console.log("SortList>>>", sortList);
 	console.log("List>>>", list);
+	console.log("SortList>>>", sortList);
 
 	return (
 		<div className="collections">
 			<div className="collections__title">
 				<h1>Collections</h1>
 			</div>
-			<SearchBarCollections sortPrice0to1={sortPrice0to1} sortPrice1to0={sortPrice1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
+			<SearchBarCollections sortPopularity0to1={sortPopularity0to1} sortPopularity1to0={sortPopularity1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			<div className="collections__list">
-				{list.map((collection) => (
+				{sortList.map((collection) => (
 					<CollectionCard key={collection.id} media={collection.media} text={collection.name} id={collection.id} />
 				))}
 
