@@ -1,4 +1,4 @@
-@endpoint = http://localhost:{{$dotenv PORT}}
+@endpoint = http://localhost:{{$dotenv PORT}}/api
 
 ### Route Principale ###
 
@@ -212,7 +212,7 @@ POST {{ endpoint }}/favorite/1
 Content-Type: application/json
 
 {
-    "nft_id": [6]
+    "nft_id": [4,2]
 }
 
 ### Favoris
