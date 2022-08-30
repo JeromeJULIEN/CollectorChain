@@ -49,7 +49,7 @@ POST {{ endpoint }}/forget_user
 Content-Type: application/json
 
 {
-    "email": ""
+    "email": "user@user.com"
 }
 
 ### TOKEN (JWT) ###

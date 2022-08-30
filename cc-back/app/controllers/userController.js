@@ -92,12 +92,12 @@ module.exports = {
         return res.json(updateProfil);
     },
 
-    async forgetUserPage(req, res) {
+    async resetMail(req, res) {
         const userEmail = req.body.email;
-        const temporaryPassword = await User.recoveryPassword(randomPassword, userEmail);
+        const setTemporaryPassword = await User.recoveryPassword(randomPassword, userEmail);
         nodemailer(randomPassword, userEmail);
 
-        return res.json(temporaryPassword);
+        return res.json(setTemporaryPassword);
     },
 
 };
