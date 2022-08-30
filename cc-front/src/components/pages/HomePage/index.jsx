@@ -1,13 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./styles.scss";
 import SlideAuto from "../../slides/SlideAuto";
 import CollectionCard from "../../card/CollectionCard";
 import Slide_2x2 from "../../slides/Slide_2x2";
 import { Link } from "react-router-dom";
+import { fetchCollections } from "../../../../store/actions/data";
+import { useEffect } from "react";
 
 const HomePage = () => {
+
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(fetchCollections)
+	},[])
 	// import depuis le state de la liste en cours
 	const list = useSelector((state) => state.collections.list);
 

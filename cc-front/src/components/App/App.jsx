@@ -62,7 +62,7 @@ function App() {
 
 	//! BDD locale pour test
 	// récupération des nfts en cours d'affichage pour les envoyer a la page nft
-	const nfts = useSelector((state) => state.nfts.list);
+	// const nfts = useSelector((state) => state.nfts.list);
 
 	//! Récupération données depuis BDD distante
 	useEffect(() => {
@@ -82,7 +82,9 @@ function App() {
 					<Route path="/category/collections" element={<CollectionsByCategory />} />
 					<Route path="/collections" element={<Collections />} />
 					<Route path="/collection/:id" element={<Collection />} />
-					<Route path="/nft/:id" element={<Nft nfts={nfts} />} />
+					<Route path="/nft/:id" element={<Nft
+					//  nfts={nfts} 
+					 />} />
 					<Route path="/events" element={<Events />} />
 					<Route path="/results" element={<Results />} />
 					<Route path="/profil" element={<Profil />} />
