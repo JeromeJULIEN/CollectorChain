@@ -1,6 +1,16 @@
 const { Nft } = require('../models');
 const ApiError = require('../errors/apiError');
 
+// SELECT nft.*,
+// array_agg(property.name) as property,
+// array_agg(tag.name) as tag
+// FROM "nft"
+// FULL JOIN "nft_has_property_has_tag" ON "nft_has_property_has_tag"."nft_id" = "nft"."id"
+// FULL JOIN "property" ON "property"."id" = "nft_has_property_has_tag"."property_id"
+// FULL JOIN "tag" ON "tag"."id" = "nft_has_property_has_tag"."tag_id"
+// WHERE "nft".id IS NOT NULL
+// GROUP BY nft.id
+
 module.exports = {
     async getNft(req, res) {
         let nft;
