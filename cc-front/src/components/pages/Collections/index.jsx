@@ -57,6 +57,16 @@ const Collections = () => {
 		// const sortPrice1to0 = list.sort((a, b) => b.price - a.price);
 		console.log("High_To_Low");
 	};
+	const sortAtoZ = () => {
+		const sortPrice0to1 = sortList.sort((a, b) => a.name - b.name);
+		setSortList(sortPrice0to1);
+		console.log("Low_To_High");
+	};
+	const sortZtoA = () => {
+		// const sortPrice1to0 = list.sort((a, b) => b.price - a.price);
+		console.log("High_To_Low");
+	};
+
 	// }, [sortList]);
 	console.log("SortList>>>", sortList);
 	console.log("List>>>", list);
@@ -68,7 +78,7 @@ const Collections = () => {
 			</div>
 			<SearchBarCollections sortPrice0to1={sortPrice0to1} sortPrice1to0={sortPrice1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			<div className="collections__list">
-				{sortList.map((collection) => (
+				{list.map((collection) => (
 					<CollectionCard key={collection.id} media={collection.media} text={collection.name} id={collection.id} />
 				))}
 
