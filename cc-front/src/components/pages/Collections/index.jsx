@@ -75,7 +75,7 @@ const Collections = () => {
 	return (
 		<div className="collections">
 			<div className="collections__underHeader">
-				<h1>Collections</h1>
+				<h1>All collections</h1>
 				<SearchBarCollections sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			</div>
 			<div className="collections__list">

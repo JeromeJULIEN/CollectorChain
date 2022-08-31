@@ -25,7 +25,7 @@ const HomePage = () => {
 				<div className="homePage__ressources">
 					<SlideAuto />
 					<div className="homePage__highlightedCollections">
-						<h2>hightlighted collections</h2>
+						<h2>Hightlighted collections</h2>
 						<Slide_2x2>
 							{list.map((collection) => {
 								return (
@@ -45,7 +45,7 @@ const HomePage = () => {
 					</Link>
 				</div>
 				<div className="homePage__latestCollections">
-					<h2>latest Collections</h2>
+					<h2>Latest Collections</h2>
 					<Slide_2x2>
 						{list.map((collection) => {
 							return (

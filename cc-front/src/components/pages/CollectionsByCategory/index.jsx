@@ -17,6 +17,10 @@ const CollectionsByCategory = () => {
 	
 	const list = useSelector((state) => state.collections.list);
 
+	const categoryList = useSelector(state => state.categories.list)
+	const displayedCategory = categoryList.find(category => category.id ==id)
+	console.log('displayedCat >>>', displayedCategory);
+
 	// SearchBar Order by
 	const [sortList, setSortList] = useState([]);
 
@@ -43,7 +47,7 @@ const CollectionsByCategory = () => {
 	return (
 		<div className="collections">
 			<div className="collections__underHeader">
-				<h1>Collections</h1>
+				<h1>{displayedCategory.name} collections</h1>
 				<SearchBarCollectionsByCategory sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
 			</div>
 			<div className="collections__list">

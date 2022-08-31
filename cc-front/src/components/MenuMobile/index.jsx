@@ -14,7 +14,7 @@ import "./styles.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { changeUserField, logIn, signUp } from "../../../store/actions/user";
+import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
 
 const MenuMobile = () => {
 	const dispatch = useDispatch();
@@ -60,6 +60,10 @@ const MenuMobile = () => {
 		navigate("/");
 	};
 
+	const handleLogout = () => {
+		dispatch(logout())
+	}
+
 	return (
 		<div className="menu-mobile">
 			<Nav className="menu-mobile-nav">
@@ -88,7 +92,7 @@ const MenuMobile = () => {
 					<Nav.Item className="menu-user-item">
 						<Link to="/profil">My profil</Link>
 					</Nav.Item>
-					<Nav.Item className="menu-user-item">Logout</Nav.Item>
+					<Nav.Item className="menu-user-item" onClick={handleLogout}>Logout</Nav.Item>
 					</>
 					:
 					''

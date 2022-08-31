@@ -30,6 +30,7 @@ const Nft = ({ nfts, url }) => {
 		}, []);
 	}
 	const displayedNft = useSelector((state) => state.nfts.displayedNft);
+	console.log('displayed nft', displayedNft);
 	const isLogged = useSelector(state => state.user.isLogged)
 
 	// gestion modale purchase
@@ -80,6 +81,8 @@ const Nft = ({ nfts, url }) => {
 							<p>Current price</p>
 							<h3>{displayedNft.price}</h3>
 						</div>
+						{isLogged?
+						<>
 						<div className="nft__price__buy">
 							<button type="button" onClick={showPurchase}>
 								Buy
@@ -88,6 +91,12 @@ const Nft = ({ nfts, url }) => {
 								Sell
 							</button>
 						</div>
+						</>
+						:
+						<div className="nft__price__buy">
+							<p>Login to buy this NFT</p>
+						</div>
+						}
 					</>
 				) : (
 					<>

@@ -197,6 +197,15 @@ const reducer = (state = initialState, action = {}) => {
 		case LOGOUT:
 			return {
 				...state,
+				id:'',
+				name:'',
+				firstname:'',
+				email:'',
+				nickname:'',
+				password:'',
+				passwordConfirm:'',
+				wallet:'',
+				media:'',
 				logged: false,
 				pseudo: null,
 				token: null,

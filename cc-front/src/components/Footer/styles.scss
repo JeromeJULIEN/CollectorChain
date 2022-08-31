@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     background-color: vars.$color_primary;
-    margin: 2rem 0 0 0; 
+    margin: 2rem 0 .3rem 0; 
     //config pour passer au dessus du menu mobile
     position: relative;
     bottom: calc(vars.$dimension_menuMobile_height);
@@ -31,6 +31,7 @@
 
     &__copyright{
         margin-top: .2rem;
+        margin-bottom: .3rem;
         font-size: .8rem;
     }
 
