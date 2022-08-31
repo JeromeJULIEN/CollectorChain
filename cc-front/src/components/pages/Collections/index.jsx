@@ -53,7 +53,7 @@ const Collections = () => {
 
 	useEffect(() => {
 		console.log(">>>>> useEffect Collections <<<<<<<<");
-		dispatch(fetchCollections(14));
+		dispatch(fetchCollections(''));
 	}, [location]);
 
 	useEffect(() => {

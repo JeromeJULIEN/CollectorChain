@@ -1,30 +1,62 @@
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useParams } from 'react-router-dom'
+import { fetchCollectionsByCategory } from '../../../../store/actions/data'
 import CollectionCard from '../../card/CollectionCard'
 import SearchBarCollectionsByCategory from '../../searchBars/SearchBarCollectionsByCategory'
 
 import './styles.scss'
 
 const CollectionsByCategory = () => {
+
+  const {id} = useParams()
   
-    const list = useSelector(state => state.collections.list)
+  const dispatch = useDispatch();
 
-    return (
-    <div className='collectionsByCategory'>
-        <div className="collectionsByCategory__title">
-             <h1 >Category name</h1>
-        </div>
-        <SearchBarCollectionsByCategory/>
-        <div className="collectionsByCategory__list">
-        {/* display de la liste sous forme de carte */}
-        {list.map((text) => {
-          return (
-            <CollectionCard key={text} text={text}/>
-          )
-        })}
+	const location = useLocation();
+	
+	const list = useSelector((state) => state.collections.list);
 
-      </div>
-    </div>
-  )
+	// SearchBar Order by
+	const [sortList, setSortList] = useState([]);
+
+	useEffect(() => {
+		dispatch(fetchCollectionsByCategory(id));
+	}, [location]);
+
+	useEffect(() => {
+		if (list) {
+			setSortList(list);
+		}
+	}, [list]);
+
+	const sortAtoZ = () => {
+		const sortAtoZ = [...list].sort((a, b) => a.name.localeCompare(b.name));
+		setSortList(sortAtoZ);
+	};
+
+	const sortZtoA = () => {
+		const sortZtoA = [...list].sort((a, b) => b.name.localeCompare(a.name));
+		setSortList(sortZtoA);
+	};
+
+	return (
+		<div className="collections">
+			<div className="collections__underHeader">
+				<h1>Collections</h1>
+				<SearchBarCollectionsByCategory sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
+			</div>
+			<div className="collections__list">
+				{sortList.map((collection) => (
+					<CollectionCard key={collection.id} media={collection.media} text={collection.name} id={collection.id} />
+				))}
+
+				{/* {loading && <Loader content="Loading..." />}
+				{error && <p>Error!</p>}
+				<div ref={loader} /> */}
+			</div>
+		</div>
+	);
 }
 
 export default CollectionsByCategory

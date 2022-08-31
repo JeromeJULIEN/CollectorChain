@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const CategoryCard = ({ media, name, id }) => {
 	return (
-		<Link to={`/category/collections/${id}`} className="categoryCard">
+		<Link to={`/category/${id}/collections`} className="categoryCard">
 				<img src={media} className="categoryCard__image"></img>
 				<div className="categoryCard__title">{name}</div>
 			

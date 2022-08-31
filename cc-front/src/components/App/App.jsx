@@ -84,7 +84,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/categories" element={<Categories />} />
-					<Route path="/category/collections" element={<CollectionsByCategory />} />
+					<Route path="/category/:id/collections" element={<CollectionsByCategory />} />
 					<Route path="/collections" element={<Collections />} />
 					<Route path="/collection/:id" element={<Collection url={locationUrl} />} />
 					<Route

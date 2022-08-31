@@ -9,6 +9,12 @@ export const FETCH_NFT_BY_ID = "FETCH_NFT_BY_ID";
 export const SET_DISPLAY_NFT = "SET_DISPLAY_NFT";
 export const FETCH_COLLECTION_BY_ID = "FETCH_COLLECTION_BY_ID";
 export const SET_DISPLAYED_COLLECTION = "SET_DISPLAYED_COLLECTION";
+export const FETCH_COLLECTIONS_BY_CATEGORY = 'FETCH_COLLECTIONS_BY_CATEGORY';
+
+export const fetchCollectionsByCategory = (id) => ({
+  type: FETCH_COLLECTIONS_BY_CATEGORY,
+  id
+});
 
 export const setDisplayedCollection = (payload) => ({
 	type: SET_DISPLAYED_COLLECTION,
