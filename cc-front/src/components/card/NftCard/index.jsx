@@ -1,8 +1,11 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import HeartIcon from "../../dynamicIcons/heart";
 import "./styles.scss";
 
 const NftCard = ({ name, id, media }) => {
+
+	const isLogged = useSelector(state => state.user.isLogged)
 
 	const shortedName = name.substring(0,15)
 	return (
@@ -13,7 +16,7 @@ const NftCard = ({ name, id, media }) => {
 				</Link>
 				<div className="nftCard__title">
 					<div>{shortedName}</div>
-					<HeartIcon />
+					{isLogged? <HeartIcon /> : ''}
 				</div>
 			</div>
 		</>

@@ -24,6 +24,7 @@ const MenuMobile = () => {
 	const password = useSelector((state) => state.user.password);
 	const passwordConfirm = useSelector((state) => state.user.passwordConfirm);
 	const nickname = useSelector((state) => state.user.nickname);
+	const isLogged = useSelector((state) => state.user.isLogged);
 
 	const [loginVisible, loginSetVisible] = React.useState(false);
 	const loginHandler = () => {
@@ -63,7 +64,7 @@ const MenuMobile = () => {
 			<Nav className="menu-mobile-nav">
 				<MenuExplore className="menu-explore" placement={"topStart"} />
 				<Nav.Item>
-					<Link className="menu-mobile-nav-create" to="/creation/createnewnft" style={{ fontWeight: "bold" }}>
+					<Link className="menu-mobile-nav-create" to={isLogged?'/creation/createnewnft':'/creation'} style={{ fontWeight: "bold" }}>
 						Create
 					</Link>
 				</Nav.Item>
@@ -75,6 +76,8 @@ const MenuMobile = () => {
 				>
 					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
+					{isLogged?
+					<>
 					<Nav.Item>
 						<Link to="/showcase">My showcase</Link>
 					</Nav.Item>
@@ -85,6 +88,10 @@ const MenuMobile = () => {
 						<Link to="/profil">My profil</Link>
 					</Nav.Item>
 					<Nav.Item>Logout</Nav.Item>
+					</>
+					:
+					''
+					}
 				</Nav.Menu>
 			</Nav>
 			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler}>

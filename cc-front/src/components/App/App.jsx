@@ -33,7 +33,7 @@ import { fetchCategories, fetchCollections, fetchNfts} from "../../../store/acti
 
 function App() {
 
-	const dispatch = useDispatch()
+		const dispatch = useDispatch()
 	//DARK MODE
 	// const options = {
 	// 	// top: "0px", // default: '32px'
@@ -55,6 +55,7 @@ function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
 	// 1 - on recupère l'url
 	const location = useLocation();
+	console.log('location>>>>',location)
 	// 2 - on lance l'action à chaque changement d'url
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -65,11 +66,15 @@ function App() {
 	// const nfts = useSelector((state) => state.nfts.list);
 
 	//! Récupération données depuis BDD distante
-	useEffect(() => {
+	// Ajout d'une condition pour appliquer la limite de fetchCollections uniquement sur la homepage
+	if(location.pathname=='/'){
+		console.log('>>>>> useEffect App <<<<<<<<');
 		dispatch(fetchCategories())
-		dispatch(fetchCollections())
-		// dispatch(fetchNfts())
-	},[])
+		dispatch(fetchCollections(10))
+	}
+	// useEffect(() => {
+	// 	// dispatch(fetchNfts())
+	// },[location])
 
 	return (
 		<div className="app">

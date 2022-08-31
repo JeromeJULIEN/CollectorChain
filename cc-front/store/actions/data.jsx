@@ -60,6 +60,7 @@ export const setNfts = (payload) => ({
 });
 
 
-export const fetchCollections = () => ({
-  type: FETCH_COLLECTIONS
+export const fetchCollections = (limit) => ({
+  type: FETCH_COLLECTIONS,
+  limit
 });

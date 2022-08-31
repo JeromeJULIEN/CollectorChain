@@ -10,6 +10,16 @@
         padding: .5rem 0;
     }
 
+    h2{
+        color: vars.$color_callToAction;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    span{
+        color: vars.$color_text_lighter;
+    }
+
     .button{
         background-color: vars.$color_callToAction;
         width: 100%;

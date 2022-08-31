@@ -3,6 +3,7 @@ import { SET_COLLECTIONS, SET_DISPLAYED_COLLECTION } from "../actions/data";
 export const initialState = {
 	list: [],
 	displayedCollection:[],
+	limit:0,
 };
 
 const reducer = (state = initialState, action = {}) => {

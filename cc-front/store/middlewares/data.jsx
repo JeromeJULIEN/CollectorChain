@@ -9,8 +9,8 @@ const dataMiddleware = (store) => (next) => async (action) => {
 			store.dispatch(setCategories(data));
 		};
 		case FETCH_COLLECTIONS: {
-			console.log("entrée dans mdw data > fetchCollections");
-			const { data } = await instance.get("/collections");
+			console.log("entrée dans mdw data > fetchCollections avec limit >>>", action.limit);
+			const { data } = await instance.get(`/collections?limit=${action.limit}`);
 			store.dispatch(setCollections(data));
 		};
 		case FETCH_NFTS: {

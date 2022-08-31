@@ -13,6 +13,7 @@ export const initialState = {
 	wallet: 150,
 	isAdmin: false,
 	isOpenToContact: true,
+	isLogged:false,
 	media: "",
 	nftOwned: [
 		{

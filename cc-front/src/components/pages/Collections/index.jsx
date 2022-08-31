@@ -6,9 +6,15 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 // import { Loader } from "rsuite";
 
 import "./styles.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCollections } from "../../../../store/actions/data";
+import { useLocation } from "react-router-dom";
 
 const Collections = () => {
+
+	const dispatch=useDispatch()
+
+	const location=useLocation()
 	// // Infinite scroll
 	// const route = "/collections";
 	// const limit = 20;
@@ -45,6 +51,12 @@ const Collections = () => {
 
 	// SearchBar Order by
 	const [sortList, setSortList] = useState([]);
+
+	useEffect(() => {
+		console.log('>>>>> useEffect Collections <<<<<<<<');
+		dispatch(fetchCollections(''))
+	},[location])
+	
 
 	useEffect(() => {
 		if (list) {
