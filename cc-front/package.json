@@ -17,7 +17,6 @@
     "lint:fix": "eslint --fix ./src/** --no-error-on-unmatched-pattern"
   },
   "overrides": {
-    "react-share": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -70,6 +69,7 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "6",
     "redux": "^4.2.0",
+    "react-share": "*",
     "resolve-url-loader": "^5.0.0",
     "rsuite": "^5.16.6",
     "sass": "^1.53.0",
