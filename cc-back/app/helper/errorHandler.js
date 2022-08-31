@@ -3,9 +3,11 @@ module.exports = (err, req, res, next) => {
     let statusCode;
     let message;
     if (err.name === 'ApiError') {
+        // console.log(err);
         statusCode = err.infos?.statusCode ?? 400;
         message = err.message;
     } else if (err.name === 'ValidationError') {
+        // console.log(err);
         if (err.details[0].type === 'string.pattern.base') {
             statusCode = 400;
             message = `bad pattern for ${err.details[0].context.label}`;

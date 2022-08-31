@@ -1,3 +1,4 @@
+// const ValidationError = require('../errors/validationError');
 /**
  * Factory which generate a data validation middleware function
  * @param {string} dataType - type of HTTP user input data source (query, body, or params)
@@ -12,6 +13,8 @@ const middlewareFactory = (dataType, schema) => async (req, res, next) => {
         /// Si ca se passe bien on passe au controller (middleware suivant)
         next();
     } catch (err) {
+        // console.log(err);
+        // throw new ValidationError('test', { statusCode: 400 });
         next(err);
     }
 };

@@ -8,11 +8,24 @@ const authMiddleware = (store) => (next) => async (action) => {
 				user: { email, password },
 			} = store.getState();
 			// On utilise une instance d'axios qui est configurer avec un baseUrl me permettant de ne plus spéficier à chaque fois http://localhost:3000
-			const { data } = await instance.post("/login", {
-				email,
-				password,
-			});
-
+			let result
+			let data
+			let resultErr
+			try {
+				result = await instance.post("/login", {
+					email,
+					password,
+				});
+				
+			} catch (error) {
+				resultErr = error.request.response
+			}
+			if(result){
+				data = result.data
+			}else{
+				data = resultErr
+			}
+						
 			console.log("data from post login request >>>>", data);
 
 			// Une fois connecter, je modifie les headers de base de mon instance axios
