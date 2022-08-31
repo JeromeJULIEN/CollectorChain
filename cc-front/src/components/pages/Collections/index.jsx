@@ -54,7 +54,7 @@ const Collections = () => {
 
 	useEffect(() => {
 		console.log('>>>>> useEffect Collections <<<<<<<<');
-		dispatch(fetchCollections(''))
+		dispatch(fetchCollections(14))
 	},[location])
 	
 
