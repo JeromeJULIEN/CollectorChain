@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "## Installation BACK",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "frontend": "cd cc-front && npm start",
     "api": "cd cc-back && npm start",
