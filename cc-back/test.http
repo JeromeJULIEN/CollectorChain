@@ -161,13 +161,13 @@ GET {{ endpoint }}/categories/2/collections
 ### NFT ###
 
 ### Collections/NFT
-GET {{ endpoint }}/collections/2/nft/?limit=1
+GET {{ endpoint }}/collections/2/nft/?limit=
 
 ### NFT
-GET {{ endpoint }}/nft/?limit=
+GET {{ endpoint }}/nft/?limit=2
 
 ### NFT User
-GET {{ endpoint }}/1/nft/?limit=
+GET {{ endpoint }}/1/nft/?limit=3
 
 ### Post NFT
 POST {{ endpoint }}/1/nft

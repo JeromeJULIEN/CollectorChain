@@ -4,9 +4,26 @@ const CoreDatamapper = require('./coreDatamapper');
 module.exports = class Nft extends CoreDatamapper {
     static tableName = 'nft';
 
+    static async findAllNft() {
+        const result = await client.query(`
+            SELECT * FROM getAllNftWithJoin
+        `);
+        return result.rows;
+    }
+
+    static async findAllNftLimit(limit) {
+        const result = await client.query(
+            `
+            SELECT * FROM getAllNftWithJoin LIMIT $1
+        `,
+            [limit],
+        );
+        return result.rows;
+    }
+
     static async getByCollectionId(id) {
         const result = await client.query(
-            `SELECT * FROM "nft" 
+            `SELECT * FROM getAllNftWithJoin 
             WHERE "collection_id" = $1
             `,
             [id],
@@ -16,7 +33,7 @@ module.exports = class Nft extends CoreDatamapper {
 
     static async getByCollectionIdLimit(id, limit) {
         const result = await client.query(
-            `SELECT * FROM "nft" 
+            `SELECT * FROM getAllNftWithJoin 
             WHERE "collection_id" = $1
             LIMIT $2
             `,
@@ -27,8 +44,8 @@ module.exports = class Nft extends CoreDatamapper {
 
     static async getByNftId(id) {
         const result = await client.query(
-            `SELECT * FROM "nft"
-            WHERE "creator_id" = $1
+            `SELECT * FROM getAllNftWithJoin
+            WHERE "owner_id" = $1
             `,
             [id],
         );
@@ -37,8 +54,8 @@ module.exports = class Nft extends CoreDatamapper {
 
     static async getByNftIdLimit(id, limit) {
         const result = await client.query(
-            `SELECT * FROM "nft"
-            WHERE "creator_id" = $1
+            `SELECT * FROM getAllNftWithJoin
+            WHERE "owner_id" = $1
             LIMIT $2
             `,
             [id, limit],

@@ -51,11 +51,11 @@ module.exports = {
         if (!userPassword) return res.json({ error: 'bad password' });
 
         delete user.password;
-        delete user.created_at;
-        delete user.updated_at;
-
+        const isLogged = {
+            isLogged: true,
+        };
         const token = jwt.createToken(user);
-        const userLog = Object.assign(user, token);
+        const userLog = Object.assign(user, token, isLogged);
 
         return res.json(userLog);
     },
