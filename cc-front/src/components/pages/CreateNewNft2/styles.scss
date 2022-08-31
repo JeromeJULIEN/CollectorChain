@@ -36,6 +36,8 @@ h3{
         padding: .5rem;
     }
 
+  
+
     
 }
 
@@ -159,6 +161,9 @@ h3{
 
     &__picture{
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 50%;
         aspect-ratio: 1;
         background-color: vars.$color_secondary;

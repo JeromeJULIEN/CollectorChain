@@ -1,5 +1,5 @@
 import { STORE_TEMP_PICTURE } from "../actions/createNft";
-import { SET_NFTS } from "../actions/data";
+import { FETCH_NFT_BY_ID, SET_DISPLAY_NFT, SET_NFTS } from "../actions/data";
 
 export const initialState = {
 	list: [
@@ -96,6 +96,7 @@ export const initialState = {
 			user_id: "0x777",
 		},
 	],
+	displayedNft:[]
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -105,7 +106,15 @@ const reducer = (state = initialState, action = {}) => {
 				...state,
 				list:action.payload
 			}
+		};
+		case SET_DISPLAY_NFT:{
+			console.log('entrée dans reducer nft > setDisplayNft avec >>>', action.payload)
+			return{
+				...state,
+				displayedNft: action.payload
+			}
 		}
+		
 
 		default:
 			return state;

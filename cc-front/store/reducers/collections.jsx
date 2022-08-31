@@ -1,7 +1,8 @@
-import { SET_COLLECTIONS } from "../actions/data";
+import { SET_COLLECTIONS, SET_DISPLAYED_COLLECTION } from "../actions/data";
 
 export const initialState = {
 	list: [],
+	displayedCollection:[],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -11,6 +12,12 @@ const reducer = (state = initialState, action = {}) => {
 				...state,
 				list: action.payload,
 			};
+		};
+		case SET_DISPLAYED_COLLECTION:{
+			return {
+				...state,
+				displayedCollection:action.payload
+			}
 		}
 		default:
 			return state;

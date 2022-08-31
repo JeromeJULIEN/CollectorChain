@@ -3,6 +3,8 @@ import HeartIcon from "../../dynamicIcons/heart";
 import "./styles.scss";
 
 const NftCard = ({ name, id, media }) => {
+
+	const shortedName = name.substring(0,15)
 	return (
 		<>
 			<div className="nftCard">
@@ -10,7 +12,7 @@ const NftCard = ({ name, id, media }) => {
 					<img src={media} alt="" className="nftCard__image" />
 				</Link>
 				<div className="nftCard__title">
-					<div>{name}</div>
+					<div>{shortedName}</div>
 					<HeartIcon />
 				</div>
 			</div>

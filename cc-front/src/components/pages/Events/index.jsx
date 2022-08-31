@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, useMap, Marker, Popup, Circle } from "react-leaflet";
 import SearchBarEvents from "../../searchBars/SearchBarEvents";
 import "./styles.scss";
+import Share from "../../dynamicIcons/share";
 
 const Events = () => {
 	const center = [48.112490724339, -1.6795174922733247];

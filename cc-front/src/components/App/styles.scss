@@ -2,10 +2,10 @@
 
 .app {
   //   max-width: 414px;
-  background-color: darkgrey;
+  background-color: vars.$color_primary;
   overflow-y: hidden;
   font-family: sans-serif;
-  color: black;
+  color: vars.$color_text;
   height: 100%;
 
   main {
@@ -21,7 +21,10 @@
   h2{
     font-size: 1.2rem;
     font-weight: bold;
-}
+  }
+  h3{
+    color: vars.$color_text;
+  }
 
 }
 

@@ -15,7 +15,7 @@ const CreateNewNft2 = () => {
     const dispatch=(useDispatch());
 
     // import des données des catégories pour alimenter l'inputPicker
-    const data = useSelector(state => state.categories.list).map(item => ({label: item, value: item }));
+    const data = useSelector(state => state.categories.list).map(item => ({label: item.name, value: item.name }));
 
     // import de l'image temp du process de creation
     const tempPicture = useSelector(state => state.createNft.tempMedia)
