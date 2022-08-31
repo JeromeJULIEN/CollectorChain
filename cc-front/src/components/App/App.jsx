@@ -29,11 +29,10 @@ import AboutUs from "../pages/AboutUs";
 import Term from "../pages/Term";
 import Resources from "../pages/Resources";
 import Creation from "../pages/Creation";
-import { fetchCategories, fetchCollections, fetchNfts} from "../../../store/actions/data";
+import { fetchCategories, fetchCollections, fetchNfts } from "../../../store/actions/data";
 
 function App() {
-
-		const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	//DARK MODE
 	// const options = {
 	// 	// top: "0px", // default: '32px'
@@ -55,22 +54,23 @@ function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
 	// 1 - on recupère l'url
 	const location = useLocation();
-	console.log('location>>>>',location)
+	console.log("location>>>>", location);
 	// 2 - on lance l'action à chaque changement d'url
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location]);
 
+	const locationUrl = location.pathname;
 	//! BDD locale pour test
 	// récupération des nfts en cours d'affichage pour les envoyer a la page nft
 	// const nfts = useSelector((state) => state.nfts.list);
 
 	//! Récupération données depuis BDD distante
 	// Ajout d'une condition pour appliquer la limite de fetchCollections uniquement sur la homepage
-	if(location.pathname=='/'){
-		console.log('>>>>> useEffect App <<<<<<<<');
-		dispatch(fetchCategories())
-		dispatch(fetchCollections(10))
+	if (location.pathname == "/") {
+		console.log(">>>>> useEffect App <<<<<<<<");
+		dispatch(fetchCategories());
+		dispatch(fetchCollections(10));
 	}
 	// useEffect(() => {
 	// 	// dispatch(fetchNfts())
@@ -86,10 +86,16 @@ function App() {
 					<Route path="/categories" element={<Categories />} />
 					<Route path="/category/collections" element={<CollectionsByCategory />} />
 					<Route path="/collections" element={<Collections />} />
-					<Route path="/collection/:id" element={<Collection />} />
-					<Route path="/nft/:id" element={<Nft
-					//  nfts={nfts} 
-					 />} />
+					<Route path="/collection/:id" element={<Collection url={locationUrl} />} />
+					<Route
+						path="/nft/:id"
+						element={
+							<Nft
+								url={locationUrl}
+								//  nfts={nfts}
+							/>
+						}
+					/>
 					<Route path="/events" element={<Events />} />
 					<Route path="/results" element={<Results />} />
 					<Route path="/profil" element={<Profil />} />

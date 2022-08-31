@@ -11,10 +11,9 @@ import { fetchCollections } from "../../../../store/actions/data";
 import { useLocation } from "react-router-dom";
 
 const Collections = () => {
+	const dispatch = useDispatch();
 
-	const dispatch=useDispatch()
-
-	const location=useLocation()
+	const location = useLocation();
 	// // Infinite scroll
 	// const route = "/collections";
 	// const limit = 20;
@@ -53,10 +52,9 @@ const Collections = () => {
 	const [sortList, setSortList] = useState([]);
 
 	useEffect(() => {
-		console.log('>>>>> useEffect Collections <<<<<<<<');
-		dispatch(fetchCollections(14))
-	},[location])
-	
+		console.log(">>>>> useEffect Collections <<<<<<<<");
+		dispatch(fetchCollections(14));
+	}, [location]);
 
 	useEffect(() => {
 		if (list) {
