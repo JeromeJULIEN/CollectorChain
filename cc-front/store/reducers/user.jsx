@@ -9,6 +9,7 @@ import {
 	SET_SHOWCASE_NFT,
 	REMOVE_NFT_FROM_TODISPLAY_LIST,
 	REMOVE_FROM_SHOWCASE,
+	SET_FAVORITES,
 } from "../actions/user";
 
 export const initialState = {
@@ -24,9 +25,8 @@ export const initialState = {
 	wallet: 150,
 	isAdmin: false,
 	isOpenToContact: true,
-	isLogged:false,
+	isLogged: true,
 	media: "",
-	isLogged: false,
 	nftOwned: [
 		{
 			id: 1,
@@ -236,6 +236,11 @@ const reducer = (state = initialState, action = {}) => {
 				showcaseNftToDisplay: [...state.showcaseNftToDisplay, action.nft],
 			};
 
+		case SET_FAVORITES:
+			return {
+				...state,
+				favorites: action.payload,
+			};
 		default:
 			return state;
 	}
