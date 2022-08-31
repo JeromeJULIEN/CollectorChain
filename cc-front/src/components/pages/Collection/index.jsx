@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import NftCard from "../../card/NftCard";
 import SearchBarCollection from "../../searchBars/SearchBarCollection";
 import "./styles.scss";
+import Share from "../../dynamicIcons/share";
 
 const Collection = () => {
 	const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const Collection = () => {
 					<div className="collection__title__text__main">
 						<div className="collection__title__text__main__head">
 							<h1>{collection.name}</h1>
-							<ion-icon name="share-social-outline"></ion-icon>
+							<Share id="test" />
 						</div>
 						{/* <Panel header="Description" collapsible>
                         <p>{collection.description}</p>

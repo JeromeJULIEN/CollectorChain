@@ -5,13 +5,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // padding: .6rem;
 	z-index: 10;
 	width: 100vw;
 	position: fixed;
 	top: 0;
     height: vars.$dimension_header_height;
-    padding: .4rem;
+    padding: .5rem;
 
     &__btn{
         display: flex;
