@@ -30,6 +30,7 @@ const Nft = ({ nfts, url }) => {
 		}, []);
 	}
 	const displayedNft = useSelector((state) => state.nfts.displayedNft);
+	const isLogged = useSelector(state => state.user.isLogged)
 
 	// gestion modale purchase
 	// 1 - creation d'un state local
@@ -62,9 +63,15 @@ const Nft = ({ nfts, url }) => {
 			<h1 className="nft__title">{displayedNft.name}</h1>
 			<img src={displayedNft.media} alt="" className="nft__image" onClick={showFullScreen} />
 			<div className="nft__actionsButtons">
+				<Share id="test" url={url} className='share'/>
+				{isLogged?
+				<>
 				<ion-icon name="bookmarks-outline"></ion-icon>
-				<Share id="test" url={url} />
 				<HeartIcon />
+				</>
+				:
+				''
+				}
 			</div>
 			<div className="nft__price">
 				{displayedNft.forSale ? (

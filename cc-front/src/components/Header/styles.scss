@@ -11,6 +11,7 @@
 	top: 0;
     height: vars.$dimension_header_height;
     padding: .5rem;
+    box-shadow: 0 5px 5px rgb(255, 255, 255, .2) ;
 
     &__btn{
         display: flex;
@@ -48,6 +49,11 @@
 
     form{
         width: 100%;
+    }
+
+    a:link, a:visited{
+        text-decoration: none;
+        color: vars.$color_text;
     }
 
 }

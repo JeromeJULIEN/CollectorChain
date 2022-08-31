@@ -3,7 +3,7 @@ import "./styles.scss";
 import { Nav } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
 import UserInfoIcon from "@rsuite/icons/UserInfo";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Modal, Input, Row, Button, Text } from "@nextui-org/react";
 
 import MenuExplore from "./MenuExplore";
@@ -19,6 +19,7 @@ import { changeUserField, logIn, signUp } from "../../../store/actions/user";
 const MenuMobile = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation()
 
 	const email = useSelector((state) => state.user.email);
 	const password = useSelector((state) => state.user.password);
@@ -74,20 +75,20 @@ const MenuMobile = () => {
 					// icon={<UserInfoIcon />}
 					placement="topEnd"
 				>
-					<Nav.Item onClick={loginHandler}>Login</Nav.Item>
+					<Nav.Item onClick={loginHandler} className="menu-user-item">Login</Nav.Item>
 					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 					{isLogged?
 					<>
-					<Nav.Item>
+					<Nav.Item className="menu-user-item">
 						<Link to="/showcase">My showcase</Link>
 					</Nav.Item>
-					<Nav.Item>
+					<Nav.Item className="menu-user-item">
 						<Link to="/favorites">My favorites</Link>
 					</Nav.Item>
-					<Nav.Item>
+					<Nav.Item className="menu-user-item">
 						<Link to="/profil">My profil</Link>
 					</Nav.Item>
-					<Nav.Item>Logout</Nav.Item>
+					<Nav.Item className="menu-user-item">Logout</Nav.Item>
 					</>
 					:
 					''

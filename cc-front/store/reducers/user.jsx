@@ -26,7 +26,6 @@ export const initialState = {
 	isOpenToContact: true,
 	isLogged:false,
 	media: "",
-	isLogged: false,
 	nftOwned: [
 		{
 			id: 1,

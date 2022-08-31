@@ -10,6 +10,7 @@
 	display: flex;
 	justify-content: space-between;
 	font-size: 1.1rem;
+	box-shadow: 0 -5px 5px rgb(255, 255, 255, .2) ;
 }
 
 .menu-mobile-nav {
@@ -17,15 +18,23 @@
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
-	& a {
-		color:vars.$color_text;
-	}
+	// & a {
+	// 	color:vars.$color_text;
+	// }
 	
 	&-create{
 		background-color: vars.$color_callToAction;
 		padding: .5rem 2rem; 
 		border-radius: 2rem;
 		font-size: 1.3rem;
+		color: vars.$color_text_lighter;
+
+		
+		// a:visited, a:link{
+		// 	text-decoration: none;
+		// 	background-color: transparent;
+		// 	color: red;
+		// }
 	}
 }
 
@@ -42,4 +51,25 @@
 		padding: 1rem 1.5rem;
 		border-radius: 0.75rem;	
 	}
+
+}
+
+.menu-user{
+	a{
+		color: vars.$color_text;
+		font-weight: bold;
+	}
+
+	// &-item{
+	// 	color: red;
+
+	// 	.rs-dropdown-item{
+	// 		color: red;
+	// 	}
+
+	// 	a, li, .rs-dropdown-item{
+
+	// 		color: red;
+	// 	}
+	// }
 }

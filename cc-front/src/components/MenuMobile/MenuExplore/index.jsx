@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Nav } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
 import ExploreIcon from "@rsuite/icons/Explore";
+import './styles.scss';
 
 export default function MenuExplore({ placement }) {
 	return (
@@ -10,6 +11,7 @@ export default function MenuExplore({ placement }) {
 			title="Explore"
 			// icon={<ExploreIcon />}
 			placement={placement}
+			className='menu-explore'
 		>
 			<Nav.Item>
 				<Link to="/">Home page</Link>

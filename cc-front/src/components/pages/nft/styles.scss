@@ -36,12 +36,26 @@
     }
 
     &__actionsButtons{
-        display: grid;
+        // display: grid;
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
         width: 225px;
         flex-direction: row;
-        grid-template-columns: repeat(3, 1fr);
+        // grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         align-items: center;
+
+        button{
+            background-color: transparent;
+        }
+        ion-icon{
+            color: vars.$color_callToAction;
+        }
+
+        .share-icon, .rs-dropdown-toggle-icon, .rs-dropdown-toggle, .rs-dropdown-toggle-no-caret, .rs-btn, .rs-btn-default{
+            color: red;
+        }
     }
 
     &__price{

@@ -33,4 +33,9 @@
         margin-top: .2rem;
         font-size: .8rem;
     }
+
+    a:link, a:visited{
+        text-decoration: none;
+        color: vars.$color_text;
+    }
 }
