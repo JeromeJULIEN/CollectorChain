@@ -8,7 +8,7 @@
     margin: 2rem 0 0 0; 
     //config pour passer au dessus du menu mobile
     position: relative;
-    bottom: calc(vars.$dimension_menuMobile_height - 1rem);
+    bottom: calc(vars.$dimension_menuMobile_height);
     height: 3rem;
 
 

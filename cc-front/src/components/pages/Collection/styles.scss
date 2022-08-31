@@ -11,7 +11,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        background-color: grey;
+        background-color: vars.$color_secondary;
         height: 100px;
 
         &__image{

@@ -4,7 +4,7 @@ import "./styles.scss";
 
 const SearchBarCollectionsByCategory = ({ sortPopularity0to1, sortPopularity1to0, sortAtoZ, sortZtoA }) => {
 	// import des données des catégories pour alimenter les inputPicker
-	const dataCollections = useSelector((state) => state.collections.list).map((item) => ({ label: item, value: item }));
+	const dataCollections = useSelector((state) => state.collections.list).map((item) => ({ label: item.name, value: item.name }));
 
 	return (
 		<div className="searchBarCategories">
