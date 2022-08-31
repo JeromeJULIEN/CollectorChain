@@ -27,4 +27,5 @@ dist-ssr
 
 #conf Back
 .env
+.env.example
 sqitch.conf
