@@ -6,7 +6,7 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 // import { Loader } from "rsuite";
 
 import "./styles.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Collections = () => {
 	// // Infinite scroll

@@ -15,15 +15,13 @@ import {
 } from "react-share";
 
 import { Dropdown } from "rsuite";
-import ShareRoundIcon from "@rsuite/icons/ShareRound";
 
 import "./styles.scss";
 import { nodeName } from "rsuite/esm/DOMHelper";
 
-const Share = () => {
-	const shareUrl = "https://collector-chain.herokuapp.com/";
+const Share = ({ url }) => {
+	const shareUrl = `https://collector-chain.herokuapp.com${url}`;
 	const iconSize = 30;
-
 	return (
 		<>
 			<div className="share-icon">

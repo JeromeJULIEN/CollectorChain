@@ -1,4 +1,15 @@
-import { DELETE_MEDIA_URL, SET_MEDIA_URL, UPDATE_USER_FIELD, CHANGE_USER_FIELD, LOGOUT, SET_USER_DATA, IS_OPEN_TO_CONTACT, SET_SHOWCASE_NFT, REMOVE_NFT_FROM_TODISPLAY_LIST, REMOVE_FROM_SHOWCASE } from "../actions/user";
+import {
+	DELETE_MEDIA_URL,
+	SET_MEDIA_URL,
+	UPDATE_USER_FIELD,
+	CHANGE_USER_FIELD,
+	LOGOUT,
+	SET_USER_DATA,
+	IS_OPEN_TO_CONTACT,
+	SET_SHOWCASE_NFT,
+	REMOVE_NFT_FROM_TODISPLAY_LIST,
+	REMOVE_FROM_SHOWCASE,
+} from "../actions/user";
 
 export const initialState = {
 	id: 1,
@@ -14,6 +25,7 @@ export const initialState = {
 	isAdmin: false,
 	isOpenToContact: true,
 	media: "",
+	isLogged: false,
 	nftOwned: [
 		{
 			id: 1,
@@ -65,7 +77,7 @@ export const initialState = {
 	//NFT à afficher dans le showcase
 	showcaseNftDisplayed: [],
 	// a l'état initial on crée une liste 'todisplay' égale à la liste 'owned'
-	showcaseNftToDisplay:[
+	showcaseNftToDisplay: [
 		{
 			id: 1,
 			token: "0x555",
@@ -207,28 +219,21 @@ const reducer = (state = initialState, action = {}) => {
 		case SET_SHOWCASE_NFT:
 			return {
 				...state,
-				showcaseNftDisplayed: [
-					...state.showcaseNftDisplayed,
-					{id:action.id, media:action.media}
-				]
+				showcaseNftDisplayed: [...state.showcaseNftDisplayed, { id: action.id, media: action.media }],
 			};
 		case REMOVE_NFT_FROM_TODISPLAY_LIST:
 			return {
 				...state,
-				showcaseNftToDisplay: state.showcaseNftToDisplay.filter(nft => nft.media !== action.payload)
-				
-			}
-			case REMOVE_FROM_SHOWCASE:
-				return{
-					...state,
-					// on supprime de la liste 'displayed' le nft enlever
-					showcaseNftDisplayed: state.showcaseNftDisplayed.filter(nft => nft.id !== action.id),
-					// on le rajoute à la liste 'toDisplay'
-					showcaseNftToDisplay:[
-						...state.showcaseNftToDisplay,
-						action.nft
-					]
-				}
+				showcaseNftToDisplay: state.showcaseNftToDisplay.filter((nft) => nft.media !== action.payload),
+			};
+		case REMOVE_FROM_SHOWCASE:
+			return {
+				...state,
+				// on supprime de la liste 'displayed' le nft enlever
+				showcaseNftDisplayed: state.showcaseNftDisplayed.filter((nft) => nft.id !== action.id),
+				// on le rajoute à la liste 'toDisplay'
+				showcaseNftToDisplay: [...state.showcaseNftToDisplay, action.nft],
+			};
 
 		default:
 			return state;

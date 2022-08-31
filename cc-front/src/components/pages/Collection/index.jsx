@@ -2,13 +2,13 @@ import { Panel, PanelGroup } from "rsuite";
 import { fetchCollectionById, fetchNftByCollectionId } from "../../../../store/actions/data";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import NftCard from "../../card/NftCard";
 import SearchBarCollection from "../../searchBars/SearchBarCollection";
 import "./styles.scss";
 import Share from "../../dynamicIcons/share";
 
-const Collection = () => {
+const Collection = ({ url }) => {
 	const dispatch = useDispatch();
 
 	const { id } = useParams();
@@ -73,7 +73,7 @@ const Collection = () => {
 					<div className="collection__title__text__main">
 						<div className="collection__title__text__main__head">
 							<h1>{collection.name}</h1>
-							<Share id="test" />
+							<Share id="test" url={url} />
 						</div>
 						{/* <Panel header="Description" collapsible>
                         <p>{collection.description}</p>
