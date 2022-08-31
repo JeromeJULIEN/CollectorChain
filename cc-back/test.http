@@ -196,6 +196,12 @@ Content-Type: application/json
     "name": "test"
 }
 
+### Property
+GET {{ endpoint }}/property/?limit=
+
+### Tag
+GET {{ endpoint }}/tag/?limit=
+
 ### Showcase ###
 
 ### Showcase User
