@@ -13,10 +13,11 @@ Content-Type: application/json
 
 {
 
-    "nickname":"test1",
-    "email":"user1@user.com",
-    "password":"user3",
-    "passwordConfirm": "user3"
+    "nickname":"loic1",
+    "email":"loic@loic5.com",
+    "password":"user3456",
+    "passwordConfirm": "user3456",
+    "wallet" : 1
 }
 
 #### Post login 
@@ -24,8 +25,8 @@ POST {{ endpoint }}/login
 Content-type: application/json
 
 {
-    "email":"user@user.com",
-    "password": "password"
+    "email":"loic@loic5.com",
+    "password": "user3456"
 }
 
 ### Profil 
@@ -35,13 +36,12 @@ GET {{ endpoint }}/profil/10
 DELETE {{ endpoint }}/profil/4/delete
 
 ### Update profil
-PATCH {{ endpoint }}/profil/27/update
+PATCH {{ endpoint }}/profil/33/update
 Content-Type: application/json
 
 {
-                "password": "user3",
-                "newPassword": "test1",
-                "newPasswordConfirm": "test1"
+                "password": "user3456",
+                "wallet" : 8
 }
 
 ### Forget User
@@ -208,12 +208,8 @@ GET {{ endpoint }}/showcase/1
 GET {{ endpoint }}/favorite/1/?limit=
 
 ### Favoris
-POST {{ endpoint }}/favorite/1
-Content-Type: application/json
+POST {{ endpoint }}/favorite/1/8
 
-{
-    "nft_id": [4,2]
-}
 
 ### Favoris
-DELETE {{ endpoint }}/favorite/1/nft/8/delete
+DELETE {{ endpoint }}/favorite/1/8

@@ -77,15 +77,16 @@ module.exports = {
         const user = await User.findById(req.params.id);
         if (!user) throw new ApiError('user not exist', { statusCode: 404 });
         const newUser = req.body;
-
-        if (newUser.newPassword) {
-            const hashedPassword = await bcrypt.hash(newUser.newPassword, 12);
-            newUser.newPassword = hashedPassword;
-        }
         Object.entries(user).forEach(([key]) => {
             if (!newUser[key]) newUser[key] = user[key];
         });
         if (!await bcrypt.compare(newUser.password, user.password)) throw new ApiError('bad password', { statusCode: 401 });
+        if (newUser.newPassword) {
+            const hashedPassword = await bcrypt.hash(newUser.newPassword, 12);
+            newUser.password = hashedPassword;
+        } else {
+            newUser.password = user.password;
+        }
         const updateProfil = await User.update(newUser);
         return res.json(updateProfil);
     },

@@ -9,13 +9,13 @@ const userCreate = Joi.object({
     nickname: Joi.string()
         .required(),
 
-    password: Joi.string()
+    password: Joi.string().min(8)
         .required(),
 
     passwordConfirm: Joi.ref('password'),
 
     wallet: Joi.number()
-        .positive(),
+        .positive().allow(0),
 
     isAdmin: Joi.boolean(),
 
@@ -42,14 +42,14 @@ const updateProfil = Joi.object({
 
     nickname: Joi.string(),
 
-    password: Joi.string(),
+    password: Joi.string().required(),
 
-    newPassword: Joi.string(),
+    newPassword: Joi.string().min(8),
 
     newPasswordConfirm: Joi.ref('newPassword'),
 
     wallet: Joi.number()
-        .positive(),
+        .positive().allow(0),
 
     isAdmin: Joi.boolean(),
 
