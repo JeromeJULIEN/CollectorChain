@@ -12,8 +12,10 @@ const validation = require('../../validation/validator');
  * POST /sign_up
  * @summary Route to sign up a new user
  * @tags newUser
- * @param {newUser} (request.body.required newUser information)
- * @return {newUser} 200 - success response - application/json
+ * @param {string} nickname - user nickname
+ * @param {string} email - user email
+ * @param {string} password - user password
+ * @return {Object} 200 - success response - application/json
  */
 router.post('/sign_up', validation('body', userCreate), controllerHandler(userController.insertNewUser));
 
