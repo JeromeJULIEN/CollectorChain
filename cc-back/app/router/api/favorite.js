@@ -12,7 +12,7 @@ const controllerHandler = require('../../helper/controllerHandler');
  */
 router.get('/favorite/:id', controllerHandler(favoriteController.getAllFavorite));
 /**
- * POST //favorite/:id_user/:id_nft
+ * POST /favorite/:id_user/:id_nft
  * @summary Route to add favorite nft
  * @param {number} id - id from nft added
  * @param {number} id - id from user
