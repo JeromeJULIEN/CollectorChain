@@ -17,7 +17,7 @@ router.get('/categories', controllerHandler(categoriesController.getAllCategorie
  * @param {string} name - category name
  * @param {string} description - category description
  * @param {string} media - category media
- * @return {categories} 200 - success response - application/json
+ * @return {Object} 200 - success response - application/json
  */
 router.post('/categories', controllerHandler(categoriesController.createCategorie));
 /**
@@ -34,7 +34,7 @@ router.delete('/categories/:id', controllerHandler(categoriesController.deleteCa
  * @param {string} name - category name
  * @param {string} description - category description
  * @param {string} media - category media
- * @return {categories} 200 - success response - application/json
+ * @return {Object} 200 - success response - application/json
  */
 router.patch('/categories/:id', controllerHandler(categoriesController.updateCategories));
 
