@@ -1,5 +1,8 @@
+const bcrypt = require('bcrypt');
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
+
+const saltRounds = 10;
 
 // /**
 //  * @typedef {object} User
@@ -81,18 +84,16 @@ module.exports = class User extends CoreDatamapper {
         return result.rows[0];
     }
 
-    static async recoveryPassword(user) {
+    static async recoveryPassword(randomPassword, userEmail) {
+        const hashedPassword = await bcrypt.hash(randomPassword, saltRounds);
         const result = await client.query(
             `
         UPDATE "user"
-        SET "password"=$2
-        WHERE email=$1;
+        SET "password" = '${hashedPassword}'
+        WHERE email = '${userEmail}'
+        RETURNING *
         `,
-            [
-                user.email,
-                user.password,
-            ],
         );
-        return result.rows;
+        return result.rows[0];
     }
 };

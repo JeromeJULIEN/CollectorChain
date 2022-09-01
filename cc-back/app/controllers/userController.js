@@ -92,8 +92,11 @@ module.exports = {
 
     async resetMail(req, res) {
         const userEmail = req.body.email;
+        // console.log(userEmail);
         const setTemporaryPassword = await User.recoveryPassword(randomPassword, userEmail);
-        nodemailer(randomPassword, userEmail);
+        console.log(setTemporaryPassword);
+
+        nodemailer(userEmail, randomPassword);
 
         return res.json(setTemporaryPassword);
     },

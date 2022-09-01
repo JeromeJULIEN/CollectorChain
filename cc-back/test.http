@@ -13,10 +13,10 @@ Content-Type: application/json
 
 {
 
-    "nickname":"test1",
-    "email":"user1@user.com",
-    "password":"user3",
-    "passwordConfirm": "user3"
+    "nickname":"collectorChain",
+    "email":"collectorchain.test@gmail.com",
+    "password":"collector",
+    "passwordConfirm": "collector"
 }
 
 #### Post login 
@@ -43,13 +43,12 @@ Content-Type: application/json
                 "newPassword": "test1",
                 "newPasswordConfirm": "test1"
 }
-
 ### Forget User
 POST {{ endpoint }}/forget_user
 Content-Type: application/json
 
 {
-    "email": "user@user.com"
+    "email": "collectorchain.test@gmail.com"
 }
 
 ### TOKEN (JWT) ###
@@ -196,6 +195,12 @@ Content-Type: application/json
 {
     "name": "test"
 }
+
+### Property
+GET {{ endpoint }}/property/?limit=
+
+### Tag
+GET {{ endpoint }}/tag/?limit=
 
 ### Showcase ###
 
