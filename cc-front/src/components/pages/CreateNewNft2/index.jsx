@@ -10,6 +10,7 @@ import CustomPropFields from './CustomPropFields';
 import { changeNftField, deleteNftMedia, nftCreation, storeCategory, storeCollection, storeNftMedia } from '../../../../store/actions/createNft';
 import { wait } from '../../../../utils/wait';
 import { fetchCollections } from '../../../../store/actions/data';
+import Axios from 'axios';
 
 const CreateNewNft2 = () => {
 
@@ -48,7 +49,17 @@ const CreateNewNft2 = () => {
 	const uploadImage = (event) => {
 		// setPicture(event.target.files);
 		// Il faut stocker un chemin URL pour afficher l'image
-		dispatch(storeNftMedia(event.target.files[0]));
+        // dispatch(storeNftMedia(event.target.files[0]));
+        const formData = new FormData()
+        formData.append("file",event.target.files[0])
+        formData.append("upload_preset", "r2bx0mli")
+        Axios.post("https://api.cloudinary.com/v1_1/ddsddskey/image/upload",
+        formData
+        ).then((response) => {
+            console.log(response.data.secure_url);
+            dispatch(storeNftMedia(response.data.secure_url));
+        })
+
 	};
 	const deleteImage = (event) => {
 		setPicture('');

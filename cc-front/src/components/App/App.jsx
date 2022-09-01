@@ -87,7 +87,7 @@ function App() {
 	if (pathTable2.includes(location.pathname))
 		// location.pathname == "/") 
 		{
-			console.log('pathTable OK');
+			console.log('pathTable2 OK');
 		// console.log(">>>>> useEffect App <<<<<<<<");
 		dispatch(fetchCollections(''));
 	}

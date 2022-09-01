@@ -22,17 +22,17 @@ const CreateNewNft1 = () => {
 
 	//! Gestion de l'upload des images
 	// Creation d'un state local pour stocker les images
-	const [pictures, setPictures] = useState([]);
+	// const [pictures, setPictures] = useState([]);
 	// Creation d'un state local pour stocker le chemin URL des images
 	const [picturesURL, setPicturesURL] = useState([]);
 	// console.log('pictures URL >>>', picturesURL)
 	// Fonction pour stocker l'image dans le state local
 	const uploadImage = (event) => {
 		// console.log('file >>>',event.target.files)
-		setPictures((pictures) => ({
-			...pictures,
-			[event.target.name]: event.target.files,
-		}));
+		// setPictures((pictures) => ({
+		// 	...pictures,
+		// 	[event.target.name]: event.target.files,
+		// }));
 		// Il faut stocker un chemin URL pour afficher l'image
 		setPicturesURL((picturesURL) => ({
 			...picturesURL,
@@ -43,10 +43,10 @@ const CreateNewNft1 = () => {
 	};
 
 	const deleteImage = (event) => {
-		setPictures((pictures) => ({
-			...pictures,
-			[event.target.id]: "",
-		}));
+		// setPictures((pictures) => ({
+		// 	...pictures,
+		// 	[event.target.id]: "",
+		// }));
 		// Il faut stocker un chemin URL pour afficher l'image
 		setPicturesURL((picturesURL) => ({
 			...picturesURL,

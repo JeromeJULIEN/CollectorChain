@@ -10,12 +10,6 @@ import { fetchCollections } from "../../../../store/actions/data";
 import { useEffect } from "react";
 
 const HomePage = () => {
-
-	const dispatch = useDispatch()
-
-	useEffect(() => {
-		dispatch(fetchCollections)
-	},[])
 	// import depuis le state de la liste en cours
 	const list = useSelector((state) => state.collections.list);
 

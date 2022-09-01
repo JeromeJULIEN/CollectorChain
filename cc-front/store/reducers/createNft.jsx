@@ -44,7 +44,7 @@ const reducer = (state = initialState, action = {}) => {
         case STORE_NFT_MEDIA:{
             return {
                 ...state,
-                media:URL.createObjectURL(action.payload)
+                media:action.payload
 
             }
 
