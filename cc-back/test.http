@@ -197,10 +197,10 @@ Content-Type: application/json
 }
 
 ### Property
-GET {{ endpoint }}/property/?limit=
+GET {{ endpoint }}/property/?limit=2
 
 ### Tag
-GET {{ endpoint }}/tag/?limit=
+GET {{ endpoint }}/tag/?limit=1
 
 ### Showcase ###
 
