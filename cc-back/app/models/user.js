@@ -72,7 +72,7 @@ module.exports = class User extends CoreDatamapper {
                 user.id,
                 user.email,
                 user.nickname,
-                user.newPassword,
+                user.password,
                 user.wallet,
                 user.isAdmin,
                 user.media,

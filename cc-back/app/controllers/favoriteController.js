@@ -12,8 +12,9 @@ module.exports = {
     },
 
     async addFavorite(req, res) {
-        const nftId = req.body.nft_id;
-        await Favorite.addFavoriteNft(req.params.id, nftId);
+        const nftId = req.params.id_nft;
+        const userId = req.params.id_user;
+        await Favorite.addFavoriteNft(userId, nftId);
 
         res.json('Favoris ajouté');
     },
