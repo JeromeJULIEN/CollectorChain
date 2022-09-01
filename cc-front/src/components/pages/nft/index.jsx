@@ -27,7 +27,6 @@ const Nft = ({ nfts, url }) => {
 		}, []);
 	}
 	const displayedNft = useSelector((state) => state.nfts.displayedNft);
-	console.log("displayed nft", displayedNft);
 	const isLogged = useSelector((state) => state.user.isLogged);
 
 	const convertRarityToPercent = (displayedNft.rarity * 100) / 70;
