@@ -4,16 +4,16 @@ const CoreDatamapper = require('./coreDatamapper');
 
 const saltRounds = 10;
 
-// /**
-//  * @typedef {object} User
-//  * @property {number} id - Primary key
-//  * @property {string} email
-//  * @property {string} nickname
-//  * @property {string} password - encrypted
-//  * @property {number} wallet - actual state of the personnal wallet
-//  * @property {boolean} isAdmin - egal true if this user is an admin
-//  * @property {string} media - link to user picture
-//  */
+/** User Model Object
+ * @typedef {object} User
+ * @property {number} id - Primary key
+ * @property {string} email - email user
+ * @property {string} nickname - nickname user
+ * @property {string} password - encrypted
+ * @property {number} wallet - actual state of the personnal wallet
+ * @property {boolean} isAdmin - egal true if this user is an admin
+ * @property {string} media - link to user picture
+*/
 
 module.exports = class User extends CoreDatamapper {
     static tableName = 'user';

@@ -24,10 +24,7 @@ router.get('/collection/:id', controllerHandler(collectionsController.getCollect
  * POST /collection
  * @summary Route to collection
  * @tags collections
- * @param {string} name - collection name
- * @param {string} description - collection description
- * @param {string} media - collection media
- * @param {number} category_id - collection by category_id
+ * @param {Collection} Collection - Collection Object Model
  * @return {Object} 200 - success response - application/json
  */
 router.post('/collection', controllerHandler(collectionsController.createCollection));
@@ -44,10 +41,7 @@ router.delete('/collection/:id', controllerHandler(collectionsController.deleteC
  * @summary Route to collection/:id
  * @tags collections
  * @param {number} id - id from collection to update
- * @param {string} name - collection name
- * @param {string} description - collection description
- * @param {string} media - collection media
- * @param {number} category_id - collection by category_id
+ * @param {Collection} Collection - Collection Model Object
  * @return {Object} 200 - success response - application/json
  */
 router.patch('/collection/:id', controllerHandler(collectionsController.updateCollection));

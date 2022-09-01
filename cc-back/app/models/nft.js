@@ -1,6 +1,21 @@
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
+/**
+ * NFT Model Object
+ * @typedef {object} Nft
+ * @property {number} id - nft id
+ * @property {string} name - nft name
+ * @property {string} description - nft description
+ * @property {number} price - price nft
+ * @property {boolean} forSale - for sell nft
+ * @property {string} media - nft media
+ * @property {number} collection_id - nft collection_id
+ * @property {number} creator_id - nft creator_id
+ * @property {number} owner_id - nft owner_id
+ * @property {number} rarity - nft rarity
+ */
+
 module.exports = class Nft extends CoreDatamapper {
     static tableName = 'nft';
 

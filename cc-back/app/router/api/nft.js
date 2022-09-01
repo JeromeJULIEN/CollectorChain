@@ -25,15 +25,7 @@ router.get('/:id/nft', controllerHandler(nftController.getNftById));
  * POST /:id/nft
  * @summary Route to post nft
  * @tags nft
- * @param {string} name - nft name
- * @param {string} description - nft description
- * @param {number} price - price nft
- * @param {boolean} forSale - for sell nft
- * @param {string} media - nft media
- * @param {number} id - nft collection_id
- * @param {number} id - nft creator_id
- * @param {number} id - nft owner_id
- * @param {number} rarity - nft rarity
+ * @param {Nft} Nft - Nft Model Object
  * @return {Object} 200 - success response - application/json
  */
 router.post('/:id/nft', controllerHandler(nftController.createNft));
@@ -49,16 +41,7 @@ router.delete('/nft/:id/delete', controllerHandler(nftController.deleteNft));
  * UPDATE /:id/nft/update
  * @summary Route to update nft
  * @tags nft
- * @param {number} id - nft by id
- * @param {string} name - nft name
- * @param {string} description - nft description
- * @param {number} price - price nft
- * @param {boolean} forSale - for sell nft
- * @param {string} media - nft media
- * @param {number} id - nft collection_id
- * @param {number} id - nft creator_id
- * @param {number} id - nft owner_id
- * @param {number} rarity - nft rarity
+ * @param {Nft} Nft - Nft Model Object
  * @return {Object} 200 - success response - application/json
  */
 router.patch('/:id/nft/update', controllerHandler(nftController.updateNft));
