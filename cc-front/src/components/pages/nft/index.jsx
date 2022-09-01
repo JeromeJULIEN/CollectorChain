@@ -30,7 +30,7 @@ const Nft = ({ nfts, url }) => {
 		}, []);
 	}
 	const displayedNft = useSelector((state) => state.nfts.displayedNft);
-	console.log('displayed nft', displayedNft);
+	// console.log('displayed nft', displayedNft);
 	const isLogged = useSelector(state => state.user.isLogged)
 
 	// gestion modale purchase

@@ -25,7 +25,7 @@ export const initialState = {
 	wallet: 150,
 	isAdmin: false,
 	isOpenToContact: true,
-	isLogged: true,
+	isLogged: false,
 	media: "",
 	nftOwned: [
 		{
@@ -196,6 +196,7 @@ const reducer = (state = initialState, action = {}) => {
 				...action.data,
 			};
 		case LOGOUT:
+			console.log('reducer user > logout')
 			return {
 				...state,
 				id:'',
@@ -207,7 +208,7 @@ const reducer = (state = initialState, action = {}) => {
 				passwordConfirm:'',
 				wallet:'',
 				media:'',
-				logged: false,
+				isLogged: false,
 				pseudo: null,
 				token: null,
 			};

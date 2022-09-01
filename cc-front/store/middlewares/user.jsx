@@ -1,4 +1,5 @@
 import instance from "../../utils/axios";
+import { NFT_CREATION } from "../actions/createNft";
 import { ADD_NFT_TO_FAVORITE, REMOVE_NFT_TO_FAVORITE, addNftToFavorite, removeNftToFavorite } from "../actions/user";
 
 const userMiddleware = (store) => (next) => async (action) => {
@@ -13,6 +14,12 @@ const userMiddleware = (store) => (next) => async (action) => {
 			const { data } = await instance.get(`/favoris/${action.userId}`);
 			store.dispatch(setFavorites(data));
 		}
+		case NFT_CREATION:{
+			const state = store.getState() 
+			const nftToCreate = state.createNft
+			console.log('mdw >>> create nft avec :',nftToCreate);
+		}
+
 		default:
 			next(action);
 	}

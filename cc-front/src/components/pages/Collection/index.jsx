@@ -12,7 +12,7 @@ const Collection = ({ url }) => {
 	const dispatch = useDispatch();
 
 	const { id } = useParams();
-	console.log("id de la collection >>>", id);
+	// console.log("id de la collection >>>", id);
 
 	//! Gestion donnée en local
 	// console.log('filtered collection>>>', selectedCollection)
@@ -26,7 +26,22 @@ const Collection = ({ url }) => {
 	const list = useSelector((state) => state.nfts.list);
 	const collection = useSelector((state) => state.collections.displayedCollection);
 
-	// SearchBar Order by
+	//!Création des liste de props et tag
+	// Propriétés
+	const a = list.map(nft => nft.property)
+	let globalPropList = []
+	// on utilise la destructuration pour concaténer tableau par tableau dans globalPropList
+	a.map(propArray => {globalPropList = [...globalPropList,...propArray]})
+	// console.log('globalPropList>>>', globalPropList);
+
+	// Idem avec Tag
+	const b = list.map(nft => nft.tag)
+	let globalTagList = []
+	b.map(tagArray => {globalTagList = [...globalTagList,...tagArray]})
+	// console.log('globalTagList>>>', globalTagList);
+	
+
+	//! SearchBar Order by
 	const selectedCollection = list.filter((nft) => nft.collection_id == id);
 	const [sortList, setSortList] = useState([]);
 
@@ -64,6 +79,7 @@ const Collection = ({ url }) => {
 		const sortZtoA = [...list].sort((a, b) => b.name.localeCompare(a.name));
 		setSortList(sortZtoA);
 	};
+	//!Fin searchBar
 
 	return (
 		<div className="collection">
@@ -95,7 +111,17 @@ const Collection = ({ url }) => {
 					</div>
 				</div>
 			</div>
-			<SearchBarCollection sortPrice0to1={sortPrice0to1} sortPrice1to0={sortPrice1to0} sortRarity0to1={sortRarity0to1} sortRarity1to0={sortRarity1to0} sortAtoZ={sortAtoZ} sortZtoA={sortZtoA} />
+			<SearchBarCollection 
+				sortPrice0to1={sortPrice0to1} 
+				sortPrice1to0={sortPrice1to0} 
+				sortRarity0to1={sortRarity0to1} 
+				sortRarity1to0={sortRarity1to0} 
+				sortAtoZ={sortAtoZ} 
+				sortZtoA={sortZtoA}
+				properties={globalPropList}
+				tags={globalTagList}
+				
+				/>
 			<div className="collection__list">
 				{/* display de la liste sous forme de carte */}
 				{sortList.map((nft) => {

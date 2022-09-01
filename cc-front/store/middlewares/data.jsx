@@ -1,4 +1,5 @@
 import instance from "../../utils/axios";
+import { STORE_COLLECTIONS_BY_CATEGORY } from "../actions/createNft";
 import {
 	FETCH_CATEGORIES,
 	FETCH_COLLECTIONS,
@@ -7,51 +8,68 @@ import {
 	FETCH_NFTS,
 	FETCH_NFT_BY_COLLECTION_ID,
 	FETCH_NFT_BY_ID,
+	FETCH_PROPERTIES,
+	FETCH_TAGS,
 	setCategories,
 	setCollections,
 	setDisplayedCollection,
 	setDisplayNft,
 	setNfts,
+	setProperties,
+	setTags,
 } from "../actions/data";
 
 const dataMiddleware = (store) => (next) => async (action) => {
 	switch (action.type) {
 		case FETCH_CATEGORIES: {
-			console.log("entrée dans mdw data > fetchCategories");
+			// console.log("entrée dans mdw data > fetchCategories");
 			const { data } = await instance.get("/categories");
 			store.dispatch(setCategories(data));
 		}
 		case FETCH_COLLECTIONS: {
-			console.log("entrée dans mdw data > fetchCollections avec limit >>>", action.limit);
+			// console.log("entrée dans mdw data > fetchCollections avec limit >>>", action.limit);
 			const { data } = await instance.get(`/collections?limit=${action.limit}`);
 			store.dispatch(setCollections(data));
 		}
 		case FETCH_NFTS: {
-			console.log("entrée dans mdw data > fetchNfts");
+			// console.log("entrée dans mdw data > fetchNfts");
 			const { data } = await instance.get("/nft");
 			store.dispatch(setNfts(data));
 		}
 		case FETCH_NFT_BY_COLLECTION_ID: {
-			console.log("entrée dans mdw data > fetchNftByCategory");
+			// console.log("entrée dans mdw data > fetchNftByCategory");
 			const { data } = await instance.get(`/collections/${action.id}/nft`);
 			store.dispatch(setNfts(data));
 		}
 		case FETCH_NFT_BY_ID: {
-			console.log("entrée dans mdw data > fetchNftByid", action.id);
-
+			// console.log("entrée dans mdw data > fetchNftByid", action.id);
 			const { data } = await instance.get(`/nft/${action.id}`);
 			store.dispatch(setDisplayNft(data));
 		}
 		case FETCH_COLLECTION_BY_ID: {
-			console.log("entrée dans mdw data > fetchCollectionByid", action.id);
+			// console.log("entrée dans mdw data > fetchCollectionByid", action.id);
 			const { data } = await instance.get(`/collection/${action.id}`);
 			store.dispatch(setDisplayedCollection(data));
 		};
 		case FETCH_COLLECTIONS_BY_CATEGORY:{
-			console.log("entrée dans mdw data > fetchCollectionsByCategories", action.id);
+			// console.log("entrée dans mdw data > fetchCollectionsByCategories", action.id);
 			const { data } = await instance.get(`/categories/${action.id}/collections/`);
-			console.log('collec by cat >>>', data)
+			// console.log('collec by cat >>>', data)
 			store.dispatch(setCollections(data));
+		}
+		case FETCH_PROPERTIES:{
+			const { data } = await instance.get('/property');
+			console.log('fetch prop >>>', data);
+			store.dispatch(setProperties(data))
+		}
+		case FETCH_TAGS:{
+			const { data } = await instance.get('/tag');
+			store.dispatch(setTags(data))
+		}
+		case STORE_COLLECTIONS_BY_CATEGORY:{
+			// const state
+			// const id = 
+			// const {data} = await instance.get('/')
 		}
 
 		default:

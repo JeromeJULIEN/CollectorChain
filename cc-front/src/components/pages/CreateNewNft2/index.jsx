@@ -7,38 +7,46 @@ import { useEffect } from 'react';
 import ObjectPicture from '../CreateNewNft1/ObjectPicture';
 import Footer from '../../Footer';
 import CustomPropFields from './CustomPropFields';
-import { changeNftField, deleteNftMedia, storeCategory, storeNftMedia } from '../../../../store/actions/createNft';
+import { changeNftField, deleteNftMedia, nftCreation, storeCategory, storeCollection, storeNftMedia } from '../../../../store/actions/createNft';
 import { wait } from '../../../../utils/wait';
+import { fetchCollections } from '../../../../store/actions/data';
 
 const CreateNewNft2 = () => {
 
-    const dispatch=(useDispatch());
+    const dispatch=useDispatch();
 
-    // import des données des catégories pour alimenter l'inputPicker
-    const data = useSelector(state => state.categories.list).map(item => ({label: item.name, value: item.name }));
+    //! import des données des catégories pour alimenter les inputPicker
+    //category
+    const categoryListAll = useSelector(state => state.categories.list)
+    const categoryData = categoryListAll.map(item => ({label: item.name, value: item.id }));
 
+    const collectionListAll = useSelector(state => state.collections.list)
+
+    // State locale pour récupérer l'id de la category selctionné dans l'input picker
+    const [selectedCatId, setSelectedCatId] =useState()
+    // Filtrage en fonction de l'id
+    const collectionFiltered = collectionListAll.filter(collection => collection.category_id == selectedCatId)
+    // Création du menu déroulant filtré pour l'inputPiker collection
+    const collectionData = collectionFiltered.map(item => ({label: item.name, value: item.id }));
+    
     // import de l'image temp du process de creation
     const tempPicture = useSelector(state => state.createNft.tempMedia)
 
     // gestion de l'apparission d'un champ custom prop au click
     const [customProps, setCustomProps] = useState([])
     const addCustomProp = () => {
+        // a chaque ajout, on ajoute un element au tableau qui sert à générer le nbr de props
         setCustomProps([...customProps, 'p'])
     }
 
     //! state local pour envoie des infos au reducer createNft au moment de la validation finale
-    //CATEGORY
-    const[category, setCategory] = useState('')
-    const changeCategory = (event) => {
-        setCategory(event)
-    }
-    
+       
     //PICTURE
     const [picture,setPicture] = useState('')
     const createNft = useSelector(state => state.createNft)
 
 	const uploadImage = (event) => {
-		setPicture(event.target.files);
+		// setPicture(event.target.files);
 		// Il faut stocker un chemin URL pour afficher l'image
 		dispatch(storeNftMedia(event.target.files[0]));
 	};
@@ -53,7 +61,7 @@ const CreateNewNft2 = () => {
     const [isLoading, setIsLoading] =useState(false)
 
     const validateCreation = async () => {
-        dispatch(storeCategory(category))
+        dispatch(nftCreation())
         setIsLoading(true)
         await wait(2000)
         setIsLoading(false)
@@ -62,8 +70,18 @@ const CreateNewNft2 = () => {
 
     //!Gestion de la mise à jour du state lors du changement des inputs
     const handleChangeField = (event, item) => {
+        // console.log(event, item)
 		dispatch(changeNftField(event, item.target.name))
 	}
+
+    const handleChangeCategory = (event) => {
+        setSelectedCatId(event)
+        dispatch(storeCategory(event))
+    }
+
+    const handleChangeCollection = (event) => {
+      dispatch(storeCollection(event))
+    }
 
     return (
         <div className='createNewNft2'>
@@ -77,22 +95,25 @@ const CreateNewNft2 = () => {
                 </div>
             </div>
             <div className="category">
-                <h3>Object category</h3>
+                <h3>Object category and collection</h3>
                 <p>Select the category of the object :</p>
-                <InputPicker data={data} className='category__input' onChange={changeCategory}/>
+                <InputPicker data={categoryData} className='category__input' name='category' onChange={handleChangeCategory}/>
                 <button className='button button--newCategory'>Or ask for a new category</button>
+                <p>Select the collection of the object :</p>
+                <InputPicker data={collectionData} className='category__input' name='category' onChange={handleChangeCollection}/>
+                <button className='button button--newCategory'>Or ask for a new collection into {createNft.category?createNft.category:'the category'}</button>
             </div>
             <div className="properties">
                 <h3>Object main properties</h3>
                 <div className="properties__property">
-                    <p>Name</p>
-                    <Input placeholder='NFT name' name='name' onChange={handleChangeField}/>
-                    <p>Collection</p>
-                    <Input placeholder='object brand' name='collection' onChange={handleChangeField}/>
+                    {/* <p>Name</p>
+                    <Input placeholder='NFT name' name='name' onChange={handleChangeField}/> */}
                     <p>Model</p>
-                    <Input placeholder='object brand model' name='model' onChange={handleChangeField}/>
+                    <Input placeholder='object brand model' name='name' onChange={handleChangeField}/>
                     <p>Serial</p>
                     <Input placeholder='object serial number' name='serial' onChange={handleChangeField}/>
+                    <p>Rarity</p>
+                    <Input placeholder='object rarity index' name='rarity' onChange={handleChangeField}/>
                 </div>
             </div>
             <div className="customProperties">

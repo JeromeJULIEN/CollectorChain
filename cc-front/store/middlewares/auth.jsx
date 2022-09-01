@@ -27,7 +27,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				data = resultErr
 			}
 						
-			console.log("data from post login request >>>>", data);
+			// console.log("data from post login request >>>>", data);
 
 			// Une fois connecter, je modifie les headers de base de mon instance axios
 			// Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
