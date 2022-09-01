@@ -67,6 +67,7 @@ const Collection = ({ url }) => {
 	//-----------------
 	//! Récupération des id des nft affichés
 	const listId = list.map((item) => item.id);
+	console.log("LIST_ID>>>", listId);
 
 	//! Récupération des id des nft en favoris
 	const favorites = useSelector((state) => state.user.favorites);

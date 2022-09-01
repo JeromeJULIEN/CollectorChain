@@ -13,6 +13,7 @@ const Favorites = () => {
 	//-----------------
 	//! Récupération des id des nft affichés
 	const listId = list.map((item) => item.id);
+	console.log(listId);
 
 	//! Récupération des id des nft en favoris
 	const favorites = useSelector((state) => state.user.favorites);

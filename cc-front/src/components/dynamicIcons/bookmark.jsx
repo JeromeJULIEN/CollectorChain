@@ -14,7 +14,6 @@ const BookmarkIcon = ({ nftId, favorisFound }) => {
 		if (bookmarkFilled === true) {
 			console.log("bookmark false");
 			dispatch(removeNftToFavorite(userId, nftId));
-			console.log(nftId);
 		} else {
 			console.log("bookmark true");
 			dispatch(addNftToFavorite(userId, nftId));
@@ -22,7 +21,6 @@ const BookmarkIcon = ({ nftId, favorisFound }) => {
 	};
 
 	const favoris = favorisFound.find((nft) => nft === nftId);
-	console.log("FAVORIS>>>", favoris);
 
 	useEffect(() => {
 		if (favoris) {
