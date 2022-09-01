@@ -1,23 +1,36 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNftToFavorite, removeNftToFavorite } from "../../../store/actions/user";
 
-const BookmarkIcon = ({ nftId }) => {
-	const userId = useSelector((state) => state.user.id);
-
+const BookmarkIcon = ({ nftId, favorisFound }) => {
 	const dispatch = useDispatch();
-	const [bookmarkFilled, setBookmarkFilled] = useState(false);
+	const [bookmarkFilled, setBookmarkFilled] = useState();
+
+	const userId = useSelector((state) => state.user.id);
 
 	const handleBookmark = () => {
 		setBookmarkFilled(!bookmarkFilled);
 		if (bookmarkFilled === true) {
 			console.log("bookmark false");
 			dispatch(removeNftToFavorite(userId, nftId));
+			console.log(nftId);
 		} else {
 			console.log("bookmark true");
 			dispatch(addNftToFavorite(userId, nftId));
 		}
 	};
+
+	const favoris = favorisFound.find((nft) => nft === nftId);
+	console.log("FAVORIS>>>", favoris);
+
+	useEffect(() => {
+		if (favoris) {
+			setBookmarkFilled(true);
+		} else {
+			setBookmarkFilled(false);
+		}
+	}, []);
 
 	return (
 		<div>

@@ -4,7 +4,7 @@ import BookmarkIcon from "../../dynamicIcons/bookmark";
 import HeartIcon from "../../dynamicIcons/heart";
 import "./styles.scss";
 
-const NftCard = ({ name, id, media }) => {
+const NftCard = ({ name, id, media, favorisFound }) => {
 	const isLogged = useSelector((state) => state.user.isLogged);
 
 	const shortedName = name.substring(0, 32);
@@ -20,7 +20,7 @@ const NftCard = ({ name, id, media }) => {
 					<div className="nftCard__icons">
 						{isLogged ? (
 							<>
-								<BookmarkIcon nftId={id} />
+								<BookmarkIcon nftId={id} favorisFound={favorisFound} />
 								<HeartIcon />
 							</>
 						) : (
