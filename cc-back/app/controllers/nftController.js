@@ -21,9 +21,12 @@ module.exports = {
     async getNftByCollectionId(req, res) {
         let collections;
         if (req.query.limit) {
-            collections = await Nft.getByCollectionIdLimit(req.params.id, req.query.limit);
+            collections = await Nft.getByCollectionIdLimit(
+                req.params.id_collection,
+                req.query.limit,
+            );
         } else {
-            collections = await Nft.getByCollectionId(req.params.id);
+            collections = await Nft.getByCollectionId(req.params.id_collection);
         }
         return res.json(collections);
     },
