@@ -25,3 +25,8 @@ $color_text_lighter: #e5e7ed;
 //dimensions
 $dimension_header_height: 3rem;
 $dimension_menuMobile_height: 4rem;
+
+// Effects
+$boxShadow_Light : 0px 0px 10px $color_secondary;
+$boxShadow_header : 0 5px 5px rgba(99, 103, 114, 0.2) ;
+$boxShadow_footer : 0 -5px 5px rgba(135, 137, 142, 0.2);

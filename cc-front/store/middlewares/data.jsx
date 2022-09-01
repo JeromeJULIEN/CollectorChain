@@ -59,7 +59,6 @@ const dataMiddleware = (store) => (next) => async (action) => {
 		}
 		case FETCH_PROPERTIES:{
 			const { data } = await instance.get('/property');
-			console.log('fetch prop >>>', data);
 			store.dispatch(setProperties(data))
 		}
 		case FETCH_TAGS:{

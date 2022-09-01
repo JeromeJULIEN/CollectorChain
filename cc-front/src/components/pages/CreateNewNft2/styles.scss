@@ -169,6 +169,7 @@ h3{
         background-color: vars.$color_secondary;
         border-radius: 1rem;
         margin: 1rem 25%;
+        box-shadow: vars.$boxShadow_Light;
     
         &__title{
             text-align: center;

@@ -63,11 +63,11 @@
     }
 
     &__list{
-        margin: 0.5rem;
         display: grid;
         flex-direction: row;
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.5em;
+        gap: 1rem;
+        padding: .5rem 1rem 0rem 1rem;
     }
 
 }

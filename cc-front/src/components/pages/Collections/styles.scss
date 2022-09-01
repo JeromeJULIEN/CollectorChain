@@ -20,10 +20,10 @@
 
     &__list{
 		z-index: 0;
-        margin: 5.4rem 0.5rem 0.5rem 0.5rem;
+        margin: 5.7rem 1rem 0rem 1rem;
         display: grid;
         flex-direction: row;
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.5em;
+        gap: 1rem;
     }
 }
