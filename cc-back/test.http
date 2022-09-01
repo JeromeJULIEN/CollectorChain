@@ -13,10 +13,11 @@ Content-Type: application/json
 
 {
 
-    "nickname":"test1",
-    "email":"user1@user.com",
-    "password":"user3",
-    "passwordConfirm": "user3"
+    "nickname":"loic55",
+    "email":"loic@loic5 .com",
+    "password":"user3456",
+    "passwordConfirm": "user3456",
+    "wallet" : 1
 }
 
 #### Post login 
@@ -24,8 +25,8 @@ POST {{ endpoint }}/login
 Content-type: application/json
 
 {
-    "email":"user@user.com",
-    "password": "password"
+    "email":"loicloic5.com",
+    "password": "user3456"
 }
 
 ### Profil 
@@ -35,21 +36,19 @@ GET {{ endpoint }}/profil/10
 DELETE {{ endpoint }}/profil/4/delete
 
 ### Update profil
-PATCH {{ endpoint }}/profil/27/update
+PATCH {{ endpoint }}/profil/33/update
 Content-Type: application/json
 
 {
-                "password": "user3",
-                "newPassword": "test1",
-                "newPasswordConfirm": "test1"
+                "password": "user3456",
+                "wallet" : 8
 }
-
 ### Forget User
 POST {{ endpoint }}/forget_user
 Content-Type: application/json
 
 {
-    "email": "user@user.com"
+    "email": "collectorchain.test@gmail.com"
 }
 
 ### TOKEN (JWT) ###
@@ -161,13 +160,13 @@ GET {{ endpoint }}/categories/2/collections
 ### NFT ###
 
 ### Collections/NFT
-GET {{ endpoint }}/collections/2/nft/?limit=1
+GET {{ endpoint }}/collections/2/nft/?limit=
 
 ### NFT
-GET {{ endpoint }}/nft/?limit=
+GET {{ endpoint }}/nft/?limit=2
 
 ### NFT User
-GET {{ endpoint }}/1/nft/?limit=
+GET {{ endpoint }}/1/nft/?limit=3
 
 ### Post NFT
 POST {{ endpoint }}/1/nft
@@ -197,6 +196,12 @@ Content-Type: application/json
     "name": "test"
 }
 
+### Property
+GET {{ endpoint }}/property/?limit=
+
+### Tag
+GET {{ endpoint }}/tag/?limit=
+
 ### Showcase ###
 
 ### Showcase User
@@ -208,12 +213,8 @@ GET {{ endpoint }}/showcase/1
 GET {{ endpoint }}/favorite/1/?limit=
 
 ### Favoris
-POST {{ endpoint }}/favorite/1
-Content-Type: application/json
+POST {{ endpoint }}/favorite/1/9
 
-{
-    "nft_id": [4,2]
-}
 
 ### Favoris
-DELETE {{ endpoint }}/favorite/1/nft/8/delete
+DELETE {{ endpoint }}/favorite/1/9

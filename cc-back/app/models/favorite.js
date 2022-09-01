@@ -28,20 +28,16 @@ module.exports = class Favorite extends CoreDatamapper {
     }
 
     static async addFavoriteNft(userId, nft) {
-        const favoryQuery = [];
-        nft.forEach(async (value) => {
-            const query = client.query(
-                `INSERT INTO "favorite" (user_id, nft_id) VALUES
+        const result = await client.query(
+            `INSERT INTO "favorite" (user_id, nft_id) VALUES
                 ($1,$2);
                 `,
-                [
-                    userId,
-                    value,
-                ],
-            );
-            favoryQuery.push(query);
-        });
-        await Promise.all(favoryQuery);
+            [
+                userId,
+                nft,
+            ],
+        );
+        return result.rows[0];
     }
 
     static async deleteFavoriteNft(userId, nft) {

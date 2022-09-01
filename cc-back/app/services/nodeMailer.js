@@ -1,13 +1,19 @@
 const nodemailer = require('nodemailer');
+const randomPassword = require('./randomPassword');
+require('dotenv').config();
 
-async function sendEmail(userEmail, password) {
-    const resetMail = await nodemailer.createTransport({
-        service: 'gmail',
+async function forgottenPassword(userEmail) {
+    const transporter = await nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
             user: process.env.MAIL,
             pass: process.env.PASSWORD,
         },
     });
+    // console.log(process.env.MAIL);
+    // console.log(process.env.PASSWORD);
 
     const mailOptions = {
         from: process.env.MAIL,
@@ -16,15 +22,23 @@ async function sendEmail(userEmail, password) {
         text: ` 
         Bonjour !
         Suite à votre demande, vous trouverez ci-joint le mot de passe
-        lié à votre compte utilisateur : ${password}
+        lié à votre compte utilisateur : ${randomPassword}
 
-        Cordialement.
+        Cordialement,
 
         L'équipe Collector Chain
     `,
     };
-
-    resetMail.sendEmail(mailOptions, (error, info) => {
+    /*
+    transporter.verify((error, success) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Server is ready to take our messages');
+        }
+    });
+    */
+    transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
         } else {
@@ -33,4 +47,4 @@ async function sendEmail(userEmail, password) {
     });
 }
 
-module.exports = sendEmail;
+module.exports = forgottenPassword;
