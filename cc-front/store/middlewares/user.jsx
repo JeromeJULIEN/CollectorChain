@@ -4,11 +4,13 @@ import { ADD_NFT_TO_FAVORITE, REMOVE_NFT_TO_FAVORITE, addNftToFavorite, removeNf
 const userMiddleware = (store) => (next) => async (action) => {
 	switch (action.type) {
 		case ADD_NFT_TO_FAVORITE: {
-			const { data } = await instance.patch(`/favoris/${action.userId}/${action.nftId}`);
+			await instance.post(`/favoris/${action.userId}/${action.nftId}`);
+			const { data } = await instance.get(`/favoris/${action.userId}`);
 			store.dispatch(setFavorites(data));
 		}
 		case REMOVE_NFT_TO_FAVORITE: {
-			const { data } = await instance.delete(`/favoris/${action.userId}/${action.nftId}`);
+			await instance.delete(`/favoris/${action.userId}/${action.nftId}`);
+			const { data } = await instance.get(`/favoris/${action.userId}`);
 			store.dispatch(setFavorites(data));
 		}
 		default:
