@@ -14,7 +14,7 @@ Content-Type: application/json
 {
 
     "nickname":"loic55",
-    "email":"loic@loic5.com",
+    "email":"loic@loic5 .com",
     "password":"user3456",
     "passwordConfirm": "user3456",
     "wallet" : 1
@@ -208,8 +208,8 @@ GET {{ endpoint }}/showcase/1
 GET {{ endpoint }}/favorite/1/?limit=
 
 ### Favoris
-POST {{ endpoint }}/favorite/1/8
+POST {{ endpoint }}/favorite/1/9
 
 
 ### Favoris
-DELETE {{ endpoint }}/favorite/1/8
+DELETE {{ endpoint }}/favorite/1/9

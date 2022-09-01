@@ -16,6 +16,7 @@ const middlewareFactory = (dataType, schema) => async (req, res, next) => {
         // console.log(err);
         // throw new ValidationError('test', { statusCode: 400 });
         next(err);
+        // next(new ValidationError('err', { statusCode: 400, error: err }));
     }
 };
 

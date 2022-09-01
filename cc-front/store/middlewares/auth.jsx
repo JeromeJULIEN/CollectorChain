@@ -18,6 +18,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				});
 				
 			} catch (error) {
+				console.log(error)
 				resultErr = error.request.response
 			}
 			if(result){
