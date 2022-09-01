@@ -21,6 +21,17 @@ module.exports = class Nft extends CoreDatamapper {
         return result.rows;
     }
 
+    static async findNftById(id) {
+        const result = await client.query(
+            `
+            SELECT * FROM getAllNftWithJoin
+            WHERE id = $1
+        `,
+            [id],
+        );
+        return result.rows[0];
+    }
+
     static async getByCollectionId(id) {
         const result = await client.query(
             `SELECT * FROM getAllNftWithJoin 
@@ -65,8 +76,8 @@ module.exports = class Nft extends CoreDatamapper {
 
     static async create(newNft) {
         const result = await client.query(
-            `INSERT INTO "nft" (token, name, description, price, forSale, media, collection_id, creator_id, owner_id, rarity) 
-             VALUES ($1, $2, $3, $4, $5 ,$6, $7, $8, $9, $10) 
+            `INSERT INTO "nft" ("token", "name", "description", "price", "forSale", "media", "collection_id", "creator_id", "owner_id", "rarity", "serial", "model", "showcase_id") 
+             VALUES ($1, $2, $3, $4, $5 ,$6, $7, $8, $9, $10, $11, $12, $13) 
              RETURNING *
             `,
             [
@@ -80,6 +91,9 @@ module.exports = class Nft extends CoreDatamapper {
                 newNft.creator_id,
                 newNft.owner_id,
                 newNft.rarity,
+                newNft.serial,
+                newNft.model,
+                newNft.showcase_id,
             ],
         );
         return result.rows[0];
@@ -99,7 +113,10 @@ module.exports = class Nft extends CoreDatamapper {
                 "collection_id" = $8,
                 "creator_id" = $9,
                 "owner_id" = $10,
-                "rarity" = $11
+                "rarity" = $11,
+                "serial"= $12,
+                "model"= $13,
+                "showcase_id"= $14,
                 
             WHERE id = $1
             RETURNING *
@@ -117,6 +134,9 @@ module.exports = class Nft extends CoreDatamapper {
                 nft.creator_id,
                 nft.owner_id,
                 nft.rarity,
+                nft.serial,
+                nft.model,
+                nft.showcase_id,
             ],
         );
         return result.rows[0];

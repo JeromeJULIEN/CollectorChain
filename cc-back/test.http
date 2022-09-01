@@ -173,8 +173,8 @@ POST {{ endpoint }}/1/nft
 Content-Type: application/json
 
 {
-    "token": "123",
-    "name": "test",
+    "token": "1234469464",
+    "name": "test11515615616",
     "description": "test",
     "price": 12,
     "forSale": true,
@@ -182,7 +182,8 @@ Content-Type: application/json
     "collection_id": 1,
     "creator_id": 1,
     "owner_id": 1,
-    "rarity": "10"
+    "rarity": "10",
+    "serial": "156"
 }
 
 ### Delete NFT
