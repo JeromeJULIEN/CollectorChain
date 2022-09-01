@@ -1,4 +1,6 @@
-const { Nft } = require('../models');
+const {
+    Nft, Property, Tag, NftHasPropertyHasTag,
+} = require('../models');
 const ApiError = require('../errors/apiError');
 
 module.exports = {
@@ -29,9 +31,9 @@ module.exports = {
     async getNftByUserId(req, res) {
         let nft;
         if (req.query.limit) {
-            nft = await Nft.getByNftIdLimit(req.params.id, req.params.limit);
+            nft = await Nft.getByNftIdLimit(req.params.id_user, req.query.limit);
         } else {
-            nft = await Nft.getByNftId(req.params.id);
+            nft = await Nft.getByNftId(req.params.id_user);
         }
         return res.json(nft);
     },
@@ -53,6 +55,34 @@ module.exports = {
             showcase_id: req.body.showcase_id,
         };
         const addNft = await Nft.create(newNft);
+
+        const nftPropertyTag = [];
+        if (req.body.properties) {
+            const allProperty = await Property.findAll();
+            const allTag = await Tag.findAll();
+            const property = req.body.properties;
+
+            property.forEach(async (propertie) => {
+                const foundPropertie = allProperty.find((e) => e.name === propertie.name);
+                const foundTag = allTag.find((e) => e.name === propertie.tag);
+                let propId;
+                let tagId;
+                if (!foundPropertie) {
+                    const newPropertie = await Property.create({ name: propertie.name });
+                    propId = newPropertie.id;
+                } else {
+                    propId = foundPropertie.id;
+                }
+                if (!foundTag) {
+                    const newTag = await Tag.create({ name: propertie.tag });
+                    tagId = newTag.id;
+                } else {
+                    tagId = foundTag.id;
+                }
+                nftPropertyTag.push({ name: propId, tag: tagId });
+                await NftHasPropertyHasTag.create(addNft.id, nftPropertyTag);
+            });
+        }
         return res.json(addNft);
     },
 
