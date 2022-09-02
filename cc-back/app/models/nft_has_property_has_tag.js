@@ -1,6 +1,13 @@
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
+/** NftHasPropertyHasTag Model Object
+ * @typedef {object} NftHasPropertyHasTag
+ * @property {number} id -  Nft id
+ * @property {string} name -  propertie name
+ * @property {string} tag -  propertie tag
+*/
+
 module.exports = class NftHasPropertyHasTag extends CoreDatamapper {
     static tableName = 'nft_has_property_has_tag';
 

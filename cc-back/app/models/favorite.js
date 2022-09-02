@@ -1,6 +1,13 @@
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
+/** Favorite Model Object
+ * @typedef {object} Favorite
+ * @property {number} id - favorite id
+ * @property {number} id - user id
+ * @property {Object} nft - nft object
+*/
+
 module.exports = class Favorite extends CoreDatamapper {
     static tableName = 'favorite';
 
