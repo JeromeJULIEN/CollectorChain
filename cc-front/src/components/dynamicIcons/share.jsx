@@ -14,49 +14,43 @@ import {
 	LinkedinIcon,
 } from "react-share";
 
-import { Dropdown, Popover, Whisper } from "rsuite";
-
 import "./styles.scss";
-import { nodeName } from "rsuite/esm/DOMHelper";
 
 const Share = ({ url }) => {
 	const shareUrl = `https://collector-chain.herokuapp.com${url}`;
-	const iconSize = 30;
+	const iconSize = 28;
+	const [open, setOpen] = React.useState(false);
+	const handleIcon = () => setOpen(!open);
 	return (
 		<>
 			<div className="share-icon">
-				<Dropdown icon={<ion-icon name="share-social-outline" style={{ color: "black" }}></ion-icon>} noCaret placement="bottomEnd">
-					<Dropdown.Item>
-						<EmailShareButton url={shareUrl}>
+				<button onClick={handleIcon} className="modale-share-button">
+					<img src="../../../public/share-16.png" alt="logo share" />
+				</button>
+				{open === true ? (
+					<div className="modale-share">
+						<EmailShareButton url={shareUrl} className="modale-share-logo">
 							<EmailIcon size={iconSize} round="true" />
 						</EmailShareButton>
-					</Dropdown.Item>
-					<Dropdown.Item>
-						<FacebookShareButton url={shareUrl}>
+						<FacebookShareButton url={shareUrl} className="modale-share-logo">
 							<FacebookIcon size={iconSize} round="true" />
 						</FacebookShareButton>
-					</Dropdown.Item>
-					<Dropdown.Item>
-						<FacebookMessengerShareButton url={shareUrl}>
+						<FacebookMessengerShareButton url={shareUrl} className="modale-share-logo">
 							<FacebookMessengerIcon size={iconSize} round="true" />
 						</FacebookMessengerShareButton>
-					</Dropdown.Item>
-					<Dropdown.Item>
-						<WhatsappShareButton url={shareUrl}>
+						<WhatsappShareButton url={shareUrl} className="modale-share-logo">
 							<WhatsappIcon size={iconSize} round="true" />
 						</WhatsappShareButton>
-					</Dropdown.Item>
-					<Dropdown.Item>
-						<TwitterShareButton url={shareUrl}>
+						<TwitterShareButton url={shareUrl} className="modale-share-logo">
 							<TwitterIcon size={iconSize} round="true" />
 						</TwitterShareButton>
-					</Dropdown.Item>
-					<Dropdown.Item>
-						<LinkedinShareButton url={shareUrl}>
+						<LinkedinShareButton url={shareUrl} className="modale-share-logo">
 							<LinkedinIcon size={iconSize} round="true" />
 						</LinkedinShareButton>
-					</Dropdown.Item>
-				</Dropdown>
+					</div>
+				) : (
+					""
+				)}
 			</div>
 		</>
 	);
