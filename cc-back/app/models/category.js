@@ -11,7 +11,7 @@ const CoreDatamapper = require('./coreDatamapper');
  */
 
 /**
- * Category
+ * Category Object
  * @typedef {object} Category
  * @property {object} category - Generated category object
  */

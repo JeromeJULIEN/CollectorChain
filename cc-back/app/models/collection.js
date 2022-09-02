@@ -11,6 +11,12 @@ const CoreDatamapper = require('./coreDatamapper');
  * @property {number} category_id - category_id
  */
 
+/**
+ * Collection Object
+ * @typedef {object} Collection
+ * @property {object} collection - Generated collection object
+ */
+
 module.exports = class Collection extends CoreDatamapper {
     static tableName = 'collection';
 
