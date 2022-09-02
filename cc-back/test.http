@@ -176,7 +176,6 @@ POST {{ endpoint }}/nft
 Content-Type: application/json
 
 {
-    "token": "16515gggrerethryfrtzyugrgerfrekrereregrgege2ytytytujuyyt5rjtseztzeg15165jyt",
     "name": "azrgzryh25ytretyergrggereekyuergergersjuyeruythdh",
     "description": "test",
     "price": 12,

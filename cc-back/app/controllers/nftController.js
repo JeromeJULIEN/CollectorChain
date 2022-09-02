@@ -1,6 +1,7 @@
 const {
     Nft, Property, Tag, NftHasPropertyHasTag,
 } = require('../models');
+const { randomUniqueToken } = require('../helper/middelware');
 const ApiError = require('../errors/apiError');
 
 module.exports = {
@@ -42,8 +43,9 @@ module.exports = {
     },
 
     async createNft(req, res) {
+        const token = await randomUniqueToken();
         const newNft = {
-            token: req.body.token,
+            token,
             name: req.body.name,
             description: req.body.description,
             price: req.body.price,
