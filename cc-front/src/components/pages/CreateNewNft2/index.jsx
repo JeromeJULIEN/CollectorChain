@@ -51,6 +51,7 @@ const CreateNewNft2 = () => {
     //PICTURE
     const [picture,setPicture] = useState('')
     const createNft = useSelector(state => state.createNft)
+    console.log(createNft.nftToCreate.media);
 
 	const uploadImage = (event) => {
 		// setPicture(event.target.files);
@@ -155,14 +156,14 @@ const CreateNewNft2 = () => {
                 <h3>NFT picture</h3>
                 <p>Upload the base picture for NFT profile picture creation</p>
                 <div className="picture__picture">
-					{createNft.media ? (
+					{createNft.nftToCreate.media ? (
 						<div className="picture__trash-icon" onClick={deleteImage}>
 							<ion-icon className="picture__trash" name="trash-outline" id="overallPicture" size="large"></ion-icon>
 						</div>
 					) : (
 						""
 					)}
-					{!createNft.media? (
+					{!createNft.nftToCreate.media? (
 						<>
 							<label htmlFor="OverallPictureInput" className="picture__add-icon">
 								<ion-icon name="add-circle-outline" size="large"></ion-icon>
@@ -172,7 +173,7 @@ const CreateNewNft2 = () => {
 					) : (
 						""
 					)}
-					{createNft.media ? <img className="picture__image" src={createNft.media} alt="Overall picture" /> : ""}
+					{createNft.nftToCreate.media ? <img className="picture__image" src={createNft.nftToCreate.media} alt="Overall picture" /> : ""}
 				</div>
             </div>
             <div className="validation">

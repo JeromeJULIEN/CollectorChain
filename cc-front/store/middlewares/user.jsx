@@ -21,7 +21,7 @@ const userMiddleware = (store) => (next) => async (action) => {
 		}
 		case NFT_CREATION: {
 			const state = store.getState();
-			const nftToCreate = state.createNft;
+			const nftToCreate = state.createNft.nftToCreate;
 			console.log("mdw >>> create nft avec :", nftToCreate);
 			await instance.post('/nft', nftToCreate).then((response)=> console.log(response))
 		}
