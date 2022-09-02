@@ -14,7 +14,7 @@ import {
 	LinkedinIcon,
 } from "react-share";
 
-import { Dropdown } from "rsuite";
+import { Dropdown, Popover, Whisper } from "rsuite";
 
 import "./styles.scss";
 import { nodeName } from "rsuite/esm/DOMHelper";
