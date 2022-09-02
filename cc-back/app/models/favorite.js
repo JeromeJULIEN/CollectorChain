@@ -8,6 +8,12 @@ const CoreDatamapper = require('./coreDatamapper');
  * @property {Object} nft - nft object
 */
 
+/**
+ * Favorite Object
+ * @typedef {object} Favorite
+ * @property {object} favorite - Generates a list of user favorites
+ */
+
 module.exports = class Favorite extends CoreDatamapper {
     static tableName = 'favorite';
 

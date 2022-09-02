@@ -32,7 +32,7 @@ router.post('/categories', controllerHandler(categoriesController.createCategori
  * @summary Delete categories/:id
  * @tags Categories
  * @param {number} id.query - id from category deleted
- * @return {categories} 200 - success response - application/json
+ * @return {string} 200 - success response - application/json
  */
 router.delete('/categories/:id', controllerHandler(categoriesController.deleteCategorie));
 /**
