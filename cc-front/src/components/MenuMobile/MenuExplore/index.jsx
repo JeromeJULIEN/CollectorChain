@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Nav } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
@@ -6,12 +6,22 @@ import ExploreIcon from "@rsuite/icons/Explore";
 import './styles.scss';
 
 export default function MenuExplore({ placement }) {
+
+	// Gestion de l'affichage/disparition du sous menu explore
+	const [exploreMenuVisible,setExploreMenuVisible] = useState(false);
+	const handleExploreMenuVisibility = () => {
+		setExploreMenuVisible(!exploreMenuVisible)
+		console.log(exploreMenuVisible);
+	}
+
 	return (
 		<Nav.Menu
 			title="Explore"
 			// icon={<ExploreIcon />}
 			placement={placement}
 			className='menu-explore'
+			// onOpen={handleExploreMenuVisibility}
+			// onClose={handleExploreMenuVisibility}
 		>
 			<Nav.Item>
 				<Link to="/">Home page</Link>

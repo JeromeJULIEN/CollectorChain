@@ -15,6 +15,7 @@ import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
+import { useState } from "react";
 
 const MenuMobile = () => {
 	const dispatch = useDispatch();
@@ -39,6 +40,13 @@ const MenuMobile = () => {
 	const signupCloseHandler = () => {
 		signupSetVisible(false);
 	};
+
+	// Gestion de l'affichage/disparition du sous menu user
+	const [userMenuVisible,setUserMenuVisible] = useState(false);
+	const handleUserMenuVisibility = () => {
+		setUserMenuVisible(!userMenuVisible)
+		console.log(userMenuVisible);
+	}
 
 	const handleChange = (event) => {
 		dispatch(changeUserField(event.target.value, event.target.name));
@@ -79,26 +87,32 @@ const MenuMobile = () => {
 					className="menu-user"
 					// icon={<UserInfoIcon />}
 					placement="topEnd"
+					onOpen={handleUserMenuVisibility}
+					onClose={handleUserMenuVisibility}
 				>
-					{isLogged?
-					<>
-					<Nav.Item className="menu-user-item">
-						<Link to="/showcase">My showcase</Link>
-					</Nav.Item>
-					<Nav.Item className="menu-user-item">
-						<Link to="/favorites">My favorites</Link>
-					</Nav.Item>
-					<Nav.Item className="menu-user-item">
-						<Link to="/profil">My profil</Link>
-					</Nav.Item>
-					<Nav.Item className="menu-user-item" onClick={handleLogout}>Logout</Nav.Item>
-					</>
-					:
-					<>
-					<Nav.Item onClick={loginHandler} className="menu-user-item">Login</Nav.Item>
-					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
-					</>
-					}
+					{userMenuVisible?
+						<>
+						{isLogged?
+						<>
+						<Nav.Item className="menu-user-item" onClick={handleUserMenuVisibility}>
+							<Link to="/showcase">My showcase</Link>
+						</Nav.Item>
+						<Nav.Item className="menu-user-item">
+							<Link to="/favorites">My favorites</Link>
+						</Nav.Item>
+						<Nav.Item className="menu-user-item">
+							<Link to="/profil">My profil</Link>
+						</Nav.Item>
+						<Nav.Item className="menu-user-item" onClick={handleLogout}>Logout</Nav.Item>
+						</>
+						:
+						<>
+						<Nav.Item onClick={loginHandler} className="menu-user-item">Login</Nav.Item>
+						<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
+						</>
+						}
+						</>
+					:''}
 				</Nav.Menu>
 			</Nav>
 			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler}>
