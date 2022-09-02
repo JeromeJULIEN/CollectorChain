@@ -79,7 +79,18 @@ const Collection = ({ url }) => {
 		const sortZtoA = [...list].sort((a, b) => b.name.localeCompare(a.name));
 		setSortList(sortZtoA);
 	};
-	//!Fin searchBar
+	//-----------------
+	//! Récupération des id des nft affichés
+	const listId = list.map((item) => item.id);
+
+	//! Récupération des id des nft en favoris
+	const favorites = useSelector((state) => state.user.favorites);
+	const favorisId = favorites.map((item) => item.id);
+
+	//! Récupération d'un tableau des id identiques (comparaison id nft & favoris)
+	const favorisFound = listId.filter((value) => favorisId.includes(value));
+
+	//----------------
 
 	return (
 		<div className="collection">
@@ -125,7 +136,7 @@ const Collection = ({ url }) => {
 			<div className="collection__list">
 				{/* display de la liste sous forme de carte */}
 				{sortList.map((nft) => {
-					return <NftCard key={nft.id} {...nft} />;
+					return <NftCard key={nft.id} {...nft} favorisFound={favorisFound} />;
 				})}
 			</div>
 		</div>

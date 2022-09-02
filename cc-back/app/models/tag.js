@@ -4,24 +4,16 @@ const CoreDatamapper = require('./coreDatamapper');
 module.exports = class Tag extends CoreDatamapper {
     static tableName = 'tag';
 
-    static async getByTagId(id) {
+    static async create(newTag) {
         const result = await client.query(
-            `SELECT * FROM "tag"
-          WHERE "id" = $1
-          `,
-            [id],
+            `INSERT INTO "tag" (name) 
+             VALUES ($1) 
+             RETURNING *
+            `,
+            [
+                newTag.name,
+            ],
         );
-        return result.rows;
-    }
-
-    static async getByTagIdLimit(id, limit) {
-        const result = await client.query(
-            `SELECT * FROM "tag"
-          WHERE "id" = $1
-          LIMIT $2
-          `,
-            [id, limit],
-        );
-        return result.rows;
+        return result.rows[0];
     }
 };

@@ -1,6 +1,15 @@
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
+/**
+ * Category Model Object
+ * @typedef {object} Category
+ * @property {number} id - category id
+ * @property {string} name - category name
+ * @property {string} description - category description
+ * @property {string} media - category media
+ */
+
 module.exports = class Category extends CoreDatamapper {
     static tableName = 'category';
 

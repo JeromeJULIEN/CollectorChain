@@ -1,6 +1,16 @@
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
+/**
+ * Collection Model Object
+ * @typedef {object} Collection
+ * @property {number} id - collection id
+ * @property {string} name - collection name
+ * @property {string} description - collection description
+ * @property {string} media - collection media
+ * @property {number} category_id - category_id
+ */
+
 module.exports = class Collection extends CoreDatamapper {
     static tableName = 'collection';
 

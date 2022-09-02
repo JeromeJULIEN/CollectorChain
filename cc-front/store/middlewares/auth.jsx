@@ -1,4 +1,4 @@
-import { setUserData, LOG_IN, SIGNUP, UPDATE_PROFILE, IS_OPEN_TO_CONTACT } from "../actions/user";
+import { setUserData, LOG_IN, SIGNUP, UPDATE_PROFILE, IS_OPEN_TO_CONTACT, setFavorites } from "../actions/user";
 import instance from "../../utils/axios";
 
 const authMiddleware = (store) => (next) => async (action) => {
@@ -8,23 +8,24 @@ const authMiddleware = (store) => (next) => async (action) => {
 				user: { email, password },
 			} = store.getState();
 			// On utilise une instance d'axios qui est configurer avec un baseUrl me permettant de ne plus spéficier à chaque fois http://localhost:3000
-			let result
-			let data
-			let resultErr
+			let result;
+			let favorites;
+			let data;
+			let resultErr;
 			try {
 				result = await instance.post("/login", {
 					email,
 					password,
 				});
-				
 			} catch (error) {
-				console.log(error)
-				resultErr = error.request.response
+				console.log(error);
+				resultErr = error.request.response;
 			}
-			if(result){
-				data = result.data
-			}else{
-				data = resultErr
+			if (result) {
+				data = result.data;
+				favorites = await instance.get(`/favorite/${data.id}`);
+			} else {
+				data = resultErr;
 			}
 						
 			// console.log("data from post login request >>>>", data);
@@ -33,8 +34,10 @@ const authMiddleware = (store) => (next) => async (action) => {
 			// Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
 			instance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
 
-			// Je stock les informations reçu au login dans mon store
+			// Je stock les informations user reçu au login dans mon store
 			store.dispatch(setUserData(data));
+			// Je stock les favoris du user reçu au login dans mon store
+			store.dispatch(setFavorites(favorites.data));
 			// Je déclenche l'action qui va aller récupérer mes recettes favorites
 			break;
 		}

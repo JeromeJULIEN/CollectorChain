@@ -15,6 +15,8 @@ const categoriesRouter = require('./categories');
 // const showcaseUserRouter = require('./showcaseUser');
 const nftRouter = require('./nft');
 const favoriteRouter = require('./favorite');
+const propertyRouter = require('./property');
+const tagRouter = require('./tag');
 
 router.use(homepageRouter);
 router.use(signUpRouter);
@@ -27,6 +29,8 @@ router.use(categoriesRouter);
 // router.use(showcaseUserRouter);
 router.use(nftRouter);
 router.use(favoriteRouter);
+router.use(propertyRouter);
+router.use(tagRouter);
 
 router.get('/posts', jwtModules.authenticateToken, homePageController.displayHomePage);
 router.post('/token', jwtModules.refreshToken);
