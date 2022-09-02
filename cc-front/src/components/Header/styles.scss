@@ -11,7 +11,7 @@
 	top: 0;
     height: vars.$dimension_header_height;
     padding: .5rem;
-    box-shadow: 0 5px 5px rgb(255, 255, 255, .2) ;
+    box-shadow: vars.$boxShadow_header ;
 
     &__btn{
         display: flex;

@@ -108,7 +108,7 @@ const reducer = (state = initialState, action = {}) => {
 			}
 		};
 		case SET_DISPLAY_NFT:{
-			console.log('entrée dans reducer nft > setDisplayNft avec >>>', action.payload)
+			// console.log('entrée dans reducer nft > setDisplayNft avec >>>', action.payload)
 			return{
 				...state,
 				displayedNft: action.payload

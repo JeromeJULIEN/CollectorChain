@@ -2,10 +2,10 @@ import "./styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown, Input, InputPicker } from "rsuite";
 
-const SearchBarCollection = ({ sortPrice0to1, sortPrice1to0, sortRarity0to1, sortRarity1to0, sortAtoZ, sortZtoA }) => {
-	// import des données des catégories pour alimenter les inputPicker
-	const dataProperties = useSelector((state) => state.properties.list).map((item) => ({ label: item, value: item }));
-	const dataTags = useSelector((state) => state.tags.list).map((item) => ({ label: item, value: item }));
+const SearchBarCollection = ({ sortPrice0to1, sortPrice1to0, sortRarity0to1, sortRarity1to0, sortAtoZ, sortZtoA, properties, tags }) => {
+	// import des données des propriétés et tags issus de la liste des NFT affichés pour alimenter les inputPicker
+	const dataProperties = properties.map((item) => ({ label: item, value: item }));
+	const dataTags = tags.map((item) => ({ label: item, value: item }));
 
 	return (
 		<div className="searchBarFavorite">

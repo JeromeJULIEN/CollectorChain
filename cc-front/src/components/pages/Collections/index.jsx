@@ -52,7 +52,7 @@ const Collections = () => {
 	const [sortList, setSortList] = useState([]);
 
 	useEffect(() => {
-		console.log(">>>>> useEffect Collections <<<<<<<<");
+		// console.log(">>>>> useEffect Collections <<<<<<<<");
 		dispatch(fetchCollections(''));
 	}, [location]);
 

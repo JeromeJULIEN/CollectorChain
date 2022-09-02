@@ -61,6 +61,7 @@ const MenuMobile = () => {
 	};
 
 	const handleLogout = () => {
+		console.log('handleLogout');
 		dispatch(logout())
 	}
 
@@ -79,8 +80,6 @@ const MenuMobile = () => {
 					// icon={<UserInfoIcon />}
 					placement="topEnd"
 				>
-					<Nav.Item onClick={loginHandler} className="menu-user-item">Login</Nav.Item>
-					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 					{isLogged?
 					<>
 					<Nav.Item className="menu-user-item">
@@ -95,7 +94,10 @@ const MenuMobile = () => {
 					<Nav.Item className="menu-user-item" onClick={handleLogout}>Logout</Nav.Item>
 					</>
 					:
-					''
+					<>
+					<Nav.Item onClick={loginHandler} className="menu-user-item">Login</Nav.Item>
+					<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
+					</>
 					}
 				</Nav.Menu>
 			</Nav>

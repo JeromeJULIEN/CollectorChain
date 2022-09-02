@@ -10,6 +10,7 @@
     background-color:grey;
     border-radius: .5rem;
     aspect-ratio: 1;
+    box-shadow: vars.$boxShadow_Light;
     // position: relative;
 
     &__image{

@@ -1,25 +1,24 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
-import { fetchCollectionsByCategory } from '../../../../store/actions/data'
-import CollectionCard from '../../card/CollectionCard'
-import SearchBarCollectionsByCategory from '../../searchBars/SearchBarCollectionsByCategory'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { fetchCollectionsByCategory } from "../../../../store/actions/data";
+import CollectionCard from "../../card/CollectionCard";
+import SearchBarCollectionsByCategory from "../../searchBars/SearchBarCollectionsByCategory";
 
-import './styles.scss'
+import "./styles.scss";
 
 const CollectionsByCategory = () => {
+	const { id } = useParams();
 
-  const {id} = useParams()
-  
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const location = useLocation();
-	
+
 	const list = useSelector((state) => state.collections.list);
 
-	const categoryList = useSelector(state => state.categories.list)
-	const displayedCategory = categoryList.find(category => category.id ==id)
-	console.log('displayedCat >>>', displayedCategory);
+	const categoryList = useSelector((state) => state.categories.list);
+	const displayedCategory = categoryList.find((category) => category.id == id);
+	console.log("displayedCat >>>", displayedCategory);
 
 	// SearchBar Order by
 	const [sortList, setSortList] = useState([]);
@@ -61,6 +60,6 @@ const CollectionsByCategory = () => {
 			</div>
 		</div>
 	);
-}
+};
 
-export default CollectionsByCategory
+export default CollectionsByCategory;

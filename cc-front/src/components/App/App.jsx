@@ -29,7 +29,7 @@ import AboutUs from "../pages/AboutUs";
 import Term from "../pages/Term";
 import Resources from "../pages/Resources";
 import Creation from "../pages/Creation";
-import { fetchCategories, fetchCollections, fetchNfts } from "../../../store/actions/data";
+import { fetchCategories, fetchCollections, fetchNfts, fetchProperties, fetchTags } from "../../../store/actions/data";
 
 function App() {
 	const dispatch = useDispatch();
@@ -54,11 +54,17 @@ function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
 	// 1 - on recupère l'url
 	const location = useLocation();
-	console.log("location>>>>", location);
 	// 2 - on lance l'action à chaque changement d'url
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location]);
+
+	// Chargement initial de toutes les infos nécessaires
+	useEffect(() => {
+		dispatch(fetchCategories());
+		dispatch(fetchProperties());
+		dispatch(fetchTags());
+	}, []);
 
 	const locationUrl = location.pathname;
 	//! BDD locale pour test
@@ -66,11 +72,21 @@ function App() {
 	// const nfts = useSelector((state) => state.nfts.list);
 
 	//! Récupération données depuis BDD distante
-	// Ajout d'une condition pour appliquer la limite de fetchCollections uniquement sur la homepage
-	if (location.pathname == "/") {
-		console.log(">>>>> useEffect App <<<<<<<<");
-		dispatch(fetchCategories());
+	// Ajout d'une condition pour appliquer la limite de fetchCollections uniquement sur la homepage.
+	// Ajouter au tableau pathTable les routes concernés
+	const pathTable = ["/"];
+	if (pathTable.includes(location.pathname)) {
+		// location.pathname == "/")
+		console.log("pathTable OK");
+		// console.log(">>>>> useEffect App <<<<<<<<");
 		dispatch(fetchCollections(10));
+	}
+	const pathTable2 = ["/creation/createnewnft2"];
+	if (pathTable2.includes(location.pathname)) {
+		// location.pathname == "/")
+		console.log("pathTable2 OK");
+		// console.log(">>>>> useEffect App <<<<<<<<");
+		dispatch(fetchCollections(""));
 	}
 	// useEffect(() => {
 	// 	// dispatch(fetchNfts())

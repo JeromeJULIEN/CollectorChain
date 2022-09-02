@@ -6,6 +6,23 @@ export const DELETE_NFT_MEDIA = 'DELETE_NFT_MEDIA';
 export const STORE_DESCRIPTION = 'STORE_DESCRIPTION';
 export const STORE_CATEGORY = 'STORE_CATEGORY';
 export const CHANGE_NFT_FIELD = 'CHANGE_NFT_FIELD';
+export const NFT_CREATION = 'NFT_CREATION';
+export const STORE_COLLECTIONS_BY_CATEGORY = 'STORE_COLLECTIONS_BY_CATEGORY';
+export const STORE_COLLECTION = 'STORE_COLLECTION';
+
+export const storeCollection = (payload) => ({
+  type: STORE_COLLECTION,
+  payload
+});
+
+export const storeCollectionsByCategory = (categoryName) => ({
+  type: STORE_COLLECTIONS_BY_CATEGORY,
+  categoryName
+});
+
+export const nftCreation = () => ({
+  type: NFT_CREATION
+});
 
 export const changeNftField = (value,name) => ({
   type: CHANGE_NFT_FIELD,
