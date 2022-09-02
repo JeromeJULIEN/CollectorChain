@@ -15,6 +15,7 @@ const saltRounds = 10;
  * @property {string} media - link to user picture
 */
 
+
 module.exports = class User extends CoreDatamapper {
     static tableName = 'user';
 

@@ -29,17 +29,11 @@ const options = {
     // Expose OpenAPI UI
     exposeSwaggerUI: true,
     // Expose Open API JSON Docs documentation in `apiDocsPath` path.
-    exposeApiDocs: false,
+    exposeApiDocs: true,
     // Open API JSON Docs endpoint.
     apiDocsPath: '/v3/api-docs',
     // Set non-required fields as nullable by default
     notRequiredAsNullable: false,
-    // You can customize your UI options.
-    // you can extend swagger-ui-express config. You can checkout an example of this
-    // in the `example/configuration/swaggerOptions.js`
-    swaggerUiOptions: {},
-    // multiple option in case you want more that one instance
-    multiple: true,
 };
 
 const app = express();
