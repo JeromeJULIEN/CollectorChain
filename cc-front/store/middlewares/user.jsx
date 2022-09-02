@@ -1,5 +1,7 @@
 import instance from "../../utils/axios";
+import { NFT_CREATION } from "../actions/createNft";
 import { ADD_NFT_TO_FAVORITE, REMOVE_NFT_TO_FAVORITE, setFavorites } from "../actions/user";
+
 
 const userMiddleware = (store) => (next) => async (action) => {
 	switch (action.type) {

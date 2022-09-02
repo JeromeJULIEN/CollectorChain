@@ -54,6 +54,7 @@ function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
 	// 1 - on recupère l'url
 	const location = useLocation();
+	// console.log("location>>>>", location);
 	// 2 - on lance l'action à chaque changement d'url
 	useEffect(() => {
 		window.scrollTo(0, 0);

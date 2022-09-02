@@ -40,12 +40,16 @@ const CreateNewNft2 = () => {
         setCustomProps([...customProps, 'p'])
     }
 
-    // Recupération d'infos du state
+    //! state local pour envoie des infos au reducer createNft au moment de la validation finale
+       
+    //PICTURE
+    const [picture,setPicture] = useState('')
     const createNft = useSelector(state => state.createNft)
 
-    //! Gestion upload image // Utilisation de Cloudinary
 	const uploadImage = (event) => {
-		// video tuto youtube https://www.youtube.com/watch?v=Y-VgaRwWS3o
+		// setPicture(event.target.files);
+		// Il faut stocker un chemin URL pour afficher l'image
+        // dispatch(storeNftMedia(event.target.files[0]));
         const formData = new FormData()
         formData.append("file",event.target.files[0])
         formData.append("upload_preset", "r2bx0mli")
@@ -58,7 +62,7 @@ const CreateNewNft2 = () => {
 
 	};
 	const deleteImage = () => {
-		setPicture('');
+		// setPicture('');
 		// Il faut stocker un chemin URL pour afficher l'image
 		dispatch(deleteNftMedia());
 	};
