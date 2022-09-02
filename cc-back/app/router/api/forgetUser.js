@@ -7,16 +7,17 @@ const controllerHandler = require('../../helper/controllerHandler');
 
 /**
  * GET /forget_user
- * @summary Route to forget_user
- * @tags forget_user
- * @param {string} email - user email
+ * @summary Get to forget_user
+ * @tags Forget_user
+ * @param {string} email.query - user email
+ * @return {string} 200 - success response - application/json
  */
 router.get('/forget_user', controllerHandler(userController.resetMail));
 /**
  * POST /forget_user
- * @summary Route to forget_user
- * @tags forget_user
- * @param {string} email - user email
+ * @summary Post to forget_user
+ * @tags Forget_user
+ * @param {string} email.query - user email
  * @return {string} 200 - success response - application/json
  */
 router.post('/forget_user', controllerHandler(userController.resetMail));

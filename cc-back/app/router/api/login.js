@@ -10,10 +10,10 @@ const validation = require('../../validation/validator');
 
 /**
  * POST /login
- * @summary Route to login a registered user
- * @tags user
- * @param {string} email - user email
- * @param {string} password - user password
+ * @summary Post to login a registered user
+ * @tags User
+ * @param {string} email.query - user email
+ * @param {string} password.query - user password
  * @return {string} 200 - success response - application/json
  */
 router.post('/login', validation('body', userLogin), controllerHandler(userController.loginUser));
