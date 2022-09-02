@@ -9,6 +9,12 @@ export const CHANGE_NFT_FIELD = 'CHANGE_NFT_FIELD';
 export const NFT_CREATION = 'NFT_CREATION';
 export const STORE_COLLECTIONS_BY_CATEGORY = 'STORE_COLLECTIONS_BY_CATEGORY';
 export const STORE_COLLECTION = 'STORE_COLLECTION';
+export const SET_CREATOR_ID = 'SET_CREATOR_ID';
+
+export const setCreatorId = (id) => ({
+  type: SET_CREATOR_ID,
+  id
+});
 
 export const storeCollection = (payload) => ({
   type: STORE_COLLECTION,

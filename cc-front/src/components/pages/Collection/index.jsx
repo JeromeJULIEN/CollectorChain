@@ -10,13 +10,13 @@ import Share from "../../dynamicIcons/share";
 
 const Collection = ({ url }) => {
 	const dispatch = useDispatch();
-
+	
 	const { id } = useParams();
 	// console.log("id de la collection >>>", id);
-
+	
 	//! Gestion donnée en local
 	// console.log('filtered collection>>>', selectedCollection)
-
+	
 	//! Gestion données depuis API
 	useEffect(() => {
 		dispatch(fetchNftByCollectionId(id));
@@ -25,34 +25,39 @@ const Collection = ({ url }) => {
 
 	const list = useSelector((state) => state.nfts.list);
 	const collection = useSelector((state) => state.collections.displayedCollection);
-
 	//!Création des liste de props et tag
 	// Propriétés
-	const a = list.map((nft) => nft.property);
 	let globalPropList = [];
-	// on utilise la destructuration pour concaténer tableau par tableau dans globalPropList
-	a.map((propArray) => {
-		globalPropList = [...globalPropList, ...propArray];
-	});
-	// console.log('globalPropList>>>', globalPropList);
-
-	// Idem avec Tag
-	const b = list.map((nft) => nft.tag);
 	let globalTagList = [];
-	b.map((tagArray) => {
-		globalTagList = [...globalTagList, ...tagArray];
-	});
-	// console.log('globalTagList>>>', globalTagList);
+	if(list){
+		const a = list.map((nft) => nft.property);
+		console.log('list>>>>',list);
+		console.log('a >>>>>',a);
+		// on utilise la destructuration pour concaténer tableau par tableau dans globalPropList
+		a.map((propArray) => {
+			globalPropList = [...globalPropList, ...propArray];
+		});
+		// console.log('globalPropList>>>', globalPropList);
+	
+		// Idem avec Tag
+		const b = list.map((nft) => nft.tag);
+		b.map((tagArray) => {
+			globalTagList = [...globalTagList, ...tagArray];
+		});
+		// console.log('globalTagList>>>', globalTagList);
+	}
 
+	
 	//! SearchBar Order by
 	const selectedCollection = list.filter((nft) => nft.collection_id == id);
 	const [sortList, setSortList] = useState([]);
-
+	
 	useEffect(() => {
 		if (list) {
 			setSortList(selectedCollection);
 		}
 	}, [list]);
+	
 
 	const sortPrice0to1 = () => {
 		const sortPrice0to1 = [...selectedCollection].sort((a, b) => a.price - b.price);

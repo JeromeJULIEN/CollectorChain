@@ -1,4 +1,4 @@
-import { CHANGE_NFT_FIELD, DELETE_NFT_MEDIA, DELETE_PROPERTY, STORE_CATEGORY, STORE_COLLECTION, STORE_DESCRIPTION, STORE_NFT_MEDIA, STORE_PROPERTY, STORE_TEMP_PICTURE } from "../actions/createNft";
+import { CHANGE_NFT_FIELD, DELETE_NFT_MEDIA, DELETE_PROPERTY, SET_CREATOR_ID, STORE_CATEGORY, STORE_COLLECTION, STORE_DESCRIPTION, STORE_NFT_MEDIA, STORE_PROPERTY, STORE_TEMP_PICTURE } from "../actions/createNft";
 
 export const initialState = {
     name: "",
@@ -6,11 +6,14 @@ export const initialState = {
 	tempMedia: "",
     properties:[],
     category:'',
-    collection:'',
+    collection_id:'',
     model:'',
     serial:'',
     rarity:'',
-    description:''
+    description:'',
+    creator_id:'',
+    owner_id:'',
+    token:'xxxxxxxxx'
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -74,13 +77,20 @@ const reducer = (state = initialState, action = {}) => {
         case CHANGE_NFT_FIELD:{
             return{
                 ...state,
-                [action.name]:[action.value]
+                [action.name]:action.value
             }
         };
         case STORE_COLLECTION:{
             return{
                 ...state,
-                collection:action.payload
+                collection_id:action.payload
+            }
+        };
+        case SET_CREATOR_ID:{
+            return{
+                ...state,
+                creator_id:action.id,
+                owner_id:action.id
             }
         }
 

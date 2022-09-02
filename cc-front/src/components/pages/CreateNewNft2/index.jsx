@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import ObjectPicture from '../CreateNewNft1/ObjectPicture';
 import Footer from '../../Footer';
 import CustomPropFields from './CustomPropFields';
-import { changeNftField, deleteNftMedia, nftCreation, storeCategory, storeCollection, storeNftMedia } from '../../../../store/actions/createNft';
+import { changeNftField, deleteNftMedia, nftCreation, setCreatorId, storeCategory, storeCollection, storeNftMedia } from '../../../../store/actions/createNft';
 import { wait } from '../../../../utils/wait';
 import { fetchCollections } from '../../../../store/actions/data';
 import Axios from 'axios';
@@ -15,6 +15,12 @@ import Axios from 'axios';
 const CreateNewNft2 = () => {
 
     const dispatch=useDispatch();
+
+    const userId = useSelector(state => state.user.id)
+    // useEffect(()=>{
+
+    //     dispatch(setCreatorId(userId));
+    // },[])
 
     //! import des données des catégories pour alimenter les inputPicker
     //category
@@ -72,6 +78,7 @@ const CreateNewNft2 = () => {
     const [isLoading, setIsLoading] =useState(false)
 
     const validateCreation = async () => {
+        dispatch(setCreatorId(userId))
         dispatch(nftCreation())
         setIsLoading(true)
         await wait(2000)
@@ -119,8 +126,10 @@ const CreateNewNft2 = () => {
                 <div className="properties__property">
                     {/* <p>Name</p>
                     <Input placeholder='NFT name' name='name' onChange={handleChangeField}/> */}
-                    <p>Model</p>
+                     <p>Name</p>
                     <Input placeholder='object brand model' name='name' onChange={handleChangeField}/>
+                    <p>Model</p>
+                    <Input placeholder='object brand model' name='model' onChange={handleChangeField}/>
                     <p>Serial</p>
                     <Input placeholder='object serial number' name='serial' onChange={handleChangeField}/>
                     <p>Rarity</p>

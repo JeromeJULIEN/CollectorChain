@@ -38,7 +38,7 @@ const dataMiddleware = (store) => (next) => async (action) => {
 		}
 		case FETCH_NFT_BY_COLLECTION_ID: {
 			console.log("entrée dans mdw data > fetchNftByCategory");
-			const { data } = await instance.get(`/collections/${action.id_collection}/nft`);
+			const { data } = await instance.get(`/collections/${action.id}/nft`);
 			store.dispatch(setNfts(data));
 		}
 		case FETCH_NFT_BY_ID: {
