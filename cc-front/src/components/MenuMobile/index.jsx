@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const MenuMobile = () => {
 	const dispatch = useDispatch();
@@ -43,10 +44,14 @@ const MenuMobile = () => {
 
 	// Gestion de l'affichage/disparition du sous menu user
 	const [userMenuVisible,setUserMenuVisible] = useState(false);
-	const handleUserMenuVisibility = () => {
-		setUserMenuVisible(!userMenuVisible)
-		console.log(userMenuVisible);
+	// console.log('user menu visibility>>>',userMenuVisible);
+	const userMenuOn = () => {
+		setUserMenuVisible(true)
 	}
+	const userMenuOff = ()=> {
+		setUserMenuVisible(false)
+	}
+	// fin gestion affichage sous menu user
 
 	const handleChange = (event) => {
 		dispatch(changeUserField(event.target.value, event.target.name));
@@ -87,20 +92,20 @@ const MenuMobile = () => {
 					className="menu-user"
 					// icon={<UserInfoIcon />}
 					placement="topEnd"
-					onOpen={handleUserMenuVisibility}
-					onClose={handleUserMenuVisibility}
+					onOpen={userMenuOn}
+					onClose={userMenuOff}
 				>
 					{userMenuVisible?
 						<>
 						{isLogged?
 						<>
-						<Nav.Item className="menu-user-item" onClick={handleUserMenuVisibility}>
+						<Nav.Item className="menu-user-item" onClick={userMenuOff}>
 							<Link to="/showcase">My showcase</Link>
 						</Nav.Item>
-						<Nav.Item className="menu-user-item">
+						<Nav.Item className="menu-user-item" onClick={userMenuOff}>
 							<Link to="/favorites">My favorites</Link>
 						</Nav.Item>
-						<Nav.Item className="menu-user-item">
+						<Nav.Item className="menu-user-item" onClick={userMenuOff}>
 							<Link to="/profil">My profil</Link>
 						</Nav.Item>
 						<Nav.Item className="menu-user-item" onClick={handleLogout}>Logout</Nav.Item>

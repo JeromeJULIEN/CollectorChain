@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { Modal } from "rsuite";
-import { removeFromShowcase, removeNftFromTodisplayList, setShowcaseNftDisplayed } from "../../../../../store/actions/user";
+import { fetchOwned, removeFromShowcase, removeNftFromTodisplayList, setShowcaseNftDisplayed } from "../../../../../store/actions/user";
 import NftOwned from "../../../modals/NftOwned";
 import "./styles.scss";
 
 const ShowcaseNft = ({id, name}) => {
 
 	const dispatch = useDispatch();
+	const location = useLocation()
+	const userId = useSelector(state => state.user.id)
 
+	useEffect(() => {
+		dispatch(fetchOwned(userId))
+	},[location])
+	
 	const nftOwned = useSelector((state) => state.user.nftOwned);
 
 	// Recherche de l'image devant etre associée à cette case :

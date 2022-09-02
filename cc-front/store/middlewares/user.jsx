@@ -1,6 +1,6 @@
 import instance from "../../utils/axios";
 import { NFT_CREATION } from "../actions/createNft";
-import { ADD_NFT_TO_FAVORITE, REMOVE_NFT_TO_FAVORITE, setFavorites } from "../actions/user";
+import { ADD_NFT_TO_FAVORITE, FETCH_OWNED, REMOVE_NFT_TO_FAVORITE, setFavorites, setOwned } from "../actions/user";
 
 
 const userMiddleware = (store) => (next) => async (action) => {
@@ -24,6 +24,11 @@ const userMiddleware = (store) => (next) => async (action) => {
 			const nftToCreate = state.createNft.nftToCreate;
 			console.log("mdw >>> create nft avec :", nftToCreate);
 			await instance.post('/nft', nftToCreate).then((response)=> console.log(response))
+		}
+		case FETCH_OWNED:{
+			const {data} = await instance.get(`/${action.id}/nft`)
+			console.log('owned nft >>>', data);
+			store.dispatch(setOwned(data))
 		}
 
 		default:

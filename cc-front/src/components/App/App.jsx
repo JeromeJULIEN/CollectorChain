@@ -78,14 +78,14 @@ function App() {
 	const pathTable = ["/"];
 	if (pathTable.includes(location.pathname)) {
 		// location.pathname == "/")
-		console.log("pathTable OK");
+		// console.log("pathTable OK");
 		// console.log(">>>>> useEffect App <<<<<<<<");
 		dispatch(fetchCollections(10));
 	}
 	const pathTable2 = ["/creation/createnewnft2"];
 	if (pathTable2.includes(location.pathname)) {
 		// location.pathname == "/")
-		console.log("pathTable2 OK");
+		// console.log("pathTable2 OK");
 		// console.log(">>>>> useEffect App <<<<<<<<");
 		dispatch(fetchCollections(""));
 	}

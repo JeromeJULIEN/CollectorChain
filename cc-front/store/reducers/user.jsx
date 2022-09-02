@@ -10,6 +10,7 @@ import {
 	REMOVE_NFT_FROM_TODISPLAY_LIST,
 	REMOVE_FROM_SHOWCASE,
 	SET_FAVORITES,
+	SET_OWNED,
 } from "../actions/user";
 
 export const initialState = {
@@ -144,6 +145,7 @@ const reducer = (state = initialState, action = {}) => {
 				[action.name]: action.value,
 			};
 		case SET_USER_DATA:
+			// console.log(action.data);
 			return {
 				...state,
 				...action.data,
@@ -198,12 +200,18 @@ const reducer = (state = initialState, action = {}) => {
 				// on le rajoute à la liste 'toDisplay'
 				showcaseNftToDisplay: [...state.showcaseNftToDisplay, action.nft],
 			};
-
 		case SET_FAVORITES:
 			return {
 				...state,
 				favorites: action.payload,
 			};
+		case SET_OWNED:{
+			return{
+				...state,
+				nftOwned:action.payload,
+				showcaseNftToDisplay:action.payload
+			}
+		}
 		default:
 			return state;
 	}
