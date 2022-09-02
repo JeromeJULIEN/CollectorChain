@@ -61,7 +61,6 @@ module.exports = {
         };
         const addNft = await Nft.create(newNft);
 
-        const nftPropertyTag = [];
         if (req.body.properties) {
             const allProperty = await Property.findAll();
             const allTag = await Tag.findAll();
@@ -84,7 +83,7 @@ module.exports = {
                 } else {
                     tagId = foundTag.id;
                 }
-                nftPropertyTag.push({ name: propId, tag: tagId });
+                const nftPropertyTag = { name: propId, tag: tagId };
                 await NftHasPropertyHasTag.create(addNft.id, nftPropertyTag);
             });
         }

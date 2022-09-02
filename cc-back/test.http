@@ -176,7 +176,7 @@ POST {{ endpoint }}/nft
 Content-Type: application/json
 
 {
-    "name": "azrgzryh25ytretyergrggereekyuergergersjuyeruythdh",
+    "name": "dayvr42evre date",
     "description": "test",
     "price": 12,
     "forSale": true,
@@ -187,7 +187,9 @@ Content-Type: application/json
     "rarity": "10",
     "serial": "156",
     "properties" : [
-        {"name": "tesfrgreegrgrehtrgereegkuhrtjygrtjret88", "tag":"tagtghtrkuyreeregsggrhtreret4jyt442rgerge21"}
+        {"name": "n4", "tag":"t4"},
+        {"name": "n5", "tag":"t5"},
+        {"name": "n6", "tag":"t6"}
     ]
 }
 
