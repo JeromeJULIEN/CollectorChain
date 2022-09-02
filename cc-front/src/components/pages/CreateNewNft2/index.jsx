@@ -119,8 +119,10 @@ const CreateNewNft2 = () => {
                 <div className="properties__property">
                     {/* <p>Name</p>
                     <Input placeholder='NFT name' name='name' onChange={handleChangeField}/> */}
-                    <p>Model</p>
+                    <p>Name</p>
                     <Input placeholder='object brand model' name='name' onChange={handleChangeField}/>
+                    <p>Model</p>
+                    <Input placeholder='object brand model' name='model' onChange={handleChangeField}/>
                     <p>Serial</p>
                     <Input placeholder='object serial number' name='serial' onChange={handleChangeField}/>
                     <p>Rarity</p>

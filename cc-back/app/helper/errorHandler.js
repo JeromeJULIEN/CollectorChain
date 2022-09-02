@@ -3,7 +3,6 @@ module.exports = (err, req, res, next) => {
     let statusCode;
     let message;
     if (err.name === 'ApiError') {
-        // console.log(err);
         statusCode = err.infos?.statusCode ?? 400;
         message = err.message;
     } else if (err.name === 'ValidationError') {
@@ -31,9 +30,10 @@ module.exports = (err, req, res, next) => {
         statusCode = 400;
         message = `${err.table} already exist`;
     } else {
+        console.log('err 1');
         statusCode = 500;
         // message = 'Internal server error';
-        message = err;
+        message = err.message;
     }
 
     res.status(statusCode).json({ message });

@@ -17,6 +17,7 @@ const nftRouter = require('./nft');
 const favoriteRouter = require('./favorite');
 const propertyRouter = require('./property');
 const tagRouter = require('./tag');
+const searchRouter = require('./search');
 
 router.use(homepageRouter);
 router.use(signUpRouter);
@@ -31,6 +32,7 @@ router.use(nftRouter);
 router.use(favoriteRouter);
 router.use(propertyRouter);
 router.use(tagRouter);
+router.use(searchRouter);
 
 router.get('/posts', jwtModules.authenticateToken, homePageController.displayHomePage);
 router.post('/token', jwtModules.refreshToken);

@@ -5,6 +5,9 @@ const router = express.Router();
 const nftController = require('../../controllers/nftController');
 const controllerHandler = require('../../helper/controllerHandler');
 
+const { createNft } = require('../../validation/schemas/nft');
+const validation = require('../../validation/validator');
+
 /**
  * GET /nft
  * @summary Route to nft
@@ -28,7 +31,7 @@ router.get('/nft/:id', controllerHandler(nftController.getNftById));
  * @param {Nft} Nft - Nft Model Object
  * @return {Object} 200 - success response - application/json
  */
-router.post('/nft', controllerHandler(nftController.createNft));
+router.post('/nft', validation('body', createNft), controllerHandler(nftController.createNft));
 /**
  * DELETE /nft/:id/delete
  * @summary Route to delete nft

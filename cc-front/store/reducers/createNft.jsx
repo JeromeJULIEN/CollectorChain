@@ -74,7 +74,7 @@ const reducer = (state = initialState, action = {}) => {
         case CHANGE_NFT_FIELD:{
             return{
                 ...state,
-                [action.name]:[action.value]
+                [action.name]:action.value
             }
         };
         case STORE_COLLECTION:{

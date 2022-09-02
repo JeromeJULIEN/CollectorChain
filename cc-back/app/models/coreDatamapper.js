@@ -12,6 +12,26 @@ module.exports = class CoreDatamapper {
         return result.rows;
     }
 
+    static async findAllByColumn(columnName) {
+        const result = await client.query(
+            `
+            SELECT $1 FROM "${this.tableName}" 
+        `,
+            [columnName],
+        );
+        return result.rows;
+    }
+
+    static async findOneByColumn(columnName, value) {
+        const result = await client.query(
+            `
+            SELECT * FROM "${this.tableName}" WHERE $1 = $2
+        `,
+            [columnName, value],
+        );
+        return result.rows[0];
+    }
+
     static async findAllLimit(limit) {
         const result = await client.query(
             `
@@ -43,5 +63,15 @@ module.exports = class CoreDatamapper {
             [id],
         );
         return result.rows[0];
+    }
+
+    static async LookForAll(text) {
+        const result = await client.query(
+            `
+            SELECT * FROM "${this.tableName}" WHERE "name" LIKE '%$1%'
+            `,
+            [text],
+        );
+        return result.rows;
     }
 };
