@@ -1,9 +1,8 @@
-
-import React from 'react'
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Input } from 'rsuite';
-import './styles.scss'
+import React from "react";
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Input } from "rsuite";
+import "./styles.scss";
 
 const Header = () => {
 	const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false);
@@ -17,50 +16,52 @@ const Header = () => {
 		setIsSearchBarOpen(!isSearchBarOpen);
 	};
 
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	const navToResults = (event) => {
-		event.preventDefault()
-		navigate('/results')
-		setIsSearchBarOpen(!isSearchBarOpen)
-	}
-	
+		event.preventDefault();
+		navigate("/results");
+		setIsSearchBarOpen(!isSearchBarOpen);
+	};
+
 	return (
 		<div className="header">
-			{isSearchBarOpen?
-			<>
-			<form action="" onSubmit={navToResults}>
-			<Input placeholder='Search Categories, collections or NFTs' />
-			</form>
-			<div className='header__btn'>
-				<ion-icon name="close-circle" onClick={manageSearchBarVisibility}></ion-icon>
-				<button
-					className="header__scrollToTop"
-					onClick={() => {
-						window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-					}}
-				>
-					<ion-icon name="push-outline"></ion-icon>
-				</button>
-			</div>
-			</>
-			:
-			<>
-			<Link to='/'><h1>Collector Chain</h1></Link>
-			<div className='header__btn'>
-				<ion-icon name="search-circle" onClick={manageSearchBarVisibility}></ion-icon>
-				<button
-					className="header__scrollToTop"
-					onClick={() => {
-						window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-					}}
-				>
-					<ion-icon name="push-outline"></ion-icon>
-				</button>
-			</div>
-			</>
-			}
-			
+			{isSearchBarOpen ? (
+				<>
+					<form action="" onSubmit={navToResults}>
+						<Input placeholder="Search Categories, collections or NFTs" />
+					</form>
+					<div className="header__btn">
+						<ion-icon name="close-circle" onClick={manageSearchBarVisibility}></ion-icon>
+						<button
+							className="header__scrollToTop"
+							onClick={() => {
+								window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+							}}
+						>
+							<ion-icon name="push-outline"></ion-icon>
+						</button>
+					</div>
+				</>
+			) : (
+				<>
+					<Link to="/">
+						<h1>Collector Chain</h1>
+					</Link>
+					<div className="header__btn">
+						<ion-icon name="search-circle" onClick={manageSearchBarVisibility}></ion-icon>
+						<button
+							className="header__scrollToTop"
+							onClick={() => {
+								window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+							}}
+						>
+							<ion-icon name="push-outline"></ion-icon>
+						</button>
+					</div>
+				</>
+			)}
+
 			{/* <form
 >>>>>>> jerome
 			// onSubmit={handleSubmitForm}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./styles.scss";
@@ -13,6 +14,14 @@ const HomePage = () => {
 	// import depuis le state de la liste en cours
 	const list = useSelector((state) => state.collections.list);
 
+	// const [listSortByDate, setListSortByDate] = useState([]);
+
+	// if (list) {
+	// 	const sortByDate = [...list].sort((a, b) => a.created_at - b.created_at);
+	// 	setListSortByDate(sortByDate);
+	// 	console.log(listSortByDate);
+	// }
+
 	return (
 		<main>
 			<div className="homePage">
@@ -24,7 +33,7 @@ const HomePage = () => {
 							{list.map((collection) => {
 								return (
 									<SwiperSlide key={collection.id}>
-										<CollectionCard text={collection.name} media={collection.media} id={collection.id}/>
+										<CollectionCard text={collection.name} media={collection.media} id={collection.id} />
 									</SwiperSlide>
 								);
 							})}
@@ -33,7 +42,7 @@ const HomePage = () => {
 				</div>
 
 				<div className="homePage__creationProcess">
-					<Link to='/creation'>
+					<Link to="/creation">
 						<h2>our NFT creation process</h2>
 						<img src="https://bladerender.com/media/simple-responsive-slideshow/2.jpg" />
 					</Link>
@@ -44,7 +53,7 @@ const HomePage = () => {
 						{list.map((collection) => {
 							return (
 								<SwiperSlide key={collection.id}>
-									<CollectionCard text={collection.name} media={collection.media} id={collection.id}/>
+									<CollectionCard text={collection.name} media={collection.media} id={collection.id} />
 								</SwiperSlide>
 							);
 						})}

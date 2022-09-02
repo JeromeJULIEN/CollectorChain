@@ -37,12 +37,12 @@ const dataMiddleware = (store) => (next) => async (action) => {
 			store.dispatch(setNfts(data));
 		}
 		case FETCH_NFT_BY_COLLECTION_ID: {
-			// console.log("entrée dans mdw data > fetchNftByCategory");
-			const { data } = await instance.get(`/collections/${action.id}/nft`);
+			console.log("entrée dans mdw data > fetchNftByCategory");
+			const { data } = await instance.get(`/collections/${action.id_collection}/nft`);
 			store.dispatch(setNfts(data));
 		}
 		case FETCH_NFT_BY_ID: {
-			// console.log("entrée dans mdw data > fetchNftByid", action.id);
+			console.log("entrée dans mdw data > fetchNftByid", action.id);
 			const { data } = await instance.get(`/nft/${action.id}`);
 			store.dispatch(setDisplayNft(data));
 		}
@@ -50,24 +50,24 @@ const dataMiddleware = (store) => (next) => async (action) => {
 			// console.log("entrée dans mdw data > fetchCollectionByid", action.id);
 			const { data } = await instance.get(`/collection/${action.id}`);
 			store.dispatch(setDisplayedCollection(data));
-		};
-		case FETCH_COLLECTIONS_BY_CATEGORY:{
-			// console.log("entrée dans mdw data > fetchCollectionsByCategories", action.id);
+		}
+		case FETCH_COLLECTIONS_BY_CATEGORY: {
+			console.log("entrée dans mdw data > fetchCollectionsByCategories", action.id);
 			const { data } = await instance.get(`/categories/${action.id}/collections/`);
-			// console.log('collec by cat >>>', data)
+			console.log("collec by cat >>>", data);
 			store.dispatch(setCollections(data));
 		}
-		case FETCH_PROPERTIES:{
-			const { data } = await instance.get('/property');
-			store.dispatch(setProperties(data))
+		case FETCH_PROPERTIES: {
+			const { data } = await instance.get("/property");
+			store.dispatch(setProperties(data));
 		}
-		case FETCH_TAGS:{
-			const { data } = await instance.get('/tag');
-			store.dispatch(setTags(data))
+		case FETCH_TAGS: {
+			const { data } = await instance.get("/tag");
+			store.dispatch(setTags(data));
 		}
-		case STORE_COLLECTIONS_BY_CATEGORY:{
+		case STORE_COLLECTIONS_BY_CATEGORY: {
 			// const state
-			// const id = 
+			// const id =
 			// const {data} = await instance.get('/')
 		}
 

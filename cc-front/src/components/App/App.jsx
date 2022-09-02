@@ -54,18 +54,17 @@ function App() {
 	// fonction pou remonter en haut de l apage automatiquement à chaque changement d'url
 	// 1 - on recupère l'url
 	const location = useLocation();
-	// console.log("location>>>>", location);
 	// 2 - on lance l'action à chaque changement d'url
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location]);
-	
+
 	// Chargement initial de toutes les infos nécessaires
 	useEffect(() => {
 		dispatch(fetchCategories());
-		dispatch(fetchProperties())
-		dispatch(fetchTags())
-	},[])
+		dispatch(fetchProperties());
+		dispatch(fetchTags());
+	}, []);
 
 	const locationUrl = location.pathname;
 	//! BDD locale pour test
@@ -75,21 +74,19 @@ function App() {
 	//! Récupération données depuis BDD distante
 	// Ajout d'une condition pour appliquer la limite de fetchCollections uniquement sur la homepage.
 	// Ajouter au tableau pathTable les routes concernés
-	const pathTable = ["/"]
-	if (pathTable.includes(location.pathname))
-		// location.pathname == "/") 
-		{
-			console.log('pathTable OK');
+	const pathTable = ["/"];
+	if (pathTable.includes(location.pathname)) {
+		// location.pathname == "/")
+		console.log("pathTable OK");
 		// console.log(">>>>> useEffect App <<<<<<<<");
 		dispatch(fetchCollections(10));
 	}
-	const pathTable2 = ["/creation/createnewnft2"]
-	if (pathTable2.includes(location.pathname))
-		// location.pathname == "/") 
-		{
-			console.log('pathTable2 OK');
+	const pathTable2 = ["/creation/createnewnft2"];
+	if (pathTable2.includes(location.pathname)) {
+		// location.pathname == "/")
+		console.log("pathTable2 OK");
 		// console.log(">>>>> useEffect App <<<<<<<<");
-		dispatch(fetchCollections(''));
+		dispatch(fetchCollections(""));
 	}
 	// useEffect(() => {
 	// 	// dispatch(fetchNfts())

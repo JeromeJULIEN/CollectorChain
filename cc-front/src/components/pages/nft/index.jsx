@@ -1,10 +1,6 @@
 import "./styles.scss";
-import { Panel, PanelGroup } from "rsuite";
+import { Panel, PanelGroup, Progress } from "rsuite";
 import { Link, useParams } from "react-router-dom";
-import NftCard from "../../card/NftCard";
-import SlideAuto from "../../slides/SlideAuto";
-import { SwiperSlide } from "swiper/react";
-import Slide_2x2 from "../../slides/Slide_2x2";
 import { useEffect, useState } from "react";
 import { Modal } from "@nextui-org/react";
 import Purchase from "../../modals/Purchase";
@@ -12,6 +8,7 @@ import FullScreen from "../../modals/FullScreen";
 import Sell from "../../modals/Sell";
 import HeartIcon from "../../dynamicIcons/heart";
 import Share from "../../dynamicIcons/share";
+import BookmarkIcon from "../../dynamicIcons/bookmark";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNftById } from "../../../../store/actions/data";
 
@@ -30,8 +27,9 @@ const Nft = ({ nfts, url }) => {
 		}, []);
 	}
 	const displayedNft = useSelector((state) => state.nfts.displayedNft);
-	// console.log('displayed nft', displayedNft);
-	const isLogged = useSelector(state => state.user.isLogged)
+	const isLogged = useSelector((state) => state.user.isLogged);
+
+	const convertRarityToPercent = (displayedNft.rarity * 100) / 70;
 
 	// gestion modale purchase
 	// 1 - creation d'un state local
@@ -59,20 +57,34 @@ const Nft = ({ nfts, url }) => {
 	};
 	const hideSell = () => setIsSellVisible(false);
 
+	//-----------------
+	// //! Récupération de l'id du nft affiché
+	const nftId = [displayedNft.id];
+
+	//! Récupération des id des nft en favoris
+	const favorites = useSelector((state) => state.user.favorites);
+	const favorisId = favorites.map((item) => item.id);
+
+	//! Récupération d'un tableau des id identiques (comparaison id nft & favoris)
+	const favorisFound = nftId.filter((value) => favorisId.includes(value));
+	console.log("FAVORITE_FOUND >>>", favorisFound);
+
+	//----------------
+
 	return (
 		<div className="nft">
 			<h1 className="nft__title">{displayedNft.name}</h1>
 			<img src={displayedNft.media} alt="" className="nft__image" onClick={showFullScreen} />
 			<div className="nft__actionsButtons">
-				<Share id="test" url={url} className='share'/>
-				{isLogged?
-				<>
-				<ion-icon name="bookmarks-outline"></ion-icon>
-				<HeartIcon />
-				</>
-				:
-				''
-				}
+				<Share id="test" url={url} className="share" />
+				{isLogged ? (
+					<>
+						<BookmarkIcon nftId={displayedNft.id} favorisFound={favorisFound} />
+						<HeartIcon />
+					</>
+				) : (
+					""
+				)}
 			</div>
 			<div className="nft__price">
 				{displayedNft.forSale ? (
@@ -81,22 +93,22 @@ const Nft = ({ nfts, url }) => {
 							<p>Current price</p>
 							<h3>{displayedNft.price}</h3>
 						</div>
-						{isLogged?
-						<>
-						<div className="nft__price__buy">
-							<button type="button" onClick={showPurchase}>
-								Buy
-							</button>
-							<button type="button" onClick={showSell}>
-								Sell
-							</button>
-						</div>
-						</>
-						:
-						<div className="nft__price__buy">
-							<p>Login to buy this NFT</p>
-						</div>
-						}
+						{isLogged ? (
+							<>
+								<div className="nft__price__buy">
+									<button type="button" onClick={showPurchase}>
+										Buy
+									</button>
+									<button type="button" onClick={showSell}>
+										Sell
+									</button>
+								</div>
+							</>
+						) : (
+							<div className="nft__price__buy">
+								<p>Login to buy this NFT</p>
+							</div>
+						)}
 					</>
 				) : (
 					<>
@@ -118,8 +130,9 @@ const Nft = ({ nfts, url }) => {
 							<p>id : {displayedNft.owner_id}</p>
 						</div>
 						<div className="nft__infos__main__rarity">
-							<h3>Rarity</h3>
-							<p>{displayedNft.rarity}</p>
+							<h3>Rarity : {displayedNft.rarity} </h3>
+							{/* <p>{displayedNft.rarity}</p> */}
+							<Progress.Line percent={convertRarityToPercent} strokeColor="#FF7F11" showInfo={false} className="nft__infos__main__rarity__progess" />
 						</div>
 					</div>
 				</Panel>

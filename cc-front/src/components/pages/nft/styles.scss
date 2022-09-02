@@ -49,13 +49,13 @@
         button{
             background-color: transparent;
         }
-        ion-icon{
-            color: vars.$color_callToAction;
-        }
+        // ion-icon{
+        //     color: vars.$color_callToAction;
+        // }
 
-        .share-icon, .rs-dropdown-toggle-icon, .rs-dropdown-toggle, .rs-dropdown-toggle-no-caret, .rs-btn, .rs-btn-default{
-            color: red;
-        }
+        // .share-icon, .rs-dropdown-toggle-icon, .rs-dropdown-toggle, .rs-dropdown-toggle-no-caret, .rs-btn, .rs-btn-default{
+        //     color: red;
+        // }
     }
 
     &__price{
@@ -131,6 +131,12 @@
             
             text-align: center;
             
+			&__rarity__progess {
+				background-color: vars.$color_secondary;
+				margin: .2rem;
+            	padding: 0.5rem;
+				border-radius: .75rem;
+			}
         }
 
         &__description{
