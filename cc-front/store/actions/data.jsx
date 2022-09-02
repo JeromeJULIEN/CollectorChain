@@ -9,33 +9,33 @@ export const FETCH_NFT_BY_ID = "FETCH_NFT_BY_ID";
 export const SET_DISPLAY_NFT = "SET_DISPLAY_NFT";
 export const FETCH_COLLECTION_BY_ID = "FETCH_COLLECTION_BY_ID";
 export const SET_DISPLAYED_COLLECTION = "SET_DISPLAYED_COLLECTION";
-export const FETCH_COLLECTIONS_BY_CATEGORY = 'FETCH_COLLECTIONS_BY_CATEGORY';
-export const FETCH_PROPERTIES = 'FETCH_PROPERTIES';
-export const FETCH_TAGS = 'FETCH_TAGS';
-export const SET_PROPERTIES = 'SET_PROPERTIES';
-export const SET_TAGS = 'SET_TAGS';
+export const FETCH_COLLECTIONS_BY_CATEGORY = "FETCH_COLLECTIONS_BY_CATEGORY";
+export const FETCH_PROPERTIES = "FETCH_PROPERTIES";
+export const FETCH_TAGS = "FETCH_TAGS";
+export const SET_PROPERTIES = "SET_PROPERTIES";
+export const SET_TAGS = "SET_TAGS";
 
 export const setTags = (payload) => ({
-  type: SET_TAGS,
-  payload
+	type: SET_TAGS,
+	payload,
 });
 
 export const setProperties = (payload) => ({
-  type: SET_PROPERTIES,
-  payload
+	type: SET_PROPERTIES,
+	payload,
 });
 
 export const fetchTags = () => ({
-  type: FETCH_TAGS
+	type: FETCH_TAGS,
 });
 
 export const fetchProperties = () => ({
-  type: FETCH_PROPERTIES
+	type: FETCH_PROPERTIES,
 });
 
 export const fetchCollectionsByCategory = (id) => ({
-  type: FETCH_COLLECTIONS_BY_CATEGORY,
-  id
+	type: FETCH_COLLECTIONS_BY_CATEGORY,
+	id,
 });
 
 export const setDisplayedCollection = (payload) => ({

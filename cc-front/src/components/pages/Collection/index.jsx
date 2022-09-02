@@ -26,23 +26,23 @@ const Collection = ({ url }) => {
 	const list = useSelector((state) => state.nfts.list);
 	const collection = useSelector((state) => state.collections.displayedCollection);
 
-	//!Création des liste de props et tag
-	// Propriétés
-	const a = list.map((nft) => nft.property);
+	// //!Création des liste de props et tag
+	// // Propriétés
+	// const a = list.map((nft) => nft.property);
 	let globalPropList = [];
-	// on utilise la destructuration pour concaténer tableau par tableau dans globalPropList
-	a.map((propArray) => {
-		globalPropList = [...globalPropList, ...propArray];
-	});
-	// console.log('globalPropList>>>', globalPropList);
+	// // on utilise la destructuration pour concaténer tableau par tableau dans globalPropList
+	// a.map((propArray) => {
+	// 	globalPropList = [...globalPropList, ...propArray];
+	// });
+	// // console.log('globalPropList>>>', globalPropList);
 
-	// Idem avec Tag
-	const b = list.map((nft) => nft.tag);
+	// // Idem avec Tag
+	// const b = list.map((nft) => nft.tag);
 	let globalTagList = [];
-	b.map((tagArray) => {
-		globalTagList = [...globalTagList, ...tagArray];
-	});
-	// console.log('globalTagList>>>', globalTagList);
+	// b.map((tagArray) => {
+	// 	globalTagList = [...globalTagList, ...tagArray];
+	// });
+	// // console.log('globalTagList>>>', globalTagList);
 
 	//! SearchBar Order by
 	const selectedCollection = list.filter((nft) => nft.collection_id == id);
