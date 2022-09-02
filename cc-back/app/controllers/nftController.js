@@ -95,14 +95,19 @@ module.exports = {
         return res.json('Nft deleted !!');
     },
 
-    async updateNft(req, res) {
-        const nft = await Nft.findById(req.params.id);
-        if (!nft) throw new ApiError("Ce NFT n'existe pas", { statusCode: 404 });
-        const newNft = req.body;
-        Object.entries(nft).forEach(([key]) => {
-            if (!newNft[key]) newNft[key] = nft[key];
-        });
-        const updateNft = await Nft.update(newNft);
-        return res.json(updateNft);
+    // async updateNft(req, res) {
+    //     const nft = await Nft.findById(req.params.id);
+    //     if (!nft) throw new ApiError("Ce NFT n'existe pas", { statusCode: 404 });
+    //     const newNft = req.body;
+    //     Object.entries(nft).forEach(([key]) => {
+    //         if (!newNft[key]) newNft[key] = nft[key];
+    //     });
+    //     const updateNft = await Nft.update(newNft);
+    //     return res.json(updateNft);
+    // },
+    async updateShowcaseNft(req, res) {
+        const updataShowcase = await Nft.updateShowcase(req.params.id, req.body.showcase_id);
+        if (!updataShowcase) throw new ApiError("nft doesn't exist", { statusCode: 404 });
+        return res.json(updataShowcase);
     },
 };

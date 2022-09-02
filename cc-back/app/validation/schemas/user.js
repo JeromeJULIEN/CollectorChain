@@ -38,28 +38,28 @@ const profilId = Joi.object({
 const updateProfil = Joi.object({
 
     email: Joi.string()
-        .pattern(/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$/),
+        .pattern(/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$/).allow(''),
 
-    nickname: Joi.string(),
+    nickname: Joi.string().allow(''),
 
     password: Joi.string().required(),
 
-    newPassword: Joi.string().min(8),
+    newPassword: Joi.string().min(8).allow(''),
 
     newPasswordConfirm: Joi.ref('newPassword'),
 
     wallet: Joi.number()
-        .positive().allow(0),
+        .positive().allow(0).allow(''),
 
-    isAdmin: Joi.boolean(),
+    isAdmin: Joi.boolean().allow(''),
 
-    media: Joi.string(),
+    media: Joi.string().allow(''),
 
-    name: Joi.string(),
+    name: Joi.string().allow(''),
 
-    lastName: Joi.string(),
+    lastName: Joi.string().allow(''),
 
-    isOpenToContact: Joi.boolean(),
+    isOpenToContact: Joi.boolean().allow(''),
 });
 
 module.exports = {

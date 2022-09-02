@@ -16,20 +16,31 @@ Content-Type: application/json
 
 {
 
-    "nickname":"loic55",
+    "nickname":"",
     "email":"loic@loic5 .com",
     "password":"user3456",
     "passwordConfirm": "user3456",
     "wallet" : 1
 }
 
+### update SignUp 
+PATCH {{ endpoint }}/profil/26/update
+Content-Type: application/json
+
+{
+    "email":"",
+    "nickname": "",
+    "media": "",
+    "newPassword": "",
+    "password":"password"
+}
 #### Post login 
 POST {{ endpoint }}/login
 Content-type: application/json
 
 {
-    "email":"loicloic5.com",
-    "password": "user3456"
+    "email":"user@user.com",
+    "password": "password"
 }
 
 ### Profil 
@@ -197,11 +208,11 @@ Content-Type: application/json
 DELETE {{ endpoint }}/nft/200
 
 ### Update NFT
-PATCH {{ endpoint }}/nft/200
+PATCH {{ endpoint }}/nft/202
 Content-Type: application/json
 
 {
-    "name": "test"
+    "showcase_id": 2
 }
 
 ### Property

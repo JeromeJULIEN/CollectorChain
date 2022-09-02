@@ -114,44 +114,61 @@ module.exports = class Nft extends CoreDatamapper {
         return result.rows[0];
     }
 
-    static async update(nft) {
+    // static async update(nft) {
+    //     const result = await client.query(
+    //         `
+    //         UPDATE "nft"
+    //         SET
+    //             "token" = $2,
+    //             "name" = $3,
+    //             "description" = $4,
+    //             "price" = $5,
+    //             "forsale" = $6,
+    //             "media" = $7,
+    //             "collection_id" = $8,
+    //             "creator_id" = $9,
+    //             "owner_id" = $10,
+    //             "rarity" = $11,
+    //             "serial"= $12,
+    //             "model"= $13,
+    //             "showcase_id"= $14,
+
+    //         WHERE id = $1
+    //         RETURNING *
+    //     `,
+
+    //         [
+    //             nft.id,
+    //             nft.token,
+    //             nft.name,
+    //             nft.description,
+    //             nft.price,
+    //             nft.forSale,
+    //             nft.media,
+    //             nft.collection_id,
+    //             nft.creator_id,
+    //             nft.owner_id,
+    //             nft.rarity,
+    //             nft.serial,
+    //             nft.model,
+    //             nft.showcase_id,
+    //         ],
+    //     );
+    //     return result.rows[0];
+    // }
+    static async updateShowcase(idNft, idShowcase) {
         const result = await client.query(
             `
             UPDATE "nft"
             SET 
-                "token" = $2,
-                "name" = $3,
-                "description" = $4,
-                "price" = $5,
-                "forsale" = $6,
-                "media" = $7,
-                "collection_id" = $8,
-                "creator_id" = $9,
-                "owner_id" = $10,
-                "rarity" = $11,
-                "serial"= $12,
-                "model"= $13,
-                "showcase_id"= $14,
-                
+                "showcase_id"= $2              
             WHERE id = $1
             RETURNING *
         `,
 
             [
-                nft.id,
-                nft.token,
-                nft.name,
-                nft.description,
-                nft.price,
-                nft.forSale,
-                nft.media,
-                nft.collection_id,
-                nft.creator_id,
-                nft.owner_id,
-                nft.rarity,
-                nft.serial,
-                nft.model,
-                nft.showcase_id,
+                idNft,
+                idShowcase,
             ],
         );
         return result.rows[0];

@@ -42,12 +42,12 @@ router.post('/nft', validation('body', createNft), controllerHandler(nftControll
 router.delete('/nft/:id', controllerHandler(nftController.deleteNft));
 /**
  * UPDATE /:id/nft/update
- * @summary Route to update nft
+ * @summary Route to update showcase position for one nft
  * @tags nft
  * @param {Nft} Nft - Nft Model Object
  * @return {Object} 200 - success response - application/json
  */
-router.patch('/nft/:id', controllerHandler(nftController.updateNft));
+router.patch('/nft/:id', controllerHandler(nftController.updateShowcaseNft));
 /**
  * GET /collections/:id/nft
  * @summary Route to collection by nft_id
