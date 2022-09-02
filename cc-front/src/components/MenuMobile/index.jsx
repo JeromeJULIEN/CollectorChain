@@ -123,7 +123,7 @@ const MenuMobile = () => {
 			</Nav>
 			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler}>
 				<Modal.Header>
-					<Text id="modal-login" size={18} style={{ color: "#d3d5dd" }}>
+					<Text id="modal-login" size={20} style={{ color: "#d3d5dd" }}>
 						Login
 					</Text>
 				</Modal.Header>
@@ -155,7 +155,7 @@ const MenuMobile = () => {
 						onChange={handleChange}
 					/>
 					<Row justify="space-between">
-						<Text size={14} style={{ color: "#d3d5dd" }}>
+						<Text size={16} style={{ color: "#d3d5dd" }}>
 							Forgot password?
 						</Text>
 					</Row>
@@ -172,7 +172,7 @@ const MenuMobile = () => {
 			</Modal>
 			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler}>
 				<Modal.Header>
-					<Text id="modal-signup" size={18} style={{ color: "#d3d5dd" }}>
+					<Text id="modal-signup" size={20} style={{ color: "#d3d5dd" }}>
 						Signup
 					</Text>
 				</Modal.Header>
