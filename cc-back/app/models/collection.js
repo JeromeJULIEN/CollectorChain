@@ -3,7 +3,7 @@ const CoreDatamapper = require('./coreDatamapper');
 
 /**
  * Collection Model Object
- * @typedef {object} Collection
+ * @typedef {object} CollectionModel
  * @property {number} id - collection id
  * @property {string} name - collection name
  * @property {string} description - collection description

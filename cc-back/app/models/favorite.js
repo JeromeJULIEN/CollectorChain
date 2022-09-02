@@ -2,7 +2,7 @@ const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
 /** Favorite Model Object
- * @typedef {object} Favorite
+ * @typedef {object} FavoriteModel
  * @property {number} id - favorite id
  * @property {number} id - user id
  * @property {Object} nft - nft object

@@ -3,7 +3,7 @@ const CoreDatamapper = require('./coreDatamapper');
 
 /**
  * NFT Model Object
- * @typedef {object} Nft
+ * @typedef {object} NftModel
  * @property {number} id - nft id
  * @property {string} name - nft name
  * @property {string} description - nft description
@@ -14,6 +14,12 @@ const CoreDatamapper = require('./coreDatamapper');
  * @property {number} creator_id - nft creator_id
  * @property {number} owner_id - nft owner_id
  * @property {number} rarity - nft rarity
+ */
+
+/**
+ * Nft Object
+ * @typedef {object} Nft
+ * @property {object} nft - Generated nft object
  */
 
 module.exports = class Nft extends CoreDatamapper {
