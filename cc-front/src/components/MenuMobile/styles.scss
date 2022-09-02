@@ -42,15 +42,18 @@
 
 .button {
 	&__signin, &__signup {
+		font-size: medium;
 		background-color: vars.$color_callToAction;
 		color:black;
-		padding: 1rem 1.5rem;
+		padding: 0.75rem 1.5rem;
+		margin-left: 1rem;
 		border-radius: 0.75rem;
 	}
 	&__close {
+		font-size:medium;
 		background-color: vars.$color_secondary;
-		color:white;
-		padding: 1rem 1.5rem;
+		color:vars.$color_text_lighter;
+		padding: 0.75rem 1.75rem;
 		border-radius: 0.75rem;	
 	}
 
@@ -63,7 +66,8 @@
 	}
 }
 
-.modal-login {
+.modal-login, .modal-signup {
+	background-color: vars.$color_background;
 
 	&-error {
 		color: black;

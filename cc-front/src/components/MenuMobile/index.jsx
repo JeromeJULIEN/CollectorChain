@@ -61,7 +61,7 @@ const MenuMobile = () => {
 		console.log("test submit");
 		event.preventDefault();
 		dispatch(logIn());
-		// if (errorList === "") {
+		// if (!errorList === "") {
 		// 	loginCloseHandler();
 		// 	navigate("/");
 		// }
@@ -123,7 +123,7 @@ const MenuMobile = () => {
 			</Nav>
 			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler}>
 				<Modal.Header>
-					<Text id="modal-login" size={18}>
+					<Text id="modal-login" size={18} style={{ color: "#d3d5dd" }}>
 						Login
 					</Text>
 				</Modal.Header>
@@ -155,7 +155,9 @@ const MenuMobile = () => {
 						onChange={handleChange}
 					/>
 					<Row justify="space-between">
-						<Text size={14}>Forgot password?</Text>
+						<Text size={14} style={{ color: "#d3d5dd" }}>
+							Forgot password?
+						</Text>
 					</Row>
 				</Modal.Body>
 				{errorList ? <p className="modal-login-error">{errors}</p> : ""}
@@ -170,7 +172,7 @@ const MenuMobile = () => {
 			</Modal>
 			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler}>
 				<Modal.Header>
-					<Text id="modal-signup" size={18}>
+					<Text id="modal-signup" size={18} style={{ color: "#d3d5dd" }}>
 						Signup
 					</Text>
 				</Modal.Header>
@@ -216,6 +218,7 @@ const MenuMobile = () => {
 						onChange={handleChange}
 					/>
 				</Modal.Body>
+				{errorList ? <p className="modal-login-error">{errors}</p> : ""}
 				<Modal.Footer>
 					<button className="button__close" auto flat color="error" onClick={signupCloseHandler}>
 						Close
