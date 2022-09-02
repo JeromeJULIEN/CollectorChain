@@ -169,15 +169,15 @@ GET {{ endpoint }}/collections/2/nft/?limit=
 GET {{ endpoint }}/nft/?limit=2
 
 ### NFT User
-GET {{ endpoint }}/1/nft/?limit=3
+GET {{ endpoint }}/1/nft/?limit=2
 
 ### Post NFT
-POST {{ endpoint }}/1/nft
+POST {{ endpoint }}/nft
 Content-Type: application/json
 
 {
-    "token": "123",
-    "name": "test",
+    "token": "16515gggrerethryfrtzyugrgerfrekrereregrgege2ytytytujuyyt5rjtseztzeg15165jyt",
+    "name": "azrgzryh25ytretyergrggereekyuergergersjuyeruythdh",
     "description": "test",
     "price": 12,
     "forSale": true,
@@ -185,14 +185,18 @@ Content-Type: application/json
     "collection_id": 1,
     "creator_id": 1,
     "owner_id": 1,
-    "rarity": "10"
+    "rarity": "10",
+    "serial": "156",
+    "properties" : [
+        {"name": "tesfrgreegrgrehtrgereegkuhrtjygrtjret88", "tag":"tagtghtrkuyreeregsggrhtreret4jyt442rgerge21"}
+    ]
 }
 
 ### Delete NFT
-DELETE {{ endpoint }}/nft/200/delete
+DELETE {{ endpoint }}/nft/200
 
 ### Update NFT
-PATCH {{ endpoint }}/1/nft/update
+PATCH {{ endpoint }}/nft/200
 Content-Type: application/json
 
 {

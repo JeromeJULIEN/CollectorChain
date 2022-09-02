@@ -1,19 +1,7 @@
-const { Nft } = require('../models');
+const {
+    Nft, Property, Tag, NftHasPropertyHasTag,
+} = require('../models');
 const ApiError = require('../errors/apiError');
-
-// SELECT nft.*,
-// array_agg(property.name) as property,
-// array_agg(tag.name) as tag,
-// "creator".nickname as creator,
-// "owner".nickname as owner
-// FROM "nft"
-// FULL JOIN "nft_has_property_has_tag" ON "nft_has_property_has_tag"."nft_id" = "nft"."id"
-// FULL JOIN "property" ON "property"."id" = "nft_has_property_has_tag"."property_id"
-// FULL JOIN "tag" ON "tag"."id" = "nft_has_property_has_tag"."tag_id"
-// JOIN "user" "creator" on "creator".id = nft.creator_id
-// JOIN "user" "owner" on "owner".id = nft.owner_id
-// WHERE "nft".id IS NOT NULL
-// GROUP BY nft.id, "creator".nickname, "owner".nickname
 
 module.exports = {
     async getNft(req, res) {
@@ -26,16 +14,19 @@ module.exports = {
         res.json(nft);
     },
     async getNftById(req, res) {
-        const nft = await Nft.findById(req.params.id);
+        const nft = await Nft.findNftById(req.params.id);
         res.json(nft);
     },
 
     async getNftByCollectionId(req, res) {
         let collections;
         if (req.query.limit) {
-            collections = await Nft.getByCollectionIdLimit(req.params.id, req.query.limit);
+            collections = await Nft.getByCollectionIdLimit(
+                req.params.id_collection,
+                req.query.limit,
+            );
         } else {
-            collections = await Nft.getByCollectionId(req.params.id);
+            collections = await Nft.getByCollectionId(req.params.id_collection);
         }
         return res.json(collections);
     },
@@ -43,9 +34,9 @@ module.exports = {
     async getNftByUserId(req, res) {
         let nft;
         if (req.query.limit) {
-            nft = await Nft.getByNftIdLimit(req.params.id, req.params.limit);
+            nft = await Nft.getByNftIdLimit(req.params.id_user, req.query.limit);
         } else {
-            nft = await Nft.getByNftId(req.params.id);
+            nft = await Nft.getByNftId(req.params.id_user);
         }
         return res.json(nft);
     },
@@ -62,8 +53,39 @@ module.exports = {
             creator_id: req.body.creator_id,
             owner_id: req.body.owner_id,
             rarity: req.body.rarity,
+            serial: req.body.serial,
+            model: req.body.model,
+            showcase_id: req.body.showcase_id,
         };
         const addNft = await Nft.create(newNft);
+
+        const nftPropertyTag = [];
+        if (req.body.properties) {
+            const allProperty = await Property.findAll();
+            const allTag = await Tag.findAll();
+            const property = req.body.properties;
+
+            property.forEach(async (propertie) => {
+                const foundPropertie = allProperty.find((e) => e.name === propertie.name);
+                const foundTag = allTag.find((e) => e.name === propertie.tag);
+                let propId;
+                let tagId;
+                if (!foundPropertie) {
+                    const newPropertie = await Property.create({ name: propertie.name });
+                    propId = newPropertie.id;
+                } else {
+                    propId = foundPropertie.id;
+                }
+                if (!foundTag) {
+                    const newTag = await Tag.create({ name: propertie.tag });
+                    tagId = newTag.id;
+                } else {
+                    tagId = foundTag.id;
+                }
+                nftPropertyTag.push({ name: propId, tag: tagId });
+                await NftHasPropertyHasTag.create(addNft.id, nftPropertyTag);
+            });
+        }
         return res.json(addNft);
     },
 

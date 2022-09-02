@@ -6,9 +6,9 @@ module.exports = class Favorite extends CoreDatamapper {
 
     static async getFavoriteByUserId(id) {
         const result = await client.query(
-            `SELECT nft.* FROM "favorite"
-            JOIN "nft" ON nft_id = nft.id
-            WHERE user_id = $1
+            `SELECT * FROM getAllNftWithJoin
+             FULL JOIN "favorite" ON "favorite"."nft_id" = id
+             WHERE user_id = $1
             `,
             [id],
         );
@@ -17,8 +17,8 @@ module.exports = class Favorite extends CoreDatamapper {
 
     static async getFavoriteByUserIdLimit(id, limit) {
         const result = await client.query(
-            `SELECT nft.* FROM "favorite"
-            JOIN "nft" ON nft_id = nft.id
+            `SELECT * FROM getAllNftWithJoin
+            FULL JOIN "favorite" ON "favorite"."nft_id" = id
             WHERE user_id = $1
             LIMIT $2
             `,
