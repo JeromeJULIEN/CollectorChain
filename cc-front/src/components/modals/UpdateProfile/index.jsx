@@ -1,13 +1,32 @@
 import { Modal, Input, Button, Text, Spacer } from "@nextui-org/react";
 import { Mail } from "./Mail";
 import { Password } from "./Password";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
 import { updateUserField, updateProfile } from "../../../../store/actions/user";
 
-// import './styles.scss'
+import "./styles.scss";
 
 const UpdateProfile = ({ hideUpdateProfile }) => {
 	const dispatch = useDispatch();
+
+	//!Gestion erreurs
+	const errors = useSelector((state) => state.error.auth);
+	const [errorList, setErrorList] = React.useState();
+	useEffect(() => {
+		setErrorList([...errors]);
+		setTimeout(() => {
+			setErrorList("");
+		}, 3000);
+	}, [errors]);
+	//Check si plus d'erreur et envoie l'ordre de la modale
+	const errorsCheck = useSelector((state) => state.error.errorsCheck);
+	useEffect(() => {
+		if (errorsCheck === "true") {
+			setIsUpdateProfileVisible(false);
+		}
+	}, [errorsCheck]);
+	//!-----------
 
 	const handleChange = (event) => {
 		dispatch(updateUserField(event.target.value, event.target.name));
@@ -16,7 +35,6 @@ const UpdateProfile = ({ hideUpdateProfile }) => {
 		console.log("update profil");
 		event.preventDefault();
 		dispatch(updateProfile());
-		hideUpdateProfile();
 	};
 
 	return (
@@ -71,13 +89,15 @@ const UpdateProfile = ({ hideUpdateProfile }) => {
 					onChange={handleChange}
 				/>
 			</Modal.Body>
+			{errorList ? <p className="modal-profile-error">{errors}</p> : ""}
+
 			<Modal.Footer>
-				<Button auto className="cancel" onClick={hideUpdateProfile}>
+				<button auto className="button__cancel" onClick={hideUpdateProfile}>
 					Cancel
-				</Button>
-				<Button auto onClick={updateProfileHandleSubmit}>
+				</button>
+				<button auto className="button__update" onClick={updateProfileHandleSubmit}>
 					Update
-				</Button>
+				</button>
 			</Modal.Footer>
 		</div>
 	);

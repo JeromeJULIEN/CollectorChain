@@ -1,4 +1,4 @@
-import { Container, Card, Text, Col, Input, User, Spacer, Button, Image, Switch } from "@nextui-org/react";
+import { Input, Spacer, Button, Image, Switch } from "@nextui-org/react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";

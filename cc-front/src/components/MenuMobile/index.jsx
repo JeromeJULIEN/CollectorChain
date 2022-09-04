@@ -2,9 +2,8 @@ import React from "react";
 import "./styles.scss";
 import { Nav } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
-import UserInfoIcon from "@rsuite/icons/UserInfo";
 import { Link, useLocation } from "react-router-dom";
-import { Modal, Input, Row, Button, Text } from "@nextui-org/react";
+import { Modal, Input, Row, Text } from "@nextui-org/react";
 
 import MenuExplore from "./MenuExplore";
 import { Mail } from "../modals/Login/Mail";
@@ -20,7 +19,6 @@ import { useEffect } from "react";
 const MenuMobile = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	const email = useSelector((state) => state.user.email);
 	const password = useSelector((state) => state.user.password);
@@ -37,10 +35,9 @@ const MenuMobile = () => {
 			setErrorList("");
 		}, 3000);
 	}, [errors]);
-	//Check si plus d'erreur et envoie l'odre de fermeture aux modales
+	//Check si plus d'erreur et envoie l'ordre de fermeture aux modales
 	const errorsCheck = useSelector((state) => state.error.errorsCheck);
 	useEffect(() => {
-		console.log("ERRORS_CHECK", errorsCheck);
 		if (errorsCheck === "true") {
 			loginSetVisible(false);
 			signupSetVisible(false);
