@@ -16,6 +16,13 @@ export const REMOVE_NFT_TO_FAVORITE = "REMOVE_NFT_TO_FAVORITE";
 export const SET_FAVORITES = "SET_FAVORITES";
 export const FETCH_OWNED = 'FETCH_OWNED';
 export const SET_OWNED = 'SET_OWNED';
+export const SET_SHOWCASE_ID = 'SET_SHOWCASE_ID';
+
+export const setShowcaseId = (nftId,caseId) => ({
+  type: SET_SHOWCASE_ID,
+  nftId,
+  caseId
+});
 
 export const setOwned = (payload) => ({
   type: SET_OWNED,

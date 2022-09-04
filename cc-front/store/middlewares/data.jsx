@@ -25,26 +25,35 @@ const dataMiddleware = (store) => (next) => async (action) => {
 			// console.log("entrée dans mdw data > fetchCategories");
 			const { data } = await instance.get("/categories");
 			store.dispatch(setCategories(data));
+			break;
 		}
 		case FETCH_COLLECTIONS: {
 			// console.log("entrée dans mdw data > fetchCollections avec limit >>>", action.limit);
 			const { data } = await instance.get(`/collections?limit=${action.limit}`);
 			store.dispatch(setCollections(data));
+			break;
+
 		}
 		case FETCH_NFTS: {
 			// console.log("entrée dans mdw data > fetchNfts");
 			const { data } = await instance.get("/nft");
 			store.dispatch(setNfts(data));
+			break;
+
 		}
 		case FETCH_NFT_BY_COLLECTION_ID: {
 			console.log("entrée dans mdw data > fetchNftByCategory");
 			const { data } = await instance.get(`/collections/${action.id}/nft`);
 			store.dispatch(setNfts(data));
+			break;
+
 		}
 		case FETCH_NFT_BY_ID: {
 			console.log("entrée dans mdw data > fetchNftByid", action.id);
 			const { data } = await instance.get(`/nft/${action.id}`);
 			store.dispatch(setDisplayNft(data));
+			break;
+
 		}
 		case FETCH_COLLECTION_BY_ID: {
 			// console.log("entrée dans mdw data > fetchCollectionByid", action.id);
@@ -56,14 +65,20 @@ const dataMiddleware = (store) => (next) => async (action) => {
 			const { data } = await instance.get(`/categories/${action.id}/collections/`);
 			// console.log('collec by cat >>>', data)
 			store.dispatch(setCollections(data));
+			break;
+
 		}
 		case FETCH_PROPERTIES: {
 			const { data } = await instance.get("/property");
 			store.dispatch(setProperties(data));
+			break;
+
 		}
 		case FETCH_TAGS: {
 			const { data } = await instance.get("/tag");
 			store.dispatch(setTags(data));
+			break;
+
 		}
 		case STORE_COLLECTIONS_BY_CATEGORY: {
 			// const state

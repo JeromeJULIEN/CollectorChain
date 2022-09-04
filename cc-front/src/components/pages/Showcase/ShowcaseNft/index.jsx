@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Modal } from "rsuite";
-import { fetchOwned, removeFromShowcase, removeNftFromTodisplayList, setShowcaseNftDisplayed } from "../../../../../store/actions/user";
+import { fetchOwned, removeFromShowcase, removeNftFromTodisplayList, setShowcaseId, setShowcaseNftDisplayed } from "../../../../../store/actions/user";
 import NftOwned from "../../../modals/NftOwned";
 import "./styles.scss";
 
@@ -39,8 +39,11 @@ const ShowcaseNft = ({id, name}) => {
 
 	const uploadImage = (event) => {
 		// On stock les informations à utiliser dans le useEffect
+		console.log('event', event.target.id);
 		setLastNftSelected(event.target.src);
 		setSrc(event.target.src)
+		//! Le premier id est celui du NFT, le deuxieme, celui de la case
+		dispatch(setShowcaseId(event.target.id,Number(id)))
 		hideModaleNftOwned();
 	};
 	

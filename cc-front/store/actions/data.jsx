@@ -15,6 +15,7 @@ export const FETCH_TAGS = 'FETCH_TAGS';
 export const SET_PROPERTIES = 'SET_PROPERTIES';
 export const SET_TAGS = 'SET_TAGS';
 
+
 export const setTags = (payload) => ({
   type: SET_TAGS,
   payload

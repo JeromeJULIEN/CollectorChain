@@ -30,6 +30,7 @@ import Term from "../pages/Term";
 import Resources from "../pages/Resources";
 import Creation from "../pages/Creation";
 import { fetchCategories, fetchCollections, fetchNfts, fetchProperties, fetchTags } from "../../../store/actions/data";
+import MenuMobileVanilla from "../MenuMobileVanilla";
 
 function App() {
 	const dispatch = useDispatch();
@@ -129,7 +130,7 @@ function App() {
 				</Routes>
 
 				<Footer />
-				<MenuMobile />
+				<MenuMobileVanilla />
 			</NextUIProvider>
 		</div>
 	);

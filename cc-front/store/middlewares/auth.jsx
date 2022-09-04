@@ -54,6 +54,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				passwordConfirm,
 			});
 			console.log("data from post signUp request >>>>", data);
+			break;
 		}
 		case UPDATE_PROFILE: {
 			console.log("entrée dans middleware update profile");
@@ -71,6 +72,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				newPasswordConfirm,
 			});
 			console.log("data from update user profile request >>>>", data);
+			break;
 		}
 		case IS_OPEN_TO_CONTACT: {
 			console.log("entrée dans middleware update isOpenToContact");
@@ -82,6 +84,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 				isOpenToContact,
 			});
 			console.log("data from update isOpenToContact request >>>>", data);
+			break;
 		}
 		default:
 			next(action);
