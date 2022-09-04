@@ -32,11 +32,20 @@ const MenuMobile = () => {
 	const errors = useSelector((state) => state.error.auth);
 	const [errorList, setErrorList] = React.useState();
 	useEffect(() => {
-		setErrorList(errors);
-		// setTimeout(() => {
-		// 	setErrorList("");
-		// }, 3000);
+		setErrorList([...errors]);
+		setTimeout(() => {
+			setErrorList("");
+		}, 3000);
 	}, [errors]);
+	//Check si plus d'erreur et envoie l'odre de fermeture aux modales
+	const errorsCheck = useSelector((state) => state.error.errorsCheck);
+	useEffect(() => {
+		console.log("ERRORS_CHECK", errorsCheck);
+		if (errorsCheck === "true") {
+			loginSetVisible(false);
+			signupSetVisible(false);
+		}
+	}, [errorsCheck]);
 	//!-----------
 
 	const [loginVisible, loginSetVisible] = React.useState(false);
@@ -61,10 +70,6 @@ const MenuMobile = () => {
 		console.log("test submit");
 		event.preventDefault();
 		dispatch(logIn());
-		// if (!errorList === "") {
-		// 	loginCloseHandler();
-		// 	navigate("/");
-		// }
 	};
 
 	const signupHandleSubmit = (event) => {

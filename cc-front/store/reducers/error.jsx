@@ -1,9 +1,10 @@
-import { SET_AUTH_ERROR, SET_DATA_ERROR, SET_USER_ERROR } from "../actions/error";
+import { SET_AUTH_ERROR, SET_DATA_ERROR, SET_USER_ERROR, SET_ERRORS_CHECK } from "../actions/error";
 
 export const initialState = {
 	auth: "",
 	data: "",
 	user: "",
+	errorsCheck: "false",
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -24,6 +25,12 @@ const reducer = (state = initialState, action = {}) => {
 			return {
 				...state,
 				user: action.payload,
+			};
+		}
+		case SET_ERRORS_CHECK: {
+			return {
+				...state,
+				errorsCheck: action.payload,
 			};
 		}
 		default:

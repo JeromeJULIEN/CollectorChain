@@ -1,10 +1,11 @@
 @use '../../../styles/vars';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .app {
   //   max-width: 414px;
   background-color: vars.$color_primary;
   overflow-y: hidden;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: vars.$color_text;
   height: 100%;
 

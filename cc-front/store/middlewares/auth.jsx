@@ -1,5 +1,5 @@
 import { setUserData, LOG_IN, SIGNUP, UPDATE_PROFILE, IS_OPEN_TO_CONTACT, setFavorites } from "../actions/user";
-import { setAuthError } from "../actions/error";
+import { setAuthError, setErrorsCheck } from "../actions/error";
 import instance from "../../utils/axios";
 
 const authMiddleware = (store) => (next) => async (action) => {
@@ -23,25 +23,29 @@ const authMiddleware = (store) => (next) => async (action) => {
 			}
 			if (result) {
 				data = result.data;
+				console.log("DATA >>>", data);
 				if (data.error) {
 					store.dispatch(setAuthError(data.error));
 				} else {
-					store.dispatch(setAuthError(""));
+					// // Une fois connecter, je modifie les headers de base de mon instance axios
+					// // Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
+					// instance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
+
+					// Je stock les informations user reçu au login dans mon store
+					store.dispatch(setUserData(data));
+					// Je stock les favoris du user reçu au login dans mon store
 					favorites = await instance.get(`/favorite/${data.id}`);
+					store.dispatch(setFavorites(favorites.data));
+					// Pas d'erreur donc on passe ErrosCheck à true puis retour à false après 1s
+					store.dispatch(setErrorsCheck("true"));
+					setTimeout(() => {
+						store.dispatch(setErrorsCheck("false"));
+					}, 1000);
 				}
 			} else {
 				store.dispatch(setAuthError(resultErr));
 			}
 
-			// // Une fois connecter, je modifie les headers de base de mon instance axios
-			// // Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
-			// instance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
-
-			// Je stock les informations user reçu au login dans mon store
-			store.dispatch(setUserData(data));
-			// Je stock les favoris du user reçu au login dans mon store
-			store.dispatch(setFavorites(favorites.data));
-			// Je fais un reset des erreurs
 			break;
 		}
 		case SIGNUP: {
@@ -67,7 +71,10 @@ const authMiddleware = (store) => (next) => async (action) => {
 				if (data.error) {
 					store.dispatch(setAuthError(data.error));
 				} else {
-					store.dispatch(setAuthError(""));
+					store.dispatch(setErrorsCheck("true"));
+					setTimeout(() => {
+						store.dispatch(setErrorsCheck("false"));
+					}, 1000);
 				}
 			} else {
 				store.dispatch(setAuthError(resultErr));

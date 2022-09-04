@@ -26,7 +26,7 @@ const Share = ({ url }) => {
 		<>
 			<div className="share-icon">
 				<button onClick={handleIcon} className="modale-share-button">
-					<img src="../../../public/share-16.png" alt="logo share" />
+					<img src="/share-16.png" alt="logo share" />
 				</button>
 				{open === true ? (
 					<div className="modale-share">
