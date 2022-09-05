@@ -5,6 +5,9 @@ const router = express.Router();
 const userController = require('../../controllers/userController');
 const controllerHandler = require('../../helper/controllerHandler');
 
+const { userLogin } = require('../../validation/schemas/user');
+const validation = require('../../validation/validator');
+
 /**
  * User Error
  * @typedef {object} UserError
@@ -28,6 +31,6 @@ router.get('/forget_user', controllerHandler(userController.resetMail));
  * @return {string} 200 - success response - application/json
  * @return {string} 400 - error response - application/json
  */
-router.post('/forget_user', controllerHandler(userController.resetMail));
+router.post('/forget_user', validation('body', userLogin), controllerHandler(userController.resetMail));
 
 module.exports = router;
