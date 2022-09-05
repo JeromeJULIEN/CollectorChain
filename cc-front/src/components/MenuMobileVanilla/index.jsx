@@ -9,11 +9,15 @@ import { Password } from '../modals/Login/Password';
 import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
 import './styles.scss';
 
+
 const MenuMobileVanilla = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+
+	const userMedia = useSelector(state => state.user.media)
+
 
     useEffect(()=> {
         setExploreVisibility(false)
@@ -27,6 +31,7 @@ const MenuMobileVanilla = () => {
         setUserVisibility(false)
         console.log(exploreVisibility);
     }
+
   
     const [userVisibility,setUserVisibility] = useState(false)
     const handleUserVisibility = () => {
@@ -44,6 +49,7 @@ const MenuMobileVanilla = () => {
 
     const handleLogout = () => {
 		console.log('handleLogout');
+		setUserVisibility(false)
 		dispatch(logout())
 	}
 
@@ -118,11 +124,12 @@ const MenuMobileVanilla = () => {
                 Create
             </Link>
         </div>
-        <div className={userVisibility?"menuMobile__lvl1--active":"menuMobile__lvl1"} onClick={handleUserVisibility}>user
+        <div className={userVisibility?"menuMobile__lvl1--active":"menuMobile__lvl1"} onClick={handleUserVisibility}>
+			User{isLogged ? <img src={userMedia} alt="pic" /> : ""}
         </div>
 
         {/* menu explore */}
-        <div className={exploreVisibility?"menuMobile__lvl2 menuMobile__lvl2--explore--visible":"menuMobile__lvl2 menuMobile__lvl2--explore"}>
+        <div className={exploreVisibility?"menuMobile__lvl2 menuMobile__lvl2--explore--visible":"menuMobile__lvl2 menuMobile__lvl2--explore"} >
             <li className="menuMobile__lvl2__item" onClick={handleExploreVisibility}><Link to="/">Home page</Link></li>
             <li className="menuMobile__lvl2__item" onClick={handleExploreVisibility}><Link to="/categories">Categories</Link></li>
             <li className="menuMobile__lvl2__item" onClick={handleExploreVisibility}><Link to="/collections">Collections</Link></li>
@@ -132,7 +139,7 @@ const MenuMobileVanilla = () => {
         </div>
 
         {/* menu user */}
-        <div className={userVisibility?"menuMobile__lvl2 menuMobile__lvl2--user--visible":"menuMobile__lvl2 menuMobile__lvl2--user"}>
+        <div className={userVisibility?"menuMobile__lvl2 menuMobile__lvl2--user--visible":"menuMobile__lvl2 menuMobile__lvl2--user"} >
             {isLogged?
             <>
             <li className="menuMobile__lvl2__item" onClick={handleUserVisibility}><Link to="/showcase">My showcase</Link></li>

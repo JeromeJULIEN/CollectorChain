@@ -8,6 +8,7 @@ import createNftreducer from "./createNft";
 import propertiesReducer from "./properties";
 import tagsReducer from "./tags";
 import errorReducer from "./error";
+import searchReducer from "./search";
 
 const rootReducer = combineReducers({
 	user: userReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
 	properties: propertiesReducer,
 	tags: tagsReducer,
 	error: errorReducer,
+	search: searchReducer
 });
 
 export default rootReducer;

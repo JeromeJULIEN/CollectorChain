@@ -1,8 +1,11 @@
 import React from "react";
+import {useDispatch, useSelector} from "react-redux"
+import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Input } from "rsuite";
 import "./styles.scss";
+import { eraseSearch, fetchSearch } from "../../../store/actions/data";
 
 const Header = () => {
 	const [isSearchBarOpen, setIsSearchBarOpen] = React.useState(false);
@@ -11,25 +14,42 @@ const Header = () => {
 	// 	window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 	// }, []);
 
+	const dispatch = useDispatch()
+
 	const manageSearchBarVisibility = (event) => {
 		event.preventDefault();
 		setIsSearchBarOpen(!isSearchBarOpen);
 	};
 
-	const navigate = useNavigate();
+	//! Gestion recherche dynamique
+	// Variable local du champ de recherche
+	const [query,setQuery] = useState('')
 
-	const navToResults = (event) => {
-		event.preventDefault();
-		navigate("/results");
-		setIsSearchBarOpen(!isSearchBarOpen);
-	};
+	const handleQuery = (event) => {
+		// console.log('query', event);
+		setQuery(event)
+	}
+	// Lancement de l'appel API si query de 3 caractères au moins
+	useEffect(()=>{
+		if (query.length>2) {
+			// console.log('query ok pour appel API');
+			dispatch(fetchSearch(query))
+		} else {
+			// sinon suppression du resulat pour avoir un tableau falsy pour gérer l'affichage conditionnel de la liste
+			dispatch(eraseSearch())
+		}
+	},[query])
+
+	const result = useSelector(state => state.search.list)
+	
+	
 
 	return (
 		<div className="header">
 			{isSearchBarOpen ? (
 				<>
-					<form action="" onSubmit={navToResults}>
-						<Input placeholder="Search Categories, collections or NFTs" />
+					<form action="" >
+						<Input placeholder="Search Categories, collections or NFTs" onChange={handleQuery}/>
 					</form>
 					<div className="header__btn">
 						<ion-icon name="close-circle" onClick={manageSearchBarVisibility}></ion-icon>
@@ -62,25 +82,7 @@ const Header = () => {
 				</>
 			)}
 
-			{/* <form
->>>>>>> jerome
-			// onSubmit={handleSubmitForm}
-			>
-				<input
-					placeholder="Search collections & NFT"
-					// onChange={handleChange}
-					type="text"
-					id="searchBar"
-					name="searchBar"
-					className={isSearchBarOpen ? "header__searchBar-open" : "header__searchBar"}
-				/>
-<<<<<<< HEAD
-			</form>
-			<button className="header__search" onClick={manageSearchBarVisibility}>
-				<ion-icon name="search-outline"></ion-icon>
-			</button>
-=======
-			</form> */}
+			
 		</div>
 	);
 };

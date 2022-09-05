@@ -9,6 +9,7 @@ import {
 	FETCH_NFT_BY_COLLECTION_ID,
 	FETCH_NFT_BY_ID,
 	FETCH_PROPERTIES,
+	FETCH_SEARCH,
 	FETCH_TAGS,
 	setCategories,
 	setCollections,
@@ -16,6 +17,7 @@ import {
 	setDisplayNft,
 	setNfts,
 	setProperties,
+	setSearch,
 	setTags,
 } from "../actions/data";
 
@@ -194,6 +196,11 @@ const dataMiddleware = (store) => (next) => async (action) => {
 			// const state
 			// const id =
 			// const {data} = await instance.get('/')
+		}
+		case FETCH_SEARCH:{
+			const {data} = await instance.get(`search/?q=${action.payload}`)
+			console.log('search result>>>', data);
+			store.dispatch(setSearch(data))
 		}
 
 		default:
