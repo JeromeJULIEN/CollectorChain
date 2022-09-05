@@ -6,6 +6,6 @@ const searchController = require('../../controllers/searchController');
 
 const controllerHandler = require('../../helper/controllerHandler');
 
-router.post('/search', controllerHandler(searchController.searchAll));
+router.get('/search', controllerHandler(searchController.searchAll));
 
 module.exports = router;

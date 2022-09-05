@@ -2,7 +2,7 @@ const { Category, Collection, Nft } = require('../models');
 
 module.exports = {
     async searchAll(req, res) {
-        const word = req.body.word.toLowerCase();
+        const word = req.query.q.toLowerCase();
         const data = [];
         const category = await Category.LookForAll(word);
         data.push({ category });
