@@ -16,9 +16,15 @@ const Header = () => {
 
 	const dispatch = useDispatch()
 
-	const manageSearchBarVisibility = (event) => {
+	const showSearchBar = (event) => {
 		event.preventDefault();
-		setIsSearchBarOpen(!isSearchBarOpen);
+		setIsSearchBarOpen(true);
+	};
+
+	const hideSearchBar = (event) => {
+		event.preventDefault();
+		setIsSearchBarOpen(false);
+		dispatch(eraseSearch())
 	};
 
 	//! Gestion recherche dynamique
@@ -40,21 +46,48 @@ const Header = () => {
 		}
 	},[query])
 
+	// Recupération des resutats dans des constantes distinctes
 	const result = useSelector(state => state.search.list)
+	const [categoryResult,setCategoryResult] =useState([])
+	const [collectionResult,setCollectionResult] =useState([])
+	const [nftResult,setNftResult] =useState([])
+	// utilisation d'un if pour éviter erreur de tableau vide. Utilisation d'un usseEffect pour éviter boucle infinie
+	useEffect(()=> {
+		if (result) {
+			setCategoryResult(result[0].category)
+			setCollectionResult(result[1].collection)
+			setNftResult(result[2].nft)
+		}
+	},[result])
+
+
+	const hideResult =() => {
+		dispatch(eraseSearch())
+	}
+
+	// gestion de la fermeture de la barre de recherche apres click sur resultat
+	const location=useLocation()
+	useEffect(() =>{
+		setIsSearchBarOpen(false)
+	},[location])
 	
+
+
 	
+		
 
 	return (
 		<div className="header">
+			<div className="menu">
 			{isSearchBarOpen ? (
 				<>
 					<form action="" >
 						<Input placeholder="Search Categories, collections or NFTs" onChange={handleQuery}/>
 					</form>
-					<div className="header__btn">
-						<ion-icon name="close-circle" onClick={manageSearchBarVisibility}></ion-icon>
+					<div className="menu__btn">
+						<ion-icon name="close-circle" onClick={hideSearchBar}></ion-icon>
 						<button
-							className="header__scrollToTop"
+							className="menu__scrollToTop"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 							}}
@@ -68,10 +101,10 @@ const Header = () => {
 					<Link to="/">
 						<h1>Collector Chain</h1>
 					</Link>
-					<div className="header__btn">
-						<ion-icon name="search-circle" onClick={manageSearchBarVisibility}></ion-icon>
+					<div className="menu__btn">
+						<ion-icon name="search-circle" onClick={showSearchBar}></ion-icon>
 						<button
-							className="header__scrollToTop"
+							className="menu__scrollToTop"
 							onClick={() => {
 								window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 							}}
@@ -81,6 +114,22 @@ const Header = () => {
 					</div>
 				</>
 			)}
+			</div>
+			{result?
+			<>
+			<div className="result">
+				<div className="result__title">Categories</div>
+				{categoryResult.map(result => (<Link to={`/category/${result.id}/collection`} onClick={hideResult}><li className="result__item" key={result.name}>{result.name}</li></Link>))}
+				<div className="result__title">Collections</div>
+				{collectionResult.map(result => (<Link to={`/collection/${result.id}`} onClick={hideResult}><li className="result__item" key={result.name}>{result.name}</li></Link>))}
+				<div className="result__title">NFT</div>
+				{nftResult.map(result => (<Link to={`/nft/${result.id}`} onClick={hideResult}><li className="result__item" key={result.name}>{result.name}</li></Link>))}
+
+			</div>
+			</>
+			:
+			''}
+		
 
 			
 		</div>
