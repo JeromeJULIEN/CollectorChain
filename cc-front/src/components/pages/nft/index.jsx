@@ -76,7 +76,7 @@ const Nft = ({ nfts, url }) => {
 			<h1 className="nft__title">{displayedNft.name}</h1>
 			<img src={displayedNft.media} alt="" className="nft__image" onClick={showFullScreen} />
 			<div className="nft__actionsButtons">
-				<Share id="test" url={url} className="share" />
+				<Share url={url} />
 				{isLogged ? (
 					<>
 						<BookmarkIcon nftId={displayedNft.id} favorisFound={favorisFound} />

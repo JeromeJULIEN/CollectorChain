@@ -1,4 +1,5 @@
 import { setUserData, LOG_IN, SIGNUP, UPDATE_PROFILE, IS_OPEN_TO_CONTACT, setFavorites } from "../actions/user";
+import { setAuthError, setErrorsCheck } from "../actions/error";
 import instance from "../../utils/axios";
 
 const authMiddleware = (store) => (next) => async (action) => {
@@ -18,27 +19,34 @@ const authMiddleware = (store) => (next) => async (action) => {
 					password,
 				});
 			} catch (error) {
-				console.log(error);
-				resultErr = error.request.response;
+				console.log("ERROR>>>", error);
+				resultErr = error.response.data.message;
 			}
 			if (result) {
 				data = result.data;
-				favorites = await instance.get(`/favorite/${data.id}`);
+				if (data.error) {
+					store.dispatch(setAuthError(data.error));
+				} else {
+					// // Une fois connecter, je modifie les headers de base de mon instance axios
+					// // Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
+					// instance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
+
+					// Je stock les informations user reçu au login dans mon store
+					store.dispatch(setUserData(data));
+					// Je stock les favoris du user reçu au login dans mon store
+					favorites = await instance.get(`/favorite/${data.id}`);
+					store.dispatch(setFavorites(favorites.data));
+					// Pas d'erreur donc on passe ErrosCheck à true puis retour à false après 1s
+					store.dispatch(setErrorsCheck(true));
+					setTimeout(() => {
+						store.dispatch(setErrorsCheck(false));
+					}, 1000);
+				}
 			} else {
-				data = resultErr;
+				console.log("LOGIN_ERROR>>>", resultErr);
+				store.dispatch(setAuthError(resultErr));
 			}
-						
-			// console.log("data from post login request >>>>", data);
 
-			// Une fois connecter, je modifie les headers de base de mon instance axios
-			// Cela me permet de ne plus avoir à spéficier dans chaque requête ses headers
-			instance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
-
-			// Je stock les informations user reçu au login dans mon store
-			store.dispatch(setUserData(data));
-			// Je stock les favoris du user reçu au login dans mon store
-			store.dispatch(setFavorites(favorites.data));
-			// Je déclenche l'action qui va aller récupérer mes recettes favorites
 			break;
 		}
 		case SIGNUP: {
@@ -46,44 +54,97 @@ const authMiddleware = (store) => (next) => async (action) => {
 			const {
 				user: { nickname, email, password, passwordConfirm },
 			} = store.getState();
-			console.log(nickname, email, password, passwordConfirm);
-			const { data } = await instance.post("/sign_up", {
-				nickname,
-				email,
-				password,
-				passwordConfirm,
-			});
-			console.log("data from post signUp request >>>>", data);
+			let result;
+			let data;
+			let resultErr;
+			try {
+				result = await instance.post("/sign_up", {
+					nickname,
+					email,
+					password,
+					passwordConfirm,
+				});
+			} catch (error) {
+				resultErr = error.response.data.message;
+			}
+			if (result) {
+				data = result.data;
+				if (data.error) {
+					store.dispatch(setAuthError(data.error));
+				} else {
+					store.dispatch(setErrorsCheck(true));
+					setTimeout(() => {
+						store.dispatch(setErrorsCheck(false));
+					}, 1000);
+				}
+			} else {
+				store.dispatch(setAuthError(resultErr));
+			}
 			break;
 		}
 		case UPDATE_PROFILE: {
 			console.log("entrée dans middleware update profile");
 			const {
-				user: { nickname, name, firstname, email, password },
+				user: { id, nickname, name, firstname, email, password },
 			} = store.getState();
-			console.log(nickname, name, firstname, email, password);
-			const { data } = await instance.patch("/profil", {
-				nickname,
-				name,
-				firstname,
-				email,
-				password,
-				newPassword,
-				newPasswordConfirm,
-			});
-			console.log("data from update user profile request >>>>", data);
+
+			let result;
+			let data;
+			let resultErr;
+			try {
+				result = await instance.patch(`/profil/${id}`, {
+					nickname,
+					name,
+					firstname,
+					email,
+					password,
+					newPassword,
+					newPasswordConfirm,
+				});
+			} catch (error) {
+				resultErr = error.response.data.message;
+			}
+			if (result) {
+				data = result.data;
+				console.log("DATA >>>", data);
+				if (data.error) {
+					store.dispatch(setAuthError(data.error));
+					console.log("DATA_ERROR>>>", data.error);
+				} else {
+					store.dispatch(setErrorsCheck(true));
+					setTimeout(() => {
+						store.dispatch(setErrorsCheck(false));
+					}, 1000);
+				}
+			} else {
+				store.dispatch(setAuthError(resultErr));
+				console.log("RESULT_ERROR>>>", resultErr);
+			}
+			console.log("RESULT>>>", result);
 			break;
 		}
 		case IS_OPEN_TO_CONTACT: {
 			console.log("entrée dans middleware update isOpenToContact");
 			const {
-				user: { isOpenToContact },
+				user: { id, isOpenToContact },
 			} = store.getState();
 			console.log(isOpenToContact);
-			const { data } = await instance.patch("/profil", {
-				isOpenToContact,
-			});
-			console.log("data from update isOpenToContact request >>>>", data);
+
+			let result;
+			let data;
+			let resultErr;
+			try {
+				result = await instance.patch(`/profil/${id}`, {
+					isOpenToContact,
+				});
+			} catch (error) {
+				resultErr = error.request.response;
+			}
+			if (result) {
+				data = result.data;
+			} else {
+				store.dispatch(setAuthError(resultErr));
+			}
 			break;
 		}
 		default:

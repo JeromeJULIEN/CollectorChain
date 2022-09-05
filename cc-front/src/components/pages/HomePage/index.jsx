@@ -14,21 +14,43 @@ const HomePage = () => {
 	// import depuis le state de la liste en cours
 	const list = useSelector((state) => state.collections.list);
 
-	// const [listSortByDate, setListSortByDate] = useState([]);
+	//Responsive
+	const { innerWidth } = window;
 
-	// if (list) {
-	// 	const sortByDate = [...list].sort((a, b) => a.created_at - b.created_at);
-	// 	setListSortByDate(sortByDate);
-	// 	console.log(listSortByDate);
-	// }
+	console.log(innerWidth);
 
 	return (
-		<main>
-			<div className="homePage">
-				<div className="homePage__ressources">
-					<SlideAuto />
-					<div className="homePage__highlightedCollections">
-						<h2>Hightlighted collections</h2>
+		<>
+			<main>
+				<div className="homePage">
+					<div className="homePage__ressources">
+						<SlideAuto />
+						<div className="homePage__highlightedCollections">
+							<h2>Hightlighted collections</h2>
+							{/* {width <= 415 ? ( */}
+							<Slide_2x2>
+								{list.map((collection) => {
+									return (
+										<SwiperSlide key={collection.id}>
+											<CollectionCard text={collection.name} media={collection.media} id={collection.id} />
+										</SwiperSlide>
+									);
+								})}
+							</Slide_2x2>
+							{/* ) : (
+								<h2>test</h2>
+							)} */}
+						</div>
+					</div>
+
+					<div className="homePage__creationProcess">
+						<Link to="/creation">
+							<h2>our NFT creation process</h2>
+							<img src="https://bladerender.com/media/simple-responsive-slideshow/2.jpg" />
+						</Link>
+					</div>
+					<div className="homePage__latestCollections">
+						<h2>Latest Collections</h2>
 						<Slide_2x2>
 							{list.map((collection) => {
 								return (
@@ -40,27 +62,8 @@ const HomePage = () => {
 						</Slide_2x2>
 					</div>
 				</div>
-
-				<div className="homePage__creationProcess">
-					<Link to="/creation">
-						<h2>our NFT creation process</h2>
-						<img src="https://bladerender.com/media/simple-responsive-slideshow/2.jpg" />
-					</Link>
-				</div>
-				<div className="homePage__latestCollections">
-					<h2>Latest Collections</h2>
-					<Slide_2x2>
-						{list.map((collection) => {
-							return (
-								<SwiperSlide key={collection.id}>
-									<CollectionCard text={collection.name} media={collection.media} id={collection.id} />
-								</SwiperSlide>
-							);
-						})}
-					</Slide_2x2>
-				</div>
-			</div>
-		</main>
+			</main>
+		</>
 	);
 };
 

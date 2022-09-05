@@ -108,7 +108,7 @@ const Collection = ({ url }) => {
 					<div className="collection__title__text__main">
 						<div className="collection__title__text__main__head">
 							<h1>{collection.name}</h1>
-							<Share id="test" url={url} />
+							<Share url={url} />
 						</div>
 						{/* <Panel header="Description" collapsible>
                         <p>{collection.description}</p>

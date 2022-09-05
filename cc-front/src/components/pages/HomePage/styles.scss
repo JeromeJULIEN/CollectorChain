@@ -43,17 +43,42 @@
 	margin: 0 1rem;
 	}
 
-	& .swiper {
-	width: 100%;
-	height: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	}
+	// & .swiper {
+	// width: 100%;
+	// height: 100%;
+	// margin-left: auto;
+	// margin-right: auto;
+	// }
 
 	& .swiper-slide {
 	text-align: center;
 	font-size: 18px;
 	background: transparent;
 	height: calc((100% - 50px) / 2) !important;
+	}
+}
+
+
+@media only screen and (min-device-width : 714px) and (max-device-width : 678px) {
+	.homePage {
+
+	& .slide {
+		height : 26rem; 
+		margin: 0 1rem;
+		}
+	
+		& .swiper {
+		width: 380px;
+		// height: 414px;
+		margin-left: auto;
+		margin-right: auto;
+		}
+	
+		& .swiper-slide {
+		text-align: center;
+		font-size: 18px;
+		background: transparent;
+		height: calc((100% - 50px) / 2) !important;
+		}
 	}
 }

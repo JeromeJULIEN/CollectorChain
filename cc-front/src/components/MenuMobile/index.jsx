@@ -2,9 +2,8 @@ import React from "react";
 import "./styles.scss";
 import { Nav } from "rsuite/";
 import "rsuite/dist/rsuite.min.css";
-import UserInfoIcon from "@rsuite/icons/UserInfo";
 import { Link, useLocation } from "react-router-dom";
-import { Modal, Input, Row, Button, Text } from "@nextui-org/react";
+import { Modal, Input, Row, Text } from "@nextui-org/react";
 
 import MenuExplore from "./MenuExplore";
 import { Mail } from "../modals/Login/Mail";
@@ -21,7 +20,6 @@ import { useEffect } from "react";
 const MenuMobile = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const location = useLocation()
 
 	const email = useSelector((state) => state.user.email);
 	const password = useSelector((state) => state.user.password);
@@ -29,12 +27,32 @@ const MenuMobile = () => {
 	const nickname = useSelector((state) => state.user.nickname);
 	const isLogged = useSelector((state) => state.user.isLogged);
 
+	//!Gestion erreurs
+	const errors = useSelector((state) => state.error.auth);
+	const [errorList, setErrorList] = React.useState();
+	useEffect(() => {
+		setErrorList([...errors]);
+		setTimeout(() => {
+			setErrorList("");
+		}, 3000);
+	}, [errors]);
+	//Check si plus d'erreur et envoie l'ordre de fermeture aux modales
+	const errorsCheck = useSelector((state) => state.error.errorsCheck);
+	useEffect(() => {
+		if (errorsCheck === true) {
+			loginSetVisible(false);
+			signupSetVisible(false);
+		}
+	}, [errorsCheck]);
+	//!-----------
+
 	const [loginVisible, loginSetVisible] = React.useState(false);
 	const loginHandler = () => {
 		loginSetVisible(true);
 	};
 	const loginCloseHandler = () => {
 		loginSetVisible(false);
+		setErrorList("");
 	};
 	const [signupVisible, signupSetVisible] = React.useState(false);
 	const signupHandler = () => signupSetVisible(true);
@@ -61,7 +79,6 @@ const MenuMobile = () => {
 		console.log("test submit");
 		event.preventDefault();
 		dispatch(logIn());
-		loginCloseHandler();
 		navigate("/");
 	};
 
@@ -69,21 +86,21 @@ const MenuMobile = () => {
 		console.log("signup");
 		event.preventDefault();
 		dispatch(signUp());
-		signupCloseHandler();
-		navigate("/");
+		loginSetVisible(true);
 	};
 
 	const handleLogout = () => {
-		console.log('handleLogout');
-		dispatch(logout())
-	}
+		console.log("handleLogout");
+		dispatch(logout());
+		navigate("/");
+	};
 
 	return (
 		<div className="menu-mobile">
 			<Nav className="menu-mobile-nav">
 				<MenuExplore className="menu-explore" placement={"topStart"} />
 				<Nav.Item>
-					<Link className="menu-mobile-nav-create" to={isLogged?'/creation/createnewnft':'/creation'} style={{ fontWeight: "bold" }}>
+					<Link className="menu-mobile-nav-create" to={isLogged ? "/creation/createnewnft" : "/creation"} style={{ fontWeight: "bold" }}>
 						Create
 					</Link>
 				</Nav.Item>
@@ -95,34 +112,34 @@ const MenuMobile = () => {
 					onOpen={userMenuOn}
 					onClose={userMenuOff}
 				>
-					{userMenuVisible?
+					{isLogged ? (
 						<>
-						{isLogged?
+							<Nav.Item className="menu-user-item">
+								<Link to="/showcase">My showcase</Link>
+							</Nav.Item>
+							<Nav.Item className="menu-user-item">
+								<Link to="/favorites">My favorites</Link>
+							</Nav.Item>
+							<Nav.Item className="menu-user-item">
+								<Link to="/profil">My profil</Link>
+							</Nav.Item>
+							<Nav.Item className="menu-user-item" onClick={handleLogout}>
+								Logout
+							</Nav.Item>
+						</>
+					) : (
 						<>
-						<Nav.Item className="menu-user-item" onClick={userMenuOff}>
-							<Link to="/showcase">My showcase</Link>
-						</Nav.Item>
-						<Nav.Item className="menu-user-item" onClick={userMenuOff}>
-							<Link to="/favorites">My favorites</Link>
-						</Nav.Item>
-						<Nav.Item className="menu-user-item" onClick={userMenuOff}>
-							<Link to="/profil">My profil</Link>
-						</Nav.Item>
-						<Nav.Item className="menu-user-item" onClick={handleLogout}>Logout</Nav.Item>
+							<Nav.Item onClick={loginHandler} className="menu-user-item">
+								Login
+							</Nav.Item>
+							<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
 						</>
-						:
-						<>
-						<Nav.Item onClick={loginHandler} className="menu-user-item">Login</Nav.Item>
-						<Nav.Item onClick={signupHandler}>Signup</Nav.Item>
-						</>
-						}
-						</>
-					:''}
+					)}
 				</Nav.Menu>
 			</Nav>
-			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler}>
+			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler} aria-labelledby="modal-login">
 				<Modal.Header>
-					<Text id="modal-login" size={18}>
+					<Text id="modal-login" size={20} style={{ fontWeight: "bold", color: "#d3d5dd" }}>
 						Login
 					</Text>
 				</Modal.Header>
@@ -154,10 +171,13 @@ const MenuMobile = () => {
 						onChange={handleChange}
 					/>
 					<Row justify="space-between">
-						<Text size={14}>Forgot password?</Text>
+						<Text size={16} style={{ color: "#ff9c11" }}>
+							Forgot password?
+						</Text>
 					</Row>
 				</Modal.Body>
-				<Modal.Footer>
+				{errorList ? <p className="modal-login-error">{errors}</p> : ""}
+				<Modal.Footer className="modal-login-footer">
 					<button className="button__close" auto flat color="error" onClick={loginCloseHandler}>
 						Close
 					</button>
@@ -166,9 +186,9 @@ const MenuMobile = () => {
 					</button>
 				</Modal.Footer>
 			</Modal>
-			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler}>
+			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler} aria-labelledby="modal-signup">
 				<Modal.Header>
-					<Text id="modal-signup" size={18}>
+					<Text id="modal-signup" size={20} style={{ fontWeight: "bold", color: "#d3d5dd" }}>
 						Signup
 					</Text>
 				</Modal.Header>
@@ -214,6 +234,7 @@ const MenuMobile = () => {
 						onChange={handleChange}
 					/>
 				</Modal.Body>
+				{errorList ? <p className="modal-login-error">{errors}</p> : ""}
 				<Modal.Footer>
 					<button className="button__close" auto flat color="error" onClick={signupCloseHandler}>
 						Close

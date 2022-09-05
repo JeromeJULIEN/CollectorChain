@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Modal, Input, Row, Button, Text } from "@nextui-org/react";
 import { Mail } from '../modals/Login/Mail';
 import { Password } from '../modals/Login/Password';
+import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
 import './styles.scss';
 
 const MenuMobileVanilla = () => {
@@ -74,21 +75,38 @@ const MenuMobileVanilla = () => {
 		dispatch(changeUserField(event.target.value, event.target.name));
 	};
 
-    const loginHandleSubmit = (event) => {
+	const loginHandleSubmit = (event) => {
 		console.log("test submit");
 		event.preventDefault();
 		dispatch(logIn());
-		loginCloseHandler();
 		navigate("/");
 	};
-
+	
 	const signupHandleSubmit = (event) => {
 		console.log("signup");
 		event.preventDefault();
 		dispatch(signUp());
-		signupCloseHandler();
-		navigate("/");
+		loginSetVisible(true);
 	};
+
+	//!Gestion erreurs
+	const errors = useSelector((state) => state.error.auth);
+	const [errorList, setErrorList] = React.useState();
+	useEffect(() => {
+		setErrorList([...errors]);
+		setTimeout(() => {
+			setErrorList("");
+		}, 3000);
+	}, [errors]);
+	//Check si plus d'erreur et envoie l'ordre de fermeture aux modales
+	const errorsCheck = useSelector((state) => state.error.errorsCheck);
+	useEffect(() => {
+		if (errorsCheck === true) {
+			loginSetVisible(false);
+			signupSetVisible(false);
+		}
+	}, [errorsCheck]);
+	//!-----------
 
     return (
     <div className='menuMobile'>
@@ -146,16 +164,16 @@ const MenuMobileVanilla = () => {
         
 
         {/* Modale login */}
-        <Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler}>
+        <Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler} aria-labelledby="modal-login">
 				<Modal.Header>
-					<Text id="modal-login" size={18}>
+					<Text id="modal-login" size={20} style={{ fontWeight: "bold", color: "#d3d5dd" }}>
 						Login
 					</Text>
 				</Modal.Header>
 				<Modal.Body>
 					<Input
 						type="email"
-						clearable
+						learable
 						bordered
 						fullWidth
 						color="primary"
@@ -180,10 +198,13 @@ const MenuMobileVanilla = () => {
 						onChange={handleChange}
 					/>
 					<Row justify="space-between">
-						<Text size={14}>Forgot password?</Text>
+						<Text size={16} style={{ color: "#ff9c11" }}>
+							Forgot password?
+						</Text>
 					</Row>
 				</Modal.Body>
-				<Modal.Footer>
+				{errorList ? <p className="modal-login-error">{errors}</p> : ""}
+				<Modal.Footer className="modal-login-footer">
 					<button className="button__close" auto flat color="error" onClick={loginCloseHandler}>
 						Close
 					</button>
@@ -192,10 +213,9 @@ const MenuMobileVanilla = () => {
 					</button>
 				</Modal.Footer>
 			</Modal>
-            {/* Modale signup */}
-			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler}>
+			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler} aria-labelledby="modal-signup">
 				<Modal.Header>
-					<Text id="modal-signup" size={18}>
+					<Text id="modal-signup" size={20} style={{ fontWeight: "bold", color: "#d3d5dd" }}>
 						Signup
 					</Text>
 				</Modal.Header>
@@ -241,6 +261,7 @@ const MenuMobileVanilla = () => {
 						onChange={handleChange}
 					/>
 				</Modal.Body>
+				{errorList ? <p className="modal-login-error">{errors}</p> : ""}
 				<Modal.Footer>
 					<button className="button__close" auto flat color="error" onClick={signupCloseHandler}>
 						Close

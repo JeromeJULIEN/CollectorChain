@@ -1,4 +1,4 @@
-import { Container, Card, Text, Col, Input, User, Spacer, Button, Image, Switch } from "@nextui-org/react";
+import { Input, Spacer, Button, Image, Switch } from "@nextui-org/react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -22,10 +22,8 @@ const Profil = () => {
 	};
 
 	const switchEvent = (event) => {
-		console.log(event.target.checked);
 		dispatch(isOpenToContact(event.target.checked));
 	};
-
 	//! Gestion de l'upload des images
 	// Creation d'un state local pour stocker l'image du user
 	const [profilePicture, setProfilePicture] = useState([]);
@@ -90,7 +88,9 @@ const Profil = () => {
 				<div className="profile__id">
 					<Spacer y={1} />
 					<h2>Add your ID to create NFT</h2>
-					<Image width={320} height={180} src="https://github.com/nextui-org/nextui/blob/next/apps/docs/public/nextui-banner.jpeg?raw=true" alt="Default Image" objectFit="cover" />
+					<div style={{ width: 320, height: 180, backgroundColor: "white" }}>
+						<Image width={320} height={180} src="" alt="" objectFit="cover" />
+					</div>
 					<Spacer y={1} />
 					<Button>Add ID</Button>
 				</div>
@@ -119,7 +119,7 @@ const Profil = () => {
 				</div>
 				<Spacer y={0.5} />
 			</div>
-			<Modal className="modaleUpdateProfile" closeButton blur open={isUpdateProfileVisible} onClose={hideUpdateProfile}>
+			<Modal aria-labelledby="modale update-profile" className="modaleUpdateProfile" closeButton blur open={isUpdateProfileVisible} onClose={hideUpdateProfile}>
 				<UpdateProfile hideUpdateProfile={hideUpdateProfile} />
 			</Modal>
 		</main>

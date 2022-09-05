@@ -1,12 +1,18 @@
 .slide-fade {
 	// position: relative;
 	height: 100%;
-	& h2, p {
+	& h2 {
 		font-size: 125%;
 		color: white;
 		text-shadow: 1px 1px 2px black;
 	}
+	& p {
+		font-size: 1.2rem;
+		color: white;
+		text-shadow: 1px 1px 2px black;
+	}
 	& .slide-title {
+		width: 100vw;
 		display:flex;
 		flex-direction: column;
 		justify-content: center;
@@ -68,3 +74,15 @@
   .swiper-pagination-bullet {
 	  color: white;
   }
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+.slide-fade {
+	& h2 {
+		font-size: 175%;
+		margin: 1.5rem;
+	}
+	& p {
+		font-size: 1.4rem;
+	}
+	}
+}

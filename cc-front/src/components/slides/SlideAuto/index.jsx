@@ -28,7 +28,7 @@ const SlideAuto = () => {
 			>
 				<div className="slide-title">
 					<h2>Bring your collectors to digital word and digital economy</h2>
-					<p>Collector Chain allow you to extend your physical collection to the digital world.</p>
+					<p>Collector Chain allow you to extend your physical collection to the digital world</p>
 				</div>
 				<SwiperSlide>
 					<Link to="/resources">
