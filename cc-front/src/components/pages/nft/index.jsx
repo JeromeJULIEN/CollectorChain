@@ -38,7 +38,7 @@ const Nft = ({ nfts, url }) => {
 		setIsPurchaseVisible(true);
 	};
 	const hidePurchase = () => {
-		console.log("test");
+		// console.log("test");
 		setIsPurchaseVisible(false);
 	};
 
@@ -67,7 +67,7 @@ const Nft = ({ nfts, url }) => {
 
 	//! Récupération d'un tableau des id identiques (comparaison id nft & favoris)
 	const favorisFound = nftId.filter((value) => favorisId.includes(value));
-	console.log("FAVORITE_FOUND >>>", favorisFound);
+	// console.log("FAVORITE_FOUND >>>", favorisFound);
 
 	//----------------
 
@@ -99,9 +99,10 @@ const Nft = ({ nfts, url }) => {
 									<button type="button" onClick={showPurchase}>
 										Buy
 									</button>
-									<button type="button" onClick={showSell}>
+									{/* modale sell a activer une fois la condition owned faite */}
+									{/* <button type="button" onClick={showSell}>
 										Sell
-									</button>
+									</button> */}
 								</div>
 							</>
 						) : (
