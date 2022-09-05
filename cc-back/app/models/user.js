@@ -5,7 +5,7 @@ const CoreDatamapper = require('./coreDatamapper');
 const saltRounds = 10;
 
 /** User Model Object
- * @typedef {object} User
+ * @typedef {object} UserModel
  * @property {number} id - Primary key
  * @property {string} email - email user
  * @property {string} nickname - nickname user
@@ -14,6 +14,12 @@ const saltRounds = 10;
  * @property {boolean} isAdmin - egal true if this user is an admin
  * @property {string} media - link to user picture
 */
+
+/**
+ * User Object
+ * @typedef {object} User
+ * @property {object} user - Generated user model
+ */
 
 module.exports = class User extends CoreDatamapper {
     static tableName = 'user';

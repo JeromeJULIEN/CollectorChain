@@ -8,10 +8,10 @@ const controllerHandler = require('../../helper/controllerHandler');
 
 /**
  * GET /property
- * @summary Route to all property
- * @tags property
- * @param {string} tableName - property table name
- * @return {Object} 200 - success response - application/json
+ * @summary Get to all property
+ * @tags Property
+ * @param {string} name.query - property table name
+ * @return {Property} 200 - success response - application/json
  */
 router.get('/property', controllerHandler(propertyController.getAllProperties));
 
