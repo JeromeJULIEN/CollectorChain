@@ -19,11 +19,11 @@ const authMiddleware = (store) => (next) => async (action) => {
 					password,
 				});
 			} catch (error) {
+				console.log("ERROR>>>", error);
 				resultErr = error.response.data.message;
 			}
 			if (result) {
 				data = result.data;
-				console.log("DATA >>>", data);
 				if (data.error) {
 					store.dispatch(setAuthError(data.error));
 				} else {
@@ -37,12 +37,13 @@ const authMiddleware = (store) => (next) => async (action) => {
 					favorites = await instance.get(`/favorite/${data.id}`);
 					store.dispatch(setFavorites(favorites.data));
 					// Pas d'erreur donc on passe ErrosCheck à true puis retour à false après 1s
-					store.dispatch(setErrorsCheck("true"));
+					store.dispatch(setErrorsCheck(true));
 					setTimeout(() => {
-						store.dispatch(setErrorsCheck("false"));
+						store.dispatch(setErrorsCheck(false));
 					}, 1000);
 				}
 			} else {
+				console.log("LOGIN_ERROR>>>", resultErr);
 				store.dispatch(setAuthError(resultErr));
 			}
 
@@ -71,9 +72,9 @@ const authMiddleware = (store) => (next) => async (action) => {
 				if (data.error) {
 					store.dispatch(setAuthError(data.error));
 				} else {
-					store.dispatch(setErrorsCheck("true"));
+					store.dispatch(setErrorsCheck(true));
 					setTimeout(() => {
-						store.dispatch(setErrorsCheck("false"));
+						store.dispatch(setErrorsCheck(false));
 					}, 1000);
 				}
 			} else {
@@ -84,14 +85,14 @@ const authMiddleware = (store) => (next) => async (action) => {
 		case UPDATE_PROFILE: {
 			console.log("entrée dans middleware update profile");
 			const {
-				user: { nickname, name, firstname, email, password },
+				user: { id, nickname, name, firstname, email, password },
 			} = store.getState();
 
 			let result;
 			let data;
 			let resultErr;
 			try {
-				result = await instance.patch("/profil", {
+				result = await instance.patch(`/profil/${id}`, {
 					nickname,
 					name,
 					firstname,
@@ -101,20 +102,31 @@ const authMiddleware = (store) => (next) => async (action) => {
 					newPasswordConfirm,
 				});
 			} catch (error) {
-				console.log(error);
 				resultErr = error.response.data.message;
 			}
 			if (result) {
 				data = result.data;
+				console.log("DATA >>>", data);
+				if (data.error) {
+					store.dispatch(setAuthError(data.error));
+					console.log("DATA_ERROR>>>", data.error);
+				} else {
+					store.dispatch(setErrorsCheck(true));
+					setTimeout(() => {
+						store.dispatch(setErrorsCheck(false));
+					}, 1000);
+				}
 			} else {
 				store.dispatch(setAuthError(resultErr));
+				console.log("RESULT_ERROR>>>", resultErr);
 			}
+			console.log("RESULT>>>", result);
 			break;
 		}
 		case IS_OPEN_TO_CONTACT: {
 			console.log("entrée dans middleware update isOpenToContact");
 			const {
-				user: { isOpenToContact },
+				user: { id, isOpenToContact },
 			} = store.getState();
 			console.log(isOpenToContact);
 
@@ -122,11 +134,10 @@ const authMiddleware = (store) => (next) => async (action) => {
 			let data;
 			let resultErr;
 			try {
-				result = await instance.patch("/profil", {
+				result = await instance.patch(`/profil/${id}`, {
 					isOpenToContact,
 				});
 			} catch (error) {
-				console.log(error);
 				resultErr = error.request.response;
 			}
 			if (result) {

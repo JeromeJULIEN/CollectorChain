@@ -1,4 +1,4 @@
-import { Modal, Input, Button, Text, Spacer } from "@nextui-org/react";
+import { Modal, Input, Text, Spacer } from "@nextui-org/react";
 import { Mail } from "./Mail";
 import { Password } from "./Password";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import { updateUserField, updateProfile } from "../../../../store/actions/user";
 import "./styles.scss";
 
 const UpdateProfile = ({ hideUpdateProfile }) => {
+	const user = useSelector((state) => state.user);
+
 	const dispatch = useDispatch();
 
 	//!Gestion erreurs
@@ -19,10 +21,10 @@ const UpdateProfile = ({ hideUpdateProfile }) => {
 			setErrorList("");
 		}, 3000);
 	}, [errors]);
-	//Check si plus d'erreur et envoie l'ordre de la modale
+	//Check si plus d'erreur et envoie l'ordre de fermeture de la modale
 	const errorsCheck = useSelector((state) => state.error.errorsCheck);
 	useEffect(() => {
-		if (errorsCheck === "true") {
+		if (errorsCheck === true) {
 			setIsUpdateProfileVisible(false);
 		}
 	}, [errorsCheck]);
@@ -40,23 +42,35 @@ const UpdateProfile = ({ hideUpdateProfile }) => {
 	return (
 		<div className="modify-profile">
 			<Modal.Header>
-				<Text id="modal-title" size={18}>
+				<Text id="modal-title" size={20} style={{ fontWeight: "bold", color: "#d3d5dd" }}>
 					Profile editor
 				</Text>
 			</Modal.Header>
 			<Modal.Body>
-				<Input type="text" clearable bordered fullWidth color="primary" size="lg" placeholder="nickname" name="nickname" onChange={handleChange} />
-				<Input type="text" clearable bordered fullWidth color="primary" size="lg" placeholder="name" name="name" onChange={handleChange} />
-				<Input type="text" clearable bordered fullWidth color="primary" size="lg" placeholder="firstname" name="firstname" onChange={handleChange} />
+				<Input type="text" clearable bordered fullWidth color="default" size="lg" label="Nickname" placeholder={user.nickname} name="nickname" onChange={handleChange} />
+				<Input type="text" clearable bordered fullWidth color="default" size="lg" label="Name" placeholder={user.name} name="name" onChange={handleChange} />
+				<Input type="text" clearable bordered fullWidth color="default" size="lg" label="Firstname" placeholder={user.firstname} name="firstname" onChange={handleChange} />
 				<Spacer y={0.25} />
-				<Input type="email" clearable bordered fullWidth color="primary" size="lg" placeholder="email" contentLeft={<Mail fill="currentColor" />} name="email" onChange={handleChange} />
+				<Input
+					type="email"
+					clearable
+					bordered
+					fullWidth
+					color="default"
+					size="lg"
+					label="Email"
+					placeholder={user.email}
+					contentLeft={<Mail fill="currentColor" />}
+					name="email"
+					onChange={handleChange}
+				/>
 				<Spacer y={0.25} />
 				<Input.Password
 					type="password"
 					clearable
 					bordered
 					fullWidth
-					color="primary"
+					color="default"
 					size="lg"
 					placeholder="New password"
 					contentLeft={<Password fill="currentColor" />}
@@ -68,7 +82,7 @@ const UpdateProfile = ({ hideUpdateProfile }) => {
 					clearable
 					bordered
 					fullWidth
-					color="primary"
+					color="default"
 					size="lg"
 					placeholder="Confirm new password"
 					contentLeft={<Password fill="currentColor" />}
@@ -81,7 +95,7 @@ const UpdateProfile = ({ hideUpdateProfile }) => {
 					clearable
 					bordered
 					fullWidth
-					color="primary"
+					color="default"
 					size="lg"
 					placeholder="Actual password"
 					contentLeft={<Password fill="currentColor" />}

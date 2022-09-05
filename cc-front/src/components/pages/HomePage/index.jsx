@@ -14,13 +14,10 @@ const HomePage = () => {
 	// import depuis le state de la liste en cours
 	const list = useSelector((state) => state.collections.list);
 
-	// const [listSortByDate, setListSortByDate] = useState([]);
+	//Responsive
+	const { innerWidth } = window;
 
-	// if (list) {
-	// 	const sortByDate = [...list].sort((a, b) => a.created_at - b.created_at);
-	// 	setListSortByDate(sortByDate);
-	// 	console.log(listSortByDate);
-	// }
+	console.log(innerWidth);
 
 	return (
 		<>
@@ -30,6 +27,7 @@ const HomePage = () => {
 						<SlideAuto />
 						<div className="homePage__highlightedCollections">
 							<h2>Hightlighted collections</h2>
+							{/* {width <= 415 ? ( */}
 							<Slide_2x2>
 								{list.map((collection) => {
 									return (
@@ -39,6 +37,9 @@ const HomePage = () => {
 									);
 								})}
 							</Slide_2x2>
+							{/* ) : (
+								<h2>test</h2>
+							)} */}
 						</div>
 					</div>
 

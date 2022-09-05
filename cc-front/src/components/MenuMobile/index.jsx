@@ -38,7 +38,7 @@ const MenuMobile = () => {
 	//Check si plus d'erreur et envoie l'ordre de fermeture aux modales
 	const errorsCheck = useSelector((state) => state.error.errorsCheck);
 	useEffect(() => {
-		if (errorsCheck === "true") {
+		if (errorsCheck === true) {
 			loginSetVisible(false);
 			signupSetVisible(false);
 		}
@@ -67,14 +67,14 @@ const MenuMobile = () => {
 		console.log("test submit");
 		event.preventDefault();
 		dispatch(logIn());
+		navigate("/");
 	};
 
 	const signupHandleSubmit = (event) => {
 		console.log("signup");
 		event.preventDefault();
 		dispatch(signUp());
-		// signupCloseHandler();
-		// navigate("/");
+		loginSetVisible(true);
 	};
 
 	const handleLogout = () => {
@@ -123,9 +123,9 @@ const MenuMobile = () => {
 					)}
 				</Nav.Menu>
 			</Nav>
-			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler}>
+			<Modal className="modal-login" closeButton blur open={loginVisible} onClose={loginCloseHandler} aria-labelledby="modal-login">
 				<Modal.Header>
-					<Text id="modal-login" size={20} style={{ color: "#d3d5dd" }}>
+					<Text id="modal-login" size={20} style={{ fontWeight: "bold", color: "#d3d5dd" }}>
 						Login
 					</Text>
 				</Modal.Header>
@@ -172,9 +172,9 @@ const MenuMobile = () => {
 					</button>
 				</Modal.Footer>
 			</Modal>
-			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler}>
+			<Modal className="modal-signup" closeButton blur open={signupVisible} onClose={signupCloseHandler} aria-labelledby="modal-signup">
 				<Modal.Header>
-					<Text id="modal-signup" size={20} style={{ color: "#d3d5dd" }}>
+					<Text id="modal-signup" size={20} style={{ fontWeight: "bold", color: "#d3d5dd" }}>
 						Signup
 					</Text>
 				</Modal.Header>

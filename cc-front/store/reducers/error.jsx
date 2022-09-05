@@ -4,7 +4,7 @@ export const initialState = {
 	auth: "",
 	data: "",
 	user: "",
-	errorsCheck: "false",
+	errorsCheck: false,
 };
 
 const reducer = (state = initialState, action = {}) => {

@@ -31,22 +31,22 @@ const Share = ({ url }) => {
 				{open === true ? (
 					<div className="modale-share">
 						<EmailShareButton url={shareUrl} className="modale-share-logo">
-							<EmailIcon size={iconSize} round="true" />
+							<EmailIcon size={iconSize} round={true} />
 						</EmailShareButton>
 						<FacebookShareButton url={shareUrl} className="modale-share-logo">
-							<FacebookIcon size={iconSize} round="true" />
+							<FacebookIcon size={iconSize} round={true} />
 						</FacebookShareButton>
 						<FacebookMessengerShareButton url={shareUrl} className="modale-share-logo">
-							<FacebookMessengerIcon size={iconSize} round="true" />
+							<FacebookMessengerIcon size={iconSize} round={true} />
 						</FacebookMessengerShareButton>
 						<WhatsappShareButton url={shareUrl} className="modale-share-logo">
-							<WhatsappIcon size={iconSize} round="true" />
+							<WhatsappIcon size={iconSize} round={true} />
 						</WhatsappShareButton>
 						<TwitterShareButton url={shareUrl} className="modale-share-logo">
-							<TwitterIcon size={iconSize} round="true" />
+							<TwitterIcon size={iconSize} round={true} />
 						</TwitterShareButton>
 						<LinkedinShareButton url={shareUrl} className="modale-share-logo">
-							<LinkedinIcon size={iconSize} round="true" />
+							<LinkedinIcon size={iconSize} round={true} />
 						</LinkedinShareButton>
 					</div>
 				) : (
