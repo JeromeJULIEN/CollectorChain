@@ -5,6 +5,13 @@ const router = express.Router();
 const categoriesController = require('../../controllers/categoriesController');
 
 const controllerHandler = require('../../helper/controllerHandler');
+
+/**
+ * User Error
+ * @typedef {object} UserError
+ * @property {string} error - error details
+ */
+
 /**
  * GET /categories
  * @summary Get categories
@@ -14,6 +21,7 @@ const controllerHandler = require('../../helper/controllerHandler');
  * @param {string} description.query - category description
  * @param {string} media.query - category media
  * @return {Category} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/categories', controllerHandler(categoriesController.getAllCategories));
 /**
@@ -25,6 +33,7 @@ router.get('/categories', controllerHandler(categoriesController.getAllCategorie
  * @param {string} description.query - category description
  * @param {string} media.query - category media
  * @return {Category} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.post('/categories', controllerHandler(categoriesController.createCategorie));
 /**
@@ -33,6 +42,7 @@ router.post('/categories', controllerHandler(categoriesController.createCategori
  * @tags Categories
  * @param {number} id.query - id from category deleted
  * @return {string} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.delete('/categories/:id', controllerHandler(categoriesController.deleteCategorie));
 /**
@@ -44,6 +54,7 @@ router.delete('/categories/:id', controllerHandler(categoriesController.deleteCa
  * @param {string} description.query - category description
  * @param {string} media.query - category media
  * @return {Category} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.patch('/categories/:id', controllerHandler(categoriesController.updateCategories));
 

@@ -6,11 +6,18 @@ const userController = require('../../controllers/userController');
 const controllerHandler = require('../../helper/controllerHandler');
 
 /**
+ * User Error
+ * @typedef {object} UserError
+ * @property {string} error - error details
+ */
+
+/**
  * GET /forget_user
  * @summary Get to forget_user
  * @tags Forget_user
  * @param {string} email.query - user email
  * @return {string} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/forget_user', controllerHandler(userController.resetMail));
 /**
@@ -19,6 +26,7 @@ router.get('/forget_user', controllerHandler(userController.resetMail));
  * @tags Forget_user
  * @param {string} email.query - user email
  * @return {string} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.post('/forget_user', controllerHandler(userController.resetMail));
 

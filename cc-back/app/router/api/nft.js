@@ -6,12 +6,19 @@ const nftController = require('../../controllers/nftController');
 const controllerHandler = require('../../helper/controllerHandler');
 
 /**
+ * User Error
+ * @typedef {object} UserError
+ * @property {string} error - error details
+ */
+
+/**
  * GET /nft
  * @summary Get to nft
  * @tags Nft
  * @param {Nft} - Nft Model Object
  * @param {string} name.query - table name nft
  * @return {Nft} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/nft', controllerHandler(nftController.getNft));
 /**
@@ -22,6 +29,7 @@ router.get('/nft', controllerHandler(nftController.getNft));
  * @param {id} id.query - nft by id
  * @param {string} name.query - name nft
  * @return {Nft} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/nft/:id', controllerHandler(nftController.getNftById));
 /**
@@ -40,6 +48,7 @@ router.get('/nft/:id', controllerHandler(nftController.getNftById));
  * @param {number} owner_id - nft owner_id
  * @param {number} rarity.query - nft rarity
  * @return {Nft} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.post('/nft', controllerHandler(nftController.createNft));
 /**
@@ -49,6 +58,7 @@ router.post('/nft', controllerHandler(nftController.createNft));
  * @param {Nft} - Nft Model Object
  * @param {number} id.query - nft by id
  * @return {string} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.delete('/nft/:id', controllerHandler(nftController.deleteNft));
 /**
@@ -58,6 +68,7 @@ router.delete('/nft/:id', controllerHandler(nftController.deleteNft));
  * @param {Nft} Nft - Nft Model Object
  * @param {number} id.query - nft by id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.patch('/nft/:id', controllerHandler(nftController.updateNft));
 /**
@@ -67,6 +78,7 @@ router.patch('/nft/:id', controllerHandler(nftController.updateNft));
  * @param {Nft} Nft - Nft Model Object
  * @param {number} id.query - nft by id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/collections/:id_collection/nft', controllerHandler(nftController.getNftByCollectionId));
 /**
@@ -76,6 +88,7 @@ router.get('/collections/:id_collection/nft', controllerHandler(nftController.ge
  * @param {Nft} Nft - Nft Model Object
  * @param {number} id.query - nft by id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/:id_user/nft', controllerHandler(nftController.getNftByUserId));
 

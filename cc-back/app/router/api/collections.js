@@ -7,6 +7,12 @@ const collectionsController = require('../../controllers/collectionsController')
 const controllerHandler = require('../../helper/controllerHandler');
 
 /**
+ * User Error
+ * @typedef {object} UserError
+ * @property {string} error - error details
+ */
+
+/**
  * GET /collections
  * @summary Get to collections
  * @tags Collections
@@ -16,6 +22,7 @@ const controllerHandler = require('../../helper/controllerHandler');
  * @param {string} media.query - collection media
  * @param {number} category_id.query - category_id
  * @return {Collection} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/collections', controllerHandler(collectionsController.getAllCollections));
 /**
@@ -29,6 +36,7 @@ router.get('/collections', controllerHandler(collectionsController.getAllCollect
  * @param {string} media.query - collection media
  * @param {number} category_id.query - category_id
  * @return {Collection} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/collection/:id', controllerHandler(collectionsController.getCollectionById));
 /**
@@ -42,6 +50,7 @@ router.get('/collection/:id', controllerHandler(collectionsController.getCollect
  * @param {string} media.query - collection media
  * @param {number} category_id.query - category_id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.post('/collection', controllerHandler(collectionsController.createCollection));
 /**
@@ -50,6 +59,7 @@ router.post('/collection', controllerHandler(collectionsController.createCollect
  * @tags Collections
  * @param {number} id.query - id from collection deleted
  * @return {string} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.delete('/collection/:id', controllerHandler(collectionsController.deleteCollection));
 /**
@@ -62,6 +72,7 @@ router.delete('/collection/:id', controllerHandler(collectionsController.deleteC
  * @param {string} media.query - collection media
  * @param {number} category_id.query - category_id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.patch('/collection/:id', controllerHandler(collectionsController.updateCollection));
 /**
@@ -70,6 +81,7 @@ router.patch('/collection/:id', controllerHandler(collectionsController.updateCo
  * @summary Get to /categories/:id/collections
  * @param {number} id.query - collections by category id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/categories/:id/collections', controllerHandler(collectionsController.getCollectionByCategoryId));
 
