@@ -237,3 +237,12 @@ POST {{ endpoint }}/favorite/1/9
 
 ### Favoris
 DELETE {{ endpoint }}/favorite/1/9
+
+
+### Search
+POST {{ endpoint }}/search
+Content-Type: application/json
+
+{
+    "word": "erous b "
+}

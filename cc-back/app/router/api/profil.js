@@ -23,7 +23,7 @@ router.get('/profil/:id', validation('params', profilId), controllerHandler(user
  * @param {number} id - profil user by id
  * @return {string} 200 - success response - application/json
  */
-router.delete('/profil/:id/delete', controllerHandler(userController.deleteProfilUser));
+router.delete('/profil/:id', controllerHandler(userController.deleteProfilUser));
 /**
  * UPDATE /profil/:id/update
  * @summary Route to update user
@@ -31,6 +31,6 @@ router.delete('/profil/:id/delete', controllerHandler(userController.deleteProfi
  * @param {User} updateProfil - structure User object from User model
  * @return {Object} 200 - success response - application/json
  */
-router.patch('/profil/:id/update', validation('body', updateProfil), controllerHandler(userController.updateUserProfile));
+router.patch('/profil/:id', validation('body', updateProfil), controllerHandler(userController.updateUserProfile));
 
 module.exports = router;

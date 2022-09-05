@@ -68,9 +68,9 @@ module.exports = class CoreDatamapper {
     static async LookForAll(text) {
         const result = await client.query(
             `
-            SELECT * FROM "${this.tableName}" WHERE "name" LIKE '%$1%'
+            SELECT * FROM "${this.tableName}" WHERE lower("name") LIKE $1
             `,
-            [text],
+            [`%${text}%`],
         );
         return result.rows;
     }
