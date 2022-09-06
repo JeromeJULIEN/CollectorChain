@@ -65,7 +65,7 @@ router.post('/nft', validation('body', createNft), controllerHandler(nftControll
  */
 router.delete('/nft/:id', controllerHandler(nftController.deleteNft));
 /**
- * UPDATE /:id/nft/update
+ * PATCH /:id/nft/update
  * @summary Modify nft
  * @tags Nft
  * @param {Nft} Nft - Nft Model Object
