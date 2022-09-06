@@ -8,6 +8,7 @@ import { Mail } from "../modals/Login/Mail";
 import { Password } from "../modals/Login/Password";
 import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
 import "./styles.scss";
+import { useRef } from "react";
 
 const MenuMobileVanilla = () => {
 	const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const MenuMobileVanilla = () => {
 		setExploreVisibility(!exploreVisibility);
 		setResourcesVisibility(false);
 		setUserVisibility(false);
-		console.log(exploreVisibility);
+		// console.log(exploreVisibility);
 	};
 
 	const [userVisibility, setUserVisibility] = useState(false);
@@ -110,9 +111,34 @@ const MenuMobileVanilla = () => {
 	}, [errorsCheck]);
 	//!-----------
 
+	//!Gestion fermeture menu explore et user lorsuque click en dehors
+	// const menuRef = useRef(null)
+	// const exploreRef = useRef(null);
+	// const userRef = useRef(null);
+
+	// useEffect(() => {
+	// 	const closeExploreMenu = (event) => {
+	// 		console.log(event.path);
+	// 		console.log(menuRef);
+	// 		if( event.path.includes(menuRef.current) && exploreVisibility==false){
+	// 			setExploreVisibility(true)
+	// 		} else if ( event.path.includes(menuRef.current) && exploreVisibility==true){
+	// 			setExploreVisibility(false)
+	// 		}
+	// 	}
+
+	// 	document.body.addEventListener('click', closeExploreMenu)
+
+	// 	return () => document.body.removeEventListener('click',closeExploreMenu)
+	// },[])
+
+
+
 	return (
 		<div className="menuMobile">
-			<div className={exploreVisibility ? "menuMobile__lvl1--active" : "menuMobile__lvl1"} onClick={handleExploreVisibility}>
+			<div className={exploreVisibility ? "menuMobile__lvl1--active" : "menuMobile__lvl1"} 
+			onClick={handleExploreVisibility}
+			>
 				Explore
 			</div>
 			<div className="menuMobile__lvl1 menuMobile__lvl1--create">
