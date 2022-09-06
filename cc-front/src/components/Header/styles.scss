@@ -90,8 +90,17 @@
     }
 
     &__item{
-        padding: .2rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: .2rem .5rem;
         color:vars.$color_secondary;
         list-style: none;
+
+        img{
+            height: 2rem;
+            border-radius: 1rem;
+            aspect-ratio: 1;
+        }
     }
 }

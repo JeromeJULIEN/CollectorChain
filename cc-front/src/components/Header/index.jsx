@@ -119,11 +119,23 @@ const Header = () => {
 			<>
 			<div className="result">
 				<div className="result__title">Categories</div>
-				{categoryResult.map(result => (<Link to={`/category/${result.id}/collection`} onClick={hideResult}><li className="result__item" key={result.name}>{result.name}</li></Link>))}
+				{categoryResult.map(result => (
+					<Link to={`/category/${result.id}/collection`} onClick={hideResult}>
+						<li className="result__item" key={result.name}>{result.name}</li>
+						<img src={result.media} alt="" />
+					</Link>))}
 				<div className="result__title">Collections</div>
-				{collectionResult.map(result => (<Link to={`/collection/${result.id}`} onClick={hideResult}><li className="result__item" key={result.name}>{result.name}</li></Link>))}
+				{collectionResult.map(result => (
+					<Link className="result__item" to={`/collection/${result.id}`} onClick={hideResult}>
+						<li  key={result.name}>{result.name}</li>
+						<img src={result.media} alt="" />
+					</Link>))}
 				<div className="result__title">NFT</div>
-				{nftResult.map(result => (<Link to={`/nft/${result.id}`} onClick={hideResult}><li className="result__item" key={result.name}>{result.name}</li></Link>))}
+				{nftResult.map(result => (
+					<Link className="result__item" to={`/nft/${result.id}`} onClick={hideResult}>
+						<li  key={result.name}>{result.name}</li>
+						<img src={result.media} alt="" />
+					</Link>))}
 
 			</div>
 			</>
