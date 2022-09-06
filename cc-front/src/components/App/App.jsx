@@ -30,6 +30,7 @@ import Term from "../pages/Term";
 import Resources from "../pages/Resources";
 import Creation from "../pages/Creation";
 import { fetchCategories, fetchCollections, fetchNfts, fetchProperties, fetchTags } from "../../../store/actions/data";
+import MenuMobileVanilla from "../MenuMobileVanilla";
 
 function App() {
 	const dispatch = useDispatch();
@@ -78,14 +79,14 @@ function App() {
 	const pathTable = ["/"];
 	if (pathTable.includes(location.pathname)) {
 		// location.pathname == "/")
-		console.log("pathTable OK");
+		// console.log("pathTable OK");
 		// console.log(">>>>> useEffect App <<<<<<<<");
 		dispatch(fetchCollections(10));
 	}
 	const pathTable2 = ["/creation/createnewnft2"];
 	if (pathTable2.includes(location.pathname)) {
 		// location.pathname == "/")
-		console.log("pathTable2 OK");
+		// console.log("pathTable2 OK");
 		// console.log(">>>>> useEffect App <<<<<<<<");
 		dispatch(fetchCollections(""));
 	}
@@ -129,7 +130,7 @@ function App() {
 				</Routes>
 
 				<Footer />
-				<MenuMobile />
+				<MenuMobileVanilla />
 			</NextUIProvider>
 		</div>
 	);

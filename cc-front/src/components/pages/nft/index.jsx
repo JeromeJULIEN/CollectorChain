@@ -38,7 +38,7 @@ const Nft = ({ nfts, url }) => {
 		setIsPurchaseVisible(true);
 	};
 	const hidePurchase = () => {
-		console.log("test");
+		// console.log("test");
 		setIsPurchaseVisible(false);
 	};
 
@@ -67,7 +67,7 @@ const Nft = ({ nfts, url }) => {
 
 	//! Récupération d'un tableau des id identiques (comparaison id nft & favoris)
 	const favorisFound = nftId.filter((value) => favorisId.includes(value));
-	console.log("FAVORITE_FOUND >>>", favorisFound);
+	// console.log("FAVORITE_FOUND >>>", favorisFound);
 
 	//----------------
 
@@ -76,7 +76,7 @@ const Nft = ({ nfts, url }) => {
 			<h1 className="nft__title">{displayedNft.name}</h1>
 			<img src={displayedNft.media} alt="" className="nft__image" onClick={showFullScreen} />
 			<div className="nft__actionsButtons">
-				<Share id="test" url={url} className="share" />
+				<Share url={url} />
 				{isLogged ? (
 					<>
 						<BookmarkIcon nftId={displayedNft.id} favorisFound={favorisFound} />
@@ -99,9 +99,10 @@ const Nft = ({ nfts, url }) => {
 									<button type="button" onClick={showPurchase}>
 										Buy
 									</button>
-									<button type="button" onClick={showSell}>
+									{/* modale sell a activer une fois la condition owned faite */}
+									{/* <button type="button" onClick={showSell}>
 										Sell
-									</button>
+									</button> */}
 								</div>
 							</>
 						) : (

@@ -16,6 +16,7 @@
         text-align: center;
         border-radius: .5rem;
         object-fit: cover;
+        box-shadow: vars.$boxShadow_Light;
 
         background: linear-gradient(-45deg, vars.$color_callToAction, #e73c7e,vars.$color_callToAction, vars.$color_primary);
         background-size: 300% 300%;

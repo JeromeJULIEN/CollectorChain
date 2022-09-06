@@ -31,8 +31,8 @@ const Collection = ({ url }) => {
 	let globalTagList = [];
 	if(list){
 		const a = list.map((nft) => nft.property);
-		console.log('list>>>>',list);
-		console.log('a >>>>>',a);
+		// console.log('list>>>>',list);
+		// console.log('a >>>>>',a);
 		// on utilise la destructuration pour concaténer tableau par tableau dans globalPropList
 		a.map((propArray) => {
 			globalPropList = [...globalPropList, ...propArray];
@@ -108,7 +108,7 @@ const Collection = ({ url }) => {
 					<div className="collection__title__text__main">
 						<div className="collection__title__text__main__head">
 							<h1>{collection.name}</h1>
-							<Share id="test" url={url} />
+							<Share url={url} />
 						</div>
 						{/* <Panel header="Description" collapsible>
                         <p>{collection.description}</p>

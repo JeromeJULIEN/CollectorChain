@@ -10,7 +10,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        background-color: grey;
+        background-color: vars.$color_primary;
         height: 5rem;
 
         &__image{
@@ -60,11 +60,11 @@
     }
 
     &__list{
-        margin: .5rem;
+        margin: .5rem 1rem;
         display: grid;
         flex-direction: row;
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.5em;
+        gap: 1em;
     }
 
 }

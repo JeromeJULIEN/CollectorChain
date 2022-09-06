@@ -9,9 +9,13 @@ export default function MenuExplore({ placement }) {
 
 	// Gestion de l'affichage/disparition du sous menu explore
 	const [exploreMenuVisible,setExploreMenuVisible] = useState(false);
-	const handleExploreMenuVisibility = () => {
-		setExploreMenuVisible(!exploreMenuVisible)
-		console.log(exploreMenuVisible);
+	const menuVisibilityOn = () => {
+		setExploreMenuVisible(true)
+		// console.log(exploreMenuVisible);
+	}
+	const menuVisibilityOff = () => {
+		setExploreMenuVisible(false)
+		// console.log(exploreMenuVisible);
 	}
 
 	return (
@@ -20,13 +24,15 @@ export default function MenuExplore({ placement }) {
 			// icon={<ExploreIcon />}
 			placement={placement}
 			className='menu-explore'
-			// onOpen={handleExploreMenuVisibility}
-			// onClose={handleExploreMenuVisibility}
+			onOpen={menuVisibilityOn}
+			onClose={menuVisibilityOff}
 		>
-			<Nav.Item>
+			{exploreMenuVisible?
+			<>
+			<Nav.Item onClick={menuVisibilityOff}>
 				<Link to="/">Home page</Link>
 			</Nav.Item>
-			<Nav.Item>
+			<Nav.Item onClick={menuVisibilityOff}>
 				<Link to="/categories">Categories</Link>
 			</Nav.Item>
 			{/* <Nav.Menu title="Categories">
@@ -36,7 +42,7 @@ export default function MenuExplore({ placement }) {
 					<Link to="/categories">...Show all</Link>
 				</Nav.Item>
 			</Nav.Menu> */}
-			<Nav.Item>
+			<Nav.Item onClick={menuVisibilityOff}>
 				<Link to="/collections">Collections</Link>
 			</Nav.Item>
 			{/* <Nav.Menu title="Collections">
@@ -48,25 +54,27 @@ export default function MenuExplore({ placement }) {
 			</Nav.Menu> */}
 			<Nav.Menu title="Resources" openDirection="end">
 				{/* une fonction a faire serrait de gérer l'ouverture du bon panel coté 'resource' en fonction du lien cliqué */}
-				<Nav.Item>
+				<Nav.Item onClick={menuVisibilityOff}>
 					<Link to="/resources">Blockchain and NFT</Link>{" "}
 				</Nav.Item>
-				<Nav.Item>
+				<Nav.Item onClick={menuVisibilityOff}>
 					<Link to="/resources">Enjoy showcase</Link>
 				</Nav.Item>
-				<Nav.Item>
+				<Nav.Item onClick={menuVisibilityOff}>
 					<Link to="/resources">Earn passive incomes</Link>
 				</Nav.Item>
-				<Nav.Item>
+				<Nav.Item onClick={menuVisibilityOff}>
 					<Link to="/creation">Creation process</Link>
 				</Nav.Item>
 			</Nav.Menu>
-			<Nav.Item>
+			<Nav.Item onClick={menuVisibilityOff}>
 				<Link to="/events">Events</Link>
 			</Nav.Item>
-			<Nav.Item>
+			<Nav.Item onClick={menuVisibilityOff}>
 				<Link to="/aboutus">About us</Link>
 			</Nav.Item>
+			</>
+			:''}
 		</Nav.Menu>
 	);
 }
