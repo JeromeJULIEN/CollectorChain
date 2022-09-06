@@ -73,7 +73,7 @@ const Header = () => {
 	
 
 
-	
+	console.log('categorie result length',categoryResult.length);
 		
 
 	return (
@@ -118,19 +118,23 @@ const Header = () => {
 			{result?
 			<>
 			<div className="result">
-				<div className="result__title">Categories</div>
+				<div className="result__title">{categoryResult.length < 1? 'Categories ...no result' :'Categories' }</div>
+				{categoryResult.length < 1 &&
+				<p>No result</p> }				
 				{categoryResult.map(result => (
 					<Link to={`/category/${result.id}/collection`} onClick={hideResult}>
 						<li className="result__item" key={result.name}>{result.name}</li>
 						<img src={result.media} alt="" />
 					</Link>))}
-				<div className="result__title">Collections</div>
+				
+				
+				<div className="result__title">{collectionResult.length < 1? 'Collections ...no result' :'Collections' }</div>
 				{collectionResult.map(result => (
 					<Link className="result__item" to={`/collection/${result.id}`} onClick={hideResult}>
 						<li  key={result.name}>{result.name}</li>
 						<img src={result.media} alt="" />
 					</Link>))}
-				<div className="result__title">NFT</div>
+				<div className="result__title">{nftResult.length < 1? 'NFT ...no result' :'NFT' }</div>
 				{nftResult.map(result => (
 					<Link className="result__item" to={`/nft/${result.id}`} onClick={hideResult}>
 						<li  key={result.name}>{result.name}</li>
