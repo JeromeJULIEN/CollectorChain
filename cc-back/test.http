@@ -50,12 +50,11 @@ GET {{ endpoint }}/profil/10
 DELETE {{ endpoint }}/profil/4/delete
 
 ### Update profil
-PATCH {{ endpoint }}/profil/33/update
+PATCH {{ endpoint }}/profil/33
 Content-Type: application/json
 
 {
-                "password": "user3456",
-                "wallet" : 8
+                "email": "user3456"
 }
 ### Forget User
 POST {{ endpoint }}/forget_user

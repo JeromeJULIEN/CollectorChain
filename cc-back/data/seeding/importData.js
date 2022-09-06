@@ -74,12 +74,12 @@ const { nftHasPropertyHasTag } = data[6];
     });
     userQueries.push(client.query(
         `
-            INSERT INTO "user"("email","nickname", "password", "media" ) VALUES
+            INSERT INTO "user"("email","nickname", "password", "media", "name", "lastName" ) VALUES
             ($1,$2,$3,$4
             )
             RETURNING *
         `,
-        ['user@user.com', 'user', '$2a$12$auKxh5o5M0wGHZ26GmPbJuzn8MHDVIl68a.sAwpuvgk215rwYH48C', 'https://via.placeholder.com/150'],
+        ['user@user.com', 'user', '$2a$12$auKxh5o5M0wGHZ26GmPbJuzn8MHDVIl68a.sAwpuvgk215rwYH48C', 'https://i.pngimg.me/thumb/f/720/m2H7K9A0Z5m2G6b1.jpg', 'Jerome', 'Julien'],
     ));
     await Promise.all(userQueries);
     console.log('nft');
