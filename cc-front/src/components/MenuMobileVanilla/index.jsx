@@ -148,16 +148,16 @@ const MenuMobileVanilla = () => {
 			<div className={userVisibility ? "menuMobile__lvl2 menuMobile__lvl2--user--visible" : "menuMobile__lvl2 menuMobile__lvl2--user"}>
 				{isLogged ? (
 					<>
-						<li className="menuMobile__lvl2__item" onClick={handleUserVisibility}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleUserVisibility}>
 							<Link to="/showcase">My showcase</Link>
 						</li>
-						<li className="menuMobile__lvl2__item" onClick={handleUserVisibility}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleUserVisibility}>
 							<Link to="/favorites">My favorites</Link>
 						</li>
-						<li className="menuMobile__lvl2__item" onClick={handleUserVisibility}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleUserVisibility}>
 							<Link to="/profil">My profil</Link>
 						</li>
-						<li className="menuMobile__lvl2__item" onClick={handleLogout}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleLogout}>
 							Logout
 						</li>
 					</>

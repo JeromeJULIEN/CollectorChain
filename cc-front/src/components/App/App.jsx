@@ -98,7 +98,6 @@ function App() {
 		<div className="app">
 			<NextUIProvider>
 				<Header />
-
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/categories" element={<Categories />} />
@@ -128,7 +127,6 @@ function App() {
 					<Route path="/resources" element={<Resources />} />
 					<Route path="*" element={<Error />} />
 				</Routes>
-
 				<Footer />
 				<MenuMobileVanilla />
 			</NextUIProvider>

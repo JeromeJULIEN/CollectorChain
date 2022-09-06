@@ -90,23 +90,34 @@
         position: absolute;
         // left: 0px;
         bottom: vars.$dimension_menuMobile_height;
-        background-color: vars.$color_text;
+        // background-color: vars.$color_text;
+        background-color: vars.$color_background;
         box-shadow: 0 0 10px vars.$color_secondary;
         width: 50vw;
         text-align: center;
-        color: vars.$color_primary;
+        // color: vars.$color_primary;
+        color: vars.$color_text;
         display: flex;
         flex-direction: column;
         padding: 0 2rem;
         
-        &__item{
+        &__item, &__item_user{
             display: flex;
             flex-direction: column;
             justify-content: center;
             height: 3rem;
             vertical-align: baseline;
             list-style: none;
-            border-bottom: solid 1px vars.$color_primary;
+            border-bottom: solid 1px vars.$color_text;
+        }
+		&__item:nth-child(6){
+   
+            border-bottom: solid 1px transparent;
+        }
+		       
+		&__item_user:nth-child(4){
+   
+            border-bottom: solid 1px transparent;
         }
         
         &--explore{
