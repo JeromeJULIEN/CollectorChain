@@ -46,7 +46,7 @@ router.post('/categories', controllerHandler(categoriesController.createCategori
  */
 router.delete('/categories/:id', controllerHandler(categoriesController.deleteCategorie));
 /**
- * UPDATE /categories/:id
+ * PATCH /categories/:id
  * @summary Modify categories
  * @tags Categories
  * @param {number} id.query - id from category to update
@@ -56,6 +56,6 @@ router.delete('/categories/:id', controllerHandler(categoriesController.deleteCa
  * @return {Category} 200 - success response - application/json
  * @return {string} 400 - error response - application/json
  */
-router.patch('/categories/:id', controllerHandler(categoriesController.updateCategories));
+router.put('/categories/:id', controllerHandler(categoriesController.updateCategories));
 
 module.exports = router;

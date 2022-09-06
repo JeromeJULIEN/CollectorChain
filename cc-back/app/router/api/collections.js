@@ -63,7 +63,7 @@ router.post('/collection', controllerHandler(collectionsController.createCollect
  */
 router.delete('/collection/:id', controllerHandler(collectionsController.deleteCollection));
 /**
- * UPDATE /collection/:id
+ * PATCH /collection/:id
  * @summary Modify to collection/:id
  * @tags Collections
  * @param {number} id - collection by id

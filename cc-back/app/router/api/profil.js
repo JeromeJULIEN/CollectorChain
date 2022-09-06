@@ -31,7 +31,7 @@ const validation = require('../../validation/validator');
  */
 router.get('/profil/:id', validation('params', profilId), controllerHandler(userController.getUser));
 /**
- * DELETE /profil/:id/delete
+ * DELETE /profil/:id
  * @summary Delete to delete user
  * @tags User
  * @param {number} id.query - profil user by id
@@ -40,7 +40,7 @@ router.get('/profil/:id', validation('params', profilId), controllerHandler(user
  */
 router.delete('/profil/:id', controllerHandler(userController.deleteProfilUser));
 /**
- * UPDATE /profil/:id/update
+ * PATCH /profil/:id
  * @summary Modify to update user
  * @tags User
  * @param {User} - User Model Object
@@ -51,7 +51,7 @@ router.delete('/profil/:id', controllerHandler(userController.deleteProfilUser))
  * @param {number} wallet - actual state of the personnal wallet
  * @param {boolean} isAdmin - egal true if this user is an admin
  * @param {string} media.query - link to user picture
- * @return {Object} 200 - success response - application/json
+ * @return {User} 200 - success response - application/json
  * @return {string} 400 - error response - application/json
  */
 router.patch('/profil/:id', validation('body', updateProfil), controllerHandler(userController.updateUserProfile));
