@@ -79,11 +79,11 @@ const Header = () => {
 	return (
 		<div className="header">
 			<div className="menu">
+					<form action="" className={isSearchBarOpen?"menu__form--active":"menu__form"}>
+						<Input autoFocus placeholder="Search Categories, collections or NFTs" onChange={handleQuery}/>
+					</form>
 			{isSearchBarOpen ? (
 				<>
-					<form action="" >
-						<Input placeholder="Search Categories, collections or NFTs" onChange={handleQuery}/>
-					</form>
 					<div className="menu__btn">
 						<ion-icon name="close-circle" onClick={hideSearchBar}></ion-icon>
 						<button
@@ -118,7 +118,7 @@ const Header = () => {
 			{result?
 			<>
 			<div className="result">
-				<div className="result__title">{categoryResult.length < 1? 'Categories ...no result' :'Categories' }</div>
+				<div className="result__title">Categories</div>
 				{categoryResult.length < 1 &&
 				<p>No result</p> }				
 				{categoryResult.map(result => (
@@ -128,13 +128,17 @@ const Header = () => {
 					</Link>))}
 				
 				
-				<div className="result__title">{collectionResult.length < 1? 'Collections ...no result' :'Collections' }</div>
+				<div className="result__title">Collections</div>
+				{collectionResult.length < 1 &&
+				<p>No result</p> }	
 				{collectionResult.map(result => (
 					<Link className="result__item" to={`/collection/${result.id}`} onClick={hideResult}>
 						<li  key={result.name}>{result.name}</li>
 						<img src={result.media} alt="" />
 					</Link>))}
-				<div className="result__title">{nftResult.length < 1? 'NFT ...no result' :'NFT' }</div>
+				<div className="result__title">NFT</div>
+				{nftResult.length < 1 &&
+				<p>No result</p> }	
 				{nftResult.map(result => (
 					<Link className="result__item" to={`/nft/${result.id}`} onClick={hideResult}>
 						<li  key={result.name}>{result.name}</li>

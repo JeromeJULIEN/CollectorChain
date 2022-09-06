@@ -149,7 +149,7 @@ const CreateNewNft2 = () => {
             </div>
             <div className="description">
                 <h3>Object description</h3>
-                <p>Highlight your NFT ! (max xxx words)</p>
+                <p>Highlight your NFT !</p>
                 <Input as='textarea' rows={3} placeholder='Describe your NFT' name='description' onChange={handleChangeField}/>
             </div>
             <div className="picture__title">

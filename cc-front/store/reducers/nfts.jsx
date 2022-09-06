@@ -96,7 +96,11 @@ export const initialState = {
 		// 	user_id: "0x777",
 		// },
 	],
-	displayedNft:[]
+	displayedNft:{
+		property:[]
+
+	}
+	
 };
 
 const reducer = (state = initialState, action = {}) => {
