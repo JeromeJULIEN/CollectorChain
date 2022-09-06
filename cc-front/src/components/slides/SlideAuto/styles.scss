@@ -1,9 +1,13 @@
+@use'../../../../styles/vars';
+
 .slide-fade {
 	// position: relative;
 	height: 100%;
 	& h2 {
 		font-size: 125%;
-		color: white;
+		color: vars.$color_text;
+		font-weight: bold;
+		letter-spacing: .05rem;
 		text-shadow: 1px 1px 2px black;
 	}
 	& p {
@@ -29,14 +33,23 @@
 		justify-content: center;
 		position: relative;
 		text-align: center;
-		height: 17rem;
+		height: 13rem;
 		width: 100vw;
-		& h2 {
+		filter: brightness(80%);
+		
+		h3 {
 			position: absolute;
 			text-align: center;
 			top: 50%;
 			padding: 0 1em;
+			color: white;
+			font-size: 125%;
+			font-weight: bold;
+			letter-spacing: .05rem;
+			text-shadow: 1px 1px 2px black;
+			filter: brightness(200%);
 		}
+		
 	}
 }
 
@@ -62,11 +75,12 @@
 	  -ms-flex-align: center;
 	  -webkit-align-items: center;
 	  align-items: center;
-	  & img {
+	  img {
 		display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		// filter: brightness(80%);
 	  }
 	}
   }

@@ -14,6 +14,23 @@ export const FETCH_PROPERTIES = "FETCH_PROPERTIES";
 export const FETCH_TAGS = "FETCH_TAGS";
 export const SET_PROPERTIES = "SET_PROPERTIES";
 export const SET_TAGS = "SET_TAGS";
+export const FETCH_SEARCH = 'FETCH_SEARCH';
+export const SET_SEARCH = 'SET_SEARCH';
+export const ERASE_SEARCH = 'ERASE_SEARCH';
+
+export const eraseSearch = () => ({
+  type: ERASE_SEARCH
+});
+
+export const setSearch = (payload) => ({
+  type: SET_SEARCH,
+  payload
+});
+
+export const fetchSearch = (payload) => ({
+  type: FETCH_SEARCH,
+  payload
+});
 
 
 export const setTags = (payload) => ({

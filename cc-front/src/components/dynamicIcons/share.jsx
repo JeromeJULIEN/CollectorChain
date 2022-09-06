@@ -21,7 +21,7 @@ const Share = ({ url }) => {
 	const iconSize = 28;
 	const [open, setOpen] = React.useState(false);
 	const handleIcon = () => setOpen(!open);
-	console.log(shareUrl);
+	// console.log(shareUrl);
 	return (
 		<>
 			<div className="share-icon">
