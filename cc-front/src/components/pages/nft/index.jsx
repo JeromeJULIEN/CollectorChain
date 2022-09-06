@@ -21,15 +21,23 @@ const Nft = ({ nfts, url }) => {
 	// on recherche le nft correspondant dans la liste courante du state
 	// const displayedNft = nfts.find((nft) => nft.id == id);
 	//! Gestion bdd distante
+	const displayedNft = useSelector(state => state.nfts.displayedNft)
+
 	if (id) {
 		useEffect(() => {
 			dispatch(fetchNftById(id));
 		}, []);
 	}
-	const displayedNft = useSelector((state) => state.nfts.displayedNft);
+	
+	// const [displayedNft,setDisplayedNft] = useState()
+	// useEffect(()=>{
+	// 	const test =[...displayedNftFromBdd]
+	// 	setDisplayedNft(test)
+	// },[displayedNftFromBdd])
+
 	const isLogged = useSelector((state) => state.user.isLogged);
-	const propertiesCount = displayedNft.property.length
-	console.log('property counet', propertiesCount);
+	// const propertiesCount = displayedNft.property.length
+	// console.log('property counet', propertiesCount);
 
 	const convertRarityToPercent = (displayedNft.rarity * 100) / 70;
 
@@ -72,120 +80,113 @@ const Nft = ({ nfts, url }) => {
 	// console.log("FAVORITE_FOUND >>>", favorisFound);
 
 	//----------------
+	if(displayedNft){
 
-	return (
-		<div className="nft">
-			<h1 className="nft__title">{displayedNft.name}</h1>
-			<img src={displayedNft.media} alt="" className="nft__image" onClick={showFullScreen} />
-			<div className="nft__actionsButtons">
-				<Share url={url} />
-				{isLogged ? (
-					<>
-						<BookmarkIcon nftId={displayedNft.id} favorisFound={favorisFound} />
-						<HeartIcon />
-					</>
-				) : (
-					""
-				)}
-			</div>
-			<div className="nft__price">
-				{displayedNft.forSale ? (
-					<>
-						<div className="nft__price__current">
-							<p>Current price</p>
-							<h3>{displayedNft.price}</h3>
-						</div>
-						{isLogged ? (
-							<>
-								<div className="nft__price__buy">
-									<button type="button" onClick={showPurchase}>
-										Buy
-									</button>
-									{/* modale sell a activer une fois la condition owned faite */}
-									{/* <button type="button" onClick={showSell}>
-										Sell
-									</button> */}
-								</div>
-							</>
-						) : (
-							<div className="nft__price__buy">
-								<p>Login to buy this NFT</p>
+		return (
+			<div className="nft">
+				<h1 className="nft__title">{displayedNft.name}</h1>
+				<img src={displayedNft.media} alt="" className="nft__image" onClick={showFullScreen} />
+				<div className="nft__actionsButtons">
+					<Share url={url} />
+					{isLogged ? (
+						<>
+							<BookmarkIcon nftId={displayedNft.id} favorisFound={favorisFound} />
+							<HeartIcon />
+						</>
+					) : (
+						""
+					)}
+				</div>
+				<div className="nft__price">
+					{displayedNft.forSale ? (
+						<>
+							<div className="nft__price__current">
+								<p>Current price</p>
+								<h3>{displayedNft.price}</h3>
 							</div>
-						)}
-					</>
-				) : (
-					<>
-						<p>This nft is not for sale</p>
-						<button type="button">Contact the owner</button>
-					</>
-				)}
+							{isLogged ? (
+								<>
+									<div className="nft__price__buy">
+										<button type="button" onClick={showPurchase}>
+											Buy
+										</button>
+										{/* modale sell a activer une fois la condition owned faite */}
+										{/* <button type="button" onClick={showSell}>
+											Sell
+										</button> */}
+									</div>
+								</>
+							) : (
+								<div className="nft__price__buy">
+									<p>Login to buy this NFT</p>
+								</div>
+							)}
+						</>
+					) : (
+						<>
+							<p>This nft is not for sale</p>
+							<button type="button">Contact the owner</button>
+						</>
+					)}
+				</div>
+	
+				<PanelGroup className="nft__infos" accordion bordered>
+					<Panel header="Main informations" defaultExpanded>
+						<div className="nft__infos__main">
+							<div className="nft__infos__main__author">
+								<h3>Author</h3>
+								<p>{displayedNft.creator}</p>
+							</div>
+							<div className="nft__infos__main__owner">
+								<h3>Owner</h3>
+								<p>id : {displayedNft.owner_id}</p>
+							</div>
+							<div className="nft__infos__main__rarity">
+								<h3>Rarity : {displayedNft.rarity} </h3>
+								{/* <p>{displayedNft.rarity}</p> */}
+								<Progress.Line percent={convertRarityToPercent} strokeColor="#FF7F11" showInfo={false} className="nft__infos__main__rarity__progess" />
+							</div>
+						</div>
+					</Panel>
+					<Panel header="Description" defaultExpanded>
+						<p className="nft__infos__description">
+							{displayedNft.description
+								? displayedNft.description
+								: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque doloremque possimus quod optio corrupti, itaque hic quisquam voluptatibus minima a."}
+						</p>
+					</Panel>
+					<Panel header="Details">
+						<div className="nft__infos__details">
+							<h3>Contract adress</h3>
+							<p>0x7dae....a057</p>
+							<h3>Token ID</h3>
+							<p>2504</p>
+							<h3>Creator Earnings</h3>
+							<p>2.5%</p>
+						</div>
+					</Panel>
+					<Panel header="Properties">
+						<div className="nft__infos__properties">
+							{/* boucle sur les prop et le tag associé */}
+							{displayedNft.property.map((property,i) => <p>{property} : {displayedNft.tag[i]}</p>) }
+						</div>
+					</Panel>
+				</PanelGroup>
+	
+				<Modal className="modalePurchase" closeButton blur open={isPurchaseVisible} onClose={hidePurchase}>
+					<Purchase nft={displayedNft} hidePurchase={hidePurchase} />
+				</Modal>
+	
+				<Modal className="modaleFullScreen" closeButton blur open={isFullScreenVisible} onClose={hideFullScreen}>
+					<FullScreen media={displayedNft.media} />
+				</Modal>
+	
+				<Modal className="modaleSell" closeButton blur open={isSellVisible} onClose={hideSell}>
+					<Sell nft={displayedNft} hideSell={hideSell} />
+				</Modal>
 			</div>
-
-			<PanelGroup className="nft__infos" accordion bordered>
-				<Panel header="Main informations" defaultExpanded>
-					<div className="nft__infos__main">
-						<div className="nft__infos__main__author">
-							<h3>Author</h3>
-							<p>{displayedNft.creator}</p>
-						</div>
-						<div className="nft__infos__main__owner">
-							<h3>Owner</h3>
-							<p>id : {displayedNft.owner_id}</p>
-						</div>
-						<div className="nft__infos__main__rarity">
-							<h3>Rarity : {displayedNft.rarity} </h3>
-							{/* <p>{displayedNft.rarity}</p> */}
-							<Progress.Line percent={convertRarityToPercent} strokeColor="#FF7F11" showInfo={false} className="nft__infos__main__rarity__progess" />
-						</div>
-					</div>
-				</Panel>
-				<Panel header="Description" defaultExpanded>
-					<p className="nft__infos__description">
-						{displayedNft.description
-							? displayedNft.description
-							: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque doloremque possimus quod optio corrupti, itaque hic quisquam voluptatibus minima a."}
-					</p>
-				</Panel>
-				<Panel header="Details">
-					<div className="nft__infos__details">
-						<h3>Contract adress</h3>
-						<p>0x7dae....a057</p>
-						<h3>Token ID</h3>
-						<p>2504</p>
-						<h3>Creator Earnings</h3>
-						<p>2.5%</p>
-					</div>
-				</Panel>
-				<Panel header="Properties">
-					<div className="nft__infos__properties">
-						{/* boucle sur les prop et le tag associé */}
-						{displayedNft.property.map((property,i) => <p>{property} : {displayedNft.tag[i]}</p>) }
-						{/* <p>Chronograph</p>
-						<p>Automatic</p>
-						<p>Saphir glass</p>
-						<p>Chronograph</p>
-						<p>Automatic</p>
-						<p>Saphir glass</p>
-						<p>Chronograph</p>
-						<p>Automatic</p>
-						<p>Saphir glass</p> */}
-					</div>
-				</Panel>
-			</PanelGroup>
-
-			<Modal className="modalePurchase" closeButton blur open={isPurchaseVisible} onClose={hidePurchase}>
-				<Purchase nft={displayedNft} hidePurchase={hidePurchase} />
-			</Modal>
-
-			<Modal className="modaleFullScreen" closeButton blur open={isFullScreenVisible} onClose={hideFullScreen}>
-				<FullScreen media={displayedNft.media} />
-			</Modal>
-
-			<Modal className="modaleSell" closeButton blur open={isSellVisible} onClose={hideSell}>
-				<Sell nft={displayedNft} hideSell={hideSell} />
-			</Modal>
-		</div>
-	);
+		);
+	}
 };
 
 export default Nft;
