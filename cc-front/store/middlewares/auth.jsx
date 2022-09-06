@@ -87,7 +87,7 @@ const authMiddleware = (store) => (next) => async (action) => {
 			const {
 				user: { id, nickname, name, firstname, email, password },
 			} = store.getState();
-
+			console.log("ID_USER", id);
 			let result;
 			let data;
 			let resultErr;
@@ -101,12 +101,17 @@ const authMiddleware = (store) => (next) => async (action) => {
 					newPassword,
 					newPasswordConfirm,
 				});
+				// console.log("RESULT>>>");
 			} catch (error) {
-				resultErr = error.response.data.message;
+				// console.log("ERROR>>>", error.message);
+				resultErr = error.message;
+				console.log("RESULT_ERROR>>>", resultErr);
 			}
+			console.log("AVANT_IF>>>");
+
 			if (result) {
-				data = result.data;
-				console.log("DATA >>>", data);
+				// data = result.data;
+				// console.log("DATA >>>", data);
 				if (data.error) {
 					store.dispatch(setAuthError(data.error));
 					console.log("DATA_ERROR>>>", data.error);
