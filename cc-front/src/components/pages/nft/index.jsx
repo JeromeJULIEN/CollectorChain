@@ -28,6 +28,8 @@ const Nft = ({ nfts, url }) => {
 	}
 	const displayedNft = useSelector((state) => state.nfts.displayedNft);
 	const isLogged = useSelector((state) => state.user.isLogged);
+	const propertiesCount = displayedNft.property.length
+	console.log('property counet', propertiesCount);
 
 	const convertRarityToPercent = (displayedNft.rarity * 100) / 70;
 
@@ -124,7 +126,7 @@ const Nft = ({ nfts, url }) => {
 					<div className="nft__infos__main">
 						<div className="nft__infos__main__author">
 							<h3>Author</h3>
-							<p>Unknown</p>
+							<p>{displayedNft.creator}</p>
 						</div>
 						<div className="nft__infos__main__owner">
 							<h3>Owner</h3>
@@ -156,7 +158,9 @@ const Nft = ({ nfts, url }) => {
 				</Panel>
 				<Panel header="Properties">
 					<div className="nft__infos__properties">
-						<p>Chronograph</p>
+						{/* boucle sur les prop et le tag associé */}
+						{displayedNft.property.map((property,i) => <p>{property} : {displayedNft.tag[i]}</p>) }
+						{/* <p>Chronograph</p>
 						<p>Automatic</p>
 						<p>Saphir glass</p>
 						<p>Chronograph</p>
@@ -164,7 +168,7 @@ const Nft = ({ nfts, url }) => {
 						<p>Saphir glass</p>
 						<p>Chronograph</p>
 						<p>Automatic</p>
-						<p>Saphir glass</p>
+						<p>Saphir glass</p> */}
 					</div>
 				</Panel>
 			</PanelGroup>

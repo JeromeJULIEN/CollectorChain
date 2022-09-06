@@ -119,7 +119,11 @@ const MenuMobileVanilla = () => {
 				<Link to={isLogged ? "/creation/createnewnft" : "/creation"}>Create</Link>
 			</div>
 			<div className={userVisibility ? "menuMobile__lvl1--active" : "menuMobile__lvl1"} onClick={handleUserVisibility}>
-				User{isLogged ? <img src={userMedia} alt="pic" /> : ""}
+			{isLogged ? 
+			<>
+			My profil<img src={userMedia} alt="pic" /> 
+			</>
+			: "Login"}
 			</div>
 
 			{/* menu explore */}
