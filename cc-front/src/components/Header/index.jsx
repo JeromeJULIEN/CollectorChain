@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import { useState } from "react";
 import { useEffect } from "react";
@@ -16,9 +16,13 @@ const Header = () => {
 
 	const dispatch = useDispatch()
 
+	// Gestion focus sur input barre de recherche
+	const inputRef = useRef(null)
+
 	const showSearchBar = (event) => {
 		event.preventDefault();
 		setIsSearchBarOpen(true);
+		inputRef.current.focus()
 	};
 
 	const hideSearchBar = (event) => {
@@ -71,16 +75,14 @@ const Header = () => {
 		setIsSearchBarOpen(false)
 	},[location])
 	
-
-
-	console.log('categorie result length',categoryResult.length);
+	
 		
 
 	return (
 		<div className="header">
 			<div className="menu">
-					<form action="" className={isSearchBarOpen?"menu__form--active":"menu__form"}>
-						<Input autoFocus placeholder="Search Categories, collections or NFTs" onChange={handleQuery}/>
+					<form action="" className={isSearchBarOpen?"menu__form--active":"menu__form"} >
+						<Input autoFocus placeholder="Search Categories, collections or NFTs" onChange={handleQuery} ref={inputRef}/>
 					</form>
 			{isSearchBarOpen ? (
 				<>
