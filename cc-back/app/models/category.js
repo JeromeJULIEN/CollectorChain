@@ -3,11 +3,17 @@ const CoreDatamapper = require('./coreDatamapper');
 
 /**
  * Category Model Object
- * @typedef {object} Category
+ * @typedef {object} CategoryModel
  * @property {number} id - category id
  * @property {string} name - category name
  * @property {string} description - category description
  * @property {string} media - category media
+ */
+
+/**
+ * Category Object
+ * @typedef {object} Category
+ * @property {object} category - Generated category object
  */
 
 module.exports = class Category extends CoreDatamapper {

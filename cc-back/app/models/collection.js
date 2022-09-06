@@ -3,12 +3,18 @@ const CoreDatamapper = require('./coreDatamapper');
 
 /**
  * Collection Model Object
- * @typedef {object} Collection
+ * @typedef {object} CollectionModel
  * @property {number} id - collection id
  * @property {string} name - collection name
  * @property {string} description - collection description
  * @property {string} media - collection media
  * @property {number} category_id - category_id
+ */
+
+/**
+ * Collection Object
+ * @typedef {object} Collection
+ * @property {object} collection - Generated collection object
  */
 
 module.exports = class Collection extends CoreDatamapper {

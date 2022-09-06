@@ -1,6 +1,11 @@
 const client = require('../clients/pg');
 const CoreDatamapper = require('./coreDatamapper');
 
+/** Tag Model Object
+ * @typedef {object} Tag
+ * @property {string} name - tag name
+*/
+
 module.exports = class Tag extends CoreDatamapper {
     static tableName = 'tag';
 

@@ -5,36 +5,56 @@ const router = express.Router();
 const categoriesController = require('../../controllers/categoriesController');
 
 const controllerHandler = require('../../helper/controllerHandler');
+
+/**
+ * User Error
+ * @typedef {object} UserError
+ * @property {string} error - error details
+ */
+
 /**
  * GET /categories
- * @summary Route to all categories
- * @tags categories
- * @param {string} tableName - category tableName
+ * @summary Get categories
+ * @tags Categories
+ * @param {Category} - Category Model Object
+ * @param {string} name.query - category name
+ * @param {string} description.query - category description
+ * @param {string} media.query - category media
+ * @return {Category} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/categories', controllerHandler(categoriesController.getAllCategories));
 /**
  * POST /categories
- * @summary Route to categories
- * @tags categories
- * @param {Category} Category - Category Model Object
- * @return {Object} 200 - success response - application/json
+ * @summary Add new category
+ * @tags Categories
+ * @param {Category} - Category Model Object
+ * @param {string} name.query - category name
+ * @param {string} description.query - category description
+ * @param {string} media.query - category media
+ * @return {Category} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.post('/categories', controllerHandler(categoriesController.createCategorie));
 /**
  * DELETE /categories/:id
- * @summary Route to categories/:id
- * @tags categories
- * @param {number} id - id from category deleted
- * @return {categories} 200 - success response - application/json
+ * @summary Delete categories/:id
+ * @tags Categories
+ * @param {number} id.query - id from category deleted
+ * @return {string} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.delete('/categories/:id', controllerHandler(categoriesController.deleteCategorie));
 /**
  * UPDATE /categories/:id
- * @summary Route to categories
- * @tags categories
- * @param {number} id - id from category to update
- * @param {Category} Category - Category Model Object
- * @return {Object} 200 - success response - application/json
+ * @summary Modify categories
+ * @tags Categories
+ * @param {number} id.query - id from category to update
+ * @param {string} name.query - category name
+ * @param {string} description.query - category description
+ * @param {string} media.query - category media
+ * @return {Category} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.patch('/categories/:id', controllerHandler(categoriesController.updateCategories));
 

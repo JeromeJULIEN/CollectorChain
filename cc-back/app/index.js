@@ -1,4 +1,5 @@
 const express = require('express');
+const expressJSDocSwagger = require('express-jsdoc-swagger');
 const path = require('path');
 const cors = require('cors');
 const errorHandler = require('./helper/errorHandler');
@@ -10,7 +11,34 @@ const corsOptions = {
 
 const router = require('./router');
 
+const options = {
+    info: {
+        version: '1.0.0',
+        title: 'Collector Chain',
+        description: 'API permettant de collectionner, acheter et vendre des NFT',
+        license: {
+            name: 'MIT',
+        },
+    },
+    // Base directory which we use to locate your JSDOC files
+    baseDir: __dirname,
+    // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
+    filesPattern: './**/*.js',
+    // URL where SwaggerUI will be rendered
+    swaggerUIPath: '/api-docs',
+    // Expose OpenAPI UI
+    exposeSwaggerUI: true,
+    // Expose Open API JSON Docs documentation in `apiDocsPath` path.
+    exposeApiDocs: true,
+    // Open API JSON Docs endpoint.
+    apiDocsPath: '/v3/api-docs',
+    // Set non-required fields as nullable by default
+    notRequiredAsNullable: false,
+};
+
 const app = express();
+
+expressJSDocSwagger(app)(options);
 
 app.use(cors(corsOptions));
 

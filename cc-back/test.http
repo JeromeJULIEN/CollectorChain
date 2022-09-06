@@ -1,7 +1,7 @@
 @endpoint = http://localhost:{{$dotenv PORT}}/api
 
-### Documentation Open-API
-GET {{ endpoint }}/docs
+### API docs
+GET {{ endpoint }}v3/api-docs
 
 ### Route Principale ###
 

@@ -8,10 +8,10 @@ const controllerHandler = require('../../helper/controllerHandler');
 
 /**
  * GET /tag
- * @summary Route to all tags
- * @tags tag
- * @param {string} tableName - tag table name
- * @return {Object} 200 - success response - application/json
+ * @summary Get to all tags
+ * @tags Tag
+ * @param {string} name.query - tag table name
+ * @return {Tag} 200 - success response - application/json
  */
 router.get('/tag', controllerHandler(tagController.getAllTag));
 

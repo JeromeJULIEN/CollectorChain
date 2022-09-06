@@ -9,59 +9,89 @@ const { createNft } = require('../../validation/schemas/nft');
 const validation = require('../../validation/validator');
 
 /**
+ * User Error
+ * @typedef {object} UserError
+ * @property {string} error - error details
+ */
+
+/**
  * GET /nft
- * @summary Route to nft
- * @tags nft
- * @param {string} tableName - table name nft
- * @return {Object} 200 - success response - application/json
+ * @summary Get to nft
+ * @tags Nft
+ * @param {Nft} - Nft Model Object
+ * @param {string} name.query - table name nft
+ * @return {Nft} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/nft', controllerHandler(nftController.getNft));
 /**
  * GET /nft/:id
- * @summary Route to nft by id
- * @tags nft
- * @param {id} id - nft by id
- * @return {string} 200 - success response - application/json
+ * @summary Get to nft by id
+ * @tags Nft
+ * @param {Nft} - Nft Model Object
+ * @param {id} id.query - nft by id
+ * @param {string} name.query - name nft
+ * @return {Nft} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/nft/:id', controllerHandler(nftController.getNftById));
 /**
  * POST /:id/nft
- * @summary Route to post nft
- * @tags nft
- * @param {Nft} Nft - Nft Model Object
- * @return {Object} 200 - success response - application/json
+ * @summary Post to nft
+ * @tags Nft
+ * @param {Nft} - Nft Model Object
+ * @param {id} id - nft by id
+ * @param {string} name.query - nft name
+ * @param {string} description.query - nft description
+ * @param {number} price.query - price nft
+ * @param {boolean} forSale.query - for sell nft
+ * @param {string} media.query - nft media
+ * @param {number} collection_id - nft collection_id
+ * @param {number} creator_id - nft creator_id
+ * @param {number} owner_id - nft owner_id
+ * @param {number} rarity.query - nft rarity
+ * @return {Nft} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.post('/nft', validation('body', createNft), controllerHandler(nftController.createNft));
 /**
  * DELETE /nft/:id/delete
- * @summary Route to delete nft
- * @tags nft
- * @param {number} id - nft by id
+ * @summary Delete nft
+ * @tags Nft
+ * @param {Nft} - Nft Model Object
+ * @param {number} id.query - nft by id
  * @return {string} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.delete('/nft/:id', controllerHandler(nftController.deleteNft));
 /**
  * UPDATE /:id/nft/update
- * @summary Route to update showcase position for one nft
- * @tags nft
+ * @summary Modify nft
+ * @tags Nft
  * @param {Nft} Nft - Nft Model Object
+ * @param {number} id.query - nft by id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.patch('/nft/:id', controllerHandler(nftController.updateShowcaseNft));
 /**
  * GET /collections/:id/nft
- * @summary Route to collection by nft_id
- * @tags nft
- * @param {number} id - nft by id
+ * @summary Get to collection by nft_id
+ * @tags Nft
+ * @param {Nft} Nft - Nft Model Object
+ * @param {number} id.query - nft by id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/collections/:id_collection/nft', controllerHandler(nftController.getNftByCollectionId));
 /**
  * GET /:id/nft
- * @summary Route to nft by user
- * @tags nft
- * @param {number} id - nft by id
+ * @summary Get to nft by user
+ * @tags Nft
+ * @param {Nft} Nft - Nft Model Object
+ * @param {number} id.query - nft by id
  * @return {Object} 200 - success response - application/json
+ * @return {string} 400 - error response - application/json
  */
 router.get('/:id_user/nft', controllerHandler(nftController.getNftByUserId));
 
