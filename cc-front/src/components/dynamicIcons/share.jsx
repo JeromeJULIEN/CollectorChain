@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { useRef } from "react";
+import useOnClickOutside from "../hooks/useOnClickOutside";
+
 import {
 	EmailShareButton,
 	EmailIcon,
@@ -21,10 +24,17 @@ const Share = ({ url }) => {
 	const iconSize = 28;
 	const [open, setOpen] = React.useState(false);
 	const handleIcon = () => setOpen(!open);
-	// console.log(shareUrl);
+
+	// Fermeture menu share when click outside
+	const ref = useRef();
+
+	useOnClickOutside(ref, () => {
+		setOpen(false);
+	});
+
 	return (
 		<>
-			<div className="share-icon">
+			<div className="share-icon" ref={ref}>
 				<button onClick={handleIcon} className="modale-share-button">
 					<img src="/share-16.png" alt="logo share" />
 				</button>

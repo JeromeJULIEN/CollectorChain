@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Modal, Input, Row, Button, Text } from "@nextui-org/react";
 import { Mail } from "../modals/Login/Mail";
 import { Password } from "../modals/Login/Password";
 import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
+import useOnClickOutside from "../hooks/useOnClickOutside";
 import "./styles.scss";
 
 const MenuMobileVanilla = () => {
@@ -110,8 +110,17 @@ const MenuMobileVanilla = () => {
 	}, [errorsCheck]);
 	//!-----------
 
+	// Fermeture modals when click outside
+	const ref = useRef();
+
+	useOnClickOutside(ref, () => {
+		setUserVisibility(false);
+		setExploreVisibility(false);
+		setResourcesVisibility(false);
+	});
+
 	return (
-		<div className="menuMobile">
+		<div className="menuMobile" ref={ref}>
 			<div className={exploreVisibility ? "menuMobile__lvl1--active" : "menuMobile__lvl1"} onClick={handleExploreVisibility}>
 				Explore
 			</div>
