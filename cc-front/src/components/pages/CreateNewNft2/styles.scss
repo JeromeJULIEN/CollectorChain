@@ -220,12 +220,25 @@ h3{
     margin: .5rem;
 
     &__text{
-        padding-bottom: 2rem;
+        padding-bottom: 1rem;
+        
+        
+        &--link{
+            font-weight: bold;
+            color: vars.$color_callToAction;
+        }
+
+        &--centered{
+            padding-top: 1rem;
+            text-align: center;
+        }
+   
     }
 
     &__loader{
         padding-bottom: 2rem;
     }
+
 
    
 }

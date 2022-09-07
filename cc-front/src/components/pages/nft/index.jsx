@@ -124,8 +124,12 @@ const Nft = ({ nfts, url }) => {
 						</>
 					) : (
 						<>
-							<p>This nft is not for sale</p>
-							<button type="button">Contact the owner</button>
+							<div className="nft__price__current">
+								<p>This nft is not for sale</p>
+							</div>
+							<div className="nft__price__buy">
+								<button type="button">Contact the owner</button>
+							</div>
 						</>
 					)}
 				</div>

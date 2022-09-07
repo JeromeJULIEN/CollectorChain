@@ -111,7 +111,7 @@ const MenuMobileVanilla = () => {
 	}, [errorsCheck]);
 	//!-----------
 
-	//!Gestion fermeture menu explore et user lorsuque click en dehors
+	//!Gestion fermeture menu explore et user lorsuque click en dehors (marche pas...)
 	// const menuRef = useRef(null)
 	// const exploreRef = useRef(null);
 	// const userRef = useRef(null);

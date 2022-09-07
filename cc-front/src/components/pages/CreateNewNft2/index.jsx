@@ -181,7 +181,8 @@ const CreateNewNft2 = () => {
                 {isLoading? <Loader className='validation__loader' size='lg' vertical/>:''}
                 {isValidated?
                 <p className="validation__text">
-                    <strong>Congratulation ! </strong>You’ve finished the creation process. Collector Chain will proceed your demand <strong>in the next hours.</strong> You will receive an NFT creation validation demand with the final informations. Once validated by your side, your new NFT <strong>will be automaticly displayed in your showcase</strong> 
+                    <strong>Congratulation ! </strong>You’ve finished the creation process. Your unique NFT is now available <Link className='validation__text--link' to='/showcase'>in your showcase</Link> to be displayed.
+                    <p className='validation__text--centered'><strong>Enjoy !!</strong></p>
                 </p>
                 :''              
                 }
