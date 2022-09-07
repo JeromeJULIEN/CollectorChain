@@ -26,6 +26,7 @@
   "homepage": "https://github.com/O-clock-Daguerre/projet-05-collector-chain#readme",
   "dependencies": {
     "concurrently": "^7.3.0",
+    "react-onclickoutside": "^6.12.2",
     "serve": "^14.0.1"
   }
 }

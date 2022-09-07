@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Modal, Input, Row, Button, Text } from "@nextui-org/react";
 import { Mail } from "../modals/Login/Mail";
 import { Password } from "../modals/Login/Password";
 import { changeUserField, logIn, logout, signUp } from "../../../store/actions/user";
+import useOnClickOutside from "../hooks/useOnClickOutside";
 import "./styles.scss";
 
 const MenuMobileVanilla = () => {
@@ -26,7 +26,7 @@ const MenuMobileVanilla = () => {
 		setExploreVisibility(!exploreVisibility);
 		setResourcesVisibility(false);
 		setUserVisibility(false);
-		console.log(exploreVisibility);
+		// console.log(exploreVisibility);
 	};
 
 	const [userVisibility, setUserVisibility] = useState(false);
@@ -110,8 +110,17 @@ const MenuMobileVanilla = () => {
 	}, [errorsCheck]);
 	//!-----------
 
+	// Fermeture modals when click outside
+	const ref = useRef();
+
+	useOnClickOutside(ref, () => {
+		setUserVisibility(false);
+		setExploreVisibility(false);
+		setResourcesVisibility(false);
+	});
+
 	return (
-		<div className="menuMobile">
+		<div className="menuMobile" ref={ref}>
 			<div className={exploreVisibility ? "menuMobile__lvl1--active" : "menuMobile__lvl1"} onClick={handleExploreVisibility}>
 				Explore
 			</div>
@@ -119,7 +128,11 @@ const MenuMobileVanilla = () => {
 				<Link to={isLogged ? "/creation/createnewnft" : "/creation"}>Create</Link>
 			</div>
 			<div className={userVisibility ? "menuMobile__lvl1--active" : "menuMobile__lvl1"} onClick={handleUserVisibility}>
-				User{isLogged ? <img src={userMedia} alt="pic" /> : ""}
+			{isLogged ? 
+			<>
+			My profil<img src={userMedia} alt="pic" /> 
+			</>
+			: "Login"}
 			</div>
 
 			{/* menu explore */}
@@ -148,16 +161,16 @@ const MenuMobileVanilla = () => {
 			<div className={userVisibility ? "menuMobile__lvl2 menuMobile__lvl2--user--visible" : "menuMobile__lvl2 menuMobile__lvl2--user"}>
 				{isLogged ? (
 					<>
-						<li className="menuMobile__lvl2__item" onClick={handleUserVisibility}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleUserVisibility}>
 							<Link to="/showcase">My showcase</Link>
 						</li>
-						<li className="menuMobile__lvl2__item" onClick={handleUserVisibility}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleUserVisibility}>
 							<Link to="/favorites">My favorites</Link>
 						</li>
-						<li className="menuMobile__lvl2__item" onClick={handleUserVisibility}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleUserVisibility}>
 							<Link to="/profil">My profil</Link>
 						</li>
-						<li className="menuMobile__lvl2__item" onClick={handleLogout}>
+						<li className="menuMobile__lvl2__item_user" onClick={handleLogout}>
 							Logout
 						</li>
 					</>
