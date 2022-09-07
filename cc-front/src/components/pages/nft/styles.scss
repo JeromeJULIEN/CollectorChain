@@ -63,7 +63,7 @@
         display: flex;
         width: 100%;
         justify-content:space-between ;
-        align-items: flex-end;
+        align-items: center;
         background-color: vars.$color_secondary;
         border-radius: .5rem;
         padding: 1rem;
@@ -72,6 +72,7 @@
             display: flex;
             gap: 1rem;
             align-items: baseline;
+            
         }
 
         button{
@@ -90,10 +91,12 @@
         }
 
         &__buy{
+            
             p{
                 color: vars.$color_callToAction;
                 font-weight: bold;
                 font-size: 1.1rem;
+            
             }
         }
 
@@ -102,17 +105,21 @@
     &__infos{
         width: 100%;
         margin: .5rem;
-        padding: 0 .5rem;
+        padding: 0 1rem;
+
+        .rs-panel-body{
+            padding: 0 0 1rem 0;
+        }
 
         span{
-            color: vars.$color_text_secondary;
+            color: vars.$color_text;
             font-size: 1.2rem;
         }
         
         // margin-bottom: 2rem;
         h3{
             font-size: .9rem;
-            color: vars.$color_text_secondary;
+            color: vars.$color_text;
 
         }
 
@@ -179,3 +186,4 @@
 .modaleFullScreen{
     padding: 10px;
 }
+

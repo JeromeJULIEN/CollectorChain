@@ -31,7 +31,6 @@ const Favorites = () => {
 					<div className="favorite__title__text__main">
 						<div className="favorite__title__text__main__head">
 							<h1>My favorites collection</h1>
-							<ion-icon name="share-social-outline"></ion-icon>
 						</div>
 					</div>
 					<div className="favorite__title__text__stats">

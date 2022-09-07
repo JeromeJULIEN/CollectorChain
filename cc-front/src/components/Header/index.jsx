@@ -16,9 +16,13 @@ const Header = () => {
 
 	const dispatch = useDispatch();
 
+	// Gestion focus sur input barre de recherche
+	const inputRef = useRef(null)
+
 	const showSearchBar = (event) => {
 		event.preventDefault();
 		setIsSearchBarOpen(true);
+		inputRef.current.focus()
 	};
 
 	const hideSearchBar = (event) => {
@@ -70,7 +74,7 @@ const Header = () => {
 		setIsSearchBarOpen(false);
 	}, [location]);
 
-	console.log("categorie result length", categoryResult.length);
+	// console.log("categorie result length", categoryResult.length);
 
 	// Fermeture searchBar when click outside
 	const ref = useRef();
@@ -82,75 +86,79 @@ const Header = () => {
 	return (
 		<div className="header" ref={ref}>
 			<div className="menu">
-				{isSearchBarOpen ? (
-					<>
-						<form action="">
-							<Input placeholder="Search Categories, collections or NFTs" onChange={handleQuery} />
-						</form>
-						<div className="menu__btn">
-							<ion-icon name="close-circle" onClick={hideSearchBar}></ion-icon>
-							<button
-								className="menu__scrollToTop"
-								onClick={() => {
-									window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-								}}
-							>
-								<ion-icon name="push-outline"></ion-icon>
-							</button>
-						</div>
-					</>
-				) : (
-					<>
-						<Link to="/">
-							<h1>Collector Chain</h1>
-						</Link>
-						<div className="menu__btn">
-							<ion-icon name="search-circle" onClick={showSearchBar}></ion-icon>
-							<button
-								className="menu__scrollToTop"
-								onClick={() => {
-									window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-								}}
-							>
-								<ion-icon name="push-outline"></ion-icon>
-							</button>
-						</div>
-					</>
-				)}
-			</div>
-			{result ? (
+					<form action="" className={isSearchBarOpen?"menu__form--active":"menu__form"} >
+						<Input autoFocus placeholder="Search Categories, collections or NFTs" onChange={handleQuery} ref={inputRef}/>
+					</form>
+			{isSearchBarOpen ? (
 				<>
-					<div className="result">
-						<div className="result__title">{categoryResult.length < 1 ? "Categories ...no result" : "Categories"}</div>
-						{categoryResult.length < 1 && <p>No result</p>}
-						{categoryResult.map((result) => (
-							<Link to={`/category/${result.id}/collection`} onClick={hideResult}>
-								<li className="result__item" key={result.name}>
-									{result.name}
-								</li>
-								<img src={result.media} alt="" />
-							</Link>
-						))}
-
-						<div className="result__title">{collectionResult.length < 1 ? "Collections ...no result" : "Collections"}</div>
-						{collectionResult.map((result) => (
-							<Link className="result__item" to={`/collection/${result.id}`} onClick={hideResult}>
-								<li key={result.name}>{result.name}</li>
-								<img src={result.media} alt="" />
-							</Link>
-						))}
-						<div className="result__title">{nftResult.length < 1 ? "NFT ...no result" : "NFT"}</div>
-						{nftResult.map((result) => (
-							<Link className="result__item" to={`/nft/${result.id}`} onClick={hideResult}>
-								<li key={result.name}>{result.name}</li>
-								<img src={result.media} alt="" />
-							</Link>
-						))}
+					<div className="menu__btn">
+						<ion-icon name="close-circle" onClick={hideSearchBar}></ion-icon>
+						<button
+							className="menu__scrollToTop"
+							onClick={() => {
+								window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+							}}
+						>
+							<ion-icon name="push-outline"></ion-icon>
+						</button>
 					</div>
 				</>
 			) : (
-				""
+				<>
+					<Link to="/">
+						<h1>Collector Chain</h1>
+					</Link>
+					<div className="menu__btn">
+						<ion-icon name="search-circle" onClick={showSearchBar}></ion-icon>
+						<button
+							className="menu__scrollToTop"
+							onClick={() => {
+								window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+							}}
+						>
+							<ion-icon name="push-outline"></ion-icon>
+						</button>
+					</div>
+				</>
 			)}
+			</div>
+			{result?
+			<>
+			<div className="result">
+				<div className="result__title">Categories</div>
+				{categoryResult.length < 1 &&
+				<p>No result</p> }				
+				{categoryResult.map(result => (
+					<Link to={`/category/${result.id}/collection`} onClick={hideResult}>
+						<li className="result__item" key={result.name}>{result.name}</li>
+						<img src={result.media} alt="" />
+					</Link>))}
+				
+				
+				<div className="result__title">Collections</div>
+				{collectionResult.length < 1 &&
+				<p>No result</p> }	
+				{collectionResult.map(result => (
+					<Link className="result__item" to={`/collection/${result.id}`} onClick={hideResult}>
+						<li  key={result.name}>{result.name}</li>
+						<img src={result.media} alt="" />
+					</Link>))}
+				<div className="result__title">NFT</div>
+				{nftResult.length < 1 &&
+				<p>No result</p> }	
+				{nftResult.map(result => (
+					<Link className="result__item" to={`/nft/${result.id}`} onClick={hideResult}>
+						<li  key={result.name}>{result.name}</li>
+						<img src={result.media} alt="" />
+					</Link>))}
+
+			</div>
+			</>
+			:
+			''}
+		
+
+			
 		</div>
 	);
 };
