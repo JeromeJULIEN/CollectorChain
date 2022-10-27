@@ -1,4 +1,7 @@
 # projet-05-collector-chain
+Colelctor chain est le portail web3 des collectionneurs.
+Projet réalisé dans le cadre du projet de fin d'étude chez O'clock, sur une durée de 4 semaines
+Le front a pour l'instant été développé uniquement en version mobile
 
 ## Installation BACK
 
@@ -29,3 +32,6 @@
 
 2. Lancer l'application
 ```npm run dev```
+
+3. Lancer l'app front uniquement (recommandé)
+```npm run frontend```
